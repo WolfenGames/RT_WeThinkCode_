@@ -1,0 +1,30 @@
+<!-- General Definition -->
+<type:name>
+
+	<!-- UNIVERAL -->
+		<origin> x,y,z </origin>
+		<rotation> Left-Right(0:360),Up-Down(-90:90),Tilt(0:360) </rotation>
+
+	<!-- CAMERA SPECIFIC -->
+		<fov> 1:179 </fov>
+		<aperture> f/(0.00000001:512) </aperture>
+
+	<!-- OBJECT SPECIFIC -->
+		<scale> x(0:1),y(0:1),z(0:1) </scale>
+		<diffusecolour> r(0:1),g(0:1),b(0:1) </diffusecolour>
+		<specularcolour> r(0:1),g(0:1),b(0:1) </specularcolour>
+		<albedo> 0:1 </albedo>
+		<refractiveindex> 0:1 </refractiveindex>
+		<glossy> 0:1 </glossy>
+		<subtract>
+			<type:name>
+			</type:name>
+		</subtract>
+		<intersect>
+			<type:name>
+			</type:name>
+		</intersect>
+		<!-- (if polygon) -->
+		<objectfile> "filename" </objectfile>
+
+</type:name>
