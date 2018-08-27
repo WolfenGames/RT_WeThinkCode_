@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:44:46 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/25 16:41:15 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/27 17:08:17 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int		close_win(t_win *win);
 
 void	renderer_set(t_renderer *ren);
 int		add_win(t_renderer *ren, const char *name, int x, int y);
-int		add_img(t_renderer *ren, int w, int h, int x, int y);
+int		add_img(t_renderer *ren, int w, int h);
 int		add_img_xpm(t_renderer *ren, char *filename, int x, int y);
 void	update(t_renderer *ren);
 

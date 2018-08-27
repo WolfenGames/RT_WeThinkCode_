@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window_manage.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 12:26:24 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/25 16:26:10 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/27 17:08:50 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int			close_win(t_win *win)
 	return (1);
 }
 
-int			clear_win(t_renderer *ren, int	id)
+int			clear_win(t_renderer *ren, int id)
 {
 	t_win	*win;
 

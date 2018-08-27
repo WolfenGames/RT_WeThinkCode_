@@ -47,17 +47,18 @@ void		draw_line(t_xy a, t_xy b, t_col c, t_img *img)
 
 void		put_pixel(int x, int y, t_col c, t_img *img)
 {
-	int			i;
+	int				i;
+	const double	perc = c[3] / 255;
 
 	if (x < 0 || y < 0 || x > img->w || y > img->h)
 		return ;
 	i = x * img->bpp + y * img->ll;
-	img->dat[i] *= 1 - c[3];
-	img->dat[i] += c[2] * 0xff * c[3];
-	img->dat[i + 1] *= 1 - c[3];
-	img->dat[i + 1] += c[1] * 0xff * c[3];
-	img->dat[i + 2] *= 1 - c[3];
-	img->dat[i + 2] += c[0] * 0xff * c[3];
+	img->dat[i] *= 1 - perc;
+	img->dat[i] += c[2] * perc;
+	img->dat[i + 1] *= 1 - perc;
+	img->dat[i + 1] += c[1] * perc;
+	img->dat[i + 2] *= 1 - perc;
+	img->dat[i + 2] += c[0] * perc;
 }
 
 void		draw_box(t_xy start, t_xy end, t_col c, t_img *img)

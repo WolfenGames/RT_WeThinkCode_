@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   select.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/23 13:17:54 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/25 13:38:11 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/27 17:06:38 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_win	*find_win(t_renderer *ren, int id)
 {
 	t_list	*cur;
 	t_win	*wow;
-	
+
 	cur = ren->win;
 	while (cur)
 	{
@@ -27,7 +27,7 @@ t_win	*find_win(t_renderer *ren, int id)
 		}
 		cur = cur->next;
 	}
-	return(NULL);
+	return (NULL);
 }
 
 t_img	*find_img(t_renderer *ren, int id)

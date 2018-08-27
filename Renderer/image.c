@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/24 09:11:31 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/25 13:39:33 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/27 17:09:47 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "renderer.h"
 
-int	add_img(t_renderer *ren, int w, int h, int x, int y)
+int		add_img(t_renderer *ren, int w, int h)
 {
 	t_img	new;
 
@@ -24,8 +24,6 @@ int	add_img(t_renderer *ren, int w, int h, int x, int y)
 	new.bpp /= 8;
 	new.w = w;
 	new.h = h;
-	new.x = x;
-	new.y = y;
 	new.id = 1;
 	while (find_img(ren, new.id))
 		new.id++;

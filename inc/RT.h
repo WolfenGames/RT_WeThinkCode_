@@ -1,44 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   RT.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/25 16:44:29 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/27 16:42:26 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_H
-# define ENV_H
+#ifndef RT_H
+# define RT_H
 
-# include "vectorlib.h"
-# include "libft.h"
+# include "scene.h"
 # include "renderer.h"
-# define CAM_ORG env->scene.cur_cam->centre.org
-# define CAM_DIR env->scene.cur_cam->centre.dir
-# define CAM env->scene.cur_cam
-# define TRACER	env->win[0]
-# define PROP_WIN env->win[1]
-# define PROP_BACK env->img[0]
-# define LOAD env->img[1]
-# define RENDER env->img[2]
-# define WIN_H 900.0
-# define WIN_W 1300.0
-# define P_WIN_H 900.0
-# define P_WIN_W 300.0
+# include "pthread.h"
+
+# define TRACER	((t_env*)env)->win[0]
+# define PROP_WIN ((t_env*)env)->win[1]
+# define PROP_BACK ((t_env*)env)->img[0]
+# define LOAD ((t_env*)env)->img[1]
+# define RENDER ((t_env*)env)->img[2]
+# define REN &((t_env*)env)->ren
+# define PROG ((t_env*)env)->progress
+
+# define R_BLOCK_SIZE 128
+# define WIN_H 900
+# define WIN_W 1300
+# define P_WIN_H 900
+# define P_WIN_W 300
+# define BLOCK_W (WIN_W / R_BLOCK_SIZE + 1)
+# define BLOCK_H (WIN_H / R_BLOCK_SIZE + 1)
+# define BLOCK_NO (BLOCK_H * BLOCK_W)
 
 typedef struct	s_env
 {
+	t_scene		scene;
 	float		progress;
 	int			win[10];
 	int			img[10];
+	int			running;
 	t_renderer	ren;
 }				t_env;
+
+typedef struct	s_render_block
+{
+	t_xy	start;
+	int		taken;
+}				t_render_block;
+
+typedef struct	s_render_set
+{
+	t_env			*env;
+	t_render_block	block[BLOCK_NO];
+	t_img			*img;
+}				t_render_set;
 
 void	properties(t_env *env);
 void	loading(t_env *env);
 void	*raytracer(void *env);
+void	get_col(t_ray *ray, t_env *env, t_col c);
 
 #endif

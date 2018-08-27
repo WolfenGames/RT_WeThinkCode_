@@ -18,12 +18,12 @@ float	*sc_col(t_col c, double s, t_col ret)
 	GRN(ret) = GRN(c) * s;
 	RED(ret) = RED(c) * s;
 	ALP(ret) = ALP(c) * s;
-	if (BLU(ret) > 1.0)
-		return (sc_col(ret, (1.0 / BLU(c)), ret));
+	if (BLU(ret) > 255)
+		return (sc_col(ret, (255 / BLU(c)), ret));
 	if (GRN(ret) > 255)
-		return (sc_col(ret, (1.0 / GRN(c)), ret));
-	if (RED(ret) > 1.0)
-		return (sc_col(ret, (1.0 / RED(c)), ret));
+		return (sc_col(ret, (255 / GRN(c)), ret));
+	if (RED(ret) > 255)
+		return (sc_col(ret, (255 / RED(c)), ret));
 	return (ret);
 }
 
@@ -46,12 +46,12 @@ float	*get_img_col(int x, int y, t_img *img, t_col ret)
 		tmp = dat[x + (int)(y * img->w)];
 	else
 		tmp = 0;
-	RED(ret) = (tmp & 0xff) / 255.0;
+	RED(ret) = (tmp & 0xff);
 	tmp /= 0x100;
-	GRN(ret) = (tmp & 0xff) / 255.0;
+	GRN(ret) = (tmp & 0xff);
 	tmp /= 0x100;
-	BLU(ret) = (tmp & 0xff) / 255.0;
+	BLU(ret) = (tmp & 0xff);
 	tmp /= 0x100;
-	ALP(ret) = (tmp & 0xff) / 255.0;
+	ALP(ret) = (tmp & 0xff);
 	return (ret);
 }

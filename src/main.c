@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:01:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/25 16:46:34 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/27 17:12:54 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
-#include "pthread.h"
 
 static void	check_alive(t_env *env)
 {
@@ -27,13 +26,17 @@ static void	check_alive(t_env *env)
 static int	fill_windows(t_env *env)
 {
 	static	char		pspace;
-	static	pthread_t	threads[2];
+	static	pthread_t	thread;
 
 	check_alive(env);
 	if (env->ren.c_win->keys[space] && !pspace)
 	{
-		pthread_cancel(threads[0]);
-		pthread_create(&threads[0], NULL, raytracer, env);
+		if (env->running)
+		{
+			env->running = 0;
+			pthread_join(thread, NULL);
+		}
+		pthread_create(&thread, NULL, raytracer, env);
 	}
 	pspace = env->ren.c_win->keys[space];
 	loading(env);
@@ -52,6 +55,7 @@ static int	fill_windows(t_env *env)
 **	win[1] = Properties
 **	img[0] = Properties Background
 **	img[1] = Tracer Loading bar
+**	img[2] = Render Image
 */
 
 int			main(int argc, char **argv)
@@ -66,11 +70,11 @@ int			main(int argc, char **argv)
 		WIN_W, WIN_H);
 	env.win[1] = add_win(&env.ren, "Properties", P_WIN_W, P_WIN_H);
 	select_win(&env.ren, env.win[0]);
-	env.img[0] = add_img(&env.ren, P_WIN_W, P_WIN_H, 0, 0);
-	env.img[1] = add_img(&env.ren, 1000, 20, 150, 860);
-	env.img[2] = add_img(&env.ren, WIN_W, WIN_H, 0, 0);
-	(void)argv;
-//	parse(argc, argv, &env);
+	env.img[0] = add_img(&env.ren, P_WIN_W, P_WIN_H);
+	env.img[1] = add_img(&env.ren, WIN_W - 50, 20);
+	set_img_pos(&env.ren, env.img[1], 25, WIN_H - 60);
+	env.img[2] = add_img(&env.ren, WIN_W, WIN_H);
+	create_scene(argc, argv, &env.scene);
 	mlx_loop_hook(env.ren.mlx, fill_windows, &env);
 	mlx_loop(env.ren.mlx);
 }

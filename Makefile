@@ -3,18 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ibotha <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 14:47:39 by ibotha            #+#    #+#              #
-#    Updated: 2018/08/25 15:21:05 by ibotha           ###   ########.fr        #
+#    Updated: 2018/08/27 17:19:01 by ibotha           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RT
 
-OBJ = src/main.o src/properties.o src/raytracer.o
+OBJ = src/main.o src/properties.o src/raytracer.o src/intersections.o \
+		src/scene/scene.o
 
-FLAGS = -Wall -Werror -Wextra -I inc -I libft -Ofast
+FLAGS = -Wall -Werror -Wextra -I inc -I libft -Ofast -I Renderer -I Vectorlib
 
 LIBS = libft/libft.a Vectorlib/vectorlib.a Renderer/renderer.a
 
@@ -83,11 +84,15 @@ patience:
 clean:
 	@echo "[ \x1b[32mCleaning... \x1b[0m]"
 	@make clean -C libft
+	@make clean -C Renderer
+	@make clean -C Vectorlib
 	@rm -f $(OBJ)
 
 fclean: clean
 	@echo "[ \x1b[32mFull \x1b[0m]"
 	@rm -f libft/libft.a
+	@rm -f Renderer/renderer.a
+	@rm -f Vectorlib/vectorlib.a
 	@rm -f $(NAME)
 
 re: fclean all

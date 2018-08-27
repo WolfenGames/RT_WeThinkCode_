@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/03 16:36:45 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/17 15:30:54 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/27 17:05:33 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ int		key_remove(int keycode, t_renderer *ren)
 	return (keycode);
 }
 
-int	mouse_up(int x, int y, t_win *win)
+int		mouse_up(int x, int y, t_win *win)
 {
 	win->mouse.x = x;
 	win->mouse.y = y;
 	return (0);
 }
 
-int	mouse_add(int button, int x, int y, t_win *win)
+int		mouse_add(int button, int x, int y, t_win *win)
 {
 	if (button == 1)
 		win->mouse.left = 1;
@@ -47,7 +47,7 @@ int	mouse_add(int button, int x, int y, t_win *win)
 	return (x + y);
 }
 
-int	mouse_remove(int button, int x, int y, t_win *win)
+int		mouse_remove(int button, int x, int y, t_win *win)
 {
 	if (button == 1)
 		win->mouse.left = 0;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ibotha <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/15 17:06:15 by ibotha            #+#    #+#              #
-#    Updated: 2018/08/17 11:40:38 by ibotha           ###   ########.fr        #
+#    Updated: 2018/08/27 17:20:17 by ibotha           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJ = ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o f
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo "[ \x1b[32mLinking... \x1b[0m]"
+	@echo "[ \x1b[35mLinking... \x1b[0m]"
 	@ar -rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo "[ \x1b[34mLinked libft! \x1b[0m]\n"
