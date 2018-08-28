@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/03 17:34:57 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 16:35:22 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/28 18:52:48 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void	cofactor(t_matrix a, double size);
 void	transpose(t_matrix a, t_matrix fac, double size);
 void	m4_dup(t_matrix src, t_matrix ret);
 double	*reflect(t_vec inc, t_vec norm, t_vec ret);
+int		quad(t_vec val, double t[2]);
 
 #endif

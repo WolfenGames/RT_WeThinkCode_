@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 17:49:15 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/28 18:49:11 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct	s_obj
 	t_vec		surface_colour;
 	t_vec		specular_colour;
 	int			tex_index;
+	double		albedo;
 	t_vec		tex_scale;
 	t_o_type	type;
 	t_list		subtract;

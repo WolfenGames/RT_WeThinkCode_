@@ -6,35 +6,11 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 18:09:53 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/28 18:59:10 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
-
-int				quad(double a, double b, double c, double t[2])
-{
-	double discr;
-	double q;
-
-	discr = b * b - 4.f * a * c;
-	if (discr < 0)
-		return (0);
-	else if (discr == 0)
-	{
-		t[1] = -0.5 * b / a;
-		t[0] = t[1];
-	}
-	else
-	{
-		q = (b > 0) ? -0.5 * (b + sqrt(discr)) : -0.5 * (b - sqrt(discr));
-		t[0] = q / a;
-		t[1] = c / q;
-	}
-	if (t[0] > t[1])
-		ft_swap(&t[0], &t[1], sizeof(double));
-	return (1);
-}
 
 static t_obj	*trace(t_ray *ray, t_env *env)
 {
@@ -53,32 +29,55 @@ static t_obj	*trace(t_ray *ray, t_env *env)
 	return (ret);
 }
 
-static double	inshadow(t_ray *shadow, t_env *env)
+static int		generate_shadow_ray(t_ray *shadow, t_lig *lig, t_env *env)
+{
+	if (lig->type == light_directional)
+	{
+		v_multi(lig->dir, -1, shadow->dir);
+		shadow->len = INFINITY;
+	}
+	if (lig->type == light_point)
+	{
+		v_sub(lig->org, shadow->org, shadow->dir);
+		shadow->len = length(shadow->dir);
+		normalize(shadow->dir);
+	}
+	if (trace(shadow, env))
+		return (0);
+	return (1);
+}
+
+static void	get_norm(t_vec norm, t_vec point, t_obj *obj)
+{
+	if (obj->type == obj_sphere)
+		sphere_getnorm(norm, point, obj);
+}
+
+static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 {
 	t_list	*cur;
-	double	intensity;
+	t_col	light_col;
+	t_col	temp;
+	t_vec	norm;
 
 	cur = env->scene.lig;
-	intensity = 0;
+	get_norm(norm, shadow->org, obj);
+	ft_bzero(light_col, sizeof(double) * 4);
 	while (cur)
 	{
-		if (LIG->type == light_directional)
+		if (generate_shadow_ray(shadow, LIG, env))
 		{
-			v_multi(LIG->dir, -1, shadow->dir);
-			shadow->len = INFINITY;
+			add_col(light_col, sc_col(LIG->col,
+				(obj->albedo / M_PI)
+				* (LIG->intensity / (LIG->type == light_point ? shadow->len : 1))
+				* dot(shadow->dir, norm),
+				temp), light_col);
 		}
-		if (LIG->type == light_point)
-		{
-			v_sub(LIG->org, shadow->org, shadow->dir);
-			shadow->len = length(shadow->dir);
-		}
-		if (trace(shadow, env))
-			return (0);
-		intensity += LIG->type == light_point ? LIG->intensity
-			/ (shadow->len * shadow->len) : LIG->intensity;
 		cur = cur->next;
 	}
-	return (intensity);
+	c[0] *= light_col[0] / 255.0;
+	c[1] *= light_col[1] / 255.0;
+	c[2] *= light_col[2] / 255.0;
 }
 
 void			get_col(t_ray *ray, t_env *env, t_col c)
@@ -92,7 +91,7 @@ void			get_col(t_ray *ray, t_env *env, t_col c)
 	{
 		v_add(v_multi(ray->dir, ray->len - 0.000001, point.org), ray->org, point.org);
 		ft_memcpy(c, hit_obj->surface_colour, sizeof(double) * 4);
-		sc_col(c, inshadow(&point, env), c);
+		light_thing(&point, env, hit_obj, c);
 	}
 	else
 		FILLCOL(c, 0, 0, 0, 255);

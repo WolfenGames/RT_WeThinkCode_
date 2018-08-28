@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 18:09:32 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/28 18:59:49 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,14 @@ void	create_scene(int ac, char **av, t_scene *scene)
 	newlig.name = ft_strdup("Gandalf the light");
 	FILLVEC(newlig.col, 255, 255, 255, 255);
 	FILLVEC(newlig.org, 4, 4, 4, 0);
-	newlig.intensity = 10;
+	newlig.intensity = 1;
 	newlig.type = light_point;
 	ft_lstadd(&scene->lig, ft_lstnew(&newlig, sizeof(t_lig)));
 
 	//Object Initialization
 	newobj.name = ft_strdup("Palantir");
 	newobj.type = obj_sphere;
+	newobj.albedo = 0.18;
 	FILLVEC(newobj.scale, 1, 1, 1, 0);
 	FILLVEC(newobj.surface_colour, 255, 255, 255, 255);
 	ft_lstadd(&scene->obj, ft_lstnew(&newobj, sizeof(t_obj)));
