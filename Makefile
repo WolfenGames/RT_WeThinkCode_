@@ -6,16 +6,18 @@
 #    By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 14:47:39 by ibotha            #+#    #+#              #
-#    Updated: 2018/08/27 17:19:01 by ibotha           ###   ########.fr        #
+#    Updated: 2018/08/28 17:15:10 by ibotha           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RT
 
-OBJ = src/main.o src/properties.o src/raytracer.o src/intersections.o \
-		src/scene/scene.o
+OBJ = src/main.o src/properties.o src/raytracer.o src/loading.o \
+		src/scene/scene.o \
+		src/intersections/intersections.o src/intersections/sphere.o
 
-FLAGS = -Wall -Werror -Wextra -I inc -I libft -Ofast -I Renderer -I Vectorlib
+FLAGS = -Wall -Werror -Wextra -I inc -I libft -Ofast -I Renderer -I Vectorlib \
+		-I src/scene -I src/intersections
 
 LIBS = libft/libft.a Vectorlib/vectorlib.a Renderer/renderer.a
 
@@ -97,4 +99,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re patience libft
+run: all
+	./$(NAME) g
+
+.PHONY: all clean fclean re patience libft run

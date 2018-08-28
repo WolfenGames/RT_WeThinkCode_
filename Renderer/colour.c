@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   colour.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 13:10:26 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/25 15:02:25 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/28 16:43:32 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "renderer.h"
 
-float	*sc_col(t_col c, double s, t_col ret)
+double	*sc_col(t_col c, double s, t_col ret)
 {
 	BLU(ret) = BLU(c) * s;
 	GRN(ret) = GRN(c) * s;
@@ -27,7 +27,7 @@ float	*sc_col(t_col c, double s, t_col ret)
 	return (ret);
 }
 
-float	*add_col(t_col a, t_col b, t_col ret)
+double	*add_col(t_col a, t_col b, t_col ret)
 {
 	BLU(ret) = BLU(a) + BLU(b);
 	GRN(ret) = GRN(a) + GRN(b);
@@ -36,7 +36,7 @@ float	*add_col(t_col a, t_col b, t_col ret)
 	return (ret);
 }
 
-float	*get_img_col(int x, int y, t_img *img, t_col ret)
+double	*get_img_col(int x, int y, t_img *img, t_col ret)
 {
 	unsigned int	*dat;
 	unsigned int	tmp;

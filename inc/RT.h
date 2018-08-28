@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/27 16:42:26 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/28 17:26:41 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define REN &((t_env*)env)->ren
 # define PROG ((t_env*)env)->progress
 
-# define R_BLOCK_SIZE 128
+# define R_BLOCK_SIZE 8
 # define WIN_H 900
 # define WIN_W 1300
 # define P_WIN_H 900
@@ -41,6 +41,7 @@ typedef struct	s_env
 	int			win[10];
 	int			img[10];
 	int			running;
+	int			point;
 	t_renderer	ren;
 }				t_env;
 
@@ -61,5 +62,8 @@ void	properties(t_env *env);
 void	loading(t_env *env);
 void	*raytracer(void *env);
 void	get_col(t_ray *ray, t_env *env, t_col c);
+void	print_vector(t_env *env, void *win, char *name, t_vec vec);
+
+#include "intersections.h"
 
 #endif

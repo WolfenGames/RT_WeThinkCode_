@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/27 16:57:20 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/28 17:49:15 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,22 @@
 
 typedef enum	e_l_type
 {
-	point,
-	directional
+	light_point,
+	light_directional
 }				t_l_type;
 
 typedef enum	e_o_type
 {
-	sphere,
-	plane,
-	cone,
-	cylinder,
-	polygon
+	obj_sphere,
+	obj_plane,
+	obj_cone,
+	obj_cylinder,
+	obj_polygon
 }				t_o_type;
 
 typedef struct	s_obj
 {
+	char		*name;
 	t_vec		org;
 	t_vec		rot;
 	t_vec		scale;
@@ -49,8 +50,9 @@ typedef struct	s_obj
 
 typedef struct	s_lig
 {
+	char		*name;
 	t_vec		org;
-	t_vec		rot;
+	t_vec		dir;
 	double		intensity;
 	t_vec		col;
 	t_l_type	type;
@@ -58,6 +60,7 @@ typedef struct	s_lig
 
 typedef struct	s_cam
 {
+	char		*name;
 	t_vec		org;
 	t_vec		rot;
 	t_matrix	ctw;
@@ -71,6 +74,7 @@ typedef struct	s_scene
 	t_list	*obj;
 	t_list	*lig;
 	t_list	*cam;
+	t_cam	*c_cam;
 }				t_scene;
 
 void	create_scene(int ac, char **av, t_scene *scene);

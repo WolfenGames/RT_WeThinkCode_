@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:38 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/27 17:28:35 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/28 17:35:12 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,9 @@ static void	generate_ray(t_ray *ray, t_xy coord, t_env *env)
 {
 	const double	invheight = 1 / (double)WIN_H;
 	const double	invwidth = 1 / (double)WIN_W;
-	const double	angle = tan(90.0 * 0.5 * M_PI / 180.0);
+	const double	angle = tan(env->scene.c_cam->fov * 0.5 * M_PI / 180.0);
 
-	(void)env;
-	ray->org[0] = 0;
-	ray->org[1] = 0;
-	ray->org[2] = 20;
+	ft_memcpy(ray->org, env->scene.c_cam->org, sizeof(double) * 4);
 	ray->dir[0] = (2 * (coord[0] + 0.5) * invwidth - 1) * (double)WIN_W
 		* invheight * angle;
 	ray->dir[1] = (1 - 2 * (coord[1] + 0.5) * invheight) * angle;
@@ -108,5 +105,6 @@ void		*raytracer(void *env)
 	pthread_join(threads[2], NULL);
 	pthread_join(threads[3], NULL);
 	PROG = 1;
+	set.env->running = 0;
 	return (0);
 }

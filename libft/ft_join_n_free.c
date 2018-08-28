@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersections.c                                    :+:      :+:    :+:   */
+/*   ft_join_n_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/27 15:20:27 by ibotha           ###   ########.fr       */
+/*   Created: 2018/08/28 15:47:52 by ibotha            #+#    #+#             */
+/*   Updated: 2018/08/28 15:53:25 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RT.h"
+#include "libft.h"
 
-void	get_col(t_ray *ray, t_env *env, t_col c)
+char	*ft_strjoin_n_free(char *s1, char *s2)
 {
-	(void)env;
-	usleep(10);
-	c[0] = sqrt(ABS(ray->dir[0] * ray->dir[1])) * 255;
-	c[1] = sqrt(ABS(ray->dir[1] * ray->dir[2])) * 255;
-	c[2] = sqrt(ABS(ray->dir[2] * ray->dir[0])) * 255;
+	char	*temp;
+	temp = ft_strjoin(s1, s2);
+	free(s1);
+	free(s2);
+	return (temp);
 }

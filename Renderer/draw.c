@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 14:17:23 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/25 15:37:58 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/28 16:51:37 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		draw_line(t_xy a, t_xy b, t_col c, t_img *img)
 void		put_pixel(int x, int y, t_col c, t_img *img)
 {
 	int				i;
-	const double	perc = c[3] / 255;
+	const double	perc = c[3] / 255.0;
 
 	if (x < 0 || y < 0 || x > img->w || y > img->h)
 		return ;

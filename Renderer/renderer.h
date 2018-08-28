@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:44:46 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/27 17:08:17 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/28 16:44:06 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define FILLCOL(C, R, G, B, A) (C[0] = R, C[1] = G, C[2] = B, C[3] = A)
 
 typedef int		t_xy[2];
-typedef float	t_col[4];
+typedef double	t_col[4];
 
 typedef struct	s_mouse
 {
@@ -125,8 +125,8 @@ int		set_img_pos(t_renderer *ren, int id, int x, int y);
 int		move_img(t_renderer *ren, int id, int x, int y);
 int		clear_win(t_renderer *ren, int id);
 
-float	*add_col(t_col a, t_col b, t_col ret);
-float	*sc_col(t_col c, double s, t_col);
-float	*get_img_col(int x, int y, t_img *img, t_col ret);
+double	*add_col(t_col a, t_col b, t_col ret);
+double	*sc_col(t_col c, double s, t_col);
+double	*get_img_col(int x, int y, t_img *img, t_col ret);
 
 #endif
