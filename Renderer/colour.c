@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 13:10:26 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 16:43:32 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/30 13:45:36 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ double	*sc_col(t_col c, double s, t_col ret)
 	RED(ret) = RED(c) * s;
 	ALP(ret) = ALP(c) * s;
 	if (BLU(ret) > 255)
-		return (sc_col(ret, (255 / BLU(c)), ret));
+		return (sc_col(ret, (255 / BLU(ret)), ret));
 	if (GRN(ret) > 255)
-		return (sc_col(ret, (255 / GRN(c)), ret));
+		return (sc_col(ret, (255 / GRN(ret)), ret));
 	if (RED(ret) > 255)
-		return (sc_col(ret, (255 / RED(c)), ret));
+		return (sc_col(ret, (255 / RED(ret)), ret));
 	return (ret);
 }
 
 double	*add_col(t_col a, t_col b, t_col ret)
 {
-	BLU(ret) = BLU(a) + BLU(b);
-	GRN(ret) = GRN(a) + GRN(b);
-	RED(ret) = RED(a) + GRN(b);
-	ALP(ret) = ALP(a) + ALP(b);
+	BLU(ret) = ft_clamp(255, 0, BLU(a) + BLU(b));
+	GRN(ret) = ft_clamp(255, 0, GRN(a) + GRN(b));
+	RED(ret) = ft_clamp(255, 0, RED(a) + RED(b));
+	ALP(ret) = ft_clamp(255, 0, ALP(a) + ALP(b));
 	return (ret);
 }
 
