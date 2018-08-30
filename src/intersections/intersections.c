@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 18:59:10 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/30 15:16:50 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static int		generate_shadow_ray(t_ray *shadow, t_lig *lig, t_env *env)
 	{
 		v_sub(lig->org, shadow->org, shadow->dir);
 		shadow->len = length(shadow->dir);
-		normalize(shadow->dir);
 	}
+	normalize(shadow->dir);
 	if (trace(shadow, env))
 		return (0);
 	return (1);
@@ -62,16 +62,15 @@ static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 
 	cur = env->scene.lig;
 	get_norm(norm, shadow->org, obj);
-	ft_bzero(light_col, sizeof(double) * 4);
+	FILLVEC(light_col, 0, 0 ,0, 0);
 	while (cur)
 	{
 		if (generate_shadow_ray(shadow, LIG, env))
 		{
-			add_col(light_col, sc_col(LIG->col,
-				(obj->albedo / M_PI)
-				* (LIG->intensity / (LIG->type == light_point ? shadow->len : 1))
-				* dot(shadow->dir, norm),
-				temp), light_col);
+			sc_col(LIG->col, (obj->albedo / M_PI) * (LIG->intensity
+				/ (LIG->type == light_point ? shadow->len : 1.0))
+				* dot(shadow->dir, norm), temp);
+			add_col(light_col, temp, light_col);
 		}
 		cur = cur->next;
 	}
@@ -89,7 +88,8 @@ void			get_col(t_ray *ray, t_env *env, t_col c)
 	hit_obj = trace(ray, env);
 	if (hit_obj)
 	{
-		v_add(v_multi(ray->dir, ray->len - 0.000001, point.org), ray->org, point.org);
+		v_add(v_multi(ray->dir, ray->len * 0.999999999, point.org),
+			ray->org, point.org);
 		ft_memcpy(c, hit_obj->surface_colour, sizeof(double) * 4);
 		light_thing(&point, env, hit_obj, c);
 	}

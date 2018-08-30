@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:20 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 18:13:01 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/30 12:03:27 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ static void	print_cam_properties(t_env *env, void *win, t_cam *cam)
 	cam_prop[0] = cam->fov;
 	cam_prop[1] = cam->aperture;
 	cam_prop[2] = 1 / cam->aperture;
-	mlx_string_put(env->ren.mlx, win, 10, ++env->point * 20, 0xff8cff,
-		cam->name);
-	mlx_string_put(env->ren.mlx, win, 40, ++env->point * 20, 0x886611,
-		"Camera");
+	if (++env->point > -1 && env->point < 43)
+		mlx_string_put(env->ren.mlx, win, 10, env->point * 20, 0xff8cff,
+			cam->name);
+	if (++env->point > -1 && env->point < 43)
+		mlx_string_put(env->ren.mlx, win, 40, env->point * 20, 0x886611,
+			"Camera");
 	print_vector(env, win, "O", cam->org);
 	print_vector(env, win, "R", cam->rot);
 	print_vector(env, win, "P", cam_prop);
@@ -44,10 +46,12 @@ static void	print_obj_properties(t_env *env, void *win, t_obj *obj)
 		type = "Sphere";
 	else
 		type = "Invalid Type!";
-	mlx_string_put(env->ren.mlx, win, 10, ++env->point * 20, 0x8cff00,
-		obj->name);
-	mlx_string_put(env->ren.mlx, win, 40, ++env->point * 20, 0x886611,
-		type);
+	if (++env->point > -1 && env->point < 43)
+		mlx_string_put(env->ren.mlx, win, 10, env->point * 20, 0x8cff00,
+			obj->name);
+	if (++env->point > -1 && env->point < 43)
+		mlx_string_put(env->ren.mlx, win, 40, env->point * 20, 0x886611,
+			type);
 	print_vector(env, win, "O", obj->org);
 	print_vector(env, win, "R", obj->rot);
 	print_vector(env, win, "S", obj->scale);
@@ -64,13 +68,16 @@ static void	print_lig_properties(t_env *env, void *win, t_lig *lig)
 		type = "Point Light";
 	else
 		type = "Invalid Type!";
-	mlx_string_put(env->ren.mlx, win, 10, ++env->point * 20, 0xff8c00,
-		lig->name);
-	mlx_string_put(env->ren.mlx, win, 40, ++env->point * 20, 0x886611,
-		type);
+	if (++env->point > -1 && env->point < 43)
+		mlx_string_put(env->ren.mlx, win, 10, env->point * 20, 0xff8c00,
+			lig->name);
+	if (++env->point > -1 && env->point < 43)
+		mlx_string_put(env->ren.mlx, win, 40, env->point * 20, 0x886611, type);
 	type = ft_strjoin_n_free(ft_strdup("Intesity: "), ft_dtoa(lig->intensity));
-	mlx_string_put(env->ren.mlx, win, 40, ++env->point * 20, 0xcccccc,
-		type);
+	if (++env->point > -1 && env->point < 43)
+		mlx_string_put(env->ren.mlx, win, 40, env->point * 20, 0xcccccc,
+			type);
+	free(type);
 	print_vector(env, win, "O", lig->org);
 	print_vector(env, win, "C", lig->col);
 }
@@ -80,14 +87,14 @@ static void	print_properties(void *win, t_env *env)
 	t_list	*cur;
 
 	cur = env->scene.cam;
-	env->point = -1;
-	while (cur || !(++env->point))
+	env->point = env->point_start;
+	while (cur || (++env->point < env->point_start))
 	{
 		print_cam_properties(env, win, cur->content);
 		cur = cur->next;
 	}
 	cur = env->scene.lig;
-	while (cur || !(++env->point))
+	while (cur || (++env->point < env->point_start))
 	{
 		print_lig_properties(env, win, cur->content);
 		cur = cur->next;
@@ -116,13 +123,17 @@ void		properties(t_env *env)
 	FILLCOL(col, 25, 25, 25, 255);
 	draw_box(start[0], start[1], col, (t_img*)img);
 	start[0][1] = 870;
-	FILLCOL(col, 120, 0, 0, 70);
+	FILLCOL(col, 70, 25, 25, 255);
 	draw_box(start[0], start[1], col, (t_img*)img);
 	start[1][1] = 870;
 	FILLCOL(col, 0, 0, 0, 255);
 	draw_line(start[0], start[1], col, (t_img*)img);
 	present_img(&env->ren, PROP_WIN, PROP_BACK);
 	win = find_win(&env->ren, PROP_WIN);
+	if (win->keys[up] || win->keys[down])
+		env->point_start += (win->keys[up] ? 0.5 : -0.5);
+	if (env->point_start > -1)
+		env->point_start = -1;
 	if (win)
 		print_properties(win->win, env);
 }

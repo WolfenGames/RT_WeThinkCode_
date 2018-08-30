@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 18:58:22 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/30 12:57:21 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	sphere_getnorm(t_vec norm, t_vec point, t_obj *obj)
 {
-	v_sub(obj->org, point, norm);
-	if (length(norm) < 1)
-		v_multi(norm, -1, norm);
+	v_sub(point, obj->org, norm);
+//	if (length(norm) < 1)
+//		v_multi(norm, -1, norm);
+	normalize(norm);
 }
 
 int		sphere_intersect(t_ray *ray, t_obj *obj)
@@ -28,7 +29,7 @@ int		sphere_intersect(t_ray *ray, t_obj *obj)
 	v_sub(ray->org, obj->org, l);
 	var[0] = dot(ray->dir, ray->dir);
 	var[1] = 2 * dot(ray->dir, l);
-	var[2] = dot(l, l) - 1;
+	var[2] = dot(l, l) - 1.0;
 	if (!quad(var, t))
 		return (0);
 	if (t[0] < 0)

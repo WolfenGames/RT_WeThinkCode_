@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 14:46:45 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 17:10:06 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/29 16:09:55 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	print_vector(t_env *env, void *win, char *name, t_vec vec)
 	string = ft_strjoin_n_free(string, ft_dtoa(vec[1]));
 	string = ft_strjoin_n_free(string, ft_strdup(", "));
 	string = ft_strjoin_n_free(string, ft_dtoa(vec[2]));
-	mlx_string_put(env->ren.mlx, win, 40, ++env->point * 20, 0xcccccc, string);
+	if (++env->point > -1 && env->point < 43)
+		mlx_string_put(env->ren.mlx, win, 40, env->point * 20, 0xcccccc, string);
 	free(string);
 }
