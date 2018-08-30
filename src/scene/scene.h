@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 18:49:11 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/30 12:29:04 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "vectorlib.h"
 # include "libft.h"
+# include <stdio.h>
+# include <fcntl.h>
 
 typedef enum	e_l_type
 {
@@ -72,12 +74,14 @@ typedef struct	s_cam
 
 typedef struct	s_scene
 {
-	t_list	*obj;
-	t_list	*lig;
-	t_list	*cam;
-	t_cam	*c_cam;
+	t_list		*obj;
+	t_list		*lig;
+	t_list		*cam;
+	t_cam		*c_cam;
 }				t_scene;
 
 void	create_scene(int ac, char **av, t_scene *scene);
+void	handle_contents(char *line, char *name, t_scene *scene);
+void	free_tab(char ***tab);
 
 #endif
