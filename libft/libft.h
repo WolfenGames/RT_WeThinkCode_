@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 17:41:11 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 16:03:42 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/03 16:56:01 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int				ft_toupper(int c);
 int				ft_tolower(int c);
 int				ft_strcmp(const char *str1, const char *str2);
 int				ft_strnequ(char const *s1, char const *s2, size_t n);
+int				ft_strnrequ(const char *s1, const char *s2, size_t n);
 int				ft_strncmp(const char *str1, const char *str2, size_t n);
 int				ft_strequ(char const *s1, char const *s2);
 
@@ -101,10 +102,12 @@ char			*ft_strncat(char *ret, const char *str, size_t n);
 char			*ft_strncpy(char *ret, const char *str, size_t n);
 char			*ft_strnew(size_t size);
 char			*ft_strnstr(const char *haystack, const char *needle, size_t n);
+char			*ft_streplace(char *line, char a, char b);
 char			*ft_strrchr(char *str, char c);
 char			**ft_strsplit(const char *s, char c);
 char			*ft_strstr(const char *haystack, const char *needle);
 char			*ft_strsub(const char *s, unsigned int start, size_t len);
+char			*ft_strsub_free(char *s, unsigned int start, size_t len);
 char			*ft_strtrim(const char *s);
 
 size_t			ft_strlcat(char *dest, const char *src, size_t n);

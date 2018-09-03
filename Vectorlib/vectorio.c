@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vectorio.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:18:19 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/12 13:28:37 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/03 13:29:03 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	vec_from_str(t_vec ret, char *str)
 	while (*str == ' ' || *str == '\t')
 		++str;
 	ret[0] = ft_atod(str);
-	while (!(*str == ' ' || *str == '\t'))
+	while (!(*str == ' ' || *str == '\t' || *str == ','))
 		++str;
-	while (*str == ' ' || *str == '\t')
+	while (*str == ' ' || *str == '\t' || *str == ',')
 		++str;
 	ret[1] = ft_atod(str);
-	while (!(*str == ' ' || *str == '\t'))
+	while (!(*str == ' ' || *str == '\t' || *str == ','))
 		++str;
-	while (*str == ' ' || *str == '\t')
+	while (*str == ' ' || *str == '\t' || *str == ',')
 		++str;
 	ret[2] = ft_atod(str);
 }

@@ -3,19 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+         #
+#    By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 14:47:39 by ibotha            #+#    #+#              #
-#    Updated: 2018/09/03 11:54:10 by ibotha           ###   ########.fr        #
+
+#    Updated: 2018/09/03 15:05:14 by jwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RT
 
 OBJ = src/main.o src/properties.o src/raytracer.o src/loading.o \
-		src/scene/scene.o src/scene/handler.o src/scene/calc.o \
+		src/scene/scene.o src/scene/handler.o \
 		src/intersections/intersections.o src/intersections/sphere.o \
-		src/intersections/cone.o
+		src/scene/misc.o src/scene/name_handler.o src/scene/search.o
+
 
 FLAGS = -Wall -Werror -Wextra -I inc -I libft -Ofast -I Renderer -I Vectorlib \
 		-I src/scene -I src/intersections
@@ -42,46 +44,46 @@ lib:
 	@make -C Renderer
 
 patience:
-	clear
+	@clear
 	@echo "\x1b[35mWasting Time: \x1b[32m[#            ]"
 	@sleep 1
-	clear;
+	@clear;
 	@echo "\x1b[35mWasting Time: \x1b[32m[##           ]"
 	@sleep 1
-	clear;
+	@clear;
 	@echo "\x1b[35mWasting Time: \x1b[32m[###          ]"
 	@sleep 1
-	clear;
+	@clear;
 	@echo "\x1b[35mWasting Time: \x1b[32m[####         ]"
 	@sleep 1
-	clear;
+	@clear;
 	@echo "\x1b[35mWasting Time: \x1b[32m[#####        ]"
 	@sleep 1
-	clear;
+	@clear;
 	@echo "\x1b[35mWasting Time: \x1b[32m[######       ]"
 	@sleep 1
-	clear;
+	@clear;
 	@echo "\x1b[35mWasting Time: \x1b[32m[#######      ]"
 	@sleep 1
-	clear;
+	@clear;
 	@echo "\x1b[35mWasting Time: \x1b[32m[########     ]"
 	@sleep 1
-	clear;
+	@clear;
 	@echo "\x1b[35mWasting Time: \x1b[32m[#########    ]"
 	@sleep 1
-	clear;
+	@clear;
 	@echo "\x1b[35mWasting Time: \x1b[32m[##########   ]"
 	@sleep 1
-	clear;
+	@clear;
 	@echo "\x1b[35mWasting Time: \x1b[32m[###########  ]"
 	@sleep 1
-	clear;
+	@clear;
 	@echo "\x1b[35mWasting Time: \x1b[32m[############ ]"
 	@sleep 1
-	clear;
+	@clear;
 	@echo "\x1b[35mWasting Time: \x1b[32m[#############]"
 	@sleep 1
-	clear;
+	@clear;
 	@curl parrot.live
 
 clean:
@@ -102,5 +104,8 @@ re: fclean all
 
 run: all
 	./$(NAME) g
+
+wolf: all
+	./$(NAME) scenes/Example.xml
 
 .PHONY: all clean fclean re patience libft run

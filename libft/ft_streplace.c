@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_streplace.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 15:55:39 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 13:42:09 by jwolf            ###   ########.fr       */
+/*   Created: 2018/09/03 16:54:21 by jwolf             #+#    #+#             */
+/*   Updated: 2018/09/03 16:55:32 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strsub(const char *s, unsigned int start, size_t len)
+char	*ft_streplace(char *line, char a, char b)
 {
-	char *ret;
+	int		i;
 
-	if (!s)
-		return (NULL);
-	if (!(ret = ft_strnew(len)))
-		return (NULL);
-	ft_strncpy(ret, s + start, len);
-	return (ret);
-}
-
-char	*ft_strsub_free(char *s, unsigned int start, size_t len)
-{
-	char *ret;
-
-	ret = ft_strsub(s, start, len);
-	free(s);
-	return (ret);
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == a)
+			line[i] = b;
+		i++;
+	}
+	return (line);
 }

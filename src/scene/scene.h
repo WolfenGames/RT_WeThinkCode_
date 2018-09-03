@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 11:33:39 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/03 16:38:30 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,33 @@ typedef struct	s_scene
 	t_list		*cam;
 	t_cam		*c_cam;
 }				t_scene;
+
+typedef struct	s_read
+{
+	char		*line;
+	char		*line2;
+	char		*close_tag;
+	char		*tmp;
+	int			flag;
+}				t_read;
+
+void			create_scene(int ac, char **av, t_scene *scene);
+void			free_tab(char ***tab);
+void			handle_contents(char *line, char *name, t_scene *scene);
+void			set_vec(t_vec vec, char *linesub);
+
+int				is_line_prop(const char *line);
+int				match_brackets(char *str, char *line);
+
+char			char_lower(char c);
+
+char			*get_name(char *s);
+char			*get_prop_name(char *s);
+char			*make_end(char *str);
+
+t_cam			*search_cam_list(t_scene *scene, char *name);
+t_obj			*search_obj_list(t_scene *scene, char *name);
+t_lig			*search_light_list(t_scene *scene, char *name);
 
 void	handle_contents(char *line, char *name, t_scene *scene);
 void	free_tab(char ***tab);

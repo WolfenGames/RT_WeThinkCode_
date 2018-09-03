@@ -1,9 +1,21 @@
-<!-- General Definition -->
-<camera name='Camera'>
+<camera	name="Camera">
+	<origin>0,0,40</origin>
+	<fov>90</fov>
+	<rotation>0,0,0</rotation>
+	<aperture>1</aperture>
 </camera>
-<light name="sexy">
-	<origin>0,0,0</origin>
+<light	name='Penile Cancer'>
+	<origin>0,20,0</origin>
 </light>
-<object name="sexy">
-	<origin>0,0,0</origin>
+<object	name='Pulmonary Oedema'>
+	<origin>0,20,0</origin>
+</object>
+<object	name='Cor pulmonale'>
+	<origin>0,20,0</origin>
+</object>
+<object	name='Right sided hypertophy'>
+	<origin>0,20,0</origin>
+</object>
+<object	name='Cardiac arrest'>
+	<origin>0,20,0</origin>
 </object>

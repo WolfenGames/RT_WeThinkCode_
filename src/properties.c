@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   properties.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:20 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 17:19:19 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/03 11:27:06 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	print_cam_properties(t_env *env, void *win, t_cam *cam)
 	cam_prop[0] = cam->fov;
 	cam_prop[1] = cam->aperture;
 	cam_prop[2] = 1 / (cam->aperture ? cam->aperture : 1);
+
 	if (++env->point > -1 && env->point < 43)
 		mlx_string_put(env->ren.mlx, win, 10, env->point * 20, 0xff8cff,
 			cam->name);
@@ -58,7 +59,7 @@ static void	print_obj_properties(t_env *env, void *win, t_obj *obj)
 	print_vector(env, win, "C", obj->surface_colour);
 }
 
-static void	print_lig_properties(t_env *env, void *win, t_lig *lig)
+void	print_lig_properties(t_env *env, void *win, t_lig *lig)
 {
 	char *type;
 
@@ -74,9 +75,8 @@ static void	print_lig_properties(t_env *env, void *win, t_lig *lig)
 	if (++env->point > -1 && env->point < 43)
 		mlx_string_put(env->ren.mlx, win, 40, env->point * 20, 0x886611, type);
 	type = ft_strjoin_n_free(ft_strdup("Intesity: "), ft_dtoa(lig->intensity));
-	if (++env->point > -1 && env->point < 43)
-		mlx_string_put(env->ren.mlx, win, 40, env->point * 20, 0xcccccc,
-			type);
+	mlx_string_put(env->ren.mlx, win, 40, ++env->point * 20, 0xcccccc,
+		type);
 	free(type);
 	print_vector(env, win, "O", lig->org);
 	print_vector(env, win, "C", lig->col);

@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   ft_strnrequ.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 15:55:39 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 13:42:09 by jwolf            ###   ########.fr       */
+/*   Created: 2018/09/03 10:50:33 by jwolf             #+#    #+#             */
+/*   Updated: 2018/09/03 10:52:01 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strsub(const char *s, unsigned int start, size_t len)
+int				ft_strnrequ(const char *s1, const char *s2, size_t n)
 {
-	char *ret;
+    int     i;
+    int     j;
 
-	if (!s)
-		return (NULL);
-	if (!(ret = ft_strnew(len)))
-		return (NULL);
-	ft_strncpy(ret, s + start, len);
-	return (ret);
-}
-
-char	*ft_strsub_free(char *s, unsigned int start, size_t len)
-{
-	char *ret;
-
-	ret = ft_strsub(s, start, len);
-	free(s);
-	return (ret);
+    if (!s1 || !s2)
+        return (0);
+    i = ft_strlen(s1) - 1;
+    j = ft_strlen(s2) - 1;
+    while (n > 0 && i >= 0 && j >= 0)
+    {
+        if (s1[i--] != s2[j--])
+            return (0);
+        n--;
+    }
+    return (1);
 }
