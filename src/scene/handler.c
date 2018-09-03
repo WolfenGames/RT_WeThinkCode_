@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 07:48:27 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/03 16:59:20 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/03 17:03:41 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	do_da_light(char *name, char *line, t_scene *scene)
 	t_lig	*new;
 	t_lig	template;
 
-	(void)line;
 	if (!(new = search_light_list(scene, name)))
 	{
 		ft_bzero(&template, sizeof(t_lig));
@@ -48,6 +47,11 @@ void	do_da_light(char *name, char *line, t_scene *scene)
 		new = (t_lig*)scene->lig->content;
 	}
 	new->name = (new->name != NULL) ? new->name : get_name(name);
+	if (match_brackets("origin", line))
+		set_vec(new->org, ft_strsub(line, 8, ft_strlen(line) - 17));
+	if (match_brackets("rotation", line)
+		|| match_brackets("direction", line))
+		set_vec(new->dir, ft_strsub(line, 10, ft_strlen(line) - 21));
 }
 
 void	do_da_object(char *name, char *line, t_scene *scene)
@@ -55,7 +59,6 @@ void	do_da_object(char *name, char *line, t_scene *scene)
 	t_obj	*new;
 	t_obj	template;
 
-	(void)line;
 	if (!(new = search_obj_list(scene, name)))
 	{
 		ft_bzero(&template, sizeof(t_obj));
@@ -63,6 +66,10 @@ void	do_da_object(char *name, char *line, t_scene *scene)
 		new = (t_obj*)scene->obj->content;
 	}
 	new->name = (new->name != NULL) ? new->name : get_name(name);
+	if (match_brackets("origin", line))
+		set_vec(new->org, ft_strsub(line, 8, ft_strlen(line) - 17));
+	if (match_brackets("rotation", line))
+		set_vec(new->rot, ft_strsub(line, 10, ft_strlen(line) - 21));
 }
 
 void	handle_contents(char *line, char *name, t_scene *scene)

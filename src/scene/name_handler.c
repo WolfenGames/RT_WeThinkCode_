@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:58:08 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/03 15:07:45 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/03 17:04:35 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	*get_name(char *s)
 	int		i;
 
 	i = 0;
+	ft_streplace(s, '\"', '\'');
 	if (ft_strnequ(s, "<camera", 7) || ft_strnequ(s, "<object", 7) ||
 		ft_strnequ(s, "<light", 6))
 	{
