@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/30 15:13:54 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/03 10:39:41 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,20 +86,10 @@ void	create_scene(int ac, char **av, t_scene *scene)
 
 	//Test scene parameters comment out when ready
 	t_obj	newobj;
-	t_cam	newcam;
 	t_lig	newlig;
 
-	ft_bzero(&newcam, sizeof(t_cam));
 	ft_bzero(&newobj, sizeof(t_obj));
 	ft_bzero(&newlig, sizeof(t_lig));
-
-	//Camera Initialization
-	newcam.name = ft_strdup("The all seeing eye!");
-	newcam.fov = 80.0;
-	FILLVEC(newcam.org, 0, 0, 20, 0);
-	newcam.aperture = 1;
-	ft_lstadd(&scene->cam, ft_lstnew(&newcam, sizeof(t_cam)));
-	scene->c_cam = scene->cam->content;
 
 	//Light Initialization
 	newlig.name = ft_strdup("Gandalf the light");

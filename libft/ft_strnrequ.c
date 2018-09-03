@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_join_n_free.c                                   :+:      :+:    :+:   */
+/*   ft_strnrequ.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 15:47:52 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/30 12:02:10 by jwolf            ###   ########.fr       */
+/*   Created: 2018/09/03 10:50:33 by jwolf             #+#    #+#             */
+/*   Updated: 2018/09/03 10:52:01 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin_n_free(char *s1, char *s2)
+int				ft_strnrequ(const char *s1, const char *s2, size_t n)
 {
-	char	*temp;
+    int     i;
+    int     j;
 
-	temp = ft_strjoin(s1, s2);
-	free(s1);
-	free(s2);
-	return (temp);
+    if (!s1 || !s2)
+        return (0);
+    i = ft_strlen(s1) - 1;
+    j = ft_strlen(s2) - 1;
+    while (n > 0 && i >= 0 && j >= 0)
+    {
+        if (s1[i--] != s2[j--])
+            return (0);
+        n--;
+    }
+    return (1);
 }

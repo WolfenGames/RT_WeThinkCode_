@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   properties.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:20 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 18:13:01 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/03 10:47:10 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	print_cam_properties(t_env *env, void *win, t_cam *cam)
 
 	cam_prop[0] = cam->fov;
 	cam_prop[1] = cam->aperture;
-	cam_prop[2] = 1 / cam->aperture;
+	cam_prop[2] = 1 / (cam->aperture ? cam->aperture : 1);
 	mlx_string_put(env->ren.mlx, win, 10, ++env->point * 20, 0xff8cff,
 		cam->name);
 	mlx_string_put(env->ren.mlx, win, 40, ++env->point * 20, 0x886611,
@@ -54,7 +54,7 @@ static void	print_obj_properties(t_env *env, void *win, t_obj *obj)
 	print_vector(env, win, "C", obj->surface_colour);
 }
 
-static void	print_lig_properties(t_env *env, void *win, t_lig *lig)
+void	print_lig_properties(t_env *env, void *win, t_lig *lig)
 {
 	char *type;
 
@@ -71,6 +71,7 @@ static void	print_lig_properties(t_env *env, void *win, t_lig *lig)
 	type = ft_strjoin_n_free(ft_strdup("Intesity: "), ft_dtoa(lig->intensity));
 	mlx_string_put(env->ren.mlx, win, 40, ++env->point * 20, 0xcccccc,
 		type);
+	free(type);
 	print_vector(env, win, "O", lig->org);
 	print_vector(env, win, "C", lig->col);
 }
