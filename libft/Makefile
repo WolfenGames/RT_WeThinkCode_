@@ -6,7 +6,7 @@
 #    By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/15 17:06:15 by ibotha            #+#    #+#              #
-#    Updated: 2018/09/03 10:49:52 by jwolf            ###   ########.fr        #
+#    Updated: 2018/09/03 16:56:32 by jwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJ = ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o \
 		ft_itoa.o ft_itoa_b.o ft_lstnew.o ft_lstdelone.o ft_lstdel.o ft_lstadd.o \
 		ft_lstiter.o ft_lstmap.o get_next_line.o ft_putnbr_b.o ft_putnbr_b_fd.o \
 		ft_atod.o ft_atoi_b.o ft_swap.o ft_clamp.o ft_clamp_i.o die.o ft_join_n_free.o \
-		ft_dtoa.o ft_ltoa.o ft_strnrequ.o
+		ft_dtoa.o ft_ltoa.o ft_strnrequ.o ft_streplace.o
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 07:48:27 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/03 15:06:35 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/03 16:59:20 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,32 @@ void	do_da_camera(char *name, char *line, t_scene *scene)
 
 void	do_da_light(char *name, char *line, t_scene *scene)
 {
-	(void)name;
+	t_lig	*new;
+	t_lig	template;
+
 	(void)line;
-	(void)scene;
+	if (!(new = search_light_list(scene, name)))
+	{
+		ft_bzero(&template, sizeof(t_lig));
+		ft_lstadd(&scene->lig, ft_lstnew(&template, sizeof(t_lig)));
+		new = (t_lig*)scene->lig->content;
+	}
+	new->name = (new->name != NULL) ? new->name : get_name(name);
 }
 
 void	do_da_object(char *name, char *line, t_scene *scene)
 {
-	(void)name;
+	t_obj	*new;
+	t_obj	template;
+
 	(void)line;
-	(void)scene;
+	if (!(new = search_obj_list(scene, name)))
+	{
+		ft_bzero(&template, sizeof(t_obj));
+		ft_lstadd(&scene->obj, ft_lstnew(&template, sizeof(t_obj)));
+		new = (t_obj*)scene->obj->content;
+	}
+	new->name = (new->name != NULL) ? new->name : get_name(name);
 }
 
 void	handle_contents(char *line, char *name, t_scene *scene)

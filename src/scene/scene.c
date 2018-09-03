@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 16:32:58 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/03 16:58:27 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char	*get_close_tag(char *line)
 	char	**sp;
 	char	*close_tag;
 
+	ft_streplace(line, '\t', ' ');
 	sp = ft_strsplit(line, ' ');
 	name = ft_strsub(sp[0], 1, ft_strlen(sp[0]));
 	close_tag = ft_strjoin("</", name);

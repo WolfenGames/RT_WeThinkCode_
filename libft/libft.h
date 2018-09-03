@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 17:41:11 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 13:42:05 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/03 16:56:01 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ char			*ft_strncat(char *ret, const char *str, size_t n);
 char			*ft_strncpy(char *ret, const char *str, size_t n);
 char			*ft_strnew(size_t size);
 char			*ft_strnstr(const char *haystack, const char *needle, size_t n);
+char			*ft_streplace(char *line, char a, char b);
 char			*ft_strrchr(char *str, char c);
 char			**ft_strsplit(const char *s, char c);
 char			*ft_strstr(const char *haystack, const char *needle);

@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 16:31:03 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/03 16:38:30 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,7 @@ char			*get_prop_name(char *s);
 char			*make_end(char *str);
 
 t_cam			*search_cam_list(t_scene *scene, char *name);
+t_obj			*search_obj_list(t_scene *scene, char *name);
+t_lig			*search_light_list(t_scene *scene, char *name);
 
 #endif
