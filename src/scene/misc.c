@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:59:14 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/03 15:06:10 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/03 16:27:17 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,16 @@ void	set_vec(t_vec vec, char *linesub)
 {
 	vec_from_str(vec, linesub);
 	free(linesub);
+}
+
+void	free_tab(char ***tab)
+{
+	int		i;
+
+	i = -1;
+	if (!*tab)
+		return ;
+	while ((*tab)[++i])
+		ft_memdel((void **)&(*tab)[i]);
+	ft_memdel((void**)tab);
 }

@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 15:54:41 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/03 16:31:03 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,15 @@ typedef struct	s_scene
 	t_list		*cam;
 	t_cam		*c_cam;
 }				t_scene;
+
+typedef struct	s_read
+{
+	char		*line;
+	char		*line2;
+	char		*close_tag;
+	char		*tmp;
+	int			flag;
+}				t_read;
 
 void			create_scene(int ac, char **av, t_scene *scene);
 void			free_tab(char ***tab);
