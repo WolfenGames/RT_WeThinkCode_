@@ -6,15 +6,16 @@
 #    By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 14:47:39 by ibotha            #+#    #+#              #
-#    Updated: 2018/08/28 17:15:10 by ibotha           ###   ########.fr        #
+#    Updated: 2018/09/03 11:54:10 by ibotha           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RT
 
 OBJ = src/main.o src/properties.o src/raytracer.o src/loading.o \
-		src/scene/scene.o \
-		src/intersections/intersections.o src/intersections/sphere.o
+		src/scene/scene.o src/scene/handler.o src/scene/calc.o \
+		src/intersections/intersections.o src/intersections/sphere.o \
+		src/intersections/cone.o
 
 FLAGS = -Wall -Werror -Wextra -I inc -I libft -Ofast -I Renderer -I Vectorlib \
 		-I src/scene -I src/intersections

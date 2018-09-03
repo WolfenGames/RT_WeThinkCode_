@@ -6,11 +6,17 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/30 15:16:50 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/30 17:27:37 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
+
+/*
+**	The trace function takes a ray and determines if it hits an object,
+**	it shortens the ray to the distance to the point of intersection and
+**	returns the hit object.
+*/
 
 static t_obj	*trace(t_ray *ray, t_env *env)
 {
@@ -21,9 +27,8 @@ static t_obj	*trace(t_ray *ray, t_env *env)
 	cur = env->scene.obj;
 	while (cur)
 	{
-		if (((t_obj*)cur->content)->type == obj_sphere)
-			if (sphere_intersect(ray, cur->content))
-				ret = (t_obj*)cur->content;
+		if (((t_obj*)cur->content)->get_intersect(ray, cur->content))
+			ret = (t_obj*)cur->content;
 		cur = cur->next;
 	}
 	return (ret);
@@ -47,36 +52,43 @@ static int		generate_shadow_ray(t_ray *shadow, t_lig *lig, t_env *env)
 	return (1);
 }
 
-static void	get_norm(t_vec norm, t_vec point, t_obj *obj)
-{
-	if (obj->type == obj_sphere)
-		sphere_getnorm(norm, point, obj);
-}
+/*
+**	This function is used to scale the objects colour by the amount of light
+**	hitting the object at that point.
+**
+**	The amount of light that hits the object is based on the light intensity,
+**	distance from light source and angle of the light to the surface of the
+**	object.
+**
+**	The vectors used in this function are put into an array for the purposes of
+**	norming.
+**	vec[0] is the amount of light hitting the object in the sense of RGB
+**	vec[1] is a temperary vector
+**	vec[2] is the normal of the object at that point
+*/
 
 static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 {
 	t_list	*cur;
-	t_col	light_col;
-	t_col	temp;
-	t_vec	norm;
+	t_vec	vecs[3];
 
 	cur = env->scene.lig;
-	get_norm(norm, shadow->org, obj);
-	FILLVEC(light_col, 0, 0 ,0, 0);
+	obj->get_norm(vecs[2], shadow->org, obj);
+	FILLVEC(vecs[0], 25, 25, 25, 0);
 	while (cur)
 	{
 		if (generate_shadow_ray(shadow, LIG, env))
 		{
 			sc_col(LIG->col, (obj->albedo / M_PI) * (LIG->intensity
 				/ (LIG->type == light_point ? shadow->len : 1.0))
-				* dot(shadow->dir, norm), temp);
-			add_col(light_col, temp, light_col);
+				* dot(shadow->dir, vecs[2]), vecs[1]);
+			add_col(vecs[0], vecs[1], vecs[0]);
 		}
 		cur = cur->next;
 	}
-	c[0] *= light_col[0] / 255.0;
-	c[1] *= light_col[1] / 255.0;
-	c[2] *= light_col[2] / 255.0;
+	c[0] *= vecs[0][0] / 255.0;
+	c[1] *= vecs[0][1] / 255.0;
+	c[2] *= vecs[0][2] / 255.0;
 }
 
 void			get_col(t_ray *ray, t_env *env, t_col c)
@@ -90,10 +102,10 @@ void			get_col(t_ray *ray, t_env *env, t_col c)
 	{
 		v_add(v_multi(ray->dir, ray->len * 0.999999999, point.org),
 			ray->org, point.org);
-		ft_memcpy(c, hit_obj->surface_colour, sizeof(double) * 4);
+		hit_obj->get_surface_col(hit_obj, c, point.org, env);
 		light_thing(&point, env, hit_obj, c);
 	}
 	else
-		FILLCOL(c, 0, 0, 0, 255);
+		FILLCOL(c, 25, 25, 25, 255);
 	c[3] = 255;
 }

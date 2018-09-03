@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/30 15:13:54 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/03 14:10:51 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene.h"
+#include "RT.h"
 
 void	free_tab(char ***tab)
 {
@@ -26,7 +26,7 @@ void	free_tab(char ***tab)
 	//	ft_memdel((void **)&(*tab));
 }
 
-void	create_scene(int ac, char **av, t_scene *scene)
+void	create_scene(int ac, char **av, t_scene *scene, t_env *env)
 {
 	ft_bzero(scene, sizeof(t_scene));
 
@@ -95,21 +95,22 @@ void	create_scene(int ac, char **av, t_scene *scene)
 
 	//Camera Initialization
 	newcam.name = ft_strdup("The all seeing eye!");
-	newcam.fov = 80.0;
-	FILLVEC(newcam.org, 5, 5, 20, 0);
+	newcam.fov = 35.0;
+	FILLVEC(newcam.org, 5, 5, 40, 0);
+	FILLVEC(newcam.rot, 0, 0, 0, 0);
 	newcam.aperture = 1;
 	ft_lstadd(&scene->cam, ft_lstnew(&newcam, sizeof(t_cam)));
 	scene->c_cam = scene->cam->content;
 
 	//Light Initialization
 	newlig.name = ft_strdup("Gandalf the light");
-	FILLVEC(newlig.col, 255, 255, 255, 255);
+	FILLVEC(newlig.col, 255, 170, 170, 255);
 	FILLVEC(newlig.org, 20, 20, 0, 0);
 	newlig.intensity = 500;
 	newlig.type = light_point;
 	ft_lstadd(&scene->lig, ft_lstnew(&newlig, sizeof(t_lig)));
 	newlig.name = ft_strdup("Vigin");
-	FILLVEC(newlig.col, 255, 255, 255, 255);
+	FILLVEC(newlig.col, 170, 170, 255, 255);
 	FILLVEC(newlig.org, -20, 20, 0, 0);
 	newlig.intensity = 500;
 	newlig.type = light_point;
@@ -119,19 +120,34 @@ void	create_scene(int ac, char **av, t_scene *scene)
 	newobj.name = ft_strdup("Palantir");
 	newobj.type = obj_sphere;
 	newobj.albedo = 0.18;
+	newobj.tex_index = add_img_xpm(REN, "Textures/earth.xpm", 0, 0);
 	FILLVEC(newobj.scale, 1, 1, 1, 0);
 	FILLVEC(newobj.surface_colour, 255, 255, 255, 255);
+	newobj.radius = 1;
+	newobj.get_norm = sphere_getnorm;
+	newobj.get_intersect = sphere_intersect;
+	newobj.get_surface_col = sphere_surface_col;
+	FILLVEC(newobj.tex_scale, 1, 1, 0, 0);
 	ft_lstadd(&scene->obj, ft_lstnew(&newobj, sizeof(t_obj)));
+
+	newobj.tex_index = 0;
 	newobj.name = ft_strdup("X");
 	FILLVEC(newobj.org, 10, 0, 0, 0);
-	FILLVEC(newobj.surface_colour, 255, 255, 255, 255);
+	FILLVEC(newobj.rot, 0, -90, 0, 0);
+	FILLVEC(newobj.surface_colour, 255, 170, 170, 255);
+	newobj.type = obj_cone;
+	newobj.get_norm = cone_getnorm;
+	newobj.get_intersect = cone_intersect;
+	newobj.get_surface_col = cone_surface_col;
 	ft_lstadd(&scene->obj, ft_lstnew(&newobj, sizeof(t_obj)));
+
 	newobj.name = ft_strdup("Y");
 	FILLVEC(newobj.org, 0, 10, 0, 0);
-	FILLVEC(newobj.surface_colour, 255, 255, 255, 255);
+	FILLVEC(newobj.surface_colour, 170, 255, 170, 255);
 	ft_lstadd(&scene->obj, ft_lstnew(&newobj, sizeof(t_obj)));
+
 	newobj.name = ft_strdup("Z");
 	FILLVEC(newobj.org, 0, 0, 10, 0);
-	FILLVEC(newobj.surface_colour, 255, 255, 255, 255);
+	FILLVEC(newobj.surface_colour, 170, 170, 255, 255);
 	ft_lstadd(&scene->obj, ft_lstnew(&newobj, sizeof(t_obj)));
 }

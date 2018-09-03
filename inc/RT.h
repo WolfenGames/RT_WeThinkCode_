@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/29 16:42:24 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/03 17:17:14 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct	s_env
 {
 	t_scene		scene;
 	float		progress;
-	int			win[10];
-	int			img[10];
+	t_win		*win[10];
+	t_img		*img[10];
 	int			running;
 	int			point;
 	double		point_start;
@@ -64,6 +64,7 @@ void	loading(t_env *env);
 void	*raytracer(void *env);
 void	get_col(t_ray *ray, t_env *env, t_col c);
 void	print_vector(t_env *env, void *win, char *name, t_vec vec);
+void	create_scene(int ac, char **av, t_scene *scene, t_env *env);
 
 #include "intersections.h"
 
