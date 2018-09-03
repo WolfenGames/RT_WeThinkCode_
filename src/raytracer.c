@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:38 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 17:35:12 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/03 17:19:34 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	generate_ray(t_ray *ray, t_xy coord, t_env *env)
 		* invheight * angle;
 	ray->dir[1] = (1 - 2 * (coord[1] + 0.5) * invheight) * angle;
 	ray->dir[2] = -1;
+	transformvec(env->scene.c_cam->ctw, ray->dir, ray->dir);
 	normalize(ray->dir);
 }
 
@@ -95,7 +96,7 @@ void		*raytracer(void *env)
 	create_blocks(set.block);
 	set.env = env;
 	set.env->running = 1;
-	set.img = find_img(REN, RENDER);
+	set.img = RENDER;
 	pthread_create(&threads[0], NULL, calc_block, &set);
 	pthread_create(&threads[1], NULL, calc_block, &set);
 	pthread_create(&threads[2], NULL, calc_block, &set);

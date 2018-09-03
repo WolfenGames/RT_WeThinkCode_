@@ -19,10 +19,13 @@ static void	print_cam_properties(t_env *env, void *win, t_cam *cam)
 	cam_prop[0] = cam->fov;
 	cam_prop[1] = cam->aperture;
 	cam_prop[2] = 1 / (cam->aperture ? cam->aperture : 1);
-	mlx_string_put(env->ren.mlx, win, 10, ++env->point * 20, 0xff8cff,
-		cam->name);
-	mlx_string_put(env->ren.mlx, win, 40, ++env->point * 20, 0x886611,
-		"Camera");
+
+	if (++env->point > -1 && env->point < 43)
+		mlx_string_put(env->ren.mlx, win, 10, env->point * 20, 0xff8cff,
+			cam->name);
+	if (++env->point > -1 && env->point < 43)
+		mlx_string_put(env->ren.mlx, win, 40, env->point * 20, 0x886611,
+			"Camera");
 	print_vector(env, win, "O", cam->org);
 	print_vector(env, win, "R", cam->rot);
 	print_vector(env, win, "P", cam_prop);
@@ -111,22 +114,21 @@ void		properties(t_env *env)
 	t_col		col;
 	t_xy		start[2];
 	t_win		*win;
-	const t_img	*img = find_img(&env->ren, PROP_BACK);
 
 	start[0][0] = 0;
 	start[0][1] = 0;
 	start[1][0] = 300;
 	start[1][1] = 900;
 	FILLCOL(col, 25, 25, 25, 255);
-	draw_box(start[0], start[1], col, (t_img*)img);
+	draw_box(start[0], start[1], col, PROP_BACK);
 	start[0][1] = 870;
 	FILLCOL(col, 70, 25, 25, 255);
-	draw_box(start[0], start[1], col, (t_img*)img);
+	draw_box(start[0], start[1], col, PROP_BACK);
 	start[1][1] = 870;
 	FILLCOL(col, 0, 0, 0, 255);
-	draw_line(start[0], start[1], col, (t_img*)img);
-	present_img(&env->ren, PROP_WIN, PROP_BACK);
-	win = find_win(&env->ren, PROP_WIN);
+	draw_line(start[0], start[1], col, PROP_BACK);
+	present_img(&env->ren, PROP_WIN->id, PROP_BACK->id);
+	win = PROP_WIN;
 	if (win->keys[up] || win->keys[down])
 		env->point_start += (win->keys[up] ? 0.5 : -0.5);
 	if (env->point_start > -1)

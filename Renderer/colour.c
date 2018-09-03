@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 13:10:26 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/30 13:45:36 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/30 17:53:24 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ double	*get_img_col(int x, int y, t_img *img, t_col ret)
 		tmp = dat[x + (int)(y * img->w)];
 	else
 		tmp = 0;
-	RED(ret) = (tmp & 0xff);
+	BLU(ret) = (tmp & 0xff);
 	tmp /= 0x100;
 	GRN(ret) = (tmp & 0xff);
 	tmp /= 0x100;
-	BLU(ret) = (tmp & 0xff);
+	RED(ret) = (tmp & 0xff);
 	tmp /= 0x100;
 	ALP(ret) = (tmp & 0xff);
 	return (ret);
