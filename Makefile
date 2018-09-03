@@ -6,7 +6,7 @@
 #    By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 14:47:39 by ibotha            #+#    #+#              #
-#    Updated: 2018/08/30 10:13:41 by jwolf            ###   ########.fr        #
+#    Updated: 2018/09/03 15:05:14 by jwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = RT
 
 OBJ = src/main.o src/properties.o src/raytracer.o src/loading.o \
 		src/scene/scene.o src/scene/handler.o \
-		src/intersections/intersections.o src/intersections/sphere.o
+		src/intersections/intersections.o src/intersections/sphere.o \
+		src/scene/misc.o src/scene/name_handler.o src/scene/search.o
 
 FLAGS = -Wall -Werror -Wextra -I inc -I libft -Ofast -I Renderer -I Vectorlib \
 		-I src/scene -I src/intersections

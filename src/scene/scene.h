@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/30 12:29:04 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/03 15:54:41 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,20 @@ typedef struct	s_scene
 	t_cam		*c_cam;
 }				t_scene;
 
-void	create_scene(int ac, char **av, t_scene *scene);
-void	handle_contents(char *line, char *name, t_scene *scene);
-void	free_tab(char ***tab);
+void			create_scene(int ac, char **av, t_scene *scene);
+void			free_tab(char ***tab);
+void			handle_contents(char *line, char *name, t_scene *scene);
+void			set_vec(t_vec vec, char *linesub);
+
+int				is_line_prop(const char *line);
+int				match_brackets(char *str, char *line);
+
+char			char_lower(char c);
+
+char			*get_name(char *s);
+char			*get_prop_name(char *s);
+char			*make_end(char *str);
+
+t_cam			*search_cam_list(t_scene *scene, char *name);
 
 #endif

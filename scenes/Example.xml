@@ -1,6 +1,6 @@
 <camera name='Camera'>
-	<origin>0,50,0</origin>
+	<origin>0,0,40</origin>
 	<fov>90</fov>
-	<rotation>0,10,10</rotation>
+	<rotation>0,0,0</rotation>
 	<aperture>1</aperture>
 </camera>

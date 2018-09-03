@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 14:21:37 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/03 15:59:26 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,10 @@ void	free_tab(char ***tab)
 	while ((*tab)[++i])
 		ft_memdel((void **)&(*tab)[i]);
 	ft_memdel((void**)tab);
-	//if (*tab)
-	//	ft_memdel((void **)&(*tab));
 }
 
 void	create_scene(int ac, char **av, t_scene *scene)
 {
-	ft_bzero(scene, sizeof(t_scene));
-
-	//Put your shit here.
 	int		fd;
 	char	*line;
 	char	*line2;
@@ -40,7 +35,7 @@ void	create_scene(int ac, char **av, t_scene *scene)
 	char	**sp;
 	int		flag = 0;
 	
-
+	ft_bzero(scene, sizeof(t_scene));
 	if (ac != 2)
 		exit(EXIT_FAILURE);
 	fd = open(av[1], O_RDONLY);
@@ -81,30 +76,4 @@ void	create_scene(int ac, char **av, t_scene *scene)
 	if (tmp)
 		ft_memdel((void **)&tmp);
 	close(fd);
-	(void)ac;
-	(void)av;
-	(void)scene;
-
-	//Test scene parameters comment out when ready
-	t_obj	newobj;
-	t_lig	newlig;
-
-	ft_bzero(&newobj, sizeof(t_obj));
-	ft_bzero(&newlig, sizeof(t_lig));
-
-	//Light Initialization
-	newlig.name = ft_strdup("Gandalf the light");
-	FILLVEC(newlig.col, 255, 255, 255, 255);
-	FILLVEC(newlig.org, 4, 4, 4, 0);
-	newlig.intensity = 1;
-	newlig.type = light_point;
-	ft_lstadd(&scene->lig, ft_lstnew(&newlig, sizeof(t_lig)));
-
-	//Object Initialization
-	newobj.name = ft_strdup("Palantir");
-	newobj.type = obj_sphere;
-	newobj.albedo = 0.18;
-	FILLVEC(newobj.scale, 1, 1, 1, 0);
-	FILLVEC(newobj.surface_colour, 255, 255, 255, 255);
-	ft_lstadd(&scene->obj, ft_lstnew(&newobj, sizeof(t_obj)));
 }
