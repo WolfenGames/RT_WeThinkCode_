@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 10:39:41 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/03 14:21:37 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,11 @@ void	create_scene(int ac, char **av, t_scene *scene)
 	}
 	if (flag)
 		die("Invalid XML");
-	ft_memdel((void **)&line);
-	ft_memdel((void **)&tmp);
+	if (line)
+		ft_memdel((void **)&line);
+	if (tmp)
+		ft_memdel((void **)&tmp);
 	close(fd);
-
 	(void)ac;
 	(void)av;
 	(void)scene;

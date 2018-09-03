@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 17:41:11 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 10:14:05 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/03 13:42:05 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ char			*ft_strrchr(char *str, char c);
 char			**ft_strsplit(const char *s, char c);
 char			*ft_strstr(const char *haystack, const char *needle);
 char			*ft_strsub(const char *s, unsigned int start, size_t len);
+char			*ft_strsub_free(char *s, unsigned int start, size_t len);
 char			*ft_strtrim(const char *s);
 
 size_t			ft_strlcat(char *dest, const char *src, size_t n);

@@ -6,11 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:20 by ibotha            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/09/03 10:47:10 by jwolf            ###   ########.fr       */
-=======
-/*   Updated: 2018/08/30 12:03:27 by ibotha           ###   ########.fr       */
->>>>>>> 9de3c4b6d1a7dfc03bad909c0c69feda3763a211
+/*   Updated: 2018/09/03 11:27:06 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +18,11 @@ static void	print_cam_properties(t_env *env, void *win, t_cam *cam)
 
 	cam_prop[0] = cam->fov;
 	cam_prop[1] = cam->aperture;
-<<<<<<< HEAD
 	cam_prop[2] = 1 / (cam->aperture ? cam->aperture : 1);
 	mlx_string_put(env->ren.mlx, win, 10, ++env->point * 20, 0xff8cff,
 		cam->name);
 	mlx_string_put(env->ren.mlx, win, 40, ++env->point * 20, 0x886611,
 		"Camera");
-=======
-	cam_prop[2] = 1 / cam->aperture;
-	if (++env->point > -1 && env->point < 43)
-		mlx_string_put(env->ren.mlx, win, 10, env->point * 20, 0xff8cff,
-			cam->name);
-	if (++env->point > -1 && env->point < 43)
-		mlx_string_put(env->ren.mlx, win, 40, env->point * 20, 0x886611,
-			"Camera");
->>>>>>> 9de3c4b6d1a7dfc03bad909c0c69feda3763a211
 	print_vector(env, win, "O", cam->org);
 	print_vector(env, win, "R", cam->rot);
 	print_vector(env, win, "P", cam_prop);
@@ -86,14 +72,8 @@ void	print_lig_properties(t_env *env, void *win, t_lig *lig)
 	if (++env->point > -1 && env->point < 43)
 		mlx_string_put(env->ren.mlx, win, 40, env->point * 20, 0x886611, type);
 	type = ft_strjoin_n_free(ft_strdup("Intesity: "), ft_dtoa(lig->intensity));
-<<<<<<< HEAD
 	mlx_string_put(env->ren.mlx, win, 40, ++env->point * 20, 0xcccccc,
 		type);
-=======
-	if (++env->point > -1 && env->point < 43)
-		mlx_string_put(env->ren.mlx, win, 40, env->point * 20, 0xcccccc,
-			type);
->>>>>>> 9de3c4b6d1a7dfc03bad909c0c69feda3763a211
 	free(type);
 	print_vector(env, win, "O", lig->org);
 	print_vector(env, win, "C", lig->col);

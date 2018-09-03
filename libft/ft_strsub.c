@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 15:55:39 by ibotha            #+#    #+#             */
-/*   Updated: 2018/05/21 14:00:48 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/03 13:42:09 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,14 @@ char	*ft_strsub(const char *s, unsigned int start, size_t len)
 	if (!(ret = ft_strnew(len)))
 		return (NULL);
 	ft_strncpy(ret, s + start, len);
+	return (ret);
+}
+
+char	*ft_strsub_free(char *s, unsigned int start, size_t len)
+{
+	char *ret;
+
+	ret = ft_strsub(s, start, len);
+	free(s);
 	return (ret);
 }
