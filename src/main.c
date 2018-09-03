@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:01:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 17:03:14 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/29 15:52:51 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ int			main(int argc, char **argv)
 	env.img[2] = add_img(&env.ren, WIN_W, WIN_H);
 	create_scene(argc, argv, &env.scene);
 	mlx_loop_hook(env.ren.mlx, fill_windows, &env);
+	env.point_start = -1;
 	mlx_loop(env.ren.mlx);
 }

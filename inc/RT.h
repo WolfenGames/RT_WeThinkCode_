@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 17:26:41 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/08/29 16:42:24 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct	s_env
 	int			img[10];
 	int			running;
 	int			point;
+	double		point_start;
 	t_renderer	ren;
 }				t_env;
 
