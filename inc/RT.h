@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 17:17:14 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/04 15:35:43 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef struct	s_render_set
 void	properties(t_env *env);
 void	loading(t_env *env);
 void	*raytracer(void *env);
-void	get_col(t_ray *ray, t_env *env, t_col c);
 void	print_vector(t_env *env, void *win, char *name, t_vec vec);
 void	create_scene(int ac, char **av, t_scene *scene, t_env *env);
 

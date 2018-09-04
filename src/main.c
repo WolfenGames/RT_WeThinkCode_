@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:01:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 17:18:47 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/04 12:46:12 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 
 static void	check_alive(t_env *env)
 {
-	t_win	*trace;
-	t_win	*prop;
-
-	trace = TRACER;
-	prop = PROP_WIN;
-	if (!prop || !trace || trace->keys[esc] || prop->keys[esc])
+	if (!PROP_WIN || !TRACER || TRACER->keys[esc] || PROP_WIN->keys[esc]
+		|| !PROP_WIN->id || !TRACER->id)
 		die("\x1b[34mClosed!\x1b[0m");
 }
 
@@ -28,7 +24,6 @@ static int	fill_windows(t_env *env)
 	static	char		pspace;
 	static	pthread_t	thread;
 
-	check_alive(env);
 	if (env->ren.c_win->keys[space] && !pspace)
 	{
 		if (env->running)
@@ -40,6 +35,7 @@ static int	fill_windows(t_env *env)
 	}
 	pspace = env->ren.c_win->keys[space];
 	loading(env);
+	check_alive(env);
 	properties(env);
 	present_img(&env->ren, TRACER->id, RENDER->id);
 	if (env->progress < 0.99999)

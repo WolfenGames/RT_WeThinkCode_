@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/04 10:44:55 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/04 14:26:47 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 
 typedef struct	s_env t_env;
+typedef struct	s_img t_img;
 
 typedef enum	e_l_type
 {
@@ -45,7 +46,7 @@ typedef struct	s_obj
 	t_matrix	wto;
 	t_vec		surface_colour;
 	t_vec		specular_colour;
-	int			tex_index;
+	t_img		*tex;
 	double		albedo;
 	double		radius;
 	t_vec		tex_scale;
@@ -55,7 +56,7 @@ typedef struct	s_obj
 	void		(*get_norm)(t_vec norm, t_vec point, struct s_obj *obj);
 	int			(*get_intersect)(t_ray *ray, struct s_obj *obj);
 	void		(*get_surface_col)(struct s_obj *obj,
-		t_vec c, t_vec point, t_env *env);
+		t_vec c, t_vec point);
 }				t_obj;
 
 typedef struct	s_lig

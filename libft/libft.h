@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 17:41:11 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 16:56:01 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/04 14:11:37 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ double			ft_clamp(double hi, double lo, double n);
 char			*ft_itoa_b(int n, char *base);
 char			*ft_itoa(int n);
 char			*ft_ltoa(long n);
-char			*ft_dtoa(double n);
+char			*ft_dtoa(double n, int precision);
 char			*ft_itoa_b(int n, char *base);
 char			*ft_strcat(char *ret, const char *str);
 char			*ft_strchr(char *str, char c);

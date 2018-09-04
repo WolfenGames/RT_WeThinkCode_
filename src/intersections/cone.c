@@ -6,18 +6,18 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 10:07:15 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 14:09:27 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/04 14:27:23 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
 
-void	cone_surface_col(t_obj *ob, t_col c, t_vec point, t_env *env)
+void	cone_surface_col(t_obj *ob, t_col c, t_vec point)
 {
 	t_vec		norm;
 	t_vec		tempvec[4];
 	t_vec		o;
-	const t_img	*img = find_img(REN, ob->tex_index);
+	t_img		*img = ob->tex;
 
 	transform(ob->wto, point, tempvec[2]);
 	FILLVEC(tempvec[3], tempvec[2][0], tempvec[2][1], 0, 0);
