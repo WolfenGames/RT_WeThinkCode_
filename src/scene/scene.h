@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 16:38:30 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/04 07:53:19 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ typedef struct	s_read
 	int			flag;
 }				t_read;
 
-void			create_scene(int ac, char **av, t_scene *scene);
+void			create_scene(int ac, char **av, t_scene *scene, t_env *env);
 void			free_tab(char ***tab);
 void			handle_contents(char *line, char *name, t_scene *scene);
 void			set_vec(t_vec vec, char *linesub);
