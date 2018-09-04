@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 07:48:27 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/04 10:55:51 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/04 11:41:37 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	do_da_light(char *name, char *line, t_scene *scene)
 		set_vec(new->org, ft_strsub(line, 8, ft_strlen(line) - 17));
 	if (match_brackets("direction", line))
 		set_vec(new->dir, ft_strsub(line, 11, ft_strlen(line) - 23));
-	if (match_brackets("diffusecolour", line))
-		set_vec(new->col, ft_strsub(line, 15, ft_strlen(line) - 31));
+	if (match_brackets("colour", line))
+		set_vec(new->col, ft_strsub(line, 8, ft_strlen(line) - 17));
 	if (match_brackets("type", line))
 		new->type = set_l_type(ft_strsub(line, 6, ft_strlen(line) - 13));
 	if (match_brackets("intensity", line))

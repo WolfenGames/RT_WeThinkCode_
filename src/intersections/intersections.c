@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/30 17:27:37 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/04 11:54:47 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,26 @@ static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 	c[2] *= vecs[0][2] / 255.0;
 }
 
+void		check_light(t_ray *ray, t_lig *lig, t_col c)
+{
+	t_vec	l;
+	t_vec	var;
+	double	t[2];
+
+	v_sub(ray->org, lig->org, l);
+	var[0] = dot(ray->dir, ray->dir);
+	var[1] = 2 * dot(ray->dir, l);
+	var[2] = dot(l, l) - ((lig->intensity / 500) * (lig->intensity / 500));
+	if (!quad(var, t))
+		return ;
+	if (t[0] < 0)
+		t[0] = t[1];
+	if (t[0] < 0)
+		return ;
+	if (t[0] > ray->len)
+		return ;
+}
+
 void			get_col(t_ray *ray, t_env *env, t_col c)
 {
 	t_obj	*hit_obj;
@@ -106,6 +126,7 @@ void			get_col(t_ray *ray, t_env *env, t_col c)
 		light_thing(&point, env, hit_obj, c);
 	}
 	else
-		FILLCOL(c, 25, 25, 25, 255);
+		FILLCOL(c, 15, 15, 15, 255);
 	c[3] = 255;
+	glare(ray, env, c);
 }
