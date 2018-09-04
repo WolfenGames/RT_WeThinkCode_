@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   name_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:58:08 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/04 10:51:56 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/04 11:37:28 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,16 @@ int		is_line_prop(const char *line)
 		ft_strnequ(line, "<albedo>", 8) || 
 		ft_strnequ(line, "<refractiveindex>", 17) ||
 		ft_strnequ(line, "<type>", 6) || ft_strnequ(line, "<direction>", 11) ||
-		ft_strnequ(line, "<intensity>", 11) || ft_strnequ(line, "<radius>", 8));
+		ft_strnequ(line, "<intensity>", 11) || ft_strnequ(line, "<radius>", 8) ||
+		ft_strnequ(line, "<colour>", 8));
 }
 
 char	*get_prop_name(char *s)
 {
 	if (ft_strnequ((s + 1), "origin", 6))
 		return ("origin");
+	if (ft_strnequ((s + 1), "colour", 6))
+		return ("colour");
 	if (ft_strnequ((s + 1), "rotation", 8))
 		return ("rotation");
 	if (ft_strnequ((s + 1), "direction", 9))
