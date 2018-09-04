@@ -6,11 +6,12 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 08:06:31 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/04 08:18:40 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/04 10:55:39 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
+#include "../../inc/RT.h"
 
 t_l_type	set_l_type(char *s)
 {
@@ -25,21 +26,24 @@ t_l_type	set_l_type(char *s)
 	return (ret);	
 }
 
-t_o_type	set_o_type(char *s)
+void		set_obj_params(t_obj *o)
 {
-	t_o_type	ret;
+	o->get_norm = sphere_getnorm;
+	o->get_intersect = sphere_intersect;
+	o->get_surface_col = sphere_surface_col;
+}
 
-	ret = obj_sphere;
+void	set_o_type(char *s, t_obj *o)
+{
 	if (ft_strequ(s, "sphere"))
-		ret = obj_sphere;
+		o->type = obj_sphere;
 	if (ft_strequ(s, "plane"))
-		ret = obj_plane;
+		o->type = obj_plane;
 	if (ft_strequ(s, "cone"))
-		ret = obj_cone;
+		o->type = obj_cone;
 	if (ft_strequ(s, "cylinder"))
-		ret = obj_cylinder;
+		o->type = obj_cylinder;
 	if (ft_strequ(s, "polygon"))
-		ret = obj_polygon;
+		o->type = obj_polygon;
 	free(s);
-	return (ret);
 }

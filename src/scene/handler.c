@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 07:48:27 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/04 08:17:27 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/04 10:55:51 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,14 @@ void	do_da_light(char *name, char *line, t_scene *scene)
 	new->name = (new->name != NULL) ? new->name : get_name(name);
 	if (match_brackets("origin", line))
 		set_vec(new->org, ft_strsub(line, 8, ft_strlen(line) - 17));
-	if (match_brackets("rotation", line)
-		|| match_brackets("direction", line))
-		set_vec(new->dir, ft_strsub(line, 10, ft_strlen(line) - 21));
-	if (match_brackets("colour", line))
-		set_vec(new->col, ft_strsub(line, 8, ft_strlen(line) - 17));
+	if (match_brackets("direction", line))
+		set_vec(new->dir, ft_strsub(line, 11, ft_strlen(line) - 23));
+	if (match_brackets("diffusecolour", line))
+		set_vec(new->col, ft_strsub(line, 15, ft_strlen(line) - 31));
 	if (match_brackets("type", line))
 		new->type = set_l_type(ft_strsub(line, 6, ft_strlen(line) - 13));
 	if (match_brackets("intensity", line))
-		new->intensity = ft_clamp(__LONG_LONG_MAX__, 0, ft_atod(line + 11));
+		new->intensity = ft_clamp(__LONG_LONG_MAX__, 0.1, ft_atod(line + 11));
 }
 
 void	do_da_object(char *name, char *line, t_scene *scene)
@@ -76,16 +75,19 @@ void	do_da_object(char *name, char *line, t_scene *scene)
 		set_vec(new->org, ft_strsub(line, 8, ft_strlen(line) - 17));
 	if (match_brackets("rotation", line))
 		set_vec(new->rot, ft_strsub(line, 10, ft_strlen(line) - 21));
-	if (match_brackets("surface colour", line))
-		set_vec(new->surface_colour, ft_strsub(line, 16, ft_strlen(line) - 33));
-	if (match_brackets("specular colur", line))
-		set_vec(new->specular_colour, ft_strsub(line, 16, ft_strlen(line) - 33));
+	if (match_brackets("diffusecolour", line))
+		set_vec(new->surface_colour, ft_strsub(line, 15, ft_strlen(line) - 31));
+	if (match_brackets("specularcolur", line))
+		set_vec(new->specular_colour, ft_strsub(line, 15, ft_strlen(line) - 31));
 	if (match_brackets("albedo", line))
 		new->albedo = ft_clamp(1, 0, ft_atod(line + 8));
 	if (match_brackets("radius", line))
 		new->radius = ft_clamp(__LONG_MAX__, 0.1, ft_atod(line + 8));
 	if (match_brackets("type", line))
-		new->type = set_o_type(ft_strsub(line, 6, ft_strlen(line) - 13));
+		set_o_type(ft_strsub(line, 6, ft_strlen(line) - 13), new);
+	if (match_brackets("scale", line))
+		set_vec(new->scale, ft_strsub(line, 5, ft_strlen(line) - 11));
+	set_obj_params(new);
 }
 
 void	handle_contents(char *line, char *name, t_scene *scene)
