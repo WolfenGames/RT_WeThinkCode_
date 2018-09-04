@@ -15,8 +15,6 @@
 	<origin>10,10,10</origin>
 	<rotation>0,0,0</rotation>
 	<radius>2</radius>
-	<scale>1,1,1</scale>
-	<diffusecolour>133,244,100</diffusecolour>
 	<albedo>1</albedo>
 	<type>sphere</type>
 </object>
