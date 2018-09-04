@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/04 11:54:47 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/04 11:58:48 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void		check_light(t_ray *ray, t_lig *lig, t_col c)
 	t_vec	var;
 	double	t[2];
 
+	(void)c;
 	v_sub(ray->org, lig->org, l);
 	var[0] = dot(ray->dir, ray->dir);
 	var[1] = 2 * dot(ray->dir, l);
@@ -128,5 +129,5 @@ void			get_col(t_ray *ray, t_env *env, t_col c)
 	else
 		FILLCOL(c, 15, 15, 15, 255);
 	c[3] = 255;
-	glare(ray, env, c);
+	//glare(ray, env, c);
 }

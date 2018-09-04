@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   name_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:58:08 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/04 11:37:28 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/04 15:36:10 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,28 @@ int		is_line_prop(const char *line)
 	return (ft_strnequ(line, "<origin>", 8) ||
 		ft_strnequ(line, "<rotation>", 10) ||
 		ft_strnequ(line, "<fov>", 5) || ft_strnequ(line, "<aperture>", 10) ||
-		ft_strnequ(line, "<scale>", 7) || 
+		ft_strnequ(line, "<scale>", 7) ||
 		ft_strnequ(line, "<diffusecolour>", 15) ||
 		ft_strnequ(line, "<specularcolour>", 16) ||
-		ft_strnequ(line, "<albedo>", 8) || 
+		ft_strnequ(line, "<albedo>", 8) ||
 		ft_strnequ(line, "<refractiveindex>", 17) ||
 		ft_strnequ(line, "<type>", 6) || ft_strnequ(line, "<direction>", 11) ||
-		ft_strnequ(line, "<intensity>", 11) || ft_strnequ(line, "<radius>", 8) ||
-		ft_strnequ(line, "<colour>", 8));
+		ft_strnequ(line, "<intensity>", 11) ||
+		ft_strnequ(line, "<radius>", 8) || ft_strnequ(line, "<colour>", 8) ||
+		ft_strnequ(line, "<texture>", 11));
+}
+
+char	*get_prop_name_two(char *s)
+{
+	if (ft_strnequ((s + 1), "type", 4))
+		return ("type");
+	if (ft_strnequ((s + 1), "intensity", 9))
+		return ("intensity");
+	if (ft_strnequ((s + 1), "radius", 6))
+		return ("radius");
+	if (ft_strnequ((s + 1), "texture", 9))
+		return ("texture");
+	return (NULL);
 }
 
 char	*get_prop_name(char *s)
@@ -51,13 +65,7 @@ char	*get_prop_name(char *s)
 		return ("albedo");
 	if (ft_strnequ((s + 1), "refractiveindex", 15))
 		return ("refractiveindex");
-	if (ft_strnequ((s + 1), "type", 4))
-		return ("type");
-	if (ft_strnequ((s + 1), "intensity", 9))
-		return ("intensity");
-	if (ft_strnequ((s + 1), "radius", 6))
-		return ("radius");
-	return (NULL);
+	return (get_prop_name_two(s));
 }
 
 char	*get_name(char *s)
@@ -67,20 +75,23 @@ char	*get_name(char *s)
 	int		i;
 
 	i = 0;
-	ft_streplace(s, '\"', '\'');
-	if (ft_strnequ(s, "<camera", 7) || ft_strnequ(s, "<object", 7) ||
-		ft_strnequ(s, "<light", 6))
+	if (ft_strlen(s) > 0)
 	{
-		if ((name = ft_strstr(s, "name='")))
+		ft_streplace(s, '\"', '\'');
+		if (ft_strnequ(s, "<camera", 7) || ft_strnequ(s, "<object", 7) ||
+			ft_strnequ(s, "<light", 6))
 		{
-			while (*(name + 6 + i) != '\'')
-				i++;
-			ret = ft_strnew(i);
-			i = -1;
-			while (*(name + 6 + ++i) != '\'')
-				ret[i] = *(name + 6 + i);
-			return (ret);
+			if ((name = ft_strstr(s, "name='")))
+			{
+				while (*(name + 6 + i) != '\'')
+					i++;
+				ret = ft_strnew(i);
+				i = -1;
+				while (*(name + 6 + ++i) != '\'')
+					ret[i] = *(name + 6 + i);
+				return (ret);
+			}
 		}
 	}
-	return ("No Name Bob");
+	return (ft_strdup("No Name Bob"));
 }

@@ -18,6 +18,11 @@
 	<type>point</type>
 	<intensity>100</intensity>
 </light>
+<object>
+	<origin>0,0,0</origin>
+	<radius>1</radius>
+	<diffusecolour>255,255,255,255</diffusecolour>
+</object>
 <object	name="Centre White">
 	<origin>0,0,0</origin>
 	<rotation>0,0,0</rotation>

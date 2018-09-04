@@ -107,6 +107,7 @@ run: all
 	./$(NAME) g
 
 wolf: all
+	@make clean
 	./$(NAME) scenes/Example.xml
 
 .PHONY: all clean fclean re patience libft run
