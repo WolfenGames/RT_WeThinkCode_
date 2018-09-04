@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   properties.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:20 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 11:27:06 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/04 15:37:57 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	print_obj_properties(t_env *env, void *win, t_obj *obj)
 	print_vector(env, win, "R", obj->rot);
 	print_vector(env, win, "S", obj->scale);
 	print_vector(env, win, "C", obj->surface_colour);
+	print_vector(env, win, "SP_C", obj->specular_colour);
 }
 
 void	print_lig_properties(t_env *env, void *win, t_lig *lig)
@@ -74,7 +75,7 @@ void	print_lig_properties(t_env *env, void *win, t_lig *lig)
 			lig->name);
 	if (++env->point > -1 && env->point < 43)
 		mlx_string_put(env->ren.mlx, win, 40, env->point * 20, 0x886611, type);
-	type = ft_strjoin_n_free(ft_strdup("Intesity: "), ft_dtoa(lig->intensity));
+	type = ft_strjoin_n_free(ft_strdup("Intesity: "), ft_dtoa(lig->intensity, 3));
 	mlx_string_put(env->ren.mlx, win, 40, ++env->point * 20, 0xcccccc,
 		type);
 	free(type);
@@ -133,6 +134,6 @@ void		properties(t_env *env)
 		env->point_start += (win->keys[up] ? 0.5 : -0.5);
 	if (env->point_start > -1)
 		env->point_start = -1;
-	if (win)
+	if (win && win->win)
 		print_properties(win->win, env);
 }

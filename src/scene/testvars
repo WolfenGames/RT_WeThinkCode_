@@ -30,7 +30,7 @@
 	newobj.name = ft_strdup("Palantir");
 	newobj.type = obj_sphere;
 	newobj.albedo = 0.18;
-	newobj.tex_index = add_img_xpm(REN, "Textures/earth.xpm", 0, 0);
+	newobj.tex = find_img(&REN, add_img_xpm(REN, "Textures/earth.xpm", 0, 0));
 	FILLVEC(newobj.scale, 1, 1, 1, 0);
 	FILLVEC(newobj.surface_colour, 255, 255, 255, 255);
 	newobj.radius = 1;

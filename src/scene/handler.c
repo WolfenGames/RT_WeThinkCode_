@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 07:48:27 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/04 11:41:37 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/04 15:40:45 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	do_da_object(char *name, char *line, t_scene *scene)
 		set_vec(new->rot, ft_strsub(line, 10, ft_strlen(line) - 21));
 	if (match_brackets("diffusecolour", line))
 		set_vec(new->surface_colour, ft_strsub(line, 15, ft_strlen(line) - 31));
-	if (match_brackets("specularcolur", line))
-		set_vec(new->specular_colour, ft_strsub(line, 15, ft_strlen(line) - 31));
+	if (match_brackets("specularcolour", line))
+		set_vec(new->specular_colour, ft_strsub(line, 16, ft_strlen(line) - 33));
 	if (match_brackets("albedo", line))
 		new->albedo = ft_clamp(1, 0, ft_atod(line + 8));
 	if (match_brackets("radius", line))

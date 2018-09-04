@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/04 11:54:47 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/04 16:38:14 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 **	returns the hit object.
 */
 
-static t_obj	*trace(t_ray *ray, t_env *env)
+t_obj		*trace(t_ray *ray, t_env *env)
 {
 	t_obj	*ret;
 	t_list	*cur;
@@ -74,7 +74,7 @@ static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 
 	cur = env->scene.lig;
 	obj->get_norm(vecs[2], shadow->org, obj);
-	FILLVEC(vecs[0], 25, 25, 25, 0);
+	FILLVEC(vecs[0], 5, 5, 5, 0);
 	while (cur)
 	{
 		if (generate_shadow_ray(shadow, LIG, env))
@@ -91,30 +91,24 @@ static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 	c[2] *= vecs[0][2] / 255.0;
 }
 
-void		check_light(t_ray *ray, t_lig *lig, t_col c)
+void			reflect_crap(t_col c, t_col ref, t_obj *obj)
 {
-	t_vec	l;
-	t_vec	var;
-	double	t[2];
+	t_col	rat;
 
-	v_sub(ray->org, lig->org, l);
-	var[0] = dot(ray->dir, ray->dir);
-	var[1] = 2 * dot(ray->dir, l);
-	var[2] = dot(l, l) - ((lig->intensity / 500) * (lig->intensity / 500));
-	if (!quad(var, t))
-		return ;
-	if (t[0] < 0)
-		t[0] = t[1];
-	if (t[0] < 0)
-		return ;
-	if (t[0] > ray->len)
-		return ;
+	rat[0] = obj->specular_colour[0] / 255.0;
+	rat[1] = obj->specular_colour[1] / 255.0;
+	rat[2] = obj->specular_colour[2] / 255.0;
+	c[0] = rat[0] * ref[0] + c[0];
+	c[1] = rat[1] * ref[1] + c[1];
+	c[2] = rat[2] * ref[2] + c[2];
 }
 
-void			get_col(t_ray *ray, t_env *env, t_col c)
+void			get_col(t_ray *ray, t_env *env, t_col c, int level)
 {
 	t_obj	*hit_obj;
 	t_ray	point;
+	t_col	reflect_col;
+	t_vec	norm;
 
 	ray->len = INFINITY;
 	hit_obj = trace(ray, env);
@@ -122,11 +116,19 @@ void			get_col(t_ray *ray, t_env *env, t_col c)
 	{
 		v_add(v_multi(ray->dir, ray->len * 0.999999999, point.org),
 			ray->org, point.org);
-		hit_obj->get_surface_col(hit_obj, c, point.org, env);
+		hit_obj->get_surface_col(hit_obj, c, point.org);
+		hit_obj->get_norm(norm, point.org, hit_obj);
+		reflect(ray->dir, norm, point.dir);
+		if ((hit_obj->specular_colour[0] || hit_obj->specular_colour[1]
+			|| hit_obj->specular_colour[2]) && level < 20)
+		{
+			get_col(&point, env, reflect_col, level + 1);
+			reflect_crap(c, reflect_col, hit_obj);
+		}
 		light_thing(&point, env, hit_obj, c);
 	}
 	else
-		FILLCOL(c, 15, 15, 15, 255);
+		FILLCOL(c, 5, 5, 5, 255);
 	c[3] = 255;
 	glare(ray, env, c);
 }

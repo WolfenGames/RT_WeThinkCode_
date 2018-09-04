@@ -1,5 +1,5 @@
 <camera	name="Camera">
-	<origin>5,5,80</origin>
+	<origin>5,5,20</origin>
 	<fov>35</fov>
 	<rotation>0,0,0</rotation>
 	<aperture>1</aperture>
@@ -14,39 +14,43 @@
 <light	name='Left light'>
 	<origin>-20,20,0,0</origin>
 	<direction>0,0,0</direction>
-	<colour>170,170,255,255</colour>
+	<colour>170,255,170,255</colour>
 	<type>point</type>
 	<intensity>100</intensity>
 </light>
 <object	name="Centre White">
-	<origin>0,0,0</origin>
+	<origin>1.1,0,0</origin>
 	<rotation>0,0,0</rotation>
 	<radius>2</radius>
 	<diffusecolour>255,255,255</diffusecolour>
-	<albedo>1</albedo>
+	<specularcolour>255,255,255</specularcolour>
+	<albedo>0.18</albedo>
 	<type>sphere</type>
 </object>
 <object	name="X Red">
 	<origin>10,0,0</origin>
 	<rotation>0,0,0</rotation>
-	<radius>1</radius>
+	<radius>2</radius>
 	<diffusecolour>255,80,80</diffusecolour>
-	<albedo>1</albedo>
+	<specularcolour>255,80,80</specularcolour>
+	<albedo>0.18</albedo>
 	<type>sphere</type>
 </object>
 <object	name="Y Green">
 	<origin>0,10,0</origin>
 	<rotation>0,0,0</rotation>
-	<radius>1</radius>
+	<radius>2</radius>
 	<diffusecolour>80,255,80</diffusecolour>
-	<albedo>1</albedo>
+	<specularcolour>80,255,80</specularcolour>
+	<albedo>0.18</albedo>
 	<type>sphere</type>
 </object>
 <object	name="Z Blue">
 	<origin>0,0,10</origin>
 	<rotation>0,0,0</rotation>
-	<radius>1</radius>
+	<radius>2</radius>
 	<diffusecolour>80,80,255</diffusecolour>
-	<albedo>1</albedo>
+	<specularcolour>80,80,255</specularcolour>
+	<albedo>0.18</albedo>
 	<type>sphere</type>
 </object>

@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:38 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 17:19:34 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/04 15:17:15 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	render_block(t_env *env, t_render_block *block, t_img *img)
 		while (++size[0] < (R_BLOCK_SIZE + block->start[0]) && size[0] < WIN_W)
 		{
 			generate_ray(&ray, size, env);
-			get_col(&ray, env, c);
+			get_col(&ray, env, c, 0);
 			put_pixel(size[0], size[1], c, img);
 		}
 	}
