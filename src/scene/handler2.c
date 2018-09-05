@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 07:51:39 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/05 09:43:09 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/05 11:20:34 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ void	set_tex(t_obj *o, char *filename, t_env *env)
 			return ;
 		close(fd);
 		o->tex = find_img(REN, add_img_xpm(REN, filename, 0, 0));
-		set_vec(o->tex_scale, ft_strdup("1,1,1"));
 	}
 }

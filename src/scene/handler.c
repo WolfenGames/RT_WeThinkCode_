@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 07:48:27 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/05 09:42:21 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/05 09:45:54 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	do_da_light(char *name, char *line, t_scene *scene)
 
 void	do_da_object_stuff(char *name, char *line, t_obj *new, t_env *env)
 {
-	printf("%s\n", line);
 	new->name = (new->name != NULL) ? new->name : get_name(name);
 	if (match_brackets("origin", line))
 		set_vec(new->org, ft_strsub(line, 8, ft_strlen(line) - 17));
@@ -84,6 +83,7 @@ void	do_da_object_stuff(char *name, char *line, t_obj *new, t_env *env)
 		set_tex(new, ft_strsub(line, 9, ft_strlen(line) - 19), env);
 	if (match_brackets("texturescale", line))
 	{
+		printf("FUUUU!!!\n");
 		set_vec(new->tex_scale, ft_strsub(line, 14, ft_strlen(line) - 29));
 	}
 	set_obj_params(new);
