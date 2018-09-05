@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:58:08 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/04 15:36:10 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/05 07:17:33 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*get_prop_name(char *s)
 	if (ft_strnequ((s + 1), "rotation", 8))
 		return ("rotation");
 	if (ft_strnequ((s + 1), "direction", 9))
-		return ("direction");		
+		return ("direction");
 	if (ft_strnequ((s + 1), "fov", 3))
 		return ("fov");
 	if (ft_strnequ((s + 1), "aperture", 8))

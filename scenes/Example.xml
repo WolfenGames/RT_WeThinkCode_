@@ -1,6 +1,6 @@
 <camera	name="Camera">
-	<origin>5,5,20</origin>
-	<fov>35</fov>
+	<origin>5,5,40</origin>
+	<fov>80</fov>
 	<rotation>0,0,0</rotation>
 	<aperture>1</aperture>
 </camera>
@@ -29,6 +29,7 @@
 	<radius>2</radius>
 	<diffusecolour>255,255,255</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
+	<texture></texture>
 	<albedo>0.18</albedo>
 	<type>sphere</type>
 </object>
