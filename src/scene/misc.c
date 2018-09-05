@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:59:14 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/05 11:20:57 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/05 11:21:44 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		match_brackets(char *string, char *line)
 	int		ret;
 
 	linestart = get_prop_name(line);
-	endline = make_end(linestart);=
+	endline = make_end(linestart);
 	ret = (ft_strnequ(linestart, string, ft_strlen(string)) &&
 		ft_strnrequ(line, endline, ft_strlen(endline))) ? 1 : 0;
 	free(endline);
