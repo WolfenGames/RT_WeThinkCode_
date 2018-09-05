@@ -6,13 +6,14 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 07:51:39 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/05 08:33:57 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/05 09:15:02 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
+#include "RT.h"
 
-void	set_tex(t_img *img, char *filename, t_env *env)
+void	set_tex(t_obj *o, char *filename, t_env *env)
 {
 	int		fd;
 
@@ -22,7 +23,6 @@ void	set_tex(t_img *img, char *filename, t_env *env)
 		if ((fd = open(filename, O_RDONLY)) < 0)
 			return ;
 		close(fd);
-		(void)img;
-		(void)env;
+		o->tex = find_img(REN, add_img_xpm(REN, filename, 0, 0));
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 07:48:27 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/05 07:55:04 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/05 09:14:04 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	do_da_object_stuff(char *name, char *line, t_obj *new, t_env *env)
 	if (match_brackets("scale", line))
 		set_vec(new->scale, ft_strsub(line, 5, ft_strlen(line) - 11));
 	if (match_brackets("texture", line))
-		set_tex(new->tex, ft_strsub(line, 9, ft_strlen(line) - 19), env);
+		set_tex(new, ft_strsub(line, 9, ft_strlen(line) - 19), env);
 	set_obj_params(new);
 }
 
