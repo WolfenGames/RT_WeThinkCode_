@@ -1,8 +1,8 @@
-<camera	name="Camera">
+<camera name='Lord ISSAARRD THE LIZARD'>
 	<origin>5,5,40</origin>
-	<fov>80</fov>
-	<rotation>0,0,0</rotation>
+	<rotation>0,0,0</origin>
 	<aperture>1</aperture>
+	<fov>35</fov>
 </camera>
 <light	name='Right light'>
 	<origin>20,20,0,0</origin>
