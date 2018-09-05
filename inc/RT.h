@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/04 15:35:43 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/05 15:57:42 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define REN &((t_env*)env)->ren
 # define PROG ((t_env*)env)->progress
 
-# define R_BLOCK_SIZE 8
+# define R_BLOCK_SIZE 32
 # define WIN_H 900
 # define WIN_W 1300
 # define P_WIN_H 900
@@ -34,28 +34,30 @@
 # define BLOCK_H (WIN_H / R_BLOCK_SIZE + 1)
 # define BLOCK_NO (BLOCK_H * BLOCK_W)
 
-typedef struct	s_env
-{
-	t_scene		scene;
-	float		progress;
-	t_win		*win[10];
-	t_img		*img[10];
-	int			running;
-	int			point;
-	double		point_start;
-	t_renderer	ren;
-}				t_env;
-
 typedef struct	s_render_block
 {
 	t_xy	start;
 	int		taken;
 }				t_render_block;
 
+typedef struct	s_env
+{
+	t_scene			scene;
+	float			progress;
+	t_win			*win[10];
+	t_img			*img[10];
+	int				running;
+	int				point;
+	double			point_start;
+	t_renderer		ren;
+	t_render_block	block[BLOCK_NO];
+	char			**names;
+	int				amount;
+}				t_env;
+
 typedef struct	s_render_set
 {
 	t_env			*env;
-	t_render_block	block[BLOCK_NO];
 	t_img			*img;
 }				t_render_set;
 
@@ -64,6 +66,7 @@ void	loading(t_env *env);
 void	*raytracer(void *env);
 void	print_vector(t_env *env, void *win, char *name, t_vec vec);
 void	create_scene(int ac, char **av, t_scene *scene, t_env *env);
+void	create_blocks(t_render_block *blocks);
 
 #include "intersections.h"
 

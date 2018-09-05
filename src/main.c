@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:01:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/04 12:46:12 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/05 16:17:52 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int	fill_windows(t_env *env)
 
 	if (env->ren.c_win->keys[space] && !pspace)
 	{
+		create_scene(env->amount, env->names, &env->scene, env);
+		calc_scene(&env->scene);
 		if (env->running)
 		{
 			env->running = 0;
@@ -62,6 +64,7 @@ int			main(int argc, char **argv)
 		die("Usage: ./RT [Scene1]...[SceneN]");
 	ft_bzero(&env, sizeof(t_env));
 	renderer_set(&env.ren);
+	create_blocks(env.block);
 	env.win[0] = find_win(&env.ren, add_win(&env.ren,
 		"The Best RT You Ever Did See", WIN_W, WIN_H));
 	env.win[1] = find_win(&env.ren, add_win(&env.ren, "Properties",
@@ -71,8 +74,8 @@ int			main(int argc, char **argv)
 	env.img[1] = find_img(&env.ren, add_img(&env.ren, WIN_W - 50, 20));
 	set_img_pos(&env.ren, env.img[1]->id, 25, WIN_H - 60);
 	env.img[2] = find_img(&env.ren, add_img(&env.ren, WIN_W, WIN_H));
-	create_scene(argc, argv, &env.scene, &env);
-	calc_scene(&env.scene);
+	env.names = argv;
+	env.amount = argc;
 	mlx_loop_hook(env.ren.mlx, fill_windows, &env);
 	env.point_start = -1;
 	mlx_loop(env.ren.mlx);

@@ -13,7 +13,7 @@
 
 NAME = RT
 
-OBJ = src/main.o src/properties.o src/raytracer.o src/loading.o \
+OBJ = src/main.o src/properties.o src/raytracer.o src/loading.o src/blocks.o \
 		src/scene/scene.o src/scene/handler.o \
 		src/intersections/intersections.o src/intersections/sphere.o \
 		src/intersections/light.o \

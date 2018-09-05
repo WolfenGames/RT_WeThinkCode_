@@ -1,6 +1,6 @@
 <camera name='Lord ISSAARRD THE LIZARD'>
-	<origin>5,5,40</origin>
-	<rotation>0,0,0</origin>
+	<origin>60,0,-40</origin>
+	<rotation>220,0,0</rotation>
 	<aperture>1</aperture>
 	<fov>50</fov>
 </camera>
@@ -14,34 +14,46 @@
 <light	name='Left light'>
 	<origin>-20,20,0,0</origin>
 	<direction>0,0,0</direction>
-	<colour>170,255,170,255</colour>
+	<colour>225,120,20,255</colour>
+	<type>point</type>
+	<intensity>1200</intensity>
+</light>
+<light	name='back light'>
+	<origin>-0,0,20,0</origin>
+	<direction>0,0,0</direction>
+	<colour>170,170,255,255</colour>
 	<type>point</type>
 	<intensity>500</intensity>
 </light>
 <object>
-	<origin>0,0,0</origin>
+	<origin>-20,0,0</origin>
 	<radius>1</radius>
-	<diffusecolour>255,255,255,255</diffusecolour>    
+	<diffusecolour>255,255,255,255</diffusecolour>
+	<specularcolour>0,0,0</specularcolour>
+	<texture>Textures/shirt.xpm</texture>
+	<texturescale>8000,8000,1</texturescale>
+	<albedo>0.18</albedo> 
 </object>
 <object	name="Centre White">
-	<origin>1.1,0,0</origin>
-	<rotation>0,0,0</rotation>
-	<radius>2</radius>
-	<diffusecolour>255,255,255</diffusecolour>
+	<origin>0,0,0</origin>
+	<rotation>35,0,0</rotation>
+	<radius>5</radius>
+	<diffusecolour>0,0,0</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
-	<texture></texture>
 	<albedo>0.18</albedo>
-	<texture>wood.xpm</texture>
+	/<texture>Textures/moon.xpm</texture>
 	<texturescale>1,1,1</texturescale>
 	<type>sphere</type>
 </object>
 <object	name="X Red">
 	<origin>10,0,0</origin>
-	<rotation>0,0,0</rotation>
+	<rotation>90,0,0</rotation>
 	<radius>2</radius>
-	<diffusecolour>255,80,80</diffusecolour>
+	<diffusecolour>30,30,30</diffusecolour>
 	<specularcolour>255,80,80</specularcolour>
 	<albedo>0.18</albedo>
+	<texture>Textures/earth.xpm</texture>
+	<texturescale>1,1,1</texturescale>
 	<type>sphere</type>
 </object>
 <object	name="Y Green">
@@ -50,6 +62,8 @@
 	<radius>2</radius>
 	<diffusecolour>80,255,80</diffusecolour>
 	<specularcolour>80,255,80</specularcolour>
+	<texture>Textures/skin.xpm</texture>
+	<texturescale>20,20,20</texturescale>
 	<albedo>0.18</albedo>
 	<type>sphere</type>
 </object>

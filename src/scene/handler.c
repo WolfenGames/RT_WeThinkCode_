@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 07:48:27 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/05 09:45:54 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/05 11:30:31 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,7 @@ void	do_da_object_stuff(char *name, char *line, t_obj *new, t_env *env)
 	if (match_brackets("texture", line))
 		set_tex(new, ft_strsub(line, 9, ft_strlen(line) - 19), env);
 	if (match_brackets("texturescale", line))
-	{
-		printf("FUUUU!!!\n");
 		set_vec(new->tex_scale, ft_strsub(line, 14, ft_strlen(line) - 29));
-	}
 	set_obj_params(new);
 }
 

@@ -6,14 +6,14 @@
 #    By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/12 13:11:21 by ibotha            #+#    #+#              #
-#    Updated: 2018/08/27 17:20:21 by ibotha           ###   ########.fr        #
+#    Updated: 2018/09/05 16:36:31 by ibotha           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = renderer.a
 HED = renderer.h
-OBJ = draw.o setup.o hooks.o colour.o window_manage.o select.o image.o
+OBJ = draw.o setup.o hooks.o colour.o window_manage.o select.o image.o del.o
 
 all: $(NAME)
 

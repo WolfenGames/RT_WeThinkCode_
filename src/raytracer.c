@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:38 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/04 15:17:15 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/05 16:41:42 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,25 +25,6 @@ static void	generate_ray(t_ray *ray, t_xy coord, t_env *env)
 	ray->dir[2] = -1;
 	transformvec(env->scene.c_cam->ctw, ray->dir, ray->dir);
 	normalize(ray->dir);
-}
-
-static void	create_blocks(t_render_block *blocks)
-{
-	t_xy			coord;
-	t_render_block	*cur;
-
-	coord[1] = -1;
-	while (++coord[1] < BLOCK_H)
-	{
-		coord[0] = -1;
-		while (++coord[0] < BLOCK_W)
-		{
-			cur = &blocks[coord[0] + coord[1] * BLOCK_W];
-			cur->start[0] = coord[0] * R_BLOCK_SIZE;
-			cur->start[1] = coord[1] * R_BLOCK_SIZE;
-			cur->taken = 0;
-		}
-	}
 }
 
 static void	render_block(t_env *env, t_render_block *block, t_img *img)
@@ -75,16 +56,25 @@ static void	*calc_block(void *temp)
 	x = -1;
 	while (++x < BLOCK_NO)
 	{
-		if (!(set->block[x].taken))
+		if (!(set->env->block[x].taken))
 		{
 			if (!set->env->running)
 				pthread_exit(NULL);
-			set->block[x].taken = 1;
-			render_block(set->env, &set->block[x], set->img);
+			set->env->block[x].taken = 1;
+			render_block(set->env, &set->env->block[x], set->img);
 			set->env->progress += 1 / (double)BLOCK_NO;
 		}
 	}
 	return (NULL);
+}
+
+static void	clear_blocks(t_render_block *blocks)
+{
+	int i;
+
+	i = -1;
+	while (++i < BLOCK_NO)
+		blocks[i].taken = 0;
 }
 
 void		*raytracer(void *env)
@@ -93,7 +83,6 @@ void		*raytracer(void *env)
 	pthread_t		threads[4];
 
 	PROG = 0;
-	create_blocks(set.block);
 	set.env = env;
 	set.env->running = 1;
 	set.img = RENDER;
@@ -106,6 +95,7 @@ void		*raytracer(void *env)
 	pthread_join(threads[2], NULL);
 	pthread_join(threads[3], NULL);
 	PROG = 1;
+	clear_blocks(set.env->block);
 	set.env->running = 0;
 	return (0);
 }

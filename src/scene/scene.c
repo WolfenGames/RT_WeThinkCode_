@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/05 08:24:19 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/05 16:46:03 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,13 @@ void	do_read(int fd, t_scene *scene, t_env *env)
 	free(r);
 }
 
-void	create_scene(int ac, char **av, t_scene *scene, t_env *env)
+void	create_scene(int ac, char **names, t_scene *scene, t_env *env)
 {
 	int		fd;
 
-	ft_bzero(scene, sizeof(t_scene));
 	if (ac != 2)
 		exit(EXIT_FAILURE);
-	fd = open(av[1], O_RDONLY);
+	fd = open(names[1], O_RDONLY);
 	if (fd < 0)
 		exit(EXIT_FAILURE);
 	do_read(fd, scene, env);
