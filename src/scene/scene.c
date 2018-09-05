@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/05 07:21:50 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/05 08:09:23 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		end_line_read(int flag, char *line, char *close_tag, char *line2)
 	return (flag);
 }
 
-void	do_read(int fd, t_scene *scene)
+void	do_read(int fd, t_scene *scene, t_env *env)
 {
 	t_read	*r;
 
@@ -68,7 +68,7 @@ void	do_read(int fd, t_scene *scene)
 				r->close_tag = get_close_tag(r->line);
 			}
 			else
-				handle_contents(r->line, r->line2, scene);
+				handle_contents(r->line, r->line2, scene, env);
 		}
 		r->flag = end_line_read(r->flag, r->line, r->close_tag, r->line2);
 		ft_memdel((void **)&r->tmp);
@@ -81,13 +81,12 @@ void	create_scene(int ac, char **av, t_scene *scene, t_env *env)
 {
 	int		fd;
 
-	(void)env;
 	ft_bzero(scene, sizeof(t_scene));
 	if (ac != 2)
 		exit(EXIT_FAILURE);
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		exit(EXIT_FAILURE);
-	do_read(fd, scene);
+	do_read(fd, scene, env);
 	close(fd);
 }
