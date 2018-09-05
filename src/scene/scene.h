@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/05 08:02:52 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/05 09:14:24 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void			handle_contents(char *line, char *name, t_scene *scene,
 void			set_vec(t_vec vec, char *linesub);
 void			set_obj_params(t_obj *o);
 void			set_o_type(char *s, t_obj *o);
-void			set_tex(t_img *img, char *filename, t_env *env);
+void			set_tex(t_obj *o, char *filename, t_env *env);
 
 int				is_line_prop(const char *line);
 int				match_brackets(char *str, char *line);

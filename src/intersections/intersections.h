@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:13 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/04 15:17:39 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/05 09:11:51 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # define LIG ((t_lig*)cur->content)
 # define OBJ ((t_obj*)cur->content)
 # define CAM ((t_cam*)cur->content)
+
+#include "scene.h"
 
 void	get_col(t_ray *ray, t_env *env, t_col c, int level);
 void	get_surface_col(t_obj *obj, t_col c, t_vec point, t_env *env);
