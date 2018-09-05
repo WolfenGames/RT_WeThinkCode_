@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/05 08:09:23 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/05 08:24:19 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*get_close_tag(char *line)
 	return (close_tag);
 }
 
-void	end_read(int flag, char *line, char *tmp)
+void	end_read(int flag, char *line, char *tmp, t_scene *scene)
 {
 	if (flag)
 		die("Invalid XML");
@@ -35,6 +35,8 @@ void	end_read(int flag, char *line, char *tmp)
 		ft_memdel((void **)&line);
 	if (tmp)
 		ft_memdel((void **)&tmp);
+	if (!scene->c_cam)
+		die("No Camera :(");
 }
 
 int		end_line_read(int flag, char *line, char *close_tag, char *line2)
@@ -73,7 +75,7 @@ void	do_read(int fd, t_scene *scene, t_env *env)
 		r->flag = end_line_read(r->flag, r->line, r->close_tag, r->line2);
 		ft_memdel((void **)&r->tmp);
 	}
-	end_read(r->flag, r->line, r->tmp);
+	end_read(r->flag, r->line, r->tmp, scene);
 	free(r);
 }
 
