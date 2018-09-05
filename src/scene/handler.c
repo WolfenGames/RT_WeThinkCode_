@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 07:48:27 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/05 07:19:45 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/05 07:55:04 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	do_da_light(char *name, char *line, t_scene *scene)
 		new->intensity = ft_clamp(__LONG_LONG_MAX__, 0.1, ft_atod(line + 11));
 }
 
-void	do_da_object_stuff(char *name, char *line, t_obj *new)
+void	do_da_object_stuff(char *name, char *line, t_obj *new, t_env *env)
 {
 	new->name = (new->name != NULL) ? new->name : get_name(name);
 	if (match_brackets("origin", line))
@@ -79,10 +79,12 @@ void	do_da_object_stuff(char *name, char *line, t_obj *new)
 		set_o_type(ft_strsub(line, 6, ft_strlen(line) - 13), new);
 	if (match_brackets("scale", line))
 		set_vec(new->scale, ft_strsub(line, 5, ft_strlen(line) - 11));
+	if (match_brackets("texture", line))
+		set_tex(new->tex, ft_strsub(line, 9, ft_strlen(line) - 19), env);
 	set_obj_params(new);
 }
 
-void	do_da_object(char *name, char *line, t_scene *scene)
+void	do_da_object(char *name, char *line, t_scene *scene, t_env *env)
 {
 	t_obj	*new;
 	t_obj	template;
@@ -93,10 +95,10 @@ void	do_da_object(char *name, char *line, t_scene *scene)
 		ft_lstadd(&scene->obj, ft_lstnew(&template, sizeof(t_obj)));
 		new = (t_obj*)scene->obj->content;
 	}
-	do_da_object_stuff(name, line, new);
+	do_da_object_stuff(name, line, new, env);
 }
 
-void	handle_contents(char *line, char *name, t_scene *scene)
+void	handle_contents(char *line, char *name, t_scene *scene, t_env *env)
 {
 	char	*small;
 	char	*small2;
@@ -106,7 +108,7 @@ void	handle_contents(char *line, char *name, t_scene *scene)
 	if (is_line_prop(small))
 	{
 		if (ft_strnequ(small2, "<object", 7))
-			do_da_object(name, line, scene);
+			do_da_object(name, line, scene, env);
 		if (ft_strnequ(small2, "<camera", 7))
 			do_da_camera(name, line, scene);
 		if (ft_strnequ(small2, "<light", 6))

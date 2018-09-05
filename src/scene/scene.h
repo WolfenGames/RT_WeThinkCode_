@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/05 07:17:04 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/05 08:02:52 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,12 @@ typedef struct	s_read
 
 void			create_scene(int ac, char **av, t_scene *scene, t_env *env);
 void			free_tab(char ***tab);
-void			handle_contents(char *line, char *name, t_scene *scene);
+void			handle_contents(char *line, char *name, t_scene *scene,
+								t_env *env);
 void			set_vec(t_vec vec, char *linesub);
 void			set_obj_params(t_obj *o);
 void			set_o_type(char *s, t_obj *o);
+void			set_tex(t_img *img, char *filename, t_env *env);
 
 int				is_line_prop(const char *line);
 int				match_brackets(char *str, char *line);
@@ -120,7 +122,6 @@ t_lig			*search_light_list(t_scene *scene, char *name);
 
 t_l_type		set_l_type(char *s);
 
-void			handle_contents(char *line, char *name, t_scene *scene);
 void			calc_scene(t_scene *scene);
 
 #endif

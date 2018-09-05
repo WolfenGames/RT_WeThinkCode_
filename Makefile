@@ -18,7 +18,7 @@ OBJ = src/main.o src/properties.o src/raytracer.o src/loading.o \
 		src/intersections/intersections.o src/intersections/sphere.o \
 		src/intersections/light.o \
 		src/scene/misc.o src/scene/name_handler.o src/scene/search.o \
-		src/scene/calc.o src/scene/typehandler.o
+		src/scene/calc.o src/scene/typehandler.o src/scene/handler2.o
 
 
 FLAGS = -Wall -Werror -Wextra -I inc -I libft -Ofast -I Renderer -I Vectorlib \
