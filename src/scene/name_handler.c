@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:58:08 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/05 08:04:44 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/05 08:13:41 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		is_line_prop(const char *line)
 		ft_strnequ(line, "<type>", 6) || ft_strnequ(line, "<direction>", 11) ||
 		ft_strnequ(line, "<intensity>", 11) ||
 		ft_strnequ(line, "<radius>", 8) || ft_strnequ(line, "<colour>", 8) ||
-		ft_strnequ(line, "<texture>", 11));
+		ft_strnequ(line, "<texture>", 9));
 }
 
 char	*get_prop_name_two(char *s)

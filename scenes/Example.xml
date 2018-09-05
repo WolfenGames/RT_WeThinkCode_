@@ -31,7 +31,7 @@
 	<specularcolour>255,255,255</specularcolour>
 	<texture></texture>
 	<albedo>0.18</albedo>
-	<texture>test.xmp</texture>
+	<texture>test.xpm</texture>
 	<type>sphere</type>
 </object>
 <object	name="X Red">
