@@ -2,21 +2,21 @@
 	<origin>5,5,40</origin>
 	<rotation>0,0,0</origin>
 	<aperture>1</aperture>
-	<fov>35</fov>
+	<fov>50</fov>
 </camera>
 <light	name='Right light'>
 	<origin>20,20,0,0</origin>
 	<direction>0,0,0</direction>
 	<colour>255,170,170,255</colour>
 	<type>point</type>
-	<intensity>100</intensity>
+	<intensity>500</intensity>
 </light>
 <light	name='Left light'>
 	<origin>-20,20,0,0</origin>
 	<direction>0,0,0</direction>
 	<colour>170,255,170,255</colour>
 	<type>point</type>
-	<intensity>100</intensity>
+	<intensity>500</intensity>
 </light>
 <object>
 	<origin>0,0,0</origin>
@@ -31,7 +31,7 @@
 	<specularcolour>255,255,255</specularcolour>
 	<texture></texture>
 	<albedo>0.18</albedo>
-	<texture>test.xpm</texture>
+	<texture>wood.xpm</texture>
 	<type>sphere</type>
 </object>
 <object	name="X Red">
