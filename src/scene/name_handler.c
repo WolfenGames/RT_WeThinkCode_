@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:58:08 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/05 07:17:33 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/05 08:04:44 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*get_prop_name_two(char *s)
 		return ("intensity");
 	if (ft_strnequ((s + 1), "radius", 6))
 		return ("radius");
-	if (ft_strnequ((s + 1), "texture", 9))
+	if (ft_strnequ((s + 1), "texture", 7))
 		return ("texture");
 	return (NULL);
 }
