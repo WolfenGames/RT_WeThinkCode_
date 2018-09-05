@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 08:06:31 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/04 11:07:20 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/05 07:18:10 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_l_type	set_l_type(char *s)
 	if (ft_strequ(s, "directional"))
 		ret = light_directional;
 	free(s);
-	return (ret);	
+	return (ret);
 }
 
 void		set_obj_params(t_obj *o)
@@ -33,7 +33,7 @@ void		set_obj_params(t_obj *o)
 	o->get_surface_col = sphere_surface_col;
 }
 
-void	set_o_type(char *s, t_obj *o)
+void		set_o_type(char *s, t_obj *o)
 {
 	if (ft_strequ(s, "sphere"))
 		o->type = obj_sphere;

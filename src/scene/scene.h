@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/04 14:26:47 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/05 07:17:04 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <stdio.h>
 # include <fcntl.h>
 
-typedef struct	s_env t_env;
-typedef struct	s_img t_img;
+typedef struct s_env	t_env;
+typedef struct s_img	t_img;
 
 typedef enum	e_l_type
 {
