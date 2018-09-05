@@ -21,7 +21,7 @@
 <light	name='back light'>
 	<origin>-0,0,20,0</origin>
 	<direction>0,0,0</direction>
-	<colour>170,170,255,255</colour>
+	<colour>17,170,255,255</colour>
 	<type>point</type>
 	<intensity>500</intensity>
 </light>
