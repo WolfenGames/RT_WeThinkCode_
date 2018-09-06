@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/03 17:34:57 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 18:52:48 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/06 17:04:58 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define VECTOR_H
 
 # define FILLVEC(V, X, Y, Z, W) (V[0] = X, V[1] = Y, V[2] = Z, V[3] = W)
+# define VEC3_IS(V) (V[0] || V[1] || V[2])
+# define VEC4_IS(V) (V[0] || V[1] || V[2] || V[3])
 # include <math.h>
 # include "libft.h"
 

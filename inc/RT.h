@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/05 15:57:42 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/06 15:56:01 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	*raytracer(void *env);
 void	print_vector(t_env *env, void *win, char *name, t_vec vec);
 void	create_scene(int ac, char **av, t_scene *scene, t_env *env);
 void	create_blocks(t_render_block *blocks);
+void	del_scene(t_env *env);
 
 #include "intersections.h"
 

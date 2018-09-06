@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/05 11:56:36 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/06 17:14:50 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,7 @@ void			get_col(t_ray *ray, t_env *env, t_col c, int level)
 		hit_obj->get_surface_col(hit_obj, c, point.org);
 		hit_obj->get_norm(norm, point.org, hit_obj);
 		reflect(ray->dir, norm, point.dir);
-		if ((hit_obj->specular_colour[0] || hit_obj->specular_colour[1]
-			|| hit_obj->specular_colour[2]) && level < 5)
+		if ((VEC3_IS(hit_obj->specular_colour) || hit_obj->r_index) && level < 5)
 		{
 			get_col(&point, env, reflect_col, level + 1);
 			reflect_crap(c, reflect_col, hit_obj);

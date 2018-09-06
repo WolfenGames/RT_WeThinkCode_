@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:01:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/05 16:17:52 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/06 16:59:59 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ static void	check_alive(t_env *env)
 {
 	if (!PROP_WIN || !TRACER || TRACER->keys[esc] || PROP_WIN->keys[esc]
 		|| !PROP_WIN->id || !TRACER->id)
-		die("\x1b[34mClosed!\x1b[0m");
+		{
+			del_renderer(&env->ren);
+			del_scene(env);
+			die("\x1b[34mClosed!\x1b[0m");
+		}
 }
 
 static int	fill_windows(t_env *env)
@@ -27,7 +31,6 @@ static int	fill_windows(t_env *env)
 	if (env->ren.c_win->keys[space] && !pspace)
 	{
 		create_scene(env->amount, env->names, &env->scene, env);
-		calc_scene(&env->scene);
 		if (env->running)
 		{
 			env->running = 0;
@@ -79,4 +82,5 @@ int			main(int argc, char **argv)
 	mlx_loop_hook(env.ren.mlx, fill_windows, &env);
 	env.point_start = -1;
 	mlx_loop(env.ren.mlx);
+	while (1);
 }

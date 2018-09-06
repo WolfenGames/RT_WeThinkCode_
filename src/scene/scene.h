@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/05 09:14:24 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/06 17:14:39 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ typedef enum	e_l_type
 	light_point,
 	light_directional
 }				t_l_type;
+
+typedef enum	e_style
+{
+	greyscale,
+	cartoon,
+	cell_shaded
+}				t_style;
 
 typedef enum	e_o_type
 {
@@ -49,14 +56,14 @@ typedef struct	s_obj
 	t_img		*tex;
 	double		albedo;
 	double		radius;
+	double		r_index;
 	t_vec		tex_scale;
 	t_o_type	type;
 	t_list		subtract;
 	t_list		intersect;
 	void		(*get_norm)(t_vec norm, t_vec point, struct s_obj *obj);
 	int			(*get_intersect)(t_ray *ray, struct s_obj *obj);
-	void		(*get_surface_col)(struct s_obj *obj,
-		t_vec c, t_vec point);
+	void		(*get_surface_col)(struct s_obj *obj, t_vec c, t_vec point);
 }				t_obj;
 
 typedef struct	s_lig
@@ -83,6 +90,10 @@ typedef struct	s_cam
 
 typedef struct	s_scene
 {
+	t_style		style;
+	int			win_w;
+	int			win_h;
+	int			aa_level;
 	t_list		*obj;
 	t_list		*lig;
 	t_list		*cam;

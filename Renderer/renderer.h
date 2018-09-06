@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:44:46 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/05 16:39:28 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/06 16:19:57 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int		set_img_pos(t_renderer *ren, int id, int x, int y);
 int		move_img(t_renderer *ren, int id, int x, int y);
 int		clear_win(t_renderer *ren, int id);
 void	del_img(t_renderer *ren, int iid);
+void	del_renderer(t_renderer *ren);
 
 double	*add_col(t_col a, t_col b, t_col ret);
 double	*sc_col(t_col c, double s, t_col);

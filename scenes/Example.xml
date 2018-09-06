@@ -1,8 +1,8 @@
 <camera name='Lord ISSAARRD THE LIZARD'>
-	<origin>60,0,-40</origin>
+	<origin>60,0,-70</origin>
 	<rotation>220,0,0</rotation>
 	<aperture>1</aperture>
-	<fov>50</fov>
+	<fov>40</fov>
 </camera>
 <light	name='Right light'>
 	<origin>20,20,0,0</origin>
@@ -12,7 +12,7 @@
 	<intensity>500</intensity>
 </light>
 <light	name='Left light'>
-	<origin>-20,20,0,0</origin>
+	<origin>-10,20,0,0</origin>
 	<direction>0,0,0</direction>
 	<colour>225,120,20,255</colour>
 	<type>point</type>
@@ -23,34 +23,34 @@
 	<direction>0,0,0</direction>
 	<colour>17,170,255,255</colour>
 	<type>point</type>
-	<intensity>500</intensity>
+	<intensity>800</intensity>
 </light>
 <object>
 	<origin>-20,0,0</origin>
-	<radius>1</radius>
+	<radius>10</radius>
 	<diffusecolour>255,255,255,255</diffusecolour>
 	<specularcolour>0,0,0</specularcolour>
 	<texture>Textures/shirt.xpm</texture>
-	<texturescale>8000,8000,1</texturescale>
+	<texturescale>5,5,1</texturescale>
 	<albedo>0.18</albedo> 
 </object>
 <object	name="Centre White">
 	<origin>0,0,0</origin>
-	<rotation>35,0,0</rotation>
+	<rotation>2,0,0</rotation>
 	<radius>5</radius>
 	<diffusecolour>0,0,0</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
 	<albedo>0.18</albedo>
-	/<texture>Textures/moon.xpm</texture>
+	<texture>Textures/moon.xpm</texture>
 	<texturescale>1,1,1</texturescale>
 	<type>sphere</type>
 </object>
 <object	name="X Red">
-	<origin>10,0,0</origin>
+	<origin>40,0,0</origin>
 	<rotation>90,0,0</rotation>
-	<radius>2</radius>
+	<radius>13</radius>
 	<diffusecolour>30,30,30</diffusecolour>
-	<specularcolour>255,80,80</specularcolour>
+	<specularcolour>50,80,80</specularcolour>
 	<albedo>0.18</albedo>
 	<texture>Textures/earth.xpm</texture>
 	<texturescale>1,1,1</texturescale>

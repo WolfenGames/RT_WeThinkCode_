@@ -6,47 +6,63 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 13:17:55 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/05 13:34:53 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/06 15:48:56 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
+#define	INBOUNDS(C) (C[0] >= 0 && C[0] < BLOCK_W && C[1] >= 0 && C[1] < BLOCK_H)
+#define LEFT -1
+#define RIGHT 1
+#define UP -2
+#define DOWN 2
 
-static void	sort_blocks(t_render_block *blocks)
+static void	make_block(t_render_block *block, t_xy cur, int *placed)
+{
+	*placed = 1;
+	block->taken = 0;
+	block->start[0] = cur[0] * R_BLOCK_SIZE;
+	block->start[1] = cur[1] * R_BLOCK_SIZE;
+}
+
+static void walk(int length, t_render_block *blocks, t_xy c[2], int dir)
 {
 	int i;
-	int max;
 
-	max = BLOCK_NO;
-	while (--max)
+	i = -1;
+	while (++i < length)
 	{
-		i = -1;
-		while (++i < (max - 1))
-		{
-			if ((pow(blocks[i].start[0] - (WIN_W / 2), 2) + pow(blocks[i].start[1] - (WIN_H / 2), 2))
-				> (pow(blocks[i + 1].start[0] - (WIN_W / 2), 2)
-				+ pow(blocks[i + 1].start[1] - (WIN_H / 2), 2)))
-				ft_swap(&blocks[i], &blocks[i + 1], sizeof(t_render_block));
-		}
+		c[0][0] += ABS(dir) == 1 ? 1 * dir : 0;
+		c[0][1] += ABS(dir) == 2 ? 0.5 * dir : 0;
+		if (INBOUNDS(c[0]))
+			make_block(&blocks[c[1][0]++], c[0], &c[1][1]);
 	}
 }
 
+// c[0] = cur;
+// c[1][0] = i;
+// c[1][1] = placed;
+
 void		create_blocks(t_render_block *blocks)
 {
-	t_xy			coord;
-	t_render_block	*cur;
+	int		r;
+	t_xy 	c[2];
 
-	coord[1] = -1;
-	while (++coord[1] < BLOCK_H)
+	r = 0;
+	c[0][0] = BLOCK_W / 2;
+	c[0][1] = BLOCK_H / 2;
+	c[1][0] = 1;
+	make_block(&blocks[0], c[0], &c[1][1]);
+	while (c[1][1])
 	{
-		coord[0] = -1;
-		while (++coord[0] < BLOCK_W)
-		{
-			cur = &blocks[coord[0] + coord[1] * BLOCK_W];
-			cur->start[0] = coord[0] * R_BLOCK_SIZE;
-			cur->start[1] = coord[1] * R_BLOCK_SIZE;
-			cur->taken = 0;
-		}
+		c[1][1] = 0;
+		c[0][1] -= 1;
+		r += 2;
+		if (INBOUNDS(c[0]))
+			make_block(&blocks[c[1][0]++], c[0], &c[1][1]);
+		walk(r - 1, blocks, c, RIGHT);
+		walk(r, blocks, c, DOWN);
+		walk(r, blocks, c, LEFT);
+		walk(r, blocks, c, UP);
 	}
-	sort_blocks(blocks);
 }

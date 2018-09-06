@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/05 17:26:04 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/06 15:56:18 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	create_scene(int ac, char **names, t_scene *scene, t_env *env)
 {
 	int		fd;
 
+	del_scene(env);
 	if (ac != 2)
 		exit(EXIT_FAILURE);
 	fd = open(names[1], O_RDONLY);
@@ -90,4 +91,5 @@ void	create_scene(int ac, char **names, t_scene *scene, t_env *env)
 		exit(EXIT_FAILURE);
 	do_read(fd, scene, env);
 	close(fd);
+	calc_scene(scene);
 }
