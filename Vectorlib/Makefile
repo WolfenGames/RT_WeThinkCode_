@@ -6,14 +6,14 @@
 #    By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/12 13:11:21 by ibotha            #+#    #+#              #
-#    Updated: 2018/08/28 18:52:23 by ibotha           ###   ########.fr        #
+#    Updated: 2018/09/08 12:37:01 by ibotha           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = vectorlib.a
 HED = vectorlib.h
-OBJ = matrix.o matrixop.o matrixop2.o vector.o vectorio.o vectorop.o vectorrot.o quad.o
+OBJ = matrix.o matrixop.o matrixop2.o vector.o vectorio.o vectorop.o vectorrot.o quad.o refract.o
 
 all: $(NAME)
 

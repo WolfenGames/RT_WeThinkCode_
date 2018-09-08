@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:13 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/06 17:02:36 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/08 12:56:30 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # define LIG ((t_lig*)cur->content)
 # define OBJ ((t_obj*)cur->content)
 # define CAM ((t_cam*)cur->content)
+# define REFLECTIVE VEC3_IS(hit_obj->specular_colour)
+# define REFRACTIVE (hit_obj->r_index != 1 && hit_obj->transparency)
 
 #include "scene.h"
 

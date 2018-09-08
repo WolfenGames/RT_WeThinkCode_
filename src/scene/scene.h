@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/06 17:14:39 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/08 12:44:59 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct	s_obj
 	double		albedo;
 	double		radius;
 	double		r_index;
+	double		transparency;
 	t_vec		tex_scale;
 	t_o_type	type;
 	t_list		subtract;

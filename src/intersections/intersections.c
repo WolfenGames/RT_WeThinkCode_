@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/06 17:14:50 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/08 14:48:05 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,37 +91,54 @@ static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 	c[2] *= vecs[0][2] / 255.0;
 }
 
-void			reflect_crap(t_col c, t_col ref, t_obj *obj)
+void			reflect_crap(t_col c, t_col ref[2], t_obj *obj)
 {
-	t_col	rat;
+	t_col	specular_rat;
+	t_col	refract;
 
-	rat[0] = obj->specular_colour[0] / 255.0;
-	rat[1] = obj->specular_colour[1] / 255.0;
-	rat[2] = obj->specular_colour[2] / 255.0;
-	c[0] = rat[0] * ref[0] + c[0];
-	c[1] = rat[1] * ref[1] + c[1];
-	c[2] = rat[2] * ref[2] + c[2];
+	specular_rat[0] = obj->specular_colour[0] / 255.0;
+	specular_rat[1] = obj->specular_colour[1] / 255.0;
+	specular_rat[2] = obj->specular_colour[2] / 255.0;
+	refract[0] = (obj->surface_colour[0] / 255.0) * ref[1][0];
+	refract[1] = (obj->surface_colour[1] / 255.0) * ref[1][1];
+	refract[2] = (obj->surface_colour[2] / 255.0) * ref[1][2];
+	c[0] = specular_rat[0] * ref[0][0] + c[0];// * obj->transparency + ref[1][0] * (1 - obj->transparency);
+	c[1] = specular_rat[1] * ref[0][1] + c[1];// * obj->transparency + ref[1][1] * (1 - obj->transparency);
+	c[2] = specular_rat[2] * ref[0][2] + c[2];// * obj->transparency + ref[1][2] * (1 - obj->transparency);
+	//FILLCOL(c, refract[0], refract[1], refract[2], refract[3]);
 }
 
 void			get_col(t_ray *ray, t_env *env, t_col c, int level)
 {
 	t_obj	*hit_obj;
 	t_ray	point;
-	t_col	reflect_col;
+	t_col	reflect_col[2];
 	t_vec	norm;
 
 	ray->len = INFINITY;
 	hit_obj = trace(ray, env);
 	if (hit_obj)
 	{
+		// =====================
+
+		hit_obj->r_index = 1.3333333;
+		hit_obj->transparency = 0.5;
+
+		// =====================
 		v_add(v_multi(ray->dir, ray->len * 0.999999999, point.org),
 			ray->org, point.org);
 		hit_obj->get_surface_col(hit_obj, c, point.org);
 		hit_obj->get_norm(norm, point.org, hit_obj);
-		reflect(ray->dir, norm, point.dir);
-		if ((VEC3_IS(hit_obj->specular_colour) || hit_obj->r_index) && level < 5)
+		if ((REFLECTIVE || REFRACTIVE) && level < 5)
 		{
-			get_col(&point, env, reflect_col, level + 1);
+			reflect(ray->dir, norm, point.dir);
+			if (REFLECTIVE)
+				get_col(&point, env, reflect_col[0], level + 1);
+			//v_add(point.org, v_multi(ray->dir, 0.0000001, point.dir), point.org);
+			//refract(ray->dir, norm, hit_obj->r_index, point.dir);
+			//if (hit_obj->transparency)
+				//get_col(&point, env, reflect_col[1], level + 1);
+			//v_sub(point.org, v_multi(ray->dir, 0.0000001, point.dir), point.org);
 			reflect_crap(c, reflect_col, hit_obj);
 		}
 		light_thing(&point, env, hit_obj, c);

@@ -6,17 +6,22 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:01:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/06 16:59:59 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/08 14:33:24 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
 
-static void	check_alive(t_env *env)
+static void	check_alive(t_env *env, pthread_t *thread)
 {
 	if (!PROP_WIN || !TRACER || TRACER->keys[esc] || PROP_WIN->keys[esc]
 		|| !PROP_WIN->id || !TRACER->id)
 		{
+			if (env->running)
+			{
+				env->running = 0;
+				pthread_join(*thread, NULL);
+			}
 			del_renderer(&env->ren);
 			del_scene(env);
 			die("\x1b[34mClosed!\x1b[0m");
@@ -40,7 +45,7 @@ static int	fill_windows(t_env *env)
 	}
 	pspace = env->ren.c_win->keys[space];
 	loading(env);
-	check_alive(env);
+	check_alive(env, &thread);
 	properties(env);
 	present_img(&env->ren, TRACER->id, RENDER->id);
 	if (env->progress < 0.99999)
