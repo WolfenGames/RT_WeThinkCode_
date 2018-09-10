@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/08 14:48:05 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/10 07:49:41 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,12 +119,6 @@ void			get_col(t_ray *ray, t_env *env, t_col c, int level)
 	hit_obj = trace(ray, env);
 	if (hit_obj)
 	{
-		// =====================
-
-		hit_obj->r_index = 1.3333333;
-		hit_obj->transparency = 0.5;
-
-		// =====================
 		v_add(v_multi(ray->dir, ray->len * 0.999999999, point.org),
 			ray->org, point.org);
 		hit_obj->get_surface_col(hit_obj, c, point.org);
