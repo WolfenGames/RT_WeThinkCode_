@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/10 07:23:00 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/10 08:53:18 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct	s_scene
 	int			win_w;
 	int			win_h;
 	int			aa_level;
+	double		raydepth;
 	t_list		*obj;
 	t_list		*lig;
 	t_list		*cam;
@@ -111,6 +112,7 @@ typedef struct	s_read
 }				t_read;
 
 void			create_scene(int ac, char **av, t_scene *scene, t_env *env);
+void			do_da_scene(char *line, t_scene *scene);
 void			do_da_object(char *name, char *line,
 								t_scene *scene, t_env *env);
 void			do_da_object_stuff_one(char *name, char *line,

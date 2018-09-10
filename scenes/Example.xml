@@ -1,3 +1,6 @@
+<scene>
+	<raydepth>10</raydepth>
+</scene>
 <camera name='Lord ISSAARRD THE LIZARD'>
 	<origin>60,0,-70</origin>
 	<rotation>220,0,0</rotation>
