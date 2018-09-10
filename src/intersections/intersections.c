@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/10 07:49:41 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/10 14:19:51 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,6 @@ t_obj		*trace(t_ray *ray, t_env *env)
 	return (ret);
 }
 
-static int		generate_shadow_ray(t_ray *shadow, t_lig *lig, t_env *env)
-{
-	if (lig->type == light_directional)
-	{
-		v_multi(lig->dir, -1, shadow->dir);
-		shadow->len = INFINITY;
-	}
-	if (lig->type == light_point)
-	{
-		v_sub(lig->org, shadow->org, shadow->dir);
-		shadow->len = length(shadow->dir);
-	}
-	normalize(shadow->dir);
-	if (trace(shadow, env))
-		return (0);
-	return (1);
-}
-
 /*
 **	This function is used to scale the objects colour by the amount of light
 **	hitting the object at that point.
@@ -71,19 +53,18 @@ static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 {
 	t_list	*cur;
 	t_vec	vecs[3];
+	t_col	col;
 
 	cur = env->scene.lig;
 	obj->get_norm(vecs[2], shadow->org, obj);
-	FILLVEC(vecs[0], 5, 5, 5, 0);
+	sc_col(c, 0.01, vecs[0]);
 	while (cur)
 	{
-		if (generate_shadow_ray(shadow, LIG, env))
-		{
-			sc_col(LIG->col, (obj->albedo / M_PI) * (LIG->intensity
-				/ (LIG->type == light_point ? shadow->len : 1.0))
-				* dot(shadow->dir, vecs[2]), vecs[1]);
-			add_col(vecs[0], vecs[1], vecs[0]);
-		}
+		generate_shadow_ray(shadow, LIG, env, col);
+		sc_col(col, (obj->albedo / M_PI) * (LIG->intensity
+			/ (LIG->type == light_point ? shadow->len : 1.0))
+			* ABS(dot(shadow->dir, vecs[2])), vecs[1]);
+		add_col(vecs[0], vecs[1], vecs[0]);
 		cur = cur->next;
 	}
 	c[0] *= vecs[0][0] / 255.0;
@@ -102,10 +83,12 @@ void			reflect_crap(t_col c, t_col ref[2], t_obj *obj)
 	refract[0] = (obj->surface_colour[0] / 255.0) * ref[1][0];
 	refract[1] = (obj->surface_colour[1] / 255.0) * ref[1][1];
 	refract[2] = (obj->surface_colour[2] / 255.0) * ref[1][2];
-	c[0] = specular_rat[0] * ref[0][0] + c[0];// * obj->transparency + ref[1][0] * (1 - obj->transparency);
-	c[1] = specular_rat[1] * ref[0][1] + c[1];// * obj->transparency + ref[1][1] * (1 - obj->transparency);
-	c[2] = specular_rat[2] * ref[0][2] + c[2];// * obj->transparency + ref[1][2] * (1 - obj->transparency);
-	//FILLCOL(c, refract[0], refract[1], refract[2], refract[3]);
+	c[0] = specular_rat[0] * ref[0][0] + (c[0]) * (1 - obj->transparency)
+		+ ref[1][0] * (obj->transparency);
+	c[1] = specular_rat[1] * ref[0][1] + (c[1]) * (1 - obj->transparency)
+		+ ref[1][1] * (obj->transparency);
+	c[2] = specular_rat[2] * ref[0][2] + (c[2]) * (1 - obj->transparency)
+		+ ref[1][2] * (obj->transparency);
 }
 
 void			get_col(t_ray *ray, t_env *env, t_col c, int level)
@@ -123,22 +106,22 @@ void			get_col(t_ray *ray, t_env *env, t_col c, int level)
 			ray->org, point.org);
 		hit_obj->get_surface_col(hit_obj, c, point.org);
 		hit_obj->get_norm(norm, point.org, hit_obj);
-		if ((REFLECTIVE || REFRACTIVE) && level < 5)
+		if ((REFLECTIVE || REFRACTIVE) && level < env->scene.raydepth)
 		{
 			reflect(ray->dir, norm, point.dir);
 			if (REFLECTIVE)
 				get_col(&point, env, reflect_col[0], level + 1);
-			//v_add(point.org, v_multi(ray->dir, 0.0000001, point.dir), point.org);
-			//refract(ray->dir, norm, hit_obj->r_index, point.dir);
-			//if (hit_obj->transparency)
-				//get_col(&point, env, reflect_col[1], level + 1);
-			//v_sub(point.org, v_multi(ray->dir, 0.0000001, point.dir), point.org);
+			v_add(point.org, v_multi(ray->dir, 0.0000001, point.dir), point.org);
+			refract(ray->dir, norm, hit_obj->r_index, point.dir);
+			if (hit_obj->transparency)
+				get_col(&point, env, reflect_col[1], level + 1);
+			v_sub(point.org, v_multi(ray->dir, 0.0000001, point.dir), point.org);
 			reflect_crap(c, reflect_col, hit_obj);
 		}
 		light_thing(&point, env, hit_obj, c);
 	}
 	else
-		FILLCOL(c, 5, 5, 5, 255);
+		FILLCOL(c, 0, 0, 0, 255);
 	c[3] = 255;
 	glare(ray, env, c);
 }
