@@ -54,3 +54,7 @@ dkms.conf
 # Texture Files
 .*
 Textures/
+
+# Executable
+./RT
+RT
