@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:13 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/08 12:56:30 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/10 11:47:37 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	get_col(t_ray *ray, t_env *env, t_col c, int level);
 void	get_surface_col(t_obj *obj, t_col c, t_vec point, t_env *env);
 void	glare(t_ray *ray, t_env *env, t_col c);
 t_obj	*trace(t_ray *ray, t_env *env);
+void	generate_shadow_ray(t_ray *point, t_lig *lig, t_env *env, t_col col);
 
 void	sphere_surface_col(t_obj *obj, t_col c, t_vec point);
 int		sphere_intersect(t_ray *ray, t_obj *obj);

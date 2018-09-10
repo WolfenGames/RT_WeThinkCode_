@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 13:10:26 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/30 17:53:24 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/10 12:11:12 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,13 @@ double	*get_img_col(int x, int y, t_img *img, t_col ret)
 	tmp /= 0x100;
 	ALP(ret) = (tmp & 0xff);
 	return (ret);
+}
+
+double	*mask_col(t_col base, t_col mask, t_col ret)
+{
+	ret[0] = ft_min(mask[0], base[0]);
+	ret[1] = ft_min(mask[1], base[1]);
+	ret[2] = ft_min(mask[2], base[2]);
+	ret[3] = ft_min(mask[3], base[3]);
+	return(ret);
 }

@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 14:20:25 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/05 17:36:03 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/10 14:30:18 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	check_light(t_ray *ray, t_lig *lig, t_col c, t_env *env)
 	double	t[2];
 	t_col	b;
 
-(void)env;
 	v_sub(ray->org, lig->org, l);
 	var[0] = dot(ray->dir, ray->dir);
 	var[1] = 2 * dot(ray->dir, l);
@@ -46,7 +45,7 @@ static void	check_light(t_ray *ray, t_lig *lig, t_col c, t_env *env)
 	if (!visible(ray, lig, env))
 		return ;
 	FILLCOL(b, 255, 255, 255, 255);
-	sc_col(b, (pow(((t[1] < ray->len ? t[1] : ray->len )
+	sc_col(b, (pow((t[1]
 		- t[0]) / (lig->intensity * 0.3198), 1000))
 		/ 255.0, b);
 	FILLCOL(b, b[0] * lig->col[0], b[1] * lig->col[1], b[2] * lig->col[2], 0);
