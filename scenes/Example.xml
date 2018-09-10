@@ -39,16 +39,14 @@
 </object>
 <object	name="Centre White">
 	<origin>0,0,0</origin>
-	<rotation>2,0,0</rotation>
+	<rotation>0,180,0</rotation>
 	<radius>5</radius>
 	<diffusecolour>0,0,0</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
-	<albedo>0.18</albedo>
+	<albedo>1</albedo>
 	<texture>Textures/moon.xpm</texture>
 	<texturescale>1,1,1</texturescale>
-	<refractionindex>1.3333</refractionindex>
-	<transparency>1</transparency>
-	<type>sphere</type>
+	<type>cone</type>
 </object>
 <object	name="X Red">
 	<origin>40,0,0</origin>

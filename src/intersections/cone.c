@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 10:07:15 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/04 14:27:23 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/10 09:12:54 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,6 @@ int			cone_intersect(t_ray *ray, t_obj *obj)
 	if (ray->len < t[2])
 		return (0);
 	ray->len = t[2];
+	printf("Intersecting???\n");
 	return (1);
 }
