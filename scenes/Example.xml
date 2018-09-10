@@ -35,8 +35,8 @@
 	<albedo>0.18</albedo> 
 </object>
 <object	name="Centre White">
-	<origin>0,0,0</origin>
-	<rotation>0,0,0</rotation>
+	<origin>0,-3,0</origin>
+	<rotation>0,90,0</rotation>
 	<scale>5,5,5</scale>
 	<radius>5</radius>
 	<diffusecolour>255,255,255</diffusecolour>
@@ -44,7 +44,7 @@
 	<albedo>1</albedo>
 	<texdfgture>Textures/moon.xpm</texture>
 	<textusdfrescale>1,1,1</texturescale>
-	<type>sphere</type>
+	<type>plane</type>
 </object>
 <object	name="X Red">
 	<origin>40,0,0</origin>
