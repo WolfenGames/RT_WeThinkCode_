@@ -43,6 +43,8 @@
 	<albedo>0.18</albedo>
 	<texture>Textures/moon.xpm</texture>
 	<texturescale>1,1,1</texturescale>
+	<refractionindex>1.3333</refractionindex>
+	<transparency>1</transparency>
 	<type>sphere</type>
 </object>
 <object	name="X Red">

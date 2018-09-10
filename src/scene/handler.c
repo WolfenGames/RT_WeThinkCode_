@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 07:48:27 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/05 17:26:42 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/10 07:21:31 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,47 +57,6 @@ void	do_da_light(char *name, char *line, t_scene *scene)
 		new->type = set_l_type(ft_strsub(line, 6, ft_strlen(line) - 13));
 	if (match_brackets("intensity", line))
 		new->intensity = ft_clamp(__LONG_LONG_MAX__, 0.1, ft_atod(line + 11));
-}
-
-void	do_da_object_stuff(char *name, char *line, t_obj *new, t_env *env)
-{
-	new->name = (new->name != NULL) ? new->name : get_name(name);
-	if (match_brackets("origin", line))
-		set_vec(new->org, ft_strsub(line, 8, ft_strlen(line) - 17));
-	if (match_brackets("rotation", line))
-		set_vec(new->rot, ft_strsub(line, 10, ft_strlen(line) - 21));
-	if (match_brackets("diffusecolour", line))
-		set_vec(new->surface_colour, ft_strsub(line, 15, ft_strlen(line) - 31));
-	if (match_brackets("specularcolour", line))
-		set_vec(new->specular_colour, ft_strsub(line, 16,
-				ft_strlen(line) - 33));
-	if (match_brackets("albedo", line))
-		new->albedo = ft_clamp(1, 0, ft_atod(line + 8));
-	if (match_brackets("radius", line))
-		new->radius = ft_clamp(__LONG_MAX__, 0.1, ft_atod(line + 8));
-	if (match_brackets("type", line))
-		set_o_type(ft_strsub(line, 6, ft_strlen(line) - 13), new);
-	if (match_brackets("scale", line))
-		set_vec(new->scale, ft_strsub(line, 5, ft_strlen(line) - 11));
-	if (match_brackets("texture", line))
-		set_tex(new, ft_strsub(line, 9, ft_strlen(line) - 19), env);
-	if (match_brackets("texturescale", line))
-		set_vec(new->tex_scale, ft_strsub(line, 14, ft_strlen(line) - 29));
-	set_obj_params(new);
-}
-
-void	do_da_object(char *name, char *line, t_scene *scene, t_env *env)
-{
-	t_obj	*new;
-	t_obj	template;
-
-	if (!(new = search_obj_list(scene, name)))
-	{
-		ft_bzero(&template, sizeof(t_obj));
-		ft_lstadd(&scene->obj, ft_lstnew(&template, sizeof(t_obj)));
-		new = (t_obj*)scene->obj->content;
-	}
-	do_da_object_stuff(name, line, new, env);
 }
 
 void	handle_contents(char *line, char *name, t_scene *scene, t_env *env)
