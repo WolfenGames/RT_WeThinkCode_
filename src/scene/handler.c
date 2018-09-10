@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 07:48:27 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/10 07:21:31 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/10 08:50:49 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	handle_contents(char *line, char *name, t_scene *scene, t_env *env)
 			do_da_camera(name, line, scene);
 		if (ft_strnequ(small2, "<light", 6))
 			do_da_light(name, line, scene);
+		if (ft_strnequ(small2, "<scene", 6))
+			do_da_scene(line, scene);
 	}
 	free(small);
 	free(small2);

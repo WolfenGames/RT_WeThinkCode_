@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:58:08 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/10 07:45:40 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/10 08:54:57 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int		is_line_prop(const char *line)
 		ft_strnequ(line, "<texture>", 9) ||
 		ft_strnequ(line, "<texturescale>", 14) ||
 		ft_strnequ(line, "<refractionindex>", 17) ||
-		ft_strnequ(line, "<transparency>", 14));
+		ft_strnequ(line, "<transparency>", 14) ||
+		ft_strnequ(line, "<raydepth>", 10));
 }
 
 char	*get_prop_name_two(char *s)
@@ -45,6 +46,8 @@ char	*get_prop_name_two(char *s)
 		return ("texture");
 	if (ft_strnequ((s + 1), "transparency", 12))
 		return ("transparency");
+	if (ft_strnequ((s + 1), "raydepth", 8))
+		return ("raydepth");
 	return (NULL);
 }
 
