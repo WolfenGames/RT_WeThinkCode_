@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 07:20:51 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/10 07:46:50 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/10 14:36:05 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	do_da_object_stuff_two(char *name, char *line, t_obj *new, t_env *env)
 	(void)name;
 	(void)env;
 	if (match_brackets("transparency", line))
-		new->transparency = ft_atod(line + 14);
+		new->transparency = ft_clamp(1, 0, ft_atod(line + 14));
 	if (match_brackets("refractionindex", line))
-		new->r_index = ft_atod(line + 17);
+		new->r_index = ft_max(0, ft_atod(line + 17));
 	set_obj_params(new);
 }
 
@@ -42,7 +42,7 @@ void	do_da_object_stuff_one(char *name, char *line, t_obj *new, t_env *env)
 	if (match_brackets("type", line))
 		set_o_type(ft_strsub(line, 6, ft_strlen(line) - 13), new);
 	if (match_brackets("scale", line))
-		set_vec(new->scale, ft_strsub(line, 5, ft_strlen(line) - 11));
+		set_vec(new->scale, ft_strsub(line, 7, ft_strlen(line) - 15));
 	if (match_brackets("texture", line))
 		set_tex(new, ft_strsub(line, 9, ft_strlen(line) - 19), env);
 	if (match_brackets("texturescale", line))

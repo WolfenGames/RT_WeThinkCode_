@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 10:07:15 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/10 09:12:54 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/10 13:28:53 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,22 @@ void		cone_getnorm(t_vec norm, t_vec point, t_obj *obj)
 {
 	t_matrix    norm_rot;
     t_vec       tempvec;
+	t_vec		lpoint;
     t_matrix    temp;
     double        a;
 
+	transform(obj->wto, point, lpoint);
+	printf("--%lf		%lf		%lf\n", point[0], point[1], point[2]);
+	printf("++%lf		%lf		%lf\n", lpoint[0], lpoint[1], lpoint[2]);
     FILLVEC(norm, 0, 1, 0, 0);
-    FILLVEC(tempvec, point[0], point[1], 0, 0);
+    FILLVEC(tempvec, lpoint[0], lpoint[1], 0, 0);
     a = atan((obj->radius) / obj->scale[0]);
     fill_m_rot_x(norm_rot, a);
     fill_m_rot_z(temp, find_angle(norm, tempvec) * (tempvec[0] < 0 ? -1 : 1));
-    a = find_angle(norm, tempvec);
+    //a = find_angle(norm, tempvec);
     m4_mult(norm_rot, temp, norm_rot);
     transformvec(norm_rot, norm, norm);
-    if (length(tempvec) < (obj->radius *
-        (1 - (point[2] / obj->scale[0] + 0.5))))
-        v_multi(norm, -1, norm);
+    transformvec(obj->otw, norm, norm);
 }
 
 static int	get_abc(double near, double t[3], t_ray *ray, t_obj *obj)
@@ -121,6 +123,5 @@ int			cone_intersect(t_ray *ray, t_obj *obj)
 	if (ray->len < t[2])
 		return (0);
 	ray->len = t[2];
-	printf("Intersecting???\n");
 	return (1);
 }

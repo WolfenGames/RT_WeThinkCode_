@@ -2,7 +2,7 @@
 	<raydepth>10</raydepth>
 </scene>
 <camera name='Lord ISSAARRD THE LIZARD'>
-	<origin>60,0,-70</origin>
+	<origin>50,0,-70</origin>
 	<rotation>220,0,0</rotation>
 	<aperture>1</aperture>
 	<fov>40</fov>
@@ -39,14 +39,15 @@
 </object>
 <object	name="Centre White">
 	<origin>0,0,0</origin>
-	<rotation>0,180,0</rotation>
+	<rotation>0,0,0</rotation>
+	<scale>5,5,5</scale>
 	<radius>5</radius>
-	<diffusecolour>0,0,0</diffusecolour>
+	<diffusecolour>255,255,255</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
 	<albedo>1</albedo>
-	<texture>Textures/moon.xpm</texture>
-	<texturescale>1,1,1</texturescale>
-	<type>cone</type>
+	<texdfgture>Textures/moon.xpm</texture>
+	<textusdfrescale>1,1,1</texturescale>
+	<type>sphere</type>
 </object>
 <object	name="X Red">
 	<origin>40,0,0</origin>
