@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 08:06:31 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/10 09:07:14 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/10 14:59:35 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ void		set_obj_params(t_obj *o)
 		o->get_norm = cone_getnorm;
 		o->get_intersect = cone_intersect;
 		o->get_surface_col = cone_surface_col;
+	}
+	if (o->type == obj_plane)
+	{
+		o->get_norm = plane_getnorm;
+		o->get_intersect = plane_intersect;
+		o->get_surface_col = plane_surface_col;
 	}
 }
 
