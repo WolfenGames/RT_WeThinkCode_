@@ -5,10 +5,17 @@
 	<fov>30</fov>
 </camera>
 <scene>
-	<raydepth>5</raydepth>
+	<raydepth>50</raydepth>
 </scene>
 <light name="light">
 	<origin>-0,20,0,0</origin>
+	<direction>0,0,0</direction>
+	<colour>255,177,55,255</colour>
+	<type>point</type>
+	<intensity>300</intensity>
+</light>
+<light name="light2">
+	<origin>40,20,0,0</origin>
 	<direction>0,0,0</direction>
 	<colour>255,177,55,255</colour>
 	<type>point</type>
@@ -21,8 +28,8 @@
 	<diffusecolour>250,250,250</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
 	<albedo>0.18</albedo>
-	<texture>Textures/grass.xpm</texture>
-	<refractionindex>1.3333</refractionindex>
+	<texture>Textures/earth.xpm</texture>
+	<refractionindex>1</refractionindex>
 	<transparency>0.8</transparency>
 	<texturescale>1,1,1</texturescale>
 	<type>sphere</type>

@@ -9,30 +9,32 @@
 	<direction>0,0,0</direction>
 	<colour>255,170,170,255</colour>
 	<type>point</type>
-	<intensity>500</intensity>
+	<intensity>100</intensity>
 </light>
 <light	name='Left light'>
 	<origin>-10,20,0,0</origin>
 	<direction>0,0,0</direction>
 	<colour>225,120,20,255</colour>
 	<type>point</type>
-	<intensity>1200</intensity>
+	<intensity>200</intensity>
 </light>
 <light	name='back light'>
 	<origin>-0,0,20,0</origin>
 	<direction>0,0,0</direction>
 	<colour>17,170,255,255</colour>
 	<type>point</type>
-	<intensity>800</intensity>
+	<intensity>100</intensity>
 </light>
 <object name="Shirt">
 	<origin>-20,0,0</origin>
 	<radius>10</radius>
 	<diffusecolour>255,255,255,255</diffusecolour>
-	<specularcolour>0,0,0</specularcolour>
+	<specularcolour>255,255,255</specularcolour>
 	<texture>Textures/shirt.xpm</texture>
 	<texturescale>5,5,1</texturescale>
-	<albedo>0.18</albedo> 
+	<albedo>0.18</albedo>
+	<refractionindex>1</refractionindex>
+	<transparency>0</transparency>
 </object>
 <object	name="Centre White">
 	<origin>0,0,0</origin>
@@ -41,9 +43,11 @@
 	<diffusecolour>50,50,50</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
 	<albedo>0.18</albedo>
-	//<texture>Textures/moon.xpm</texture>
+	<texture>Textures/moon.xpm</texture>
 	<texturescale>1,1,1</texturescale>
 	<type>sphere</type>
+	<refractionindex>1</refractionindex>
+	<transparency>0</transparency>
 </object>
 <object	name="X Red">
 	<origin>40,0,0</origin>
@@ -55,6 +59,8 @@
 	<texture>Textures/earth.xpm</texture>
 	<texturescale>1,1,1</texturescale>
 	<type>sphere</type>
+	<refractionindex>1</refractionindex>
+	<transparency>0</transparency>
 </object>
 <object	name="Y Green">
 	<origin>0,10,0</origin>
@@ -66,6 +72,8 @@
 	<texturescale>20,20,20</texturescale>
 	<albedo>0.18</albedo>
 	<type>sphere</type>
+	<refractionindex>1</refractionindex>
+	<transparency>0</transparency>
 </object>
 <object	name="Z Blue">
 	<origin>0,0,10</origin>
@@ -75,4 +83,6 @@
 	<specularcolour>80,80,255</specularcolour>
 	<albedo>0.18</albedo>
 	<type>sphere</type>
+	<refractionindex>1</refractionindex>
+	<transparency>0</transparency>
 </object>

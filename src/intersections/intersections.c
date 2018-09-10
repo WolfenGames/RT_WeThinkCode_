@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/10 14:19:51 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/10 16:27:54 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,11 +111,11 @@ void			get_col(t_ray *ray, t_env *env, t_col c, int level)
 			reflect(ray->dir, norm, point.dir);
 			if (REFLECTIVE)
 				get_col(&point, env, reflect_col[0], level + 1);
-			v_add(point.org, v_multi(ray->dir, 0.0000001, point.dir), point.org);
+			v_add(point.org, v_multi(ray->dir, 0.0001, point.dir), point.org);
 			refract(ray->dir, norm, hit_obj->r_index, point.dir);
 			if (hit_obj->transparency)
 				get_col(&point, env, reflect_col[1], level + 1);
-			v_sub(point.org, v_multi(ray->dir, 0.0000001, point.dir), point.org);
+			v_sub(point.org, v_multi(ray->dir, 0.0001, point.dir), point.org);
 			reflect_crap(c, reflect_col, hit_obj);
 		}
 		light_thing(&point, env, hit_obj, c);
