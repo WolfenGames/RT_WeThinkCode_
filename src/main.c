@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:01:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/08 14:33:24 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/10 14:11:49 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ static int	fill_windows(t_env *env)
 
 	if (env->ren.c_win->keys[space] && !pspace)
 	{
-		create_scene(env->amount, env->names, &env->scene, env);
 		if (env->running)
 		{
 			env->running = 0;
 			pthread_join(thread, NULL);
 		}
+		create_scene(env->amount, env->names, &env->scene, env);
 		pthread_create(&thread, NULL, raytracer, env);
 	}
 	pspace = env->ren.c_win->keys[space];
