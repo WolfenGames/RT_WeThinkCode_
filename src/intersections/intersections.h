@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:13 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/08 12:56:30 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/10 14:55:07 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,9 @@ void	sphere_getnorm(t_vec norm, t_vec point, t_obj *obj);
 void	cone_surface_col(t_obj *ob, t_col c, t_vec point);
 int		cone_intersect(t_ray *ray, t_obj *obj);
 void	cone_getnorm(t_vec norm, t_vec point, t_obj *obj);
+
+void    plane_surface_col(t_obj *ob, t_col c, t_vec point);
+int     plane_intersect(t_ray *ray, t_obj *obj);
+void    plane_getnorm(t_vec norm, t_vec point, t_obj *obj);
 
 #endif
