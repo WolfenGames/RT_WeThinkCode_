@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/18 17:07:13 by ibotha            #+#    #+#             */
-/*   Updated: 2018/05/21 13:56:55 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/10 14:27:38 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 void	ft_putstr_fd(char const *s, int fd)
 {
-	int i;
-
 	if (!s)
 		return ;
-	i = 0;
-	while (s[i])
-		ft_putchar_fd(s[i++], fd);
+	write(fd, s, ft_strlen(s));
 }

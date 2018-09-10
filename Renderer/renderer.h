@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:44:46 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/06 16:19:57 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/10 12:11:28 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,6 @@ void	del_renderer(t_renderer *ren);
 double	*add_col(t_col a, t_col b, t_col ret);
 double	*sc_col(t_col c, double s, t_col);
 double	*get_img_col(int x, int y, t_img *img, t_col ret);
+double	*mask_col(t_col base, t_col mask, t_col ret);
 
 #endif
