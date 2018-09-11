@@ -1,0 +1,27 @@
+<camera name='Lord ISSAARRD THE LIZARD'>
+	<origin>0,0,60</origin>
+	<rotation>0,0,0</rotation>
+	<aperture>1</aperture>
+	<fov>50</fov>
+</camera>
+<scene>
+	<raydepth>5</raydepth>
+</scene>
+<light name="light">
+	<origin>-0,10,30</origin>
+	<direction>0,0,0</direction>
+	<colour>255,255,255,255</colour>
+	<type>point</type>
+	<intensity>300</intensity>
+</light>
+<object name="plane">
+	<origin>0,0,0</origin>
+	<rotation>0,0,0</rotation>
+	<scale>20,20,1</scale>
+	<diffusecolour>250,250,250</diffusecolour>
+	<sspecularcolour>255,255,255</specularcolour>
+	<texture>Textures/grass.xpm</texture>
+	<texturescale>10,10,1</texturescale>
+	<albedo>0.18</albedo>
+	<type>plane</type>
+</object>

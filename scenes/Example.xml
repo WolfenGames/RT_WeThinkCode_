@@ -1,51 +1,65 @@
 <camera name='Lord ISSAARRD THE LIZARD'>
-	<origin>50,0,-70</origin>
-	<rotation>220,0,0</rotation>
+	<origin>0,0,70</origin>
+	<rotation>0,0,0</rotation>
 	<aperture>1</aperture>
 	<fov>40</fov>
 </camera>
+<scene>
+	<raydepth>5</raydepth>
+</scene>
 <light	name='Right light'>
 	<origin>20,20,0,0</origin>
 	<direction>0,0,0</direction>
-	<colour>255,170,170,255</colour>
+	<colour>255,255,255,255</colour>
 	<type>point</type>
-	<intensity>100</intensity>
+	<intensity>800</intensity>
+</light>
+<light	name='Left light'>
+	<origin>-0,0,20,0</origin>
+	<direction>0,0,0</direction>
+	<colour>255,255,255,255</colour>
+	<type>point</type>
+	<intensity>1200</intensity>
 </light>
 <light	name='Left light'>
 	<origin>-10,20,0,0</origin>
 	<direction>0,0,0</direction>
-	<colour>225,120,20,255</colour>
+	<colour>225,255,255,255</colour>
 	<type>point</type>
-	<intensity>200</intensity>
+	<intensity>800</intensity>
 </light>
-<light	name='back light'>
-	<origin>-0,0,20,0</origin>
-	<direction>0,0,0</direction>
-	<colour>17,170,255,255</colour>
-	<type>point</type>
-	<intensity>100</intensity>
-</light>
+<object	name="B">
+	<origin>0,0,0</origin>
+	<rotation>0,0,0</rotation>
+	<radius>500</radius>
+	<diffusecolour>30,30,30</diffusecolour>
+	<specularcolour>255,255,255</specularcolour>
+	<albedo>0.18</albedo>
+	<texture>Textures/.xpm</texture>
+	<texturescale>1,1,1</texturescale>
+	<type>sphere</type>
+</object>
 <object name="Shirt">
 	<origin>-20,0,0</origin>
 	<radius>10</radius>
 	<diffusecolour>255,255,255,255</diffusecolour>
-	<specularcolour>255,255,255</specularcolour>
+	<sspecularcolour>255,255,255</specularcolour>
 	<texture>Textures/shirt.xpm</texture>
 	<texturescale>5,5,1</texturescale>
 	<albedo>0.18</albedo>
-	<refractionindex>1</refractionindex>
-	<transparency>0</transparency>
 </object>
-<object	name="Centre White">
-	<origin>0,-3,0</origin>
-	<rotation>0,90,0</rotation>
-	<scale>5,5,5</scale>
+<object	name="B">
+	<origin>20,10,0</origin>
+	<rotation>0,200,0</rotation>
+	<scale>1,1,1</scale>
 	<radius>5</radius>
-	<diffusecolour>255,255,255</diffusecolour>
+	<diffusecolour>255,55,55</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
-	<albedo>1</albedo>
-	<texdfgture>Textures/moon.xpm</texture>
-	<textusdfrescale>1,1,1</texturescale>
+	<albedo>0.18</albedo>
+	<texture>Textures/moon.xpm</texture>
+	<texturescale>1,1,1</texturescale>
+	<transparency>0.8</transparency>
+	<refractionindex>1.3</refractionindex>
 	<type>plane</type>
 </object>
 <object	name="X Red">
@@ -58,8 +72,6 @@
 	<texture>Textures/earth.xpm</texture>
 	<texturescale>1,1,1</texturescale>
 	<type>sphere</type>
-	<refractionindex>1</refractionindex>
-	<transparency>0</transparency>
 </object>
 <object	name="Y Green">
 	<origin>0,10,0</origin>
@@ -67,12 +79,10 @@
 	<radius>2</radius>
 	<diffusecolour>80,255,80</diffusecolour>
 	<specularcolour>80,255,80</specularcolour>
-	<texture>Textures/skin.xpm</texture>
+	<ttexture>Textures/skin.xpm</texture>
 	<texturescale>20,20,20</texturescale>
 	<albedo>0.18</albedo>
 	<type>sphere</type>
-	<refractionindex>1</refractionindex>
-	<transparency>0</transparency>
 </object>
 <object	name="Z Blue">
 	<origin>0,0,10</origin>
@@ -82,6 +92,4 @@
 	<specularcolour>80,80,255</specularcolour>
 	<albedo>0.18</albedo>
 	<type>sphere</type>
-	<refractionindex>1</refractionindex>
-	<transparency>0</transparency>
 </object>
