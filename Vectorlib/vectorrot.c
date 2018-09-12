@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/16 13:33:54 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 10:53:13 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/11 14:30:55 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,12 @@ void	fill_m_rot_y(t_matrix m, double th)
 double	*reflect(t_vec inc, t_vec norm, t_vec ret)
 {
 	t_vec	temp;
+	double	d;
 
-	v_multi(norm, dot(inc, norm) * 2, temp);
+	d = dot(inc, norm);
+	if (d > 0)
+		return (NULL);
+	v_multi(norm, d * 2, temp);
 	v_sub(inc, temp, ret);
 	return (ret);
 }

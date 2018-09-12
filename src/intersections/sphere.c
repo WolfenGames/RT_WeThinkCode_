@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/08 12:58:28 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/11 14:50:26 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	sphere_surface_col(t_obj *ob, t_col c, t_vec point)
 	t_vec		o;
 	t_img		*img = ob->tex;
 
-	transform(ob->wto, point, tempvec[2]);
-	sphere_getnorm(norm, tempvec[2], ob);
+	transform(ob->wto, point, norm);
+	normalize(norm);
 	if (!img)
 	{
 		FILLCOL(c, ob->surface_colour[0], ob->surface_colour[1],
