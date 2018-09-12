@@ -41,7 +41,8 @@
 </object>
 <object name="Shirt">
 	<origin>-20,0,0</origin>
-	<radius>10</radius>
+	<scale>1,1,1</scale>
+	<radius>5</radius>
 	<diffusecolour>255,255,255,255</diffusecolour>
 	<sspecularcolour>255,255,255</specularcolour>
 	<texture>Textures/shirt.xpm</texture>

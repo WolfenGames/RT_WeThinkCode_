@@ -6,13 +6,13 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:32:18 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/12 11:38:43 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/12 14:01:38 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
 
-void	sphere_surface_col(t_obj *ob, t_col c, t_vec point)
+void	cylinder_surface_col(t_obj *ob, t_col c, t_vec point)
 {
 	t_vec		norm;
 	t_vec		tempvec[3];
@@ -20,7 +20,7 @@ void	sphere_surface_col(t_obj *ob, t_col c, t_vec point)
 	t_img		*img = ob->tex;
 
 	transform(ob->wto, point, tempvec[2]);
-	sphere_getnorm(norm, tempvec[2], ob);
+	cylinder_getnorm(norm, tempvec[2], ob);
 	if (!img)
 	{
 		FILLCOL(c, ob->surface_colour[0], ob->surface_colour[1],
@@ -38,32 +38,75 @@ void	sphere_surface_col(t_obj *ob, t_col c, t_vec point)
 	get_img_col(o[0], o[1], img, c);
 }
 
-void	sphere_getnorm(t_vec norm, t_vec point, t_obj *obj)
+int		c_bound(t_vec temp, t_obj *obj, double t[3], t_ray tr)
 {
-	v_sub(point, obj->org, norm);
-	if (length(norm) < obj->radius)
-		v_multi(norm, -1, norm);
-	normalize(norm);
+	double	c;
+
+	if (temp[2] < -obj->scale[0] / 2 || temp[2] > obj->scale[0] / 2)
+	{
+		if (t[2] == t[1])
+			return (0);
+		t[2] = t[1];
+		v_multi(tr.dir, t[2], temp);
+		v_add(tr.org, temp, temp);
+		c = atan2(temp[1], temp[0]);
+		if (c < 0.0f)
+			c += 2.0f * M_PI;
+		if (temp[2] < -obj->scale[0] / 2 || temp[2] > obj->scale[0] / 2)
+			return (0);
+	}
+	return (1);
 }
 
-int		sphere_intersect(t_ray *ray, t_obj *obj)
+void	cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj)
 {
-	t_vec	l;
-	t_vec	var;
-	double	t[2];
+	t_vec	lpoint;
 
-	v_sub(ray->org, obj->org, l);
-	var[0] = dot(ray->dir, ray->dir);
-	var[1] = 2 * dot(ray->dir, l);
-	var[2] = dot(l, l) - (obj->radius * obj->radius);
+	transform(obj->wto, point, lpoint);
+	FILLVEC(norm, lpoint[0], lpoint[1], 0, 0);
+	normalize(norm);
+	transformvec(obj->otw, norm, norm);
+}
+
+static int		get_abc(double near, double t[3], t_ray *ray, t_obj *obj)
+{
+	t_ray	tr;
+	double	var[3];
+
+	transformvec(obj->wto, ray->dir, tr.dir);
+	transform(obj->wto, ray->org, tr.org);
+	var[0] = tr.dir[0] * tr.dir[0] + tr.dir[1] * tr.dir[1];
+	var[1] = 2 * (tr.org[0] * tr.dir[0] + tr.org[1] * tr.dir[1]);
+	var[2] = tr.org[0] * tr.org[0] + tr.org[1] * tr.org[1] -
+				pow(obj->radius, 2);
 	if (!quad(var, t))
 		return (0);
-	if (t[0] < 0)
-		t[0] = t[1];
-	if (t[0] < 0)
+	t[2] = t[0] < 0 ? t[1] : t[0];
+	if (t[2] < 0 || t[2] > near)
 		return (0);
-	if (t[0] > ray->len)
+	return (1);
+}
+
+int		cylinder_intersect(t_ray *ray, t_obj *obj)
+{
+	t_vec	temp;
+	t_ray	tr;
+	double	c;
+	double	t[3];
+
+	if (!get_abc(ray->len, t, ray, obj))
 		return (0);
-	ray->len = t[0];
+	transformvec(obj->wto, ray->dir, tr.dir);
+	transform(obj->wto, ray->org, tr.org);
+	v_multi(tr.dir, t[2], temp);
+	v_add(tr.org, temp, temp);
+	c = atan2f(temp[1], temp[0]);
+	if (c < 0.0f)
+		c += 2.0f * M_PI;
+	if (!c_bound(temp, obj, t, tr))
+		return (0);
+	if (ray->len < t[2])
+		return (0);
+	ray->len = t[2];
 	return (1);
 }

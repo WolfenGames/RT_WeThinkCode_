@@ -40,8 +40,8 @@ void    plane_surface_col(t_obj *ob, t_col c, t_vec point);
 int     plane_intersect(t_ray *ray, t_obj *obj);
 void    plane_getnorm(t_vec norm, t_vec point, t_obj *obj);
 
-void    triangle_surface_col(t_obj *ob, t_col c, t_vec point);
-int     triangle_intersect(t_ray *ray, t_obj *obj);
-void    triangle_getnorm(t_vec norm, t_vec point, t_obj *obj);
+void    cylinder_surface_col(t_obj *ob, t_col c, t_vec point);
+int     cylinder_intersect(t_ray *ray, t_obj *obj);
+void    cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj);
 
 #endif

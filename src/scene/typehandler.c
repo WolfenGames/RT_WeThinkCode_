@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 08:06:31 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/11 17:51:30 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/12 13:15:43 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ void		set_obj_params(t_obj *o)
 		o->get_norm = plane_getnorm;
 		o->get_intersect = plane_intersect;
 		o->get_surface_col = plane_surface_col;
+	}
+	if (o->type == obj_cylinder)
+	{
+		o->get_norm = cylinder_getnorm;
+		o->get_intersect = cylinder_intersect;
+		o->get_surface_col = cylinder_surface_col;
 	}
 }
 
