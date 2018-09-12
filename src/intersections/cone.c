@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 10:07:15 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/12 15:57:12 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/12 17:05:21 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,24 @@
 
 void		cone_surface_col(t_obj *ob, t_col c, t_vec point)
 {
-	t_vec	norm;
-	t_vec	tempvec[3];
-	t_vec	o;
-	t_img	*img;
+	t_vec		lpoint;
+	t_vec		temp;
+	t_vec		o;
+	t_img		*img;
 
 	img = ob->tex;
-	transform(ob->wto, point, tempvec[2]);
-	cylinder_getnorm(norm, tempvec[2], ob);
+	transform(ob->wto, point, lpoint);
 	if (!img)
 	{
 		FILLCOL(c, ob->surface_colour[0], ob->surface_colour[1],
 			ob->surface_colour[2], ob->surface_colour[3]);
 		return ;
 	}
-	FILLVEC(tempvec[0], 0, 1, 0, 0);
-	o[1] = (find_angle(norm, tempvec[0]) / M_PI);
-	FILLVEC(tempvec[1], norm[0], 0, norm[2], 0);
-	FILLVEC(tempvec[0], 0, 0, 1, 0);
-	o[0] = 1 - ((norm[0] < 0 ? 0 : 2 * M_PI) + (norm[0] < 0 ? 1 : -1)
-		* find_angle(tempvec[0], tempvec[1])) / (2.f * M_PI);
+	o[1] = 1 - (lpoint[2] + ob->scale[0] / 2.0) / ob->scale[0];
+	lpoint[2] = 0;
+	normalize(lpoint);
+	FILLVEC(temp, 0, (lpoint[0] < 0 ? 1 : -1), 0, 0);
+	o[0] = 1 - (((lpoint[0] < 0 ? 0 : M_PI) + find_angle(temp, lpoint)) / (2 * M_PI));
 	o[0] = (o[0] * ob->tex_scale[0] - (int)(o[0] * ob->tex_scale[0])) * img->w;
 	o[1] = (o[1] * ob->tex_scale[1] - (int)(o[1] * ob->tex_scale[1])) * img->h;
 	get_img_col(o[0], o[1], img, c);
@@ -71,21 +69,18 @@ static int	get_abc(double near, double t[3], t_ray *tr, t_obj *obj)
 	return (1);
 }
 
-static int	cone_bound(t_vec temp, t_obj *obj, double t[3], t_ray tr)
+static int	cone_bound(t_obj *obj, double t[3], t_ray *tr)
 {
-	double	c;
+	double	inter;
 
-	if (temp[2] < -obj->scale[0] / 2 || temp[2] > obj->scale[0] / 2)
+	inter = tr->dir[2] * t[2] + tr->org[2];
+	if (inter < -obj->scale[0] / 2 || inter > obj->scale[0] / 2)
 	{
 		if (t[2] == t[1])
 			return (0);
 		t[2] = t[1];
-		v_multi(tr.dir, t[2], temp);
-		v_add(tr.org, temp, temp);
-		c = atan2(temp[1], temp[0]);
-		if (c < 0.0f)
-			c += 2.0f * M_PI;
-		if (temp[2] < -obj->scale[0] / 2 || temp[2] > obj->scale[0] / 2)
+		inter = tr->dir[2] * t[2] + tr->org[2];
+		if (inter < -obj->scale[0] / 2 || inter > obj->scale[0] / 2)
 			return (0);
 	}
 	return (1);
@@ -93,21 +88,14 @@ static int	cone_bound(t_vec temp, t_obj *obj, double t[3], t_ray tr)
 
 int			cone_intersect(t_ray *ray, t_obj *obj)
 {
-	t_vec	temp;
 	t_ray	tr;
-	double	c;
 	double	t[3];
 
 	transformvec(obj->wto, ray->dir, tr.dir);
 	transform(obj->wto, ray->org, tr.org);
 	if (!get_abc(ray->len, t, &tr, obj))
 		return (0);
-	v_multi(tr.dir, t[2], temp);
-	v_add(tr.org, temp, temp);
-	c = atan2f(temp[1], temp[0]);
-	if (c < 0.0f)
-		c += 2.0f * M_PI;
-	if (!cone_bound(temp, obj, t, tr))
+	if (!cone_bound(obj, t, &tr))
 		return (0);
 	if (ray->len < t[2])
 		return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vectorio.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 16:18:19 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 13:29:03 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/12 16:27:56 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	vec_from_str(t_vec ret, char *str)
 	while (*str == ' ' || *str == '\t')
 		++str;
 	ret[0] = ft_atod(str);
-	while (!(*str == ' ' || *str == '\t' || *str == ','))
+	while (!(*str == ' ' || *str == '\t' || *str == ',' || *str == '<'))
 		++str;
 	while (*str == ' ' || *str == '\t' || *str == ',')
 		++str;
 	ret[1] = ft_atod(str);
-	while (!(*str == ' ' || *str == '\t' || *str == ','))
+	while (!(*str == ' ' || *str == '\t' || *str == ',' || *str == '<'))
 		++str;
 	while (*str == ' ' || *str == '\t' || *str == ',')
 		++str;

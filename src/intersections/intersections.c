@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/12 13:21:31 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/12 17:44:44 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 
 	cur = env->scene.lig;
 	obj->get_norm(vecs[2], shadow->org, obj);
-	sc_col(c, 0.01, vecs[0]);
+	sc_col(c, 0.001, vecs[0]);
 	while (cur)
 	{
 		generate_shadow_ray(shadow, LIG, env, col);
