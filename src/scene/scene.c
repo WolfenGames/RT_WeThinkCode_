@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/11 14:24:05 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/12 10:02:26 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	do_read(int fd, t_scene *scene, t_env *env)
 	{
 		r->tmp = r->line;
 		r->line = ft_strtrim(r->line);
-		if (ft_strnequ(r->line, "<", 1))
+		if (ft_strnequ(r->line, "<", 1) && !ft_strnequ(r->line, "<!--", 4))
 		{
 			if (!r->flag)
 			{
