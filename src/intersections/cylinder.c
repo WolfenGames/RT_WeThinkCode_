@@ -6,19 +6,20 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:32:18 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/12 16:02:48 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/12 16:05:40 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
 
-void	cylinder_surface_col(t_obj *ob, t_col c, t_vec point)
+void			cylinder_surface_col(t_obj *ob, t_col c, t_vec point)
 {
 	t_vec		lpoint;
 	t_vec		temp;
 	t_vec		o;
-	t_img		*img = ob->tex;
+	t_img		*img;
 
+	img = ob->tex;
 	transform(ob->wto, point, lpoint);
 	if (!img)
 	{
@@ -37,7 +38,7 @@ void	cylinder_surface_col(t_obj *ob, t_col c, t_vec point)
 	get_img_col(o[0], o[1], img, c);
 }
 
-int		c_bound(t_vec temp, t_obj *obj, double t[3], t_ray tr)
+static int		c_bound(t_vec temp, t_obj *obj, double t[3], t_ray tr)
 {
 	double	c;
 
@@ -57,7 +58,7 @@ int		c_bound(t_vec temp, t_obj *obj, double t[3], t_ray tr)
 	return (1);
 }
 
-void	cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj)
+void			cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj)
 {
 	t_vec	lpoint;
 
@@ -67,16 +68,13 @@ void	cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj)
 	transformvec(obj->otw, norm, norm);
 }
 
-static int		get_abc(double near, double t[3], t_ray *ray, t_obj *obj)
+static int		get_abc(double near, double t[3], t_ray *tr, t_obj *obj)
 {
-	t_ray	tr;
 	double	var[3];
 
-	transformvec(obj->wto, ray->dir, tr.dir);
-	transform(obj->wto, ray->org, tr.org);
-	var[0] = tr.dir[0] * tr.dir[0] + tr.dir[1] * tr.dir[1];
-	var[1] = 2 * (tr.org[0] * tr.dir[0] + tr.org[1] * tr.dir[1]);
-	var[2] = tr.org[0] * tr.org[0] + tr.org[1] * tr.org[1] -
+	var[0] = tr->dir[0] * tr->dir[0] + tr->dir[1] * tr->dir[1];
+	var[1] = 2 * (tr->org[0] * tr->dir[0] + tr->org[1] * tr->dir[1]);
+	var[2] = tr->org[0] * tr->org[0] + tr->org[1] * tr->org[1] -
 				pow(obj->radius, 2);
 	if (!quad(var, t))
 		return (0);
@@ -86,17 +84,17 @@ static int		get_abc(double near, double t[3], t_ray *ray, t_obj *obj)
 	return (1);
 }
 
-int		cylinder_intersect(t_ray *ray, t_obj *obj)
+int				cylinder_intersect(t_ray *ray, t_obj *obj)
 {
 	t_vec	temp;
 	t_ray	tr;
 	double	c;
 	double	t[3];
 
-	if (!get_abc(ray->len, t, ray, obj))
-		return (0);
 	transformvec(obj->wto, ray->dir, tr.dir);
 	transform(obj->wto, ray->org, tr.org);
+	if (!get_abc(ray->len, t, &tr, obj))
+		return (0);
 	v_multi(tr.dir, t[2], temp);
 	v_add(tr.org, temp, temp);
 	c = atan2f(temp[1], temp[0]);

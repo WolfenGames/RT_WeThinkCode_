@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   planes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:50:41 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/11 18:13:58 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/12 16:00:25 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	plane_surface_col(t_obj *ob, t_col c, t_vec point)
 {
 	t_vec		tempvec[3];
 	t_vec		o;
-	t_img		*img = ob->tex;
+	t_img		*img;
 
+	img = ob->tex;
 	transform(ob->wto, point, tempvec[2]);
 	tempvec[2][0] += ob->scale[0] / 2.0;
 	tempvec[2][1] += ob->scale[1] / 2.0;
