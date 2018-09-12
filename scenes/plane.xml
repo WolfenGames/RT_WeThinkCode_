@@ -1,6 +1,6 @@
 <camera name='Lord ISSAARRD THE LIZARD'>
-	<origin>0,0,60</origin>
-	<rotation>0,0,0</rotation>
+	<origin>-10,40,60</origin>
+	<rotation>0,-30,0</rotation>
 	<aperture>1</aperture>
 	<fov>50</fov>
 </camera>
@@ -8,20 +8,88 @@
 	<raydepth>5</raydepth>
 </scene>
 <light name="light">
-	<origin>-0,10,30</origin>
+	<origin>-0,30,0</origin>
 	<direction>0,0,0</direction>
 	<colour>255,255,255,255</colour>
 	<type>point</type>
-	<intensity>300</intensity>
+	<intensity>400</intensity>
 </light>
 <object name="plane">
 	<origin>0,0,0</origin>
-	<rotation>0,0,0</rotation>
-	<scale>20,20,1</scale>
-	<diffusecolour>250,250,250</diffusecolour>
+	<rotation>0,270,0</rotation>
+	<scale>40,40,1</scale>
+	<diffusecolour>255,255,255</diffusecolour>
 	<sspecularcolour>255,255,255</specularcolour>
-	<texture>Textures/grass.xpm</texture>
-	<texturescale>10,10,1</texturescale>
+	<albedo>0.18</albedo>
+	<type>plane</type>
+</object>
+<object name="glass">
+	<origin>0,10,0</origin>
+	<rotation>0,90,0</rotation>
+	<scale>10,10,1</scale>
+	<radius>4</radius>
+	<diffusecolour>255,55,255</diffusecolour>
+	<sspecularcolour>255,255,255</specularcolour>
+	<transparency>0.7</transparency>
+	<refractionindex>1.5</refractionindex>
+	<texture>Textures/glass.xpm</texture>
+	<texturescale>1,1,1</texturescale>
+	<albedo>0.18</albedo>
+	<type>plane</type>
+</object>
+<object name="glass2">
+	<origin>0,9.9,0</origin>
+	<rotation>0,270,0</rotation>
+	<scale>10,10,1</scale>
+	<radius>4</radius>
+	<diffusecolour>255,55,255</diffusecolour>
+	<sspecularcolour>255,255,255</specularcolour>
+	<transparency>0.7</transparency>
+	<refractionindex>1.5</refractionindex>
+	<texture>Textures/glass.xpm</texture>
+	<texturescale>1,1,1</texturescale>
+	<albedo>0.18</albedo>
+	<type>plane</type>
+</object>
+<object name="right">
+	<origin>5,10.1,0</origin>
+	<rotation>0,90,0</rotation>
+	<scale>2,11,1</scale>
+	<radius>4</radius>
+	<diffusecolour>255,55,255</diffusecolour>
+	<sspecularcolour>255,255,255</specularcolour>
+	<transparency>0</transparency>
+	<refractionindex>1</refractionindex>
+	<texture>Textures/leather.xpm</texture>
+	<texturescale>1,1,1</texturescale>
+	<albedo>0.18</albedo>
+	<type>plane</type>
+</object>
+<object name="right inner">
+	<origin>4,10.1,0</origin>
+	<rotation>90,90,0</rotation>
+	<scale>0.2,11,1</scale>
+	<radius>4</radius>
+	<diffusecolour>255,55,255</diffusecolour>
+	<sspecularcolour>255,255,255</specularcolour>
+	<transparency>0</transparency>
+	<refractionindex>1</refractionindex>
+	<texture>Textures/leather.xpm</texture>
+	<texturescale>1,1,1</texturescale>
+	<albedo>0.18</albedo>
+	<type>plane</type>
+</object>
+<object name="right outer">
+	<origin>6,10.1,0</origin>
+	<rotation>90,90,0</rotation>
+	<scale>0.2,11,1</scale>
+	<radius>4</radius>
+	<diffusecolour>255,55,255</diffusecolour>
+	<sspecularcolour>255,255,255</specularcolour>
+	<transparency>0</transparency>
+	<refractionindex>1</refractionindex>
+	<texture>Textures/leather.xpm</texture>
+	<texturescale>1,1,1</texturescale>
 	<albedo>0.18</albedo>
 	<type>plane</type>
 </object>

@@ -8,24 +8,31 @@
 	<raydepth>50</raydepth>
 </scene>
 <light name="Green">
-	<origin>-0,20,0,0</origin>
+	<origin>-0,20,0</origin>
 	<direction>0,0,0</direction>
 	<colour>255,255,255,255</colour>
 	<type>point</type>
 	<intensity>600</intensity>
 </light>
 <light name="Red">
-	<origin>40,20,0,0</origin>
+	<origin>40,20,0</origin>
 	<direction>0,0,0</direction>
 	<colour>255,255,255,255</colour>
 	<type>point</type>
 	<intensity>600</intensity>
 </light>
+<light name="light">
+	<origin>25,20,130</origin>
+	<direction>0,0,0</direction>
+	<colour>255,255,255,255</colour>
+	<type>point</type>
+	<intensity>1400</intensity>
+</light>
 <object name="back">
 	<origin>0,0,70</origin>
 	<rotation>0,0,0</rotation>
 	<scale>5,5,1</scale>
-	<diffusecolour>255,255,255</diffusecolour>
+	<diffusecolour>255,155,155</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
 	<transparency>1</transparency>
 	<refractionindex>1.5</refractionindex>
@@ -36,7 +43,7 @@
 	<origin>0,0,50</origin>
 	<rotation>0,180,0</rotation>
 	<scale>5,5,1</scale>
-	<diffusecolour>255,255,255</diffusecolour>
+	<diffusecolour>255,155,155</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
 	<transparency>1</transparency>
 	<refractionindex>1.5</refractionindex>
@@ -47,7 +54,7 @@
 	<origin>2.5,0,60</origin>
 	<rotation>90,0,0</rotation>
 	<scale>20,5,1</scale>
-	<diffusecolour>255,255,255</diffusecolour>
+	<diffusecolour>255,155,155</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
 	<transparency>1</transparency>
 	<refractionindex>1.5</refractionindex>
@@ -58,7 +65,7 @@
 	<origin>-2.5,0,60</origin>
 	<rotation>-90,0,0</rotation>
 	<scale>20,5,1</scale>
-	<diffusecolour>255,255,255</diffusecolour>
+	<diffusecolour>255,155,155</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
 	<transparency>1</transparency>
 	<refractionindex>1.5</refractionindex>
@@ -69,7 +76,7 @@
 	<origin>0,2.5,60</origin>
 	<rotation>0,-90,0</rotation>
 	<scale>5,20,1</scale>
-	<diffusecolour>255,255,255</diffusecolour>
+	<diffusecolour>255,155,155</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
 	<transparency>1</transparency>
 	<refractionindex>1.5</refractionindex>
@@ -80,7 +87,7 @@
 	<origin>0,-2.5,60</origin>
 	<rotation>0,90,0</rotation>
 	<scale>5,20,1</scale>
-	<diffusecolour>255,255,255</diffusecolour>
+	<diffusecolour>255,155,155</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
 	<transparency>1</transparency>
 	<refractionindex>1.5</refractionindex>
@@ -91,7 +98,7 @@
 	<origin>0,0,20</origin>
 	<rotation>0,0,0</rotation>
 	<radius>5</radius>
-	<diffusecolour>250,250,250</diffusecolour>
+	<diffusecolour>50,50,250</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
 	<albedo>0.18</albedo>
 	<refractionindex>1.5</refractionindex>
@@ -104,7 +111,7 @@
 	<rotation>160,0,0</rotation>
 	<radius>20</radius>
 	<diffusecolour>50,250,250</diffusecolour>
-	/<specularcolour>255,255,255</specularcolour>
+	<specularcolour>255,255,255</specularcolour>
 	<albedo>0.18</albedo>
 	<texture>Textures/earth.xpm</texture>
 	<texturescale>1,1,1</texturescale>

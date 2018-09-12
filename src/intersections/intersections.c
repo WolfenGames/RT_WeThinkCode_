@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/11 18:10:51 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/12 13:21:31 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,26 +74,27 @@ static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 
 double	fresnel(t_vec inc, t_vec norm, double index)
 {
-	double	ret;
-	double	cosi = ft_clamp(1, -1, dot(inc, norm));
-    double	etai = 1;
-	double	etat = index;
+	double	var[5];
 
-    if (cosi > 0)
-		ft_swap(&etai, &etat, sizeof(double));
-    double sint = etai / etat * sqrt(ft_max(0.0, 1 - cosi * cosi));
-    if (sint >= 1) { 
-        ret = 1; 
-    } 
+	var[1] = ft_clamp(1, -1, dot(inc, norm));
+    var[2] = 1;
+	var[3] = index;
+    if (var[1] >= 0)
+		ft_swap(&var[2], &var[3], sizeof(double));
+    var[4] = var[2] / var[3] * sqrt(ft_max(0.0, 1 - var[1] * var[1]));
+    if (var[4] > 1)
+        var[0] = 1;
     else
 	{ 
-        double	cost = sqrt(ft_max(0.0, 1 - sint * sint));
-        cosi = ABS(cosi);
-        double	Rs = ((etat * cosi) - (etai * cost)) / ((etat * cosi) + (etai * cost));
-        double	Rp = ((etai * cosi) - (etat * cost)) / ((etai * cosi) + (etat * cost));
-        ret = (Rs * Rs + Rp * Rp) / 2.0;
+        var[4] = sqrt(ft_max(0.0, 1 - var[4] * var[4]));
+        var[1] = ABS(var[1]);
+        var[0] = ((var[3] * var[1]) - (var[2] * var[4]))
+			/ ((var[3] * var[1]) + (var[2] * var[4]));
+        var[1] = ((var[2] * var[1]) - (var[3] * var[4]))
+			/ ((var[2] * var[1]) + (var[3] * var[4]));
+        var[0] = (var[0] * var[0] + var[1] * var[1]) / 2.0;
     }
-	return (ret);
+	return (var[0]);
 }
 
 void			reflect_crap(t_col c, t_col ref[2], t_obj *obj, double k)
@@ -135,11 +136,11 @@ void			get_col(t_ray *ray, t_env *env, t_col c, int level)
 			if (REFLECTIVE)
 				if (reflect(ray->dir, norm, point.dir))
 					get_col(&point, env, reflect_col[0], level + 1);
-			v_add(point.org, v_multi(ray->dir, 0.0001, point.dir), point.org);
 			refract(ray->dir, norm, hit_obj->r_index, point.dir);
+			v_add(point.org, v_multi(point.dir, 0.000001, point.dir), point.org);
 			if (hit_obj->transparency)
 				get_col(&point, env, reflect_col[1], level + 1);
-			v_sub(point.org, v_multi(ray->dir, 0.0001, point.dir), point.org);
+			v_sub(point.org, point.dir, point.org);
 			reflect_crap(c, reflect_col, hit_obj, fresnel(ray->dir, norm, hit_obj->r_index));
 		}
 		light_thing(&point, env, hit_obj, c);
