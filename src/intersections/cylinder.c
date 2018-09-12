@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:32:18 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/12 14:01:38 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/12 16:02:48 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,26 @@
 
 void	cylinder_surface_col(t_obj *ob, t_col c, t_vec point)
 {
-	t_vec		norm;
-	t_vec		tempvec[3];
+	t_vec		lpoint;
+	t_vec		temp;
 	t_vec		o;
 	t_img		*img = ob->tex;
 
-	transform(ob->wto, point, tempvec[2]);
-	cylinder_getnorm(norm, tempvec[2], ob);
+	transform(ob->wto, point, lpoint);
 	if (!img)
 	{
 		FILLCOL(c, ob->surface_colour[0], ob->surface_colour[1],
 			ob->surface_colour[2], ob->surface_colour[3]);
 		return ;
 	}
-	FILLVEC(tempvec[0], 0, 1, 0, 0);
-	o[1] = (find_angle(norm, tempvec[0]) / M_PI);
-	FILLVEC(tempvec[1], norm[0], 0, norm[2], 0);
-	FILLVEC(tempvec[0], 0, 0, 1, 0);
-	o[0] = 1 - ((norm[0] < 0 ? 0 : 2 * M_PI) + (norm[0] < 0 ? 1 : -1)
-		* find_angle(tempvec[0], tempvec[1])) / (2.f * M_PI);
+	o[1] = (lpoint[2] + ob->scale[0] / 2.0) / ob->scale[0];
+	lpoint[2] = 0;
+	normalize(lpoint);
+	FILLVEC(temp, 0, (lpoint[0] < 0 ? 1 : -1), 0, 0);
+	o[0] = 1 - (lpoint[0] < 0 ? find_angle(temp, lpoint) / (2 * M_PI) : 0);
 	o[0] = (o[0] * ob->tex_scale[0] - (int)(o[0] * ob->tex_scale[0])) * img->w;
 	o[1] = (o[1] * ob->tex_scale[1] - (int)(o[1] * ob->tex_scale[1])) * img->h;
+	//FILLCOL(c, 255 * o[0], 255 * o[1], 0, 255);
 	get_img_col(o[0], o[1], img, c);
 }
 
