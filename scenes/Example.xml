@@ -30,26 +30,13 @@
 </light>
 <object name="Shirt">
 	<origin>-20,0,0</origin>
-	<radius>10</radius>
+	<scale>1,1,1</scale>
+	<radius>5</radius>
 	<diffusecolour>255,255,255,255</diffusecolour>
 	<specularcolour>0,0,0</specularcolour>
-	<texture>Textures/shirt.xpm</texture>
-	<texturescale>5,5,1</texturescale>
-	<albedo>0.18</albedo> 
-</object>
-<!-- <object	name="Centre White">
-	<origin>0,-3,0</origin>
-	<rotation>0,90,0</rotation>
-	<scale>5,5,5</scale>
-	<radius>5</radius>
-	<diffusecolour>155,226,242</diffusecolour>
 	<albedo>0.18</albedo>
-	<texdfgture>Textures/moon.xpm</texture>
-	<textusdfrescale>1,1,1</texturescale>
-	<refractionindex>1.33</refractionindex>
-	<transparency>0.9</transparency>
-	<type>plane</type>
-</object> -->
+	<type>cylinder</type>
+</object>
 <object	name="X Red">
 	<origin>40,0,0</origin>
 	<rotation>90,0,0</rotation>

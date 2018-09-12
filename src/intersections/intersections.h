@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:13 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/10 14:55:07 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/12 13:16:24 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,9 @@ void	cone_getnorm(t_vec norm, t_vec point, t_obj *obj);
 void    plane_surface_col(t_obj *ob, t_col c, t_vec point);
 int     plane_intersect(t_ray *ray, t_obj *obj);
 void    plane_getnorm(t_vec norm, t_vec point, t_obj *obj);
+
+void    cylinder_surface_col(t_obj *ob, t_col c, t_vec point);
+int     cylinder_intersect(t_ray *ray, t_obj *obj);
+void    cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj);
 
 #endif
