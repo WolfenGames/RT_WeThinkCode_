@@ -5,14 +5,22 @@
 	<fov>40</fov>
 </camera>
 <scene>
+<<<<<<< HEAD
 	<raydepth>5</raydepth>
+=======
+	<raydepth>10</raydepth>
+>>>>>>> e01ea39f3ce6b90cb2b10ec7d776a20e9149b3d1
 </scene>
 <light	name='Right light'>
 	<origin>20,20,0,0</origin>
 	<direction>0,0,0</direction>
 	<colour>255,255,255,255</colour>
 	<type>point</type>
+<<<<<<< HEAD
 	<intensity>800</intensity>
+=======
+	<intensity>500</intensity>
+>>>>>>> e01ea39f3ce6b90cb2b10ec7d776a20e9149b3d1
 </light>
 <light	name='Left light'>
 	<origin>-0,0,20,0</origin>
@@ -61,7 +69,7 @@
 	<transparency>0.8</transparency>
 	<refractionindex>1.3</refractionindex>
 	<type>plane</type>
-</object>
+</object> -->
 <object	name="X Red">
 	<origin>40,0,0</origin>
 	<rotation>90,0,0</rotation>
@@ -90,6 +98,15 @@
 	<radius>2</radius>
 	<diffusecolour>80,80,255</diffusecolour>
 	<specularcolour>80,80,255</specularcolour>
+	<albedo>0.18</albedo>
+	<type>sphere</type>
+</object>
+<object	name="Pen">
+	<origin>0,0,0</origin>
+	<rotation>0,0,0</rotation>
+	<radius>500</radius>
+	<diffusecolour>80,80,255</diffusecolour>
+	<specularcolour>255,255,255</specularcolour>
 	<albedo>0.18</albedo>
 	<type>sphere</type>
 </object>
