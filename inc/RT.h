@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RT.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/10 08:53:32 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/11 18:17:29 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define PROG ((t_env*)env)->progress
 
 # define R_BLOCK_SIZE 32
-# define WIN_H 900
-# define WIN_W 1300
+# define WIN_H 1080
+# define WIN_W 1920
 # define P_WIN_H 900
 # define P_WIN_W 300
 # define BLOCK_W (WIN_W / R_BLOCK_SIZE + 1)

@@ -6,13 +6,13 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:01:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/10 14:11:49 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/11 18:04:49 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
 
-static void	check_alive(t_env *env, pthread_t *thread)
+void	check_alive(t_env *env, pthread_t *thread)
 {
 	if (!PROP_WIN || !TRACER || TRACER->keys[esc] || PROP_WIN->keys[esc]
 		|| !PROP_WIN->id || !TRACER->id)

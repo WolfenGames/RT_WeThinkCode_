@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:13 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/12 13:16:24 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/12 13:11:00 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # define OBJ ((t_obj*)cur->content)
 # define CAM ((t_cam*)cur->content)
 # define REFLECTIVE VEC3_IS(hit_obj->specular_colour)
-# define REFRACTIVE (hit_obj->r_index != 1 && hit_obj->transparency)
+# define REFRACTIVE (hit_obj->transparency)
+# define DIV_P(N) (N ? N : 0.0001)
 
 #include "scene.h"
 

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   typehandler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 08:06:31 by jwolf             #+#    #+#             */
 /*   Updated: 2018/09/12 13:15:43 by jwolf            ###   ########.fr       */

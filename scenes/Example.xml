@@ -1,41 +1,53 @@
 <camera name='Lord ISSAARRD THE LIZARD'>
-	<origin>50,0,-70</origin>
-	<rotation>220,0,0</rotation>
+	<origin>0,0,70</origin>
+	<rotation>0,0,0</rotation>
 	<aperture>1</aperture>
 	<fov>40</fov>
 </camera>
 <scene>
-	<raydepth>10</raydepth>
+	<raydepth>5</raydepth>
 </scene>
 <light	name='Right light'>
 	<origin>20,20,0,0</origin>
 	<direction>0,0,0</direction>
-	<colour>255,170,170,255</colour>
+	<colour>255,255,255,255</colour>
 	<type>point</type>
-	<intensity>500</intensity>
+	<intensity>800</intensity>
+</light>
+<light	name='Left light'>
+	<origin>-0,0,20,0</origin>
+	<direction>0,0,0</direction>
+	<colour>255,255,255,255</colour>
+	<type>point</type>
+	<intensity>1200</intensity>
 </light>
 <light	name='Left light'>
 	<origin>-10,20,0,0</origin>
 	<direction>0,0,0</direction>
-	<colour>225,120,20,255</colour>
-	<type>point</type>
-	<intensity>1200</intensity>
-</light>
-<light	name='back light'>
-	<origin>-0,0,20,0</origin>
-	<direction>0,0,0</direction>
-	<colour>17,170,255,255</colour>
+	<colour>225,255,255,255</colour>
 	<type>point</type>
 	<intensity>800</intensity>
 </light>
+<object	name="B">
+	<origin>0,0,0</origin>
+	<rotation>0,0,0</rotation>
+	<radius>500</radius>
+	<diffusecolour>30,30,30</diffusecolour>
+	<specularcolour>255,255,255</specularcolour>
+	<albedo>0.18</albedo>
+	<texture>Textures/.xpm</texture>
+	<texturescale>1,1,1</texturescale>
+	<type>sphere</type>
+</object>
 <object name="Shirt">
 	<origin>-20,0,0</origin>
 	<scale>1,1,1</scale>
 	<radius>5</radius>
 	<diffusecolour>255,255,255,255</diffusecolour>
-	<specularcolour>0,0,0</specularcolour>
+	<sspecularcolour>255,255,255</specularcolour>
+	<texture>Textures/shirt.xpm</texture>
+	<texturescale>5,5,1</texturescale>
 	<albedo>0.18</albedo>
-	<type>cylinder</type>
 </object>
 <object	name="X Red">
 	<origin>40,0,0</origin>
@@ -54,7 +66,7 @@
 	<radius>2</radius>
 	<diffusecolour>80,255,80</diffusecolour>
 	<specularcolour>80,255,80</specularcolour>
-	<texture>Textures/skin.xpm</texture>
+	<ttexture>Textures/skin.xpm</texture>
 	<texturescale>20,20,20</texturescale>
 	<albedo>0.18</albedo>
 	<type>sphere</type>
