@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 14:20:25 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/11 15:46:45 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/13 11:51:34 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,11 @@ static void	check_light(t_ray *ray, t_lig *lig, t_col c, t_env *env)
 	sc_col(b, (pow((t[1]
 		- t[0]) / (lig->intensity * 0.3198), 1000))
 		/ 255.0, b);
-	FILLCOL(b, b[0] * lig->col[0], b[1] * lig->col[1], b[2] * lig->col[2], 0);
-	//if (b[0] > 200)
-	//{printf("%lf, %lf\n", c[0], b[0]); usleep(800);}
+	FILLCOL(b, ft_clamp(255, 0, b[0] * lig->col[0]), 
+				ft_clamp(255, 0, b[1] * lig->col[1]), 
+				ft_clamp(255, 0, b[2] * lig->col[2]),
+				0);
 	add_col(c, b, c);
-	//if (b[0] > 200)
-	//{printf("%lf, %lf\n", c[0], b[0]);}
 }
 
 void		glare(t_ray *ray, t_env *env, t_col c)
