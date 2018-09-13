@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:01:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/11 18:04:49 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/13 11:38:35 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static int	fill_windows(t_env *env)
 		create_scene(env->amount, env->names, &env->scene, env);
 		pthread_create(&thread, NULL, raytracer, env);
 	}
+	if (TRACER->keys[left])
+		save_image(env);
 	pspace = env->ren.c_win->keys[space];
 	loading(env);
 	check_alive(env, &thread);
