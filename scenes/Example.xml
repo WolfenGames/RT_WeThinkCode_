@@ -6,6 +6,8 @@
 </camera>
 <scene>
 	<raydepth>5</raydepth>
+	<width>1920</widht>
+	<height>1080</heihgt>
 </scene>
 <light	name='Right light'>
 	<origin>20,20,0,0</origin>
