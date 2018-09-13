@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 16:52:32 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/12 17:10:46 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/13 12:29:18 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define BYTESPERPIXEL	3
 # define FILEHEADERSIZE	14
 # define INFOHEADERSIZE	40
-# define FILENAME		"Best RT you ever did see.bmp"
+# define FILENAME		"Best RT you ever did see "
 
 void			generate_bitmap_image(unsigned char *img, int h, int w,
 										char *fn);
