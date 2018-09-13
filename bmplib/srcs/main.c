@@ -6,11 +6,12 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 16:50:49 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/13 11:40:09 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/13 12:47:26 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libbmp.h"
+#include <sys/stat.h>
 
 void			generate_bitmap_image(unsigned char *img, int h, int w,
 										char *fn)
@@ -19,7 +20,11 @@ void			generate_bitmap_image(unsigned char *img, int h, int w,
 	int				i[2];
 	FILE			*imgfile;
 
+	if (!(mkdir("Screen Shots", S_IRWXU|S_IRWXG|S_IROTH)))
+		return ;
 	imgfile = fopen(fn, "wb");
+	if (!imgfile)
+		return ;
 	padding[0] = 0;
 	padding[1] = 0;
 	padding[2] = 0;
@@ -34,6 +39,7 @@ void			generate_bitmap_image(unsigned char *img, int h, int w,
 		i[0]++;
 	}
 	fclose(imgfile);
+	free(fn);
 }
 
 unsigned char	*create_file_header(int h, int w)
