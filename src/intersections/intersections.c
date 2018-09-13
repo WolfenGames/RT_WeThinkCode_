@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/12 17:44:44 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/13 18:20:33 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,12 @@ void			reflect_crap(t_col c, t_col ref[2], t_obj *obj, double k)
 	refract[0] = (obj->surface_colour[0] / 255.0) * ref[1][0];
 	refract[1] = (obj->surface_colour[1] / 255.0) * ref[1][1];
 	refract[2] = (obj->surface_colour[2] / 255.0) * ref[1][2];
-	c[0] = specular_rat[0] * ref[0][0] * k + (c[0]) * (1 - obj->transparency)
-		+ ref[1][0] * (obj->transparency) * (1 - k);
-	c[1] = specular_rat[1] * ref[0][1] * k + (c[1]) * (1 - obj->transparency)
-		+ ref[1][1] * (obj->transparency) * (1 - k);
-	c[2] = specular_rat[2] * ref[0][2] * k + (c[2]) * (1 - obj->transparency)
-		+ ref[1][2] * (obj->transparency) * (1 - k);
+	c[0] = ft_clamp(255, 0, specular_rat[0] * ref[0][0] * k + (c[0])
+		* (1 - obj->transparency) + ref[1][0] * (obj->transparency) * (1 - k));
+	c[1] = ft_clamp(255, 0, specular_rat[1] * ref[0][1] * k + (c[1])
+		* (1 - obj->transparency) + ref[1][1] * (obj->transparency) * (1 - k));
+	c[2] = ft_clamp(255, 0, specular_rat[2] * ref[0][2] * k + (c[2])
+		* (1 - obj->transparency) + ref[1][2] * (obj->transparency) * (1 - k));
 }
 
 void			get_col(t_ray *ray, t_env *env, t_col c, int level)

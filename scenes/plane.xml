@@ -8,14 +8,14 @@
 	<raydepth>5</raydepth>
 </scene>
 <light name="light">
-	<origin>-10,30,-10</origin>
+	<origin>-10,30,10</origin>
 	<direction>0,0,0</direction>
-	<colour>155,255,155,255</colour>
+	<colour>255,255,255,255</colour>
 	<type>point</type>
 	<intensity>400</intensity>
 </light>
 <object name="plane">
-	<origin>0,0,0</origin>
+	<origin>0,-3,0</origin>
 	<rotation>-20,270,0</rotation>
 	<scale>40,40,1</scale>
 	<diffusecolour>255,255,255</diffusecolour>
@@ -104,7 +104,7 @@
     <rotation>0,0,0</rotation>
     <radius>1</radius>
     <scale>10,1,1</scale>
-    <diffusecolour>145,244,100,255</diffusecolour>
+    <diffusecolour>255,255,255,255</diffusecolour>
     <specularcolour>55,55,55,55</specularcolour>
 	<texture>Textures/leather.xpm</texture>
 	<texturescale>1,1,1</texturescale>
