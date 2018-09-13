@@ -24,9 +24,9 @@ OBJ = src/main.o src/properties.o src/raytracer.o src/loading.o src/blocks.o \
 
 
 FLAGS = -Wall -Werror -Wextra -I inc -I libft -Ofast -I Renderer -I Vectorlib \
-		-I src/scene -I src/intersections
+		-I src/scene -I src/intersections -I bmplib/inc/
 
-LIBS = libft/libft.a Vectorlib/vectorlib.a Renderer/renderer.a
+LIBS = libft/libft.a Vectorlib/vectorlib.a bmplib/libbmp.a Renderer/renderer.a
 
 DEP = inc/RT.h
 
@@ -46,6 +46,7 @@ lib:
 	@make -C libft
 	@make -C Vectorlib
 	@make -C Renderer
+	@make -C bmplib
 
 patience:
 	@clear
@@ -95,6 +96,7 @@ clean:
 	@make clean -C libft
 	@make clean -C Renderer
 	@make clean -C Vectorlib
+	@make clean -C bmplib
 	@rm -f $(OBJ)
 
 fclean: clean
@@ -102,6 +104,7 @@ fclean: clean
 	@rm -f libft/libft.a
 	@rm -f Renderer/renderer.a
 	@rm -f Vectorlib/vectorlib.a
+	@rm -f bmplib/libbmp.a
 	@rm -f $(NAME)
 
 re: fclean all
