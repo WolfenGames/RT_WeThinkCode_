@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/11 17:02:55 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/13 09:36:57 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void			set_vec(t_vec vec, char *linesub);
 void			set_obj_params(t_obj *o);
 void			set_o_type(char *s, t_obj *o);
 void			set_tex(t_obj *o, char *filename, t_env *env);
+void			save_image(t_env *env);
 
 int				is_line_prop(const char *line);
 int				match_brackets(char *str, char *line);

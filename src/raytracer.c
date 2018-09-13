@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:38 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/11 18:11:22 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/13 09:36:51 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RT.h"
+#include "scene.h"
 
 static void	generate_ray(t_ray *ray, t_xy coord, t_env *env)
 {
@@ -97,5 +98,6 @@ void		*raytracer(void *env)
 	PROG = 1;
 	clear_blocks(set.env->block);
 	set.env->running = 0;
+	save_image(env);
 	return (0);
 }
