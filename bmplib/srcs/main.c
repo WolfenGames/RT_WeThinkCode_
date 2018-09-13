@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 16:50:49 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/13 09:21:30 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/13 11:40:09 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,16 @@
 void			generate_bitmap_image(unsigned char *img, int h, int w,
 										char *fn)
 {
-	unsigned char	*fh;
-	unsigned char	*fi;
 	unsigned char	padding[3];
 	int				i[2];
 	FILE			*imgfile;
 
 	imgfile = fopen(fn, "wb");
-	ft_bzero(padding, sizeof(unsigned char) * 3);
-	fh = create_file_header(h, w);
-	fi = create_info_header(h, w);
-	fwrite(fh, 1, FILEHEADERSIZE, imgfile);
-	fwrite(fi, 1, INFOHEADERSIZE, imgfile);
+	padding[0] = 0;
+	padding[1] = 0;
+	padding[2] = 0;
+	fwrite(create_file_header(h, w), 1, FILEHEADERSIZE, imgfile);
+	fwrite(create_info_header(h, w), 1, INFOHEADERSIZE, imgfile);
 	i[1] = (4 - (w * BYTESPERPIXEL) % 4) % 4;
 	i[0] = 0;
 	while (i[0] < h)
