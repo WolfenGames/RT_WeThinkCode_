@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:38 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/13 09:36:51 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/13 11:38:31 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,5 @@ void		*raytracer(void *env)
 	PROG = 1;
 	clear_blocks(set.env->block);
 	set.env->running = 0;
-	save_image(env);
 	return (0);
 }
