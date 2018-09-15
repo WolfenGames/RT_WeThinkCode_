@@ -4,6 +4,7 @@
 This is a rendering project creating by us few students from we think code, Ibotha, Jwolf and Jdorner. It implements the raytracing technique to display photorealistic...ish images. We have implemenented Refraction, Reflection, Multithreading, Shadows, Textures and Soon enough polygons.
 
 ![Heller?](https://github.com/WolfenGames/RT_WeThinkCode_/blob/master/Screen%20Shots/Celestial%20crystal%20ball.jpg)
+![Other?](https://github.com/WolfenGames/RT_WeThinkCode_/blob/master/Screen%20Shots/Moon%20Church.jpg)
 
 
 ## Usage
