@@ -26,8 +26,11 @@ An importat part about making a scene is that every objects name must be unique.
 Within a scene there are four parts, all of these types are declared as such 
 
 \<type name="name"\>
+
   body
+  
  \</type\>
+ 
  
  the only exeption to this declaration is the scene which does not have a name
 
@@ -37,36 +40,56 @@ These are scene wide variables such as:
 
 A RayDepth (How many times the rays bounce)    \<raydepth\> D \</raydepth\>
 
+
 ### camera
  
 The camera has 4 sub-parts, all of witch are declared in the body:
 
-An origin                                      \<origin\> x, y, z \</origin\>
-A rotation                                     \<rotation\> x, y, z \</rotation\>
-An aperture                                    \<apurture\> A \</aperture\>
-A Field of View                                 \<FOV\> FOV \</FOV\>
+An origin                                      \<origin> x, y, z \</origin>
+
+A rotation                                     \<rotation> x, y, z \</rotation>
+
+An aperture                                    \<apurture> A \</aperture\>
+
+A Field of View                                 \<FOV> FOV \</FOV>
+
 
 ### light
  
 The light has 5 sub-parts, all of witch are declared in the body:
 
 An origin (in case of point light              \<origin\> x, y, z \</origin\>
+
 A direction (in case of directional light)     \<direction\> x, y, z \</direction\>
+
 A colour                                       \<colour\> r, g, b \</colour\>
+
 An intensity                                   \<intensity\> I \</intensity\>
+
 A type                                         \<tpye\> point/directional \</type\>
+
 
 ### object
  
 The light has 10 sub-parts, all of witch are declared in the body:
 
 An origin (in case of point light              \<origin\> x, y, z \</origin\>
+
 A rotation                                     \<rotation\> x, y, z \</rotation\>
+
 A scale                                        \<scale\> x, y \</scale\>
+
 A surfacecolour                                \<surfacecolour\> r, g, b \</surfacecolour\>
+
 A specularcolour                               \<specularcolour\> r, g, b \</specularcolour\>
+
 A texture                                      \<texture\> Tex.xpm \</texture\>
+
 A texturescale                                 \<texturescale\> x, y \</texturescale\>
+
 A transparency                                 \<transparency\> T \</transparency\>
+
 A refractionindex                              \<refractionindex\> R \</refractionindex\>
+
 A type                                         \<tpye\> sphere/plane/cylinder/cone \</type\>
+
