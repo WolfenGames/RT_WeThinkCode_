@@ -17,4 +17,4 @@ where SCENE is your desired scene to render
 
 The scenes are parsed using an xml-like format. In general every scene needs at least a camera. There are a few example scenes under scenes
 
-![Scenes](https://github.com/WolfenGames/RT_WeThinkCode_/blob/master/scenes/light.xml)
+"'''(https://github.com/WolfenGames/RT_WeThinkCode_/blob/master/scenes/light.xml)
