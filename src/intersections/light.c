@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 14:20:25 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/13 18:18:35 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/15 13:24:09 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void		glare(t_ray *ray, t_env *env, t_col c)
 	cur = env->scene.lig;
 	while (cur)
 	{
-		check_light(ray, cur->content, c, env);
+		if (LIG->type == light_point)
+			check_light(ray, cur->content, c, env);
 		cur = cur->next;
 	}
 }

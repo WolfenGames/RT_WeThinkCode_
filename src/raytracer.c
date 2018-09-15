@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:38 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/13 16:19:26 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/15 13:20:54 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,13 @@ void		*raytracer(void *env)
 	set.env->running = 1;
 	set.img = RENDER;
 	pthread_create(&threads[0], NULL, calc_block, &set);
-	//pthread_create(&threads[1], NULL, calc_block, &set);
-	//pthread_create(&threads[2], NULL, calc_block, &set);
-	//pthread_create(&threads[3], NULL, calc_block, &set);
+	pthread_create(&threads[1], NULL, calc_block, &set);
+	pthread_create(&threads[2], NULL, calc_block, &set);
+	pthread_create(&threads[3], NULL, calc_block, &set);
 	pthread_join(threads[0], NULL);
-	//pthread_join(threads[1], NULL);
-	//pthread_join(threads[2], NULL);
-	//pthread_join(threads[3], NULL);
+	pthread_join(threads[1], NULL);
+	pthread_join(threads[2], NULL);
+	pthread_join(threads[3], NULL);
 	PROG = 1;
 	clear_blocks(set.env->block);
 	set.env->running = 0;

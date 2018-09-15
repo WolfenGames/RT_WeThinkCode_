@@ -1,5 +1,5 @@
 <camera name='Lord ISSAARRD THE LIZARD'>
-	<origin>10,60,60</origin>
+	<origin>-30,60,60</origin>
 	<rotation>0,-50,0</rotation>
 	<aperture>1</aperture>
 	<fov>50</fov>
@@ -8,142 +8,121 @@
 	<raydepth>5</raydepth>
 </scene>
 <light name="light">
-	<origin>-10,30,10</origin>
+	<origin>-100,20,0</origin>
 	<direction>0,0,0</direction>
 	<colour>255,255,255,255</colour>
 	<type>point</type>
-	<intensity>400</intensity>
+	<intensity>1000</intensity>
+</light>
+<light name="light2">
+	<origin>1000,20,0</origin>
+	<direction>-1,-0.2,0</direction>
+	<colour>255,255,255,255</colour>
+	<type>point</type>
+	<intensity>200</intensity>
 </light>
 <object name="plane">
-	<origin>0,-3,0</origin>
-	<rotation>-20,270,0</rotation>
-	<scale>40,40,1</scale>
+	<origin>0,0,0</origin>
+	<rotation>270,0,0</rotation>
+	<scale>400,400,1</scale>
 	<diffusecolour>255,255,255</diffusecolour>
-	<sspecularcolour>255,255,255</specularcolour>
+	<specularcolour>255,255,255</specularcolour>
 	<albedo>0.18</albedo>
 	<type>plane</type>
 </object>
 <object name="glass">
-	<origin>0,10.3,0</origin>
+	<origin>-20.1,10,0</origin>
 	<rotation>0,90,0</rotation>
-	<scale>10,10,1</scale>
+	<scale>40,20,1</scale>
 	<radius>2</radius>
 	<diffusecolour>255,55,255</diffusecolour>
-	<sspecularcolour>255,255,255</specularcolour>
-	<transparency>0.5</transparency>
-	<refractionindex>2</refractionindex>
+	<specularcolour>255,255,255</specularcolour>
+	<transparency>0.7</transparency>
+	<refractionindex>1.5</refractionindex>
 	<texture>Textures/glass.xpm</texture>
 	<texturescale>1,1,1</texturescale>
 	<albedo>0.18</albedo>
 	<type>plane</type>
 </object>
-<object name="glass2">
-	<origin>0,9.7,0</origin>
-	<rotation>0,270,0</rotation>
-	<scale>10,10,1</scale>
+<object name="glass">
+	<origin>-19.9,10,0</origin>
+	<rotation>0,-90,0</rotation>
+	<scale>40,20,1</scale>
 	<radius>2</radius>
 	<diffusecolour>255,55,255</diffusecolour>
-	<sspecularcolour>255,255,255</specularcolour>
-	<transparency>0.5</transparency>
-	<refractionindex>2</refractionindex>
+	<specularcolour>255,255,255</specularcolour>
+	<transparency>0.7</transparency>
+	<refractionindex>1.5</refractionindex>
 	<texture>Textures/glass.xpm</texture>
 	<texturescale>1,1,1</texturescale>
 	<albedo>0.18</albedo>
 	<type>plane</type>
-</object>
-<object name="right">
-    <origin>5,10,0</origin>
-    <rotation>0,0,0</rotation>
-    <radius>1</radius>
-    <scale>10,1,1</scale>
-    <diffusecolour>145,244,100,255</diffusecolour>
-    <specularcolour>55,55,55,55</specularcolour>
-	<texture>Textures/leather.xpm</texture>
-	<texturescale>1,1,1</texturescale>
-    <albedo>0.18</albedo>
-    <type>cylinder</type>
-</object>
-<object name="left">
-    <origin>-5,10,0</origin>
-    <rotation>0,0,0</rotation>
-    <radius>1</radius>
-    <scale>10,1,1</scale>
-    <diffusecolour>145,244,100,255</diffusecolour>
-    <specularcolour>55,55,55,55</specularcolour>
-	<texture>Textures/leather.xpm</texture>
-	<texturescale>1,1,1</texturescale>
-    <albedo>0.18</albedo>
-    <type>cylinder</type>
-</object>
-<object name="front">
-    <origin>0,10,5</origin>
-    <rotation>90,0,0</rotation>
-    <radius>1</radius>
-    <scale>10,1,1</scale>
-    <diffusecolour>145,244,100,255</diffusecolour>
-    <specularcolour>55,55,55,55</specularcolour>
-	<texture>Textures/leather.xpm</texture>
-	<texturescale>1,1,1</texturescale>
-    <albedo>0.18</albedo>
-    <type>cylinder</type>
 </object>
 <object name="back">
-    <origin>0,10,-5</origin>
-    <rotation>90,0,0</rotation>
-    <radius>1</radius>
-    <scale>10,1,1</scale>
-    <diffusecolour>145,244,100,255</diffusecolour>
-    <specularcolour>55,55,55,55</specularcolour>
+	<origin>-20,10,-20</origin>
+	<rotation>90,0,0</rotation>
+	<scale>20</scale>
+	<radius>5</radius>
+	<diffusecolour>255,55,255</diffusecolour>
+	<specularcolour>255,255,255</specularcolour>
 	<texture>Textures/leather.xpm</texture>
-	<texturescale>1,1,1</texturescale>
-    <albedo>0.18</albedo>
-    <type>cylinder</type>
+	<texturescale>10,10,1</texturescale>
+	<transparency>0</transparency>
+	<refractionindex>1</refractionindex>
+	<albedo>0.18</albedo>
+	<type>cylinder</type>
 </object>
-<object name="front left">
-    <origin>-5,10,5</origin>
-    <rotation>0,0,0</rotation>
-    <radius>1</radius>
-    <scale>10,1,1</scale>
-    <diffusecolour>255,255,255,255</diffusecolour>
-    <specularcolour>55,55,55,55</specularcolour>
+<object name="back top">
+	<origin>-20,20,-20</origin>
+	<rotation>0,0,0</rotation>
+	<radius>6</radius>
+	<diffusecolour>255,55,255</diffusecolour>
+	<specularcolour>255,255,255</specularcolour>
+	<transparency>0</transparency>
+	<refractionindex>1</refractionindex>
 	<texture>Textures/leather.xpm</texture>
-	<texturescale>1,1,1</texturescale>
-    <albedo>0.18</albedo>
-    <type>sphere</type>
+	<texturescale>10,10,1</texturescale>
+	<albedo>0.18</albedo>
+	<type>sphere</type>
 </object>
-<object name="front right">
-    <origin>5,10,5</origin>
-    <rotation>0,0,0</rotation>
-    <radius>1</radius>
-    <scale>10,1,1</scale>
-    <diffusecolour>145,244,100,255</diffusecolour>
-    <specularcolour>55,55,55,55</specularcolour>
+<object name="top">
+	<origin>-20,20,0</origin>
+	<rotation>0,0,0</rotation>
+	<scale>40</scale>
+	<radius>5</radius>
+	<diffusecolour>255,55,255</diffusecolour>
+	<specularcolour>255,255,255</specularcolour>
 	<texture>Textures/leather.xpm</texture>
-	<texturescale>1,1,1</texturescale>
-    <albedo>0.18</albedo>
-    <type>sphere</type>
+	<texturescale>10,10,1</texturescale>
+	<transparency>0</transparency>
+	<refractionindex>1</refractionindex>
+	<albedo>0.18</albedo>
+	<type>cylinder</type>
 </object>
-<object name="back left">
-    <origin>-5,10,-5</origin>
-    <rotation>0,0,0</rotation>
-    <radius>1</radius>
-    <scale>10,1,1</scale>
-    <diffusecolour>145,244,100,255</diffusecolour>
-    <specularcolour>55,55,55,55</specularcolour>
+<object name="front">
+	<origin>-20,10,20</origin>
+	<rotation>90,0,0</rotation>
+	<scale>20</scale>
+	<radius>5</radius>
+	<diffusecolour>255,55,255</diffusecolour>
+	<specularcolour>255,255,255</specularcolour>
 	<texture>Textures/leather.xpm</texture>
-	<texturescale>1,1,1</texturescale>
-    <albedo>0.18</albedo>
-    <type>sphere</type>
+	<texturescale>10,10,1</texturescale>
+	<transparency>0</transparency>
+	<refractionindex>1</refractionindex>
+	<albedo>0.18</albedo>
+	<type>cylinder</type>
 </object>
-<object name="back right">
-    <origin>5,10,-5</origin>
-    <rotation>0,0,0</rotation>
-    <radius>1</radius>
-    <scale>10,1,1</scale>
-    <diffusecolour>145,244,100,255</diffusecolour>
-    <specularcolour>55,55,55,55</specularcolour>
+<object name="front top">
+	<origin>-20,20,20</origin>
+	<rotation>0,0,0</rotation>
+	<radius>6</radius>
+	<diffusecolour>255,55,255</diffusecolour>
+	<specularcolour>255,255,255</specularcolour>
 	<texture>Textures/leather.xpm</texture>
-	<texturescale>1,1,1</texturescale>
-    <albedo>0.18</albedo>
-    <type>sphere</type>
+	<texturescale>10,10,1</texturescale>
+	<transparency>0</transparency>
+	<refractionindex>1</refractionindex>
+	<albedo>0.18</albedo>
+	<type>sphere</type>
 </object>

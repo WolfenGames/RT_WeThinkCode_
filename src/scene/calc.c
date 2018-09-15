@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 11:15:02 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 11:29:43 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/15 13:20:26 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static void	calc_obj(t_obj *obj)
 	t_vec		tempvec;
 	t_matrix	temp;
 
-	fill_m_rot_y(obj->otw, (-obj->rot[0] * M_PI) / 180.f);
-	fill_m_rot_x(temp, (obj->rot[1] * M_PI) / 180.f);
+	fill_m_rot_x(obj->otw, (-obj->rot[0] * M_PI) / 180.f);
+	fill_m_rot_y(temp, (obj->rot[1] * M_PI) / 180.f);
 	m4_mult(obj->otw, temp, obj->otw);
 	FILLVEC(tempvec, 0, 0, -1, 0);
 	transformvec(obj->otw, tempvec, tempvec);

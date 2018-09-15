@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/13 18:20:33 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/15 13:27:44 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void			get_col(t_ray *ray, t_env *env, t_col c, int level)
 	t_ray	point;
 	t_col	reflect_col[2];
 	t_vec	norm;
+	t_vec	temp;
 
 	ray->len = INFINITY;
 	hit_obj = trace(ray, env);
@@ -137,11 +138,11 @@ void			get_col(t_ray *ray, t_env *env, t_col c, int level)
 				if (reflect(ray->dir, norm, point.dir))
 					get_col(&point, env, reflect_col[0], level + 1);
 			refract(ray->dir, norm, hit_obj->r_index, point.dir);
-			v_add(point.org, v_multi(point.dir, 0.000001, point.dir), point.org);
+			v_add(point.org, v_multi(point.dir, 0.000001, temp), point.org);
 			if (hit_obj->transparency)
 				get_col(&point, env, reflect_col[1], level + 1);
-			v_sub(point.org, point.dir, point.org);
-			reflect_crap(c, reflect_col, hit_obj, fresnel(ray->dir, norm, hit_obj->r_index));
+			v_sub(point.org, temp, point.org);
+			reflect_crap(c, reflect_col, hit_obj, fresnel(ray->dir, norm, hit_obj->r_index * hit_obj->transparency));
 		}
 		light_thing(&point, env, hit_obj, c);
 	}
