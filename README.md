@@ -18,3 +18,5 @@ where SCENE is your desired scene to render
 The scenes are parsed using an xml-like format. In general every scene needs at least a camera. There are a few example scenes under scenes
 
 [Example Scene](https://github.com/WolfenGames/RT_WeThinkCode_/blob/master/scenes/light.xml)
+
+An importat part about making a scene is that every objects name must be unique. if you create 2 objects named "BOB" You will have one object with shared properties, as if all properties were writen within one scope.
