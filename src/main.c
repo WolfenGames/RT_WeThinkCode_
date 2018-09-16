@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:01:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/13 11:38:35 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/16 16:12:01 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RT.h"
+#include "rt.h"
 
 void	check_alive(t_env *env, pthread_t *thread)
 {
-	if (!PROP_WIN || !TRACER || TRACER->keys[esc] || PROP_WIN->keys[esc]
+	if (PRESSED(TRACER, esc) || PRESSED(PROP_WIN, esc)
 		|| !PROP_WIN->id || !TRACER->id)
 		{
 			if (env->running)
@@ -30,10 +30,9 @@ void	check_alive(t_env *env, pthread_t *thread)
 
 static int	fill_windows(t_env *env)
 {
-	static	char		pspace;
 	static	pthread_t	thread;
 
-	if (env->ren.c_win->keys[space] && !pspace)
+	if (PRESSED(TRACER, space))
 	{
 		if (env->running)
 		{
@@ -43,9 +42,8 @@ static int	fill_windows(t_env *env)
 		create_scene(env->amount, env->names, &env->scene, env);
 		pthread_create(&thread, NULL, raytracer, env);
 	}
-	if (TRACER->keys[left])
+	if (PRESSED_SET(TRACER, cmd, key_s))
 		save_image(env);
-	pspace = env->ren.c_win->keys[space];
 	loading(env);
 	check_alive(env, &thread);
 	properties(env);
@@ -79,7 +77,6 @@ int			main(int argc, char **argv)
 		"The Best RT You Ever Did See", WIN_W, WIN_H));
 	env.win[1] = find_win(&env.ren, add_win(&env.ren, "Properties",
 		P_WIN_W, P_WIN_H));
-	select_win(&env.ren, env.win[0]->id);
 	env.img[0] = find_img(&env.ren, add_img(&env.ren, P_WIN_W, P_WIN_H));
 	env.img[1] = find_img(&env.ren, add_img(&env.ren, WIN_W - 50, 20));
 	set_img_pos(&env.ren, env.img[1]->id, 25, WIN_H - 60);

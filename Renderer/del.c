@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 16:23:29 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/06 16:42:36 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 15:20:35 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	delete_img(t_renderer *ren, t_list *del)
 	free(del);
 }
 
-void	del_img(t_renderer *ren, int iid)
+void		del_img(t_renderer *ren, int iid)
 {
 	t_list	*del;
 	t_list	*cur;

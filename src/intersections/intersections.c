@@ -6,11 +6,11 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/15 13:27:44 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RT.h"
+#include "rt.h"
 
 /*
 **	The trace function takes a ray and determines if it hits an object,
@@ -18,13 +18,11 @@
 **	returns the hit object.
 */
 
-t_obj		*trace(t_ray *ray, t_env *env)
+t_obj		*trace(t_ray *ray, t_list *cur)
 {
 	t_obj	*ret;
-	t_list	*cur;
 
 	ret = NULL;
-	cur = env->scene.obj;
 	while (cur)
 	{
 		if (((t_obj*)cur->content)->get_intersect(ray, cur->content))
@@ -125,7 +123,7 @@ void			get_col(t_ray *ray, t_env *env, t_col c, int level)
 	t_vec	temp;
 
 	ray->len = INFINITY;
-	hit_obj = trace(ray, env);
+	hit_obj = trace(ray, env->scene.obj);
 	if (hit_obj)
 	{
 		v_add(v_multi(ray->dir, ray->len * 0.999999999, point.org),

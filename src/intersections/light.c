@@ -6,11 +6,11 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 14:20:25 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/15 13:24:09 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RT.h"
+#include "rt.h"
 
 void	cap_col(double o[2], t_vec lpoint, t_obj *obj)
 {
@@ -28,7 +28,7 @@ int	visible(t_ray *ray, t_lig *lig, t_env *env)
 	normalize(vis.dir);
 	if (dot(vis.dir, ray->dir) < 0)
 		return (0);
-	if (trace(&vis, env))
+	if (trace(&vis, env->scene.obj))
 		return (0);
 	return (1);
 }

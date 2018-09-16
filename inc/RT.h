@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RT.h                                               :+:      :+:    :+:   */
+/*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/11 18:17:29 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define BLOCK_W (WIN_W / R_BLOCK_SIZE + 1)
 # define BLOCK_H (WIN_H / R_BLOCK_SIZE + 1)
 # define BLOCK_NO (BLOCK_H * BLOCK_W)
+
+# include "intersections.h"
 
 typedef struct	s_render_block
 {
@@ -61,14 +63,12 @@ typedef struct	s_render_set
 	t_img			*img;
 }				t_render_set;
 
-void	properties(t_env *env);
-void	loading(t_env *env);
-void	*raytracer(void *env);
-void	print_vector(t_env *env, void *win, char *name, t_vec vec);
-void	create_scene(int ac, char **av, t_scene *scene, t_env *env);
-void	create_blocks(t_render_block *blocks);
-void	del_scene(t_env *env);
-
-#include "intersections.h"
+void			properties(t_env *env);
+void			loading(t_env *env);
+void			*raytracer(void *env);
+void			print_vector(t_env *env, void *win, char *name, t_vec vec);
+void			create_scene(int ac, char **av, t_scene *scene, t_env *env);
+void			create_blocks(t_render_block *blocks);
+void			del_scene(t_env *env);
 
 #endif

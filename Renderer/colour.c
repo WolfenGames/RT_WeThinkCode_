@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 13:10:26 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/11 16:43:15 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 15:16:53 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@ double	*sc_col(t_col c, double s, t_col ret)
 	GRN(ret) = GRN(c) * s;
 	RED(ret) = RED(c) * s;
 	ALP(ret) = ALP(c) * s;
-	/* if (BLU(ret) > 255)
-		return (sc_col(ret, (255 / BLU(ret)), ret));
-	if (GRN(ret) > 255)
-		return (sc_col(ret, (255 / GRN(ret)), ret));
-	if (RED(ret) > 255)
-		return (sc_col(ret, (255 / RED(ret)), ret)); */
 	return (ret);
 }
 
@@ -62,5 +56,5 @@ double	*mask_col(t_col base, t_col mask, t_col ret)
 	ret[1] = ft_min(mask[1], base[1]);
 	ret[2] = ft_min(mask[2], base[2]);
 	ret[3] = ft_min(mask[3], base[3]);
-	return(ret);
+	return (ret);
 }

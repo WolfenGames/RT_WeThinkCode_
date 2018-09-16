@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 18:51:53 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/28 18:52:45 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 15:05:50 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	quad(t_vec val, double t[2])
 	}
 	else
 	{
-		q = (val[1] > 0) ? -0.5 * (val[1] + sqrt(discr)) : -0.5 * (val[1] - sqrt(discr));
+		q = (val[1] > 0) ? -0.5 * (val[1]
+			+ sqrt(discr)) : -0.5 * (val[1] - sqrt(discr));
 		t[0] = q / val[0];
 		t[1] = val[2] / q;
 	}

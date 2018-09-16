@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+         #
+#    By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 10:11:48 by jwolf             #+#    #+#              #
-#    Updated: 2018/09/12 16:58:40 by jwolf            ###   ########.fr        #
+#    Updated: 2018/09/16 15:45:03 by ibotha           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,11 +33,13 @@ $(DIR_O)/%.o:		$(DIR_S)/%.c
 	@echo "\033[1;35;m[Compiling $<] \t\033[0m"
 	@$(C) $(CFLAGS) -c -o $@ $<
 
-$(NAME): temporary $(OBJECTS)
+$(NAME): $(OBJECTS)
 	@echo "\033[1;34;m[Making... Pizza]\033[0m"
 	@ar r $(NAME) $(OBJECTS)
 
-all: temporary $(NAME)
+all:
+	make temporary
+	make $(NAME)
 
 temporary:
 	@mkdir -p $(DIR_O)

@@ -6,11 +6,11 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:38 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/15 13:20:54 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RT.h"
+#include "rt.h"
 #include "scene.h"
 
 static void	generate_ray(t_ray *ray, t_xy coord, t_env *env)

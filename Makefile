@@ -29,7 +29,7 @@ FLAGS = -Wall -Werror -Wextra -I inc -I libft -Ofast -I Renderer -I Vectorlib \
 
 LIBS = libft/libft.a Vectorlib/vectorlib.a bmplib/libbmp.a Renderer/renderer.a
 
-DEP = inc/RT.h
+DEP = inc/rt.h
 
 all:
 	make lib

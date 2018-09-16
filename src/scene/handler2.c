@@ -6,12 +6,12 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 07:51:39 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/06 16:00:51 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
-#include "RT.h"
+#include "rt.h"
 
 void	set_tex(t_obj *o, char *filename, t_env *env)
 {

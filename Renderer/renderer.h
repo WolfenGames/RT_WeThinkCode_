@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:44:46 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/10 12:11:28 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 16:08:12 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,18 @@
 # include "libft.h"
 # include <stdio.h>
 
-# define ABS(C) (C < 0 ? -C : C)
 # define DR(N) (change < 0 ? (-N) : N)
 # define ALP(C) C[3]
 # define RED(C) C[0]
 # define GRN(C) C[1]
 # define BLU(C) C[2]
 # define FILLCOL(C, R, G, B, A) (C[0] = R, C[1] = G, C[2] = B, C[3] = A)
+# define PRESSED(WIN, K) (WIN->keys[K] && !WIN->pkeys[K])
+# define DOWN(WIN, K) (WIN->keys[K])
+# define SDOWN(WIN, K1, K2) (WIN->keys[K1] && (WIN->keys[K2]))
+# define PDOWN(WIN, K) (WIN->pkeys[K])
+# define PSDOWN(WIN, K1, K2) (WIN->pkeys[K1] && WIN->pkeys[K2])
+# define PRESSED_SET(WIN, K1, K2) (SDOWN(WIN, K1, K2) && !PSDOWN(WIN, K1, K2))
 
 typedef int		t_xy[2];
 typedef double	t_col[4];
@@ -57,6 +62,7 @@ typedef struct	s_win
 	int				h;
 	int				id;
 	char			keys[512];
+	char			pkeys[512];
 	t_mouse			mouse;
 }				t_win;
 
@@ -69,7 +75,7 @@ typedef struct	s_renderer
 	t_img			*c_img;
 }				t_renderer;
 
-typedef	enum	s_key
+typedef	enum	e_key
 {
 	init = -1,
 	esc = 53,
@@ -95,41 +101,42 @@ typedef	enum	s_key
 	key_w = 13,
 	key_s = 1,
 	key_e = 14,
-	space = 49
+	space = 49,
+	cmd = 259
 }				t_key;
 
-int		key_add(int keycode, t_win *win);
-int		key_remove(int keycode, t_renderer *ren);
-int		mouse_up(int x, int y, t_win *win);
-int		mouse_add(int button, int x, int y, t_win *win);
-int		mouse_remove(int button, int x, int y, t_win *win);
-int		close_win(t_win *win);
+int				key_add(int keycode, t_win *win);
+int				key_remove(int keycode, t_renderer *ren);
+int				mouse_up(int x, int y, t_win *win);
+int				mouse_add(int button, int x, int y, t_win *win);
+int				mouse_remove(int button, int x, int y, t_win *win);
+int				close_win(t_win *win);
 
-void	renderer_set(t_renderer *ren);
-int		add_win(t_renderer *ren, const char *name, int x, int y);
-int		add_img(t_renderer *ren, int w, int h);
-int		add_img_xpm(t_renderer *ren, char *filename, int x, int y);
-void	update(t_renderer *ren);
+void			renderer_set(t_renderer *ren);
+int				add_win(t_renderer *ren, const char *name, int x, int y);
+int				add_img(t_renderer *ren, int w, int h);
+int				add_img_xpm(t_renderer *ren, char *filename, int x, int y);
+void			update(t_renderer *ren);
 
-void	draw_line(t_xy a, t_xy b, t_col c, t_img *img);
-void	put_pixel(int x, int y, t_col c, t_img *img);
-void	draw_box(t_xy start, t_xy end, t_col c, t_img *img);
+void			draw_line(t_xy a, t_xy b, t_col c, t_img *img);
+void			put_pixel(int x, int y, t_col c, t_img *img);
+void			draw_box(t_xy start, t_xy end, t_col c, t_img *img);
 
-t_win	*select_win(t_renderer *ren, int id);
-t_img	*select_img(t_renderer *ren, int id);
-t_win	*find_win(t_renderer *ren, int id);
-t_img	*find_img(t_renderer *ren, int id);
+t_win			*select_win(t_renderer *ren, int id);
+t_img			*select_img(t_renderer *ren, int id);
+t_win			*find_win(t_renderer *ren, int id);
+t_img			*find_img(t_renderer *ren, int id);
 
-int		present_img(t_renderer *ren, int wid, int iid);
-int		set_img_pos(t_renderer *ren, int id, int x, int y);
-int		move_img(t_renderer *ren, int id, int x, int y);
-int		clear_win(t_renderer *ren, int id);
-void	del_img(t_renderer *ren, int iid);
-void	del_renderer(t_renderer *ren);
+int				present_img(t_renderer *ren, int wid, int iid);
+int				set_img_pos(t_renderer *ren, int id, int x, int y);
+int				move_img(t_renderer *ren, int id, int x, int y);
+int				clear_win(t_renderer *ren, int id);
+void			del_img(t_renderer *ren, int iid);
+void			del_renderer(t_renderer *ren);
 
-double	*add_col(t_col a, t_col b, t_col ret);
-double	*sc_col(t_col c, double s, t_col);
-double	*get_img_col(int x, int y, t_img *img, t_col ret);
-double	*mask_col(t_col base, t_col mask, t_col ret);
+double			*add_col(t_col a, t_col b, t_col ret);
+double			*sc_col(t_col c, double s, t_col ret);
+double			*get_img_col(int x, int y, t_img *img, t_col ret);
+double			*mask_col(t_col base, t_col mask, t_col ret);
 
 #endif

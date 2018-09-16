@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 17:41:11 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/04 14:11:37 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 15:21:22 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define ENDL 1
 # define ERROR -1
 # define CONTINUE 2
+# define ABS(C) (C < 0 ? -C : C)
 
 typedef struct	s_list
 {

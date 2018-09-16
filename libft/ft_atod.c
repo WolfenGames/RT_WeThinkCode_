@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atod.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 16:19:45 by ibotha            #+#    #+#             */
-/*   Updated: 2018/06/22 18:25:44 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 15:36:13 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	atoiprereq(const char **s)
 	return (sign);
 }
 
-double			ft_atod(const char *str)
+double		ft_atod(const char *str)
 {
 	double		ret;
 	double		pret;
@@ -50,12 +50,11 @@ double			ft_atod(const char *str)
 		if (ret < 0)
 			return (0 - (sign == 1));
 	}
-	i += (str[i] == '.');
-	while (ft_isdigit(str[i]))
+	i += (str[i] == '.') - 1;
+	while (ft_isdigit(str[++i]))
 	{
 		divisor *= 0.1;
 		pret += (double)(str[i] - '0') * divisor;
-		i++;
 	}
 	return ((ret + pret) * (double)sign);
 }

@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 12:55:08 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/04 14:13:17 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 15:37:59 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*trim_dec_part(char *dec_part)
 		i--;
 	ret = ft_strsub(dec_part, 0, i + 1);
 	free(dec_part);
-	return(ret);
+	return (ret);
 }
 
 char		*ft_dtoa(double n, int precision)
