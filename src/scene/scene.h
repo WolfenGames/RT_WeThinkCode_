@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/13 09:36:57 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/16 16:58:09 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ typedef enum	e_o_type
 	obj_polygon
 }				t_o_type;
 
+typedef enum	e_bool_type
+{
+	none,
+	subtract,
+	intersect,
+}				t_bool_type;
+
 typedef struct	s_obj
 {
 	char		*name;
@@ -60,10 +67,10 @@ typedef struct	s_obj
 	double		transparency;
 	t_vec		tex_scale;
 	t_o_type	type;
-	t_list		subtract;
-	t_list		intersect;
+	t_list		bools;
 	t_list		points;
 	t_list		triangles;
+	t_bool_type	bool_type;
 	void		(*get_norm)(t_vec norm, t_vec point, struct s_obj *obj);
 	int			(*get_intersect)(t_ray *ray, struct s_obj *obj);
 	void		(*get_surface_col)(struct s_obj *obj, t_vec c, t_vec point);

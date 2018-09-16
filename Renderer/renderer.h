@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:44:46 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 16:08:12 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 16:26:46 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define BLU(C) C[2]
 # define FILLCOL(C, R, G, B, A) (C[0] = R, C[1] = G, C[2] = B, C[3] = A)
 # define PRESSED(WIN, K) (WIN->keys[K] && !WIN->pkeys[K])
-# define DOWN(WIN, K) (WIN->keys[K])
+# define ISDOWN(WIN, K) (WIN->keys[K])
 # define SDOWN(WIN, K1, K2) (WIN->keys[K1] && (WIN->keys[K2]))
 # define PDOWN(WIN, K) (WIN->pkeys[K])
 # define PSDOWN(WIN, K1, K2) (WIN->pkeys[K1] && WIN->pkeys[K2])
@@ -113,9 +113,9 @@ int				mouse_remove(int button, int x, int y, t_win *win);
 int				close_win(t_win *win);
 
 void			renderer_set(t_renderer *ren);
-int				add_win(t_renderer *ren, const char *name, int x, int y);
-int				add_img(t_renderer *ren, int w, int h);
-int				add_img_xpm(t_renderer *ren, char *filename, int x, int y);
+t_win			*add_win(t_renderer *ren, const char *name, int x, int y);
+t_img			*add_img(t_renderer *ren, int w, int h);
+t_img			*add_img_xpm(t_renderer *ren, char *filename, int x, int y);
 void			update(t_renderer *ren);
 
 void			draw_line(t_xy a, t_xy b, t_col c, t_img *img);
@@ -127,9 +127,9 @@ t_img			*select_img(t_renderer *ren, int id);
 t_win			*find_win(t_renderer *ren, int id);
 t_img			*find_img(t_renderer *ren, int id);
 
-int				present_img(t_renderer *ren, int wid, int iid);
-int				set_img_pos(t_renderer *ren, int id, int x, int y);
-int				move_img(t_renderer *ren, int id, int x, int y);
+int				present_img(t_renderer *ren, t_win *win, t_img *img);
+int				set_img_pos(t_img *img, int x, int y);
+int				move_img(t_img *img, int x, int y);
 int				clear_win(t_renderer *ren, int id);
 void			del_img(t_renderer *ren, int iid);
 void			del_renderer(t_renderer *ren);

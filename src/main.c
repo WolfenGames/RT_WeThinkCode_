@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:01:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 16:12:01 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 16:28:56 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ static int	fill_windows(t_env *env)
 
 	if (PRESSED(TRACER, space))
 	{
-		if (env->running)
-		{
-			env->running = 0;
+		if (env->running && !(env->running = 0))
 			pthread_join(thread, NULL);
-		}
 		create_scene(env->amount, env->names, &env->scene, env);
 		pthread_create(&thread, NULL, raytracer, env);
 	}
@@ -47,9 +44,9 @@ static int	fill_windows(t_env *env)
 	loading(env);
 	check_alive(env, &thread);
 	properties(env);
-	present_img(&env->ren, TRACER->id, RENDER->id);
+	present_img(&env->ren, TRACER, RENDER);
 	if (env->progress < 0.99999)
-		present_img(&env->ren, TRACER->id, LOAD->id);
+		present_img(&env->ren, TRACER, LOAD);
 	update(&env->ren);
 	return (0);
 }
@@ -73,14 +70,12 @@ int			main(int argc, char **argv)
 	ft_bzero(&env, sizeof(t_env));
 	renderer_set(&env.ren);
 	create_blocks(env.block);
-	env.win[0] = find_win(&env.ren, add_win(&env.ren,
-		"The Best RT You Ever Did See", WIN_W, WIN_H));
-	env.win[1] = find_win(&env.ren, add_win(&env.ren, "Properties",
-		P_WIN_W, P_WIN_H));
-	env.img[0] = find_img(&env.ren, add_img(&env.ren, P_WIN_W, P_WIN_H));
-	env.img[1] = find_img(&env.ren, add_img(&env.ren, WIN_W - 50, 20));
-	set_img_pos(&env.ren, env.img[1]->id, 25, WIN_H - 60);
-	env.img[2] = find_img(&env.ren, add_img(&env.ren, WIN_W, WIN_H));
+	env.win[0] = add_win(&env.ren, M_WIN_NAME, WIN_W, WIN_H);
+	env.win[1] = add_win(&env.ren, "Properties", P_WIN_W, P_WIN_H);
+	env.img[0] = add_img(&env.ren, P_WIN_W, P_WIN_H);
+	env.img[1] = add_img(&env.ren, WIN_W - 50, 20);
+	set_img_pos(env.img[1], 25, WIN_H - 60);
+	env.img[2] = add_img(&env.ren, WIN_W, WIN_H);
 	env.names = argv;
 	env.amount = argc;
 	mlx_loop_hook(env.ren.mlx, fill_windows, &env);

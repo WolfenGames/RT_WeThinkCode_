@@ -35,7 +35,7 @@ all:
 	make lib
 	make $(NAME)
 
-$(NAME): $(OBJ) $(LIBS)
+$(NAME): $(LIBS) $(OBJ)
 	@echo "[ \x1b[32mLinking $@ \x1b[0m]"
 	@gcc $(OBJ) $(FLAGS) $(LIBS) -o $(NAME) -lmlx -framework OpenGL -framework AppKit && echo "\x1b[35m***$(NAME) Ready***\x1b[0m"
 

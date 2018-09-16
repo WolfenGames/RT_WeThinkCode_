@@ -6,13 +6,13 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/24 09:11:31 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/27 17:09:47 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 16:26:56 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "renderer.h"
 
-int		add_img(t_renderer *ren, int w, int h)
+t_img	*add_img(t_renderer *ren, int w, int h)
 {
 	t_img	new;
 
@@ -29,10 +29,10 @@ int		add_img(t_renderer *ren, int w, int h)
 		new.id++;
 	ft_lstadd(&ren->img, ft_lstnew(&new, sizeof(t_img)));
 	ren->c_img = (t_img*)ren->img->content;
-	return (new.id);
+	return (ren->c_img);
 }
 
-int		add_img_xpm(t_renderer *ren, char *filename, int x, int y)
+t_img	*add_img_xpm(t_renderer *ren, char *filename, int x, int y)
 {
 	t_img	new;
 
@@ -49,29 +49,19 @@ int		add_img_xpm(t_renderer *ren, char *filename, int x, int y)
 		new.id++;
 	ft_lstadd(&ren->img, ft_lstnew(&new, sizeof(t_img)));
 	ren->c_img = (t_img*)ren->img->content;
-	return (new.id);
+	return (ren->c_img);
 }
 
-int		present_img(t_renderer *ren, int wid, int iid)
+int		present_img(t_renderer *ren, t_win *win, t_img *img)
 {
-	t_win	*win;
-	t_img	*img;
-
-	win = find_win(ren, wid);
-	if (!win)
-		return (0);
-	img = find_img(ren, iid);
-	if (!img)
+	if (!win || !img)
 		return (0);
 	mlx_put_image_to_window(ren->mlx, win->win, img->img, img->x, img->y);
 	return (1);
 }
 
-int		set_img_pos(t_renderer *ren, int id, int x, int y)
+int		set_img_pos(t_img *img, int x, int y)
 {
-	t_img	*img;
-
-	img = find_img(ren, id);
 	if (!img)
 		return (0);
 	img->x = x;
@@ -79,11 +69,8 @@ int		set_img_pos(t_renderer *ren, int id, int x, int y)
 	return (1);
 }
 
-int		move_img(t_renderer *ren, int id, int x, int y)
+int		move_img(t_img *img, int x, int y)
 {
-	t_img	*img;
-
-	img = find_img(ren, id);
 	if (!img)
 		return (0);
 	img->x += x;

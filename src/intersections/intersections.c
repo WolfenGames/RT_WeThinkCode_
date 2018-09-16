@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 17:07:19 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 
 	cur = env->scene.lig;
 	obj->get_norm(vecs[2], shadow->org, obj);
-	sc_col(c, 0.001, vecs[0]);
+	sc_col(c, 0.1, vecs[0]);
 	while (cur)
 	{
 		generate_shadow_ray(shadow, LIG, env, col);
@@ -70,32 +70,7 @@ static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 	c[2] *= vecs[0][2] / 255.0;
 }
 
-double	fresnel(t_vec inc, t_vec norm, double index)
-{
-	double	var[5];
-
-	var[1] = ft_clamp(1, -1, dot(inc, norm));
-    var[2] = 1;
-	var[3] = index;
-    if (var[1] >= 0)
-		ft_swap(&var[2], &var[3], sizeof(double));
-    var[4] = var[2] / var[3] * sqrt(ft_max(0.0, 1 - var[1] * var[1]));
-    if (var[4] > 1)
-        var[0] = 1;
-    else
-	{ 
-        var[4] = sqrt(ft_max(0.0, 1 - var[4] * var[4]));
-        var[1] = ABS(var[1]);
-        var[0] = ((var[3] * var[1]) - (var[2] * var[4]))
-			/ ((var[3] * var[1]) + (var[2] * var[4]));
-        var[1] = ((var[2] * var[1]) - (var[3] * var[4]))
-			/ ((var[2] * var[1]) + (var[3] * var[4]));
-        var[0] = (var[0] * var[0] + var[1] * var[1]) / 2.0;
-    }
-	return (var[0]);
-}
-
-void			reflect_crap(t_col c, t_col ref[2], t_obj *obj, double k)
+void			reflect_crap(t_col c, t_ray point[3], t_obj *obj, double k)
 {
 	t_col	specular_rat;
 	t_col	refract;
@@ -103,49 +78,50 @@ void			reflect_crap(t_col c, t_col ref[2], t_obj *obj, double k)
 	specular_rat[0] = obj->specular_colour[0] / 255.0;
 	specular_rat[1] = obj->specular_colour[1] / 255.0;
 	specular_rat[2] = obj->specular_colour[2] / 255.0;
-	refract[0] = (obj->surface_colour[0] / 255.0) * ref[1][0];
-	refract[1] = (obj->surface_colour[1] / 255.0) * ref[1][1];
-	refract[2] = (obj->surface_colour[2] / 255.0) * ref[1][2];
-	c[0] = ft_clamp(255, 0, specular_rat[0] * ref[0][0] * k + (c[0])
-		* (1 - obj->transparency) + ref[1][0] * (obj->transparency) * (1 - k));
-	c[1] = ft_clamp(255, 0, specular_rat[1] * ref[0][1] * k + (c[1])
-		* (1 - obj->transparency) + ref[1][1] * (obj->transparency) * (1 - k));
-	c[2] = ft_clamp(255, 0, specular_rat[2] * ref[0][2] * k + (c[2])
-		* (1 - obj->transparency) + ref[1][2] * (obj->transparency) * (1 - k));
+	refract[0] = (obj->surface_colour[0] / 255.0) * point[1].org[0];
+	refract[1] = (obj->surface_colour[1] / 255.0) * point[1].org[1];
+	refract[2] = (obj->surface_colour[2] / 255.0) * point[1].org[2];
+	c[0] = ft_clamp(255, 0, specular_rat[0] * point[1].dir[0] * k + (c[0])
+		* (1 - obj->transparency) + point[1].org[0] * (obj->transparency) * (1 - k));
+	c[1] = ft_clamp(255, 0, specular_rat[1] * point[1].dir[1] * k + (c[1])
+		* (1 - obj->transparency) + point[1].org[1] * (obj->transparency) * (1 - k));
+	c[2] = ft_clamp(255, 0, specular_rat[2] * point[1].dir[2] * k + (c[2])
+		* (1 - obj->transparency) + point[1].org[2] * (obj->transparency) * (1 - k));
+}
+
+static void		mid(t_ray *ray, t_ray point[3], t_env *env, t_obj *hit_obj)
+{
+	v_add(v_multi(ray->dir, ray->len * 0.999999999, point[0].org),
+		ray->org, point[0].org);
+	hit_obj->get_surface_col(hit_obj, point[3].dir, point[0].org);
+	hit_obj->get_norm(point[2].dir, point[0].org, hit_obj);
+	if ((REFLECTIVE || REFRACTIVE) && point[2].len < env->scene.raydepth)
+	{
+		if (REFLECTIVE && reflect(ray->dir, point[2].dir, point[0].dir))
+				get_col(&point[0], env, point[1].dir, point[2].len + 1);
+		refract(ray->dir, point[2].dir, hit_obj->r_index, point[0].dir);
+		v_add(point[0].org, v_multi(point[0].dir, 0.000001, point[2].org), point[0].org);
+		if (hit_obj->transparency)
+			get_col(&point[0], env, point[1].org, point[2].len + 1);
+		v_sub(point[0].org, point[2].org, point[0].org);
+		reflect_crap(point[3].dir, point, hit_obj,
+			fresnel(ray->dir, point[2].dir, hit_obj->r_index * hit_obj->transparency));
+	}
+	light_thing(&point[0], env, hit_obj, point[3].dir);
 }
 
 void			get_col(t_ray *ray, t_env *env, t_col c, int level)
 {
 	t_obj	*hit_obj;
-	t_ray	point;
-	t_col	reflect_col[2];
-	t_vec	norm;
-	t_vec	temp;
+	t_ray	point[4];
 
 	ray->len = INFINITY;
 	hit_obj = trace(ray, env->scene.obj);
+	point[2].len = level;
+	FILLCOL(point[3].dir, 0, 0, 0, 255);
 	if (hit_obj)
-	{
-		v_add(v_multi(ray->dir, ray->len * 0.999999999, point.org),
-			ray->org, point.org);
-		hit_obj->get_surface_col(hit_obj, c, point.org);
-		hit_obj->get_norm(norm, point.org, hit_obj);
-		if ((REFLECTIVE || REFRACTIVE) && level < env->scene.raydepth)
-		{
-			if (REFLECTIVE)
-				if (reflect(ray->dir, norm, point.dir))
-					get_col(&point, env, reflect_col[0], level + 1);
-			refract(ray->dir, norm, hit_obj->r_index, point.dir);
-			v_add(point.org, v_multi(point.dir, 0.000001, temp), point.org);
-			if (hit_obj->transparency)
-				get_col(&point, env, reflect_col[1], level + 1);
-			v_sub(point.org, temp, point.org);
-			reflect_crap(c, reflect_col, hit_obj, fresnel(ray->dir, norm, hit_obj->r_index * hit_obj->transparency));
-		}
-		light_thing(&point, env, hit_obj, c);
-	}
-	else
-		FILLCOL(c, 0, 0, 0, 255);
+		mid(ray, point, env, hit_obj);
+	vec_dup(point[3].dir, c);
 	c[3] = 255;
 	glare(ray, env, c);
 }

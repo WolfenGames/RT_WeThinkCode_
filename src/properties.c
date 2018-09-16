@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:20 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 16:30:15 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void		properties(t_env *env)
 	start[1][1] = 870;
 	FILLCOL(col, 0, 0, 0, 255);
 	draw_line(start[0], start[1], col, PROP_BACK);
-	present_img(&env->ren, PROP_WIN->id, PROP_BACK->id);
+	present_img(&env->ren, PROP_WIN, PROP_BACK);
 	win = PROP_WIN;
 	if (win->keys[up] || win->keys[down])
 		env->point_start += (win->keys[up] ? 0.5 : -0.5);

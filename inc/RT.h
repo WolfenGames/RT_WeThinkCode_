@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 16:18:16 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define RENDER ((t_env*)env)->img[2]
 # define REN &((t_env*)env)->ren
 # define PROG ((t_env*)env)->progress
+# define M_WIN_NAME "The Best RT You Ever Did See!"
 
 # define R_BLOCK_SIZE 32
 # define WIN_H 1080

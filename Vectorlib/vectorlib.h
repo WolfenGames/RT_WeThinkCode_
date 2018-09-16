@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/03 17:34:57 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 14:58:29 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 16:46:22 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef	struct	s_ray
 	t_vec	dir;
 	t_vec	org;
 	double	len;
+	double	intersects[2];
 }				t_ray;
 
 double			dot(t_vec a, t_vec b);
@@ -33,6 +34,7 @@ double			length(t_vec v);
 double			find_angle(t_vec a, t_vec b);
 double			v_sum(t_vec	vec);
 double			determinant(t_matrix a, double size);
+double			fresnel(t_vec inc, t_vec norm, double index);
 
 double			*refract(t_vec inc, t_vec norm, double index, t_vec ret);
 double			*v_multi(t_vec a, double b, t_vec ret);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/03 14:45:53 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/25 16:41:06 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 16:20:20 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	renderer_set(t_renderer *ren)
 		die("\x1b[31mMLX Init Fail\x1b[0m");
 }
 
-int		add_win(t_renderer *ren, const char *name, int x, int y)
+t_win	*add_win(t_renderer *ren, const char *name, int x, int y)
 {
 	t_win	new;
 
@@ -39,5 +39,5 @@ int		add_win(t_renderer *ren, const char *name, int x, int y)
 	mlx_hook(new.win, 5, 0L, mouse_remove, ren->c_win);
 	mlx_hook(new.win, 6, 0L, mouse_up, ren->c_win);
 	mlx_hook(new.win, 17, 0L, close_win, ren->c_win);
-	return (new.id);
+	return (ren->c_win);
 }
