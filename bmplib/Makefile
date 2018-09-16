@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+         #
+#    By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 10:11:48 by jwolf             #+#    #+#              #
-#    Updated: 2018/09/16 15:45:03 by ibotha           ###   ########.fr        #
+#    Updated: 2018/09/16 14:01:03 by jwolf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,16 +30,14 @@ SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 OBJECTS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
 $(DIR_O)/%.o:		$(DIR_S)/%.c
-	@echo "\033[1;35;m[Compiling $<] \t\033[0m"
+	@echo "\033[1;35;m[Compiling  libbmp $<] \t\033[0m"
 	@$(C) $(CFLAGS) -c -o $@ $<
 
-$(NAME): $(OBJECTS)
+$(NAME): temporary $(OBJECTS)
 	@echo "\033[1;34;m[Making... Pizza]\033[0m"
 	@ar r $(NAME) $(OBJECTS)
 
-all:
-	make temporary
-	make $(NAME)
+all: temporary
 
 temporary:
 	@mkdir -p $(DIR_O)
