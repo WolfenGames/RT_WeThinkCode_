@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:27:23 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/17 08:23:39 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	save_image(t_env *env)
 		}
 		i++;
 	}
-	fn = ft_strjoin_n_free(ft_strdup("Screen Shots/"), ft_strdup(FILENAME));
+	fn = ft_strjoin_n_free(ft_strdup("Screen Shots/"), ft_strdup(env->fn));
 	fn = ft_strjoin_n_free(fn, ft_strdup(ft_get_time()));
 	fn = ft_strjoin_n_free(fn, ft_strdup(".bmp"));
 	generate_bitmap_image((unsigned char *)image, WIN_H, WIN_W, fn);
