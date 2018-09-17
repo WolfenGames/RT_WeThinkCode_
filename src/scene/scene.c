@@ -84,12 +84,45 @@ void	create_scene(int ac, char **names, t_scene *scene, t_env *env)
 	int		fd;
 
 	del_scene(env);
-	if (ac != 2)
+	if (ac < 2)
 		exit(EXIT_FAILURE);
 	fd = open(names[1], O_RDONLY);
 	if (fd < 0)
 		exit(EXIT_FAILURE);
 	do_read(fd, scene, env);
+	read_obj_files(names[2], env);
+	
+	/*
+	int i;
+	i = 0;0
+	while (i < ((t_obj*)env->scene.obj->content)->n_faces)
+	{
+		printf("%i/%i/%i %i/%i/%i %i/%i/%i\n", ((t_obj*)env->scene.obj->content)->faces[i][0][0]
+		, ((t_obj*)env->scene.obj->content)->faces[i][0][1]
+		, ((t_obj*)env->scene.obj->content)->faces[i][0][2]
+		, ((t_obj*)env->scene.obj->content)->faces[i][1][0]
+		, ((t_obj*)env->scene.obj->content)->faces[i][1][1]
+		, ((t_obj*)env->scene.obj->content)->faces[i][1][2]
+		, ((t_obj*)env->scene.obj->content)->faces[i][2][0]
+		, ((t_obj*)env->scene.obj->content)->faces[i][2][1]
+		, ((t_obj*)env->scene.obj->content)->faces[i][2][2]);
+		i++;
+	}
+	*/
+	/*
+	i = 0;
+	while (((t_obj*)env->scene.obj->content)->vertex_normal)
+	{
+		printf("%f\n", ((t_obj*)env->scene.obj->content)->vertex_normal[i]);
+		i++;
+	}
+	i = 0;
+	while (((t_obj*)env->scene.obj->content)->vertex_texture_coord)
+	{
+		printf("%f\n", ((t_obj*)env->scene.obj->content)->vertex_texture_coord[i]);
+		i++;
+	}
+	*/
 	close(fd);
 	calc_scene(scene);
 }

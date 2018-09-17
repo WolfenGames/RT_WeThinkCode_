@@ -35,6 +35,7 @@ void			ft_swap(void *a, void *b, size_t size);
 void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void			ft_lstadd(t_list **alst, t_list *bob);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
+void			ft_lstrev(t_list **lst);
 void			*ft_bzero(void *str, size_t n);
 void			*ft_memalloc(size_t size);
 void			*ft_memccpy(void *str1, const void *str2, int c, size_t n);
