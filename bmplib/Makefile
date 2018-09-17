@@ -6,7 +6,7 @@
 #    By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 10:11:48 by jwolf             #+#    #+#              #
-#    Updated: 2018/09/16 18:20:39 by ibotha           ###   ########.fr        #
+#    Updated: 2018/09/17 13:54:29 by ibotha           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,15 +30,14 @@ SRCS = $(addprefix $(DIR_S)/,$(SOURCES))
 OBJECTS = $(addprefix $(DIR_O)/,$(SOURCES:.c=.o))
 
 $(DIR_O)/%.o:		$(DIR_S)/%.c
-	@echo "\033[1;35;m[Compiling $<] \t\033[0m"
+	@echo "\033[1;35;m[Compiling  libbmp $<] \t\033[0m"
 	@$(C) $(CFLAGS) -c -o $@ $<
 
 $(NAME): temporary $(OBJECTS)
 	@echo "\033[1;34;m[Making... Pizza]\033[0m"
 	@ar r $(NAME) $(OBJECTS)
 
-all:
-	make $(NAME)
+all: $(NAME)
 
 temporary:
 	@mkdir -p $(DIR_O)

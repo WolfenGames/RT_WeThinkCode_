@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:27:23 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/17 12:58:20 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_get_time(void)
 	char	*c_time;
 
 	current_time = time(NULL);
-	if (current_time == ((time_t) - 1))
+	if (current_time == ((time_t)-1))
 		return ("0");
 	c_time = ctime(&current_time);
 	return (c_time);
@@ -48,7 +48,8 @@ void	save_image(t_env *env)
 		}
 		i++;
 	}
-	fn = ft_strjoin_n_free(ft_strdup("Screen Shots/"), ft_strdup(FILENAME));
+	fn = ft_strjoin_n_free(ft_strdup("Screen Shots/"), ft_strdup(env->fn));
+	fn = ft_strjoin_n_free(fn, ft_strdup(" "));
 	fn = ft_strjoin_n_free(fn, ft_strdup(ft_get_time()));
 	fn = ft_strjoin_n_free(fn, ft_strdup(".bmp"));
 	generate_bitmap_image((unsigned char *)image, WIN_H, WIN_W, fn);
