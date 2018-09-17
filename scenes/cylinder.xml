@@ -23,5 +23,5 @@
 	<texture>Textures/earth.xpm</texture>
 	<texturescale>1,1,1</texturescale>
     <albedo>0.18</albedo>
-    <type>cylinder</type>
+    <type>cone</type>
 </object>

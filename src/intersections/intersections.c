@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 17:07:19 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/17 13:30:09 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 
 	cur = env->scene.lig;
 	obj->get_norm(vecs[2], shadow->org, obj);
-	sc_col(c, 0.1, vecs[0]);
+	sc_col(c, 0, vecs[0]);
 	while (cur)
 	{
 		generate_shadow_ray(shadow, LIG, env, col);
@@ -78,9 +78,9 @@ void			reflect_crap(t_col c, t_ray point[3], t_obj *obj, double k)
 	specular_rat[0] = obj->specular_colour[0] / 255.0;
 	specular_rat[1] = obj->specular_colour[1] / 255.0;
 	specular_rat[2] = obj->specular_colour[2] / 255.0;
-	refract[0] = (obj->surface_colour[0] / 255.0) * point[1].org[0];
-	refract[1] = (obj->surface_colour[1] / 255.0) * point[1].org[1];
-	refract[2] = (obj->surface_colour[2] / 255.0) * point[1].org[2];
+	refract[0] = (point[3].dir[0] / 255.0) * point[1].org[0];
+	refract[1] = (point[3].dir[1] / 255.0) * point[1].org[1];
+	refract[2] = (point[3].dir[2] / 255.0) * point[1].org[2];
 	c[0] = ft_clamp(255, 0, specular_rat[0] * point[1].dir[0] * k + (c[0])
 		* (1 - obj->transparency) + point[1].org[0] * (obj->transparency) * (1 - k));
 	c[1] = ft_clamp(255, 0, specular_rat[1] * point[1].dir[1] * k + (c[1])

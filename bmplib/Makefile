@@ -6,7 +6,7 @@
 #    By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 10:11:48 by jwolf             #+#    #+#              #
-#    Updated: 2018/09/16 15:45:03 by ibotha           ###   ########.fr        #
+#    Updated: 2018/09/16 18:20:39 by ibotha           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,12 +33,11 @@ $(DIR_O)/%.o:		$(DIR_S)/%.c
 	@echo "\033[1;35;m[Compiling $<] \t\033[0m"
 	@$(C) $(CFLAGS) -c -o $@ $<
 
-$(NAME): $(OBJECTS)
+$(NAME): temporary $(OBJECTS)
 	@echo "\033[1;34;m[Making... Pizza]\033[0m"
 	@ar r $(NAME) $(OBJECTS)
 
 all:
-	make temporary
 	make $(NAME)
 
 temporary:
