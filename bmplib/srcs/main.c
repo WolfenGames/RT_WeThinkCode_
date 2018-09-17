@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 16:50:49 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/17 08:34:09 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/17 08:35:03 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void			generate_bitmap_image(unsigned char *img, int h, int w,
 	int				i[2];
 	FILE			*imgfile;
 
-	if (!(mkdir("Screen Shots", S_IRWXU|S_IRWXG|S_IROTH)))
+	if (!(mkdir("Screen Shots", S_IRWXU | S_IRWXG | S_IROTH)))
 		return ;
 	imgfile = fopen(fn, "wb");
 	if (!imgfile)
@@ -77,6 +77,5 @@ unsigned char	*create_info_header(int h, int w)
 	infohead[11] = (unsigned char)(h >> 24);
 	infohead[12] = (unsigned char)(1);
 	infohead[14] = (unsigned char)(BYTESPERPIXEL * 8);
-
 	return (infohead);
 }
