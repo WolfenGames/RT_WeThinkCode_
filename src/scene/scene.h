@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/11 17:02:55 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 16:58:09 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ typedef enum	e_o_type
 	obj_polygon
 }				t_o_type;
 
+typedef enum	e_bool_type
+{
+	none,
+	subtract,
+	intersect,
+}				t_bool_type;
+
 typedef struct	s_obj
 {
 	char		*name;
@@ -69,9 +76,13 @@ typedef struct	s_obj
 	int			n_v_normal;
 	t_vec		*vertex_normal;
 	int			n_v_t_coord;
-    t_tex		*vertex_texture_coord;
+  t_tex		*vertex_texture_coord;
 	int			n_faces;
-    t_face		*faces;
+  t_face		*faces;
+	t_list		bools;
+	t_list		points;
+	t_list		triangles;
+	t_bool_type	bool_type;
 	void		(*get_norm)(t_vec norm, t_vec point, struct s_obj *obj);
 	int			(*get_intersect)(t_ray *ray, struct s_obj *obj);
 	void		(*get_surface_col)(struct s_obj *obj, t_vec c, t_vec point);
@@ -134,6 +145,7 @@ void			set_vec(t_vec vec, char *linesub);
 void			set_obj_params(t_obj *o);
 void			set_o_type(char *s, t_obj *o);
 void			set_tex(t_obj *o, char *filename, t_env *env);
+void			save_image(t_env *env);
 
 int     		read_obj_files(char *paths, t_env *env);
 void			parse_list(t_list *lst, t_env *env);

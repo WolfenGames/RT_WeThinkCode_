@@ -6,11 +6,11 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/11 14:50:26 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 17:07:36 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RT.h"
+#include "rt.h"
 
 void	sphere_surface_col(t_obj *ob, t_col c, t_vec point)
 {
@@ -46,6 +46,13 @@ void	sphere_getnorm(t_vec norm, t_vec point, t_obj *obj)
 	normalize(norm);
 }
 
+void	sphere_bool(t_ray *ray, t_obj *obj, double t[2])
+{
+	//bool_stuff();
+	(void)obj;
+	ft_memcpy(ray->intersects, t, sizeof(double) * 2);
+}
+
 int		sphere_intersect(t_ray *ray, t_obj *obj)
 {
 	t_vec	l;
@@ -58,6 +65,7 @@ int		sphere_intersect(t_ray *ray, t_obj *obj)
 	var[2] = dot(l, l) - (obj->radius * obj->radius);
 	if (!quad(var, t))
 		return (0);
+	sphere_bool(ray, obj, t);
 	if (t[0] < 0)
 		t[0] = t[1];
 	if (t[0] < 0)

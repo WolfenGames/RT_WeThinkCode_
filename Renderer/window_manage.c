@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 12:26:24 by ibotha            #+#    #+#             */
-/*   Updated: 2018/08/27 17:08:50 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 16:01:08 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,16 @@ static void	close_wins(t_renderer *ren)
 
 void		update(t_renderer *ren)
 {
+	t_list *cur;
+
 	close_wins(ren);
+	cur = ren->win;
+	while (cur)
+	{
+		ft_memmove(((t_win*)cur->content)->pkeys,
+			((t_win*)cur->content)->keys, sizeof(char) * 512);
+		cur = cur->next;
+	}
 }
 
 int			close_win(t_win *win)

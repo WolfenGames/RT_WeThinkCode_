@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/12 11:39:59 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/17 08:32:50 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RT.h"
+#include "rt.h"
 
 char	*get_close_tag(char *line)
 {
@@ -27,8 +27,11 @@ char	*get_close_tag(char *line)
 	return (close_tag);
 }
 
-void	end_read(int flag, char *line, char *tmp, t_scene *scene)
+void	end_read(int flag, char *line, char *tmp, t_env *env)
 {
+	t_scene	*scene;
+
+	scene = &env->scene;
 	if (flag)
 		die("Invalid XML");
 	if (line)
@@ -37,6 +40,8 @@ void	end_read(int flag, char *line, char *tmp, t_scene *scene)
 		ft_memdel((void **)&tmp);
 	if (!scene->c_cam)
 		die("No Camera :(");
+	if (env->fn == NULL)
+		env->fn = ft_strdup(M_WIN_NAME);
 }
 
 int		end_line_read(int flag, char *line, char *close_tag, char *line2)
@@ -75,7 +80,7 @@ void	do_read(int fd, t_scene *scene, t_env *env)
 		r->flag = end_line_read(r->flag, r->line, r->close_tag, r->line2);
 		ft_memdel((void **)&r->tmp);
 	}
-	end_read(r->flag, r->line, r->tmp, scene);
+	end_read(r->flag, r->line, r->tmp, env);
 	free(r);
 }
 

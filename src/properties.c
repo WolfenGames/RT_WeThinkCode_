@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   properties.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:20 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/04 15:37:57 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 14:03:10 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RT.h"
+#include "rt.h"
  
 static void	print_cam_properties(t_env *env, void *win, t_cam *cam)
 {
@@ -128,7 +128,7 @@ void		properties(t_env *env)
 	start[1][1] = 870;
 	FILLCOL(col, 0, 0, 0, 255);
 	draw_line(start[0], start[1], col, PROP_BACK);
-	present_img(&env->ren, PROP_WIN->id, PROP_BACK->id);
+	present_img(&env->ren, PROP_WIN, PROP_BACK);
 	win = PROP_WIN;
 	if (win->keys[up] || win->keys[down])
 		env->point_start += (win->keys[up] ? 0.5 : -0.5);

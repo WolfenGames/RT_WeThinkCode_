@@ -6,11 +6,11 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 11:47:01 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/12 12:10:23 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/17 13:23:45 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RT.h"
+#include "rt.h"
 
 static void	make_shadow(t_lig *lig, t_ray *shadow)
 {
@@ -40,7 +40,7 @@ void	generate_shadow_ray(t_ray *point, t_lig *lig, t_env *env, t_col col)
 	while (VEC3_IS(col) && sh.len > 0)
 	{
 		make_shadow(lig, &sh);
-		if ((obj = trace(&sh, env)))
+		if ((obj = trace(&sh, env->scene.obj)))
 		{
 			v_add(sh.org, v_multi(sh.dir, sh.len + 0.0001, sh.dir), sh.org);
 			obj->get_surface_col(obj, temp[0], sh.org);

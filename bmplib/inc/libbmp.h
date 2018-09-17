@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scenehandle.c                                      :+:      :+:    :+:   */
+/*   libbmp.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 09:01:47 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/17 12:58:30 by jwolf            ###   ########.fr       */
+/*   Created: 2018/09/12 16:52:32 by jwolf             #+#    #+#             */
+/*   Updated: 2018/09/17 08:34:44 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene.h"
+#ifndef LIBBMP_H
+# define LIBBMP_H
 
-void	do_da_scene(char *line, t_scene *scene)
-{
-	if (match_brackets("raydepth", line))
-		scene->raydepth = ft_atod(line + 10);
-	if (match_brackets("width", line))
-		scene->win_w = ft_atoi(line + 7);
-	if (match_brackets("height", line))
-		scene->win_h = ft_atoi(line + 8);
-}
+# include "libft.h"
+# include <stdio.h>
+# define BYTESPERPIXEL	3
+# define FILEHEADERSIZE	14
+# define INFOHEADERSIZE	40
+# define FILENAME		"Best RT you ever did see "
+
+void			generate_bitmap_image(unsigned char *img, int h, int w,
+										char *fn);
+unsigned char	*create_info_header(int h, int w);
+unsigned char	*create_file_header(int h, int w);
+
+#endif

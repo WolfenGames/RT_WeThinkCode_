@@ -2,28 +2,22 @@
     <raydepth>10</raydepth>
 </scene>
 <camera name='Bill'>
-    <origin>0,20,0</origin>
+    <origin>0,10,0</origin>
     <rotation>0,-90,0</rotation>
-    <fov>35</fov>
+    <fov>30</fov>
     <aperture>1</aperture>
 </camera>
-<light  name="light2">
-    <origin>-10,10,10</origin>
-    <intensity>100</intensity>
-    <colour>255,255,255,255</colour>
-    <type>point</type>
-</light>
 <light  name="light">
-    <origin>10,10,10</origin>
-    <intensity>100</intensity>
-    <colour>255,255,255,255</colour>
+    <origin>0,10.01,0</origin>
+    <intensity>700</intensity>
+    <colour>255,255,255</colour>
     <type>point</type>
 </light>
 <object name="cylinder">
     <origin>0,0,0</origin>
-    <rotation>0,0,180</rotation>
+    <rotation>30,0,0</rotation>
     <radius>1</radius>
-    <scale>4,1,1</scale>
+    <scale>2</scale>
     <diffusecolour>145,244,100,255</diffusecolour>
     <specularcolour>255,255,255,255</specularcolour>
 	<texture>Textures/earth.xpm</texture>

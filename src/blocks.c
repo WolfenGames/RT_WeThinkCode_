@@ -6,11 +6,11 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 13:17:55 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/06 15:48:56 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RT.h"
+#include "rt.h"
 #define	INBOUNDS(C) (C[0] >= 0 && C[0] < BLOCK_W && C[1] >= 0 && C[1] < BLOCK_H)
 #define LEFT -1
 #define RIGHT 1

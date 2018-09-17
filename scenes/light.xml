@@ -5,7 +5,7 @@
 	<fov>30</fov>
 </camera>
 <scene>
-	<raydepth>50</raydepth>
+	<raydepth>10</raydepth>
 </scene>
 <light name="Green">
 	<origin>-0,20,0</origin>
@@ -22,14 +22,14 @@
 	<intensity>600</intensity>
 </light>
 <light name="light">
-	<origin>25,20,130</origin>
-	<direction>0,0,0</direction>
-	<colour>255,255,255,255</colour>
-	<type>point</type>
-	<intensity>1400</intensity>
+	<origin>0,0,0</origin>
+	<direction>0,0,-1</direction>
+	<colour>255,255,255</colour>
+	<type>directional</type>
+	<intensity>4</intensity>
 </light>
 <object name="back">
-	<origin>0,0,70</origin>
+	<origin>-5,-0.03,60.1</origin>
 	<rotation>0,0,0</rotation>
 	<scale>5,5,1</scale>
 	<diffusecolour>255,155,155</diffusecolour>
@@ -40,53 +40,9 @@
 	<type>plane</type>
 </object>
 <object name="back2">
-	<origin>0,0,50</origin>
+	<origin>-5,0,59.9</origin>
 	<rotation>0,180,0</rotation>
 	<scale>5,5,1</scale>
-	<diffusecolour>255,155,155</diffusecolour>
-	<specularcolour>255,255,255</specularcolour>
-	<transparency>1</transparency>
-	<refractionindex>1.5</refractionindex>
-	<albedo>0.18</albedo>
-	<type>plane</type>
-</object>
-<object name="back3">
-	<origin>2.5,0,60</origin>
-	<rotation>90,0,0</rotation>
-	<scale>20,5,1</scale>
-	<diffusecolour>255,155,155</diffusecolour>
-	<specularcolour>255,255,255</specularcolour>
-	<transparency>1</transparency>
-	<refractionindex>1.5</refractionindex>
-	<albedo>0.18</albedo>
-	<type>plane</type>
-</object>
-<object name="back4">
-	<origin>-2.5,0,60</origin>
-	<rotation>-90,0,0</rotation>
-	<scale>20,5,1</scale>
-	<diffusecolour>255,155,155</diffusecolour>
-	<specularcolour>255,255,255</specularcolour>
-	<transparency>1</transparency>
-	<refractionindex>1.5</refractionindex>
-	<albedo>0.18</albedo>
-	<type>plane</type>
-</object>
-<object name="back5">
-	<origin>0,2.5,60</origin>
-	<rotation>0,-90,0</rotation>
-	<scale>5,20,1</scale>
-	<diffusecolour>255,155,155</diffusecolour>
-	<specularcolour>255,255,255</specularcolour>
-	<transparency>1</transparency>
-	<refractionindex>1.5</refractionindex>
-	<albedo>0.18</albedo>
-	<type>plane</type>
-</object>
-<object name="back6">
-	<origin>0,-2.5,60</origin>
-	<rotation>0,90,0</rotation>
-	<scale>5,20,1</scale>
 	<diffusecolour>255,155,155</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
 	<transparency>1</transparency>
@@ -113,7 +69,7 @@
 	<diffusecolour>50,250,250</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
 	<albedo>0.18</albedo>
-	<texture>Textures/earth.xpm</texture>
-	<texturescale>1,1,1</texturescale>
+	<texture>Textures/Wall.xpm</texture>
+	<texturescale>10,10,1</texturescale>
 	<type>sphere</type>
 </object>

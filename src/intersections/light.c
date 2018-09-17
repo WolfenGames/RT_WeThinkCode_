@@ -6,11 +6,17 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 14:20:25 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/11 15:46:45 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RT.h"
+#include "rt.h"
+
+void	cap_col(double o[2], t_vec lpoint, t_obj *obj)
+{
+	o[0] = (ABS(lpoint[0] + obj->radius) / (obj->radius * 2));
+	o[1] = (ABS(lpoint[1] + obj->radius) / (obj->radius * 2));
+}
 
 int	visible(t_ray *ray, t_lig *lig, t_env *env)
 {
@@ -22,7 +28,7 @@ int	visible(t_ray *ray, t_lig *lig, t_env *env)
 	normalize(vis.dir);
 	if (dot(vis.dir, ray->dir) < 0)
 		return (0);
-	if (trace(&vis, env))
+	if (trace(&vis, env->scene.obj))
 		return (0);
 	return (1);
 }
@@ -30,32 +36,20 @@ int	visible(t_ray *ray, t_lig *lig, t_env *env)
 static void	check_light(t_ray *ray, t_lig *lig, t_col c, t_env *env)
 {
 	t_vec	l;
-	t_vec	var;
-	double	t[2];
 	t_col	b;
+	double	dot_l_r;
+	double	light_length;
 
-	v_sub(ray->org, lig->org, l);
-	var[0] = dot(ray->dir, ray->dir);
-	var[1] = 2 * dot(ray->dir, l);
-	var[2] = dot(l, l) - ((lig->intensity * 0.16) * (lig->intensity * 0.16));
-	if (!quad(var, t))
-		return ;
-	if (t[0] < 0 && t[1] < 0)
-		return ;
-	if (t[0] > ray->len)
-		return ;
+	v_sub(lig->org, ray->org, l);
+	light_length = length(l);
 	if (!visible(ray, lig, env))
 		return ;
-	FILLCOL(b, 255, 255, 255, 255);
-	sc_col(b, (pow((t[1]
-		- t[0]) / (lig->intensity * 0.3198), 1000))
-		/ 255.0, b);
-	FILLCOL(b, b[0] * lig->col[0], b[1] * lig->col[1], b[2] * lig->col[2], 0);
-	//if (b[0] > 200)
-	//{printf("%lf, %lf\n", c[0], b[0]); usleep(800);}
+	normalize(l);
+	dot_l_r = dot(l ,ray->dir);
+	if (dot_l_r < 0)
+		return ;
+	sc_col(lig->col, pow(dot_l_r, (10000 * light_length) / lig->intensity), b);
 	add_col(c, b, c);
-	//if (b[0] > 200)
-	//{printf("%lf, %lf\n", c[0], b[0]);}
 }
 
 void		glare(t_ray *ray, t_env *env, t_col c)
@@ -65,7 +59,8 @@ void		glare(t_ray *ray, t_env *env, t_col c)
 	cur = env->scene.lig;
 	while (cur)
 	{
-		check_light(ray, cur->content, c, env);
+		if (LIG->type == light_point)
+			check_light(ray, cur->content, c, env);
 		cur = cur->next;
 	}
 }

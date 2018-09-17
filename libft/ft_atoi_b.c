@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi_b.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/16 15:34:25 by ibotha            #+#    #+#             */
+/*   Updated: 2018/09/16 15:37:46 by ibotha           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include <stdio.h>
 
@@ -32,7 +44,7 @@ int			ft_atoi_b(const char *str, const char *base)
 	while ((s = ft_strchr((char*)base, *str)) && (s != (base + mult)))
 	{
 		ret *= mult;
-			ret += s - base;
+		ret += s - base;
 		if (ret < 0 && isneg == 1)
 			return (0);
 		if (ret < 0)

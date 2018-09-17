@@ -6,12 +6,12 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 07:51:39 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/06 16:00:51 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 16:22:56 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
-#include "RT.h"
+#include "rt.h"
 
 void	set_tex(t_obj *o, char *filename, t_env *env)
 {
@@ -26,7 +26,7 @@ void	set_tex(t_obj *o, char *filename, t_env *env)
 			return ;
 		}
 		close(fd);
-		o->tex = find_img(REN, add_img_xpm(REN, filename, 0, 0));
+		o->tex = add_img_xpm(REN, filename, 0, 0);
 	}
 	free(filename);
 }

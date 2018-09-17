@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:13 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/12 13:11:00 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/16 14:52:47 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 void	get_col(t_ray *ray, t_env *env, t_col c, int level);
 void	get_surface_col(t_obj *obj, t_col c, t_vec point, t_env *env);
 void	glare(t_ray *ray, t_env *env, t_col c);
-t_obj	*trace(t_ray *ray, t_env *env);
+t_obj	*trace(t_ray *ray, t_list *list);
 void	generate_shadow_ray(t_ray *point, t_lig *lig, t_env *env, t_col col);
 
 void	sphere_surface_col(t_obj *obj, t_col c, t_vec point);
@@ -43,5 +43,7 @@ void    plane_getnorm(t_vec norm, t_vec point, t_obj *obj);
 void    cylinder_surface_col(t_obj *ob, t_col c, t_vec point);
 int     cylinder_intersect(t_ray *ray, t_obj *obj);
 void    cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj);
+
+void	cap_col(double o[2], t_vec lpoint, t_obj *obj);
 
 #endif
