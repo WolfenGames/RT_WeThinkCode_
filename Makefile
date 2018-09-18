@@ -115,6 +115,6 @@ run: all
 	./$(NAME) g
 
 wolf: all
-	./$(NAME) scenes/Example.xml
+	./$(NAME) scenes/Example.2.xml
 
 .PHONY: all clean fclean re patience libft run

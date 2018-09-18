@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/18 12:25:03 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 12:34:47 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct	s_render_block
 
 typedef struct	s_env
 {
+	pthread_t		render;
 	t_scene			scene;
 	float			progress;
 	t_win			*win[10];
