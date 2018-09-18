@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/17 08:32:50 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 07:40:55 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	end_read(int flag, char *line, char *tmp, t_env *env)
 		ft_memdel((void **)&tmp);
 	if (!scene->c_cam)
 		die("No Camera :(");
-	if (env->fn == NULL)
-		env->fn = ft_strdup(M_WIN_NAME);
+	if (env->scene.fn == NULL)
+		env->scene.fn = ft_strdup(M_WIN_NAME);
 }
 
 int		end_line_read(int flag, char *line, char *close_tag, char *line2)
