@@ -1,0 +1,22 @@
+<camera name='Lord ISSAARRD THE LIZARD'>
+	<origin>0,0,70</origin>
+	<rotation>0,0,0</rotation>
+	<aperture>1</aperture>
+	<fov>40</fov>
+</camera>
+<scene>
+	<raydepth>5</raydepth>
+	<width>1920</width>
+	<height>1080</height>
+	<path>Test Scene</path>
+</scene>
+<light	name='Right light'>
+	<origin>0,0,0,0</origin>
+	<direction>0,0,-1</direction>
+	<colour>255,255,255,255</colour>
+	<type>directional</type>
+	<intensity>800</intensity>
+</light>
+<polygon name="Da Polygon">
+	<path>objects/Tetra.obj</path>
+</polygon>

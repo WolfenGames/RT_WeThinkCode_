@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/18 08:39:21 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 12:46:28 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ char	*get_close_tag(char *line)
 	return (close_tag);
 }
 
+void	do_obj_param_set(t_env *env)
+{
+	t_list	*cur;
+
+	cur = env->scene.obj;
+	while (cur)
+	{
+		set_obj_params(OBJ);
+		cur = cur->next;
+	}
+}
+
 void	end_read(int flag, char *line, char *tmp, t_env *env)
 {
 	t_scene	*scene;
@@ -42,10 +54,7 @@ void	end_read(int flag, char *line, char *tmp, t_env *env)
 		die("No Camera :(");
 	if (env->scene.fn == NULL)
 		env->scene.fn = ft_strdup(M_WIN_NAME);
-	if (env->scene.win_h == 0)
-		env->scene.win_h = WIN_H;
-	if (env->scene.win_w == 0)
-		env->scene.win_w = WIN_W;
+	do_obj_param_set(env);
 }
 
 int		end_line_read(int flag, char *line, char *close_tag, char *line2)

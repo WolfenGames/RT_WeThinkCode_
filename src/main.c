@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:01:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/17 09:39:27 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 12:36:44 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,17 @@ void	check_alive(t_env *env, pthread_t *thread)
 
 static int	fill_windows(t_env *env)
 {
-	static	pthread_t	thread;
-
 	if (PRESSED(TRACER, space))
 	{
 		if (env->running && !(env->running = 0))
-			pthread_join(thread, NULL);
+			pthread_join(env->render, NULL);
 		create_scene(env->amount, env->names, &env->scene, env);
-		pthread_create(&thread, NULL, raytracer, env);
+		pthread_create(&env->render, NULL, raytracer, env);
 	}
 	if (PRESSED_SET(TRACER, cmd, key_s))
 		save_image(env);
 	loading(env);
-	check_alive(env, &thread);
+	check_alive(env, &env->render);
 	properties(env);
 	present_img(&env->ren, TRACER, RENDER);
 	if (env->progress < 0.99999)
@@ -78,6 +76,8 @@ int			main(int argc, char **argv)
 	env.img[2] = add_img(&env.ren, WIN_W, WIN_H);
 	env.names = argv;
 	env.amount = argc;
+	create_scene(env.amount, env.names, &env.scene, &env);
+	pthread_create(&env.render, NULL, raytracer, &env);
 	mlx_loop_hook(env.ren.mlx, fill_windows, &env);
 	env.point_start = -1;
 	mlx_loop(env.ren.mlx);

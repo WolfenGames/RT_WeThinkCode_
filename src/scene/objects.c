@@ -6,21 +6,18 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 07:20:51 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/17 12:57:54 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 12:43:39 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 
-void	do_da_object_stuff_two(char *name, char *line, t_obj *new, t_env *env)
+void	do_da_object_stuff_two(char *line, t_obj *new)
 {
-	(void)name;
-	(void)env;
 	if (match_brackets("transparency", line))
 		new->transparency = ft_clamp(1, 0, ft_atod(line + 14));
 	if (match_brackets("refractionindex", line))
 		new->r_index = ft_max(0, ft_atod(line + 17));
-	set_obj_params(new);
 }
 
 void	do_da_object_stuff_one(char *name, char *line, t_obj *new, t_env *env)
@@ -47,7 +44,7 @@ void	do_da_object_stuff_one(char *name, char *line, t_obj *new, t_env *env)
 		set_tex(new, ft_strsub(line, 9, ft_strlen(line) - 19), env);
 	if (match_brackets("texturescale", line))
 		set_vec(new->tex_scale, ft_strsub(line, 14, ft_strlen(line) - 29));
-	do_da_object_stuff_two(name, line, new, env);
+	do_da_object_stuff_two(line, new);
 }
 
 void	do_da_object(char *name, char *line, t_scene *scene, t_env *env)

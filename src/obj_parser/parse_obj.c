@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 08:47:53 by jdorner           #+#    #+#             */
-/*   Updated: 2018/09/18 06:49:12 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 12:40:38 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,11 +220,8 @@ void    parse_list(t_list *lst, t_env *env)
 				ft_lstadd(&env->scene.obj, ft_lstnew(&template, sizeof(t_obj)));
 				bob = env->scene.obj->content;
 				bob->name = ft_strdup(name);
-				bob->get_intersect = sphere_intersect;
-				bob->get_norm = sphere_getnorm;
-				bob->get_surface_col = sphere_surface_col;
+				bob->type = obj_polygon;
 				temp_list = lst;
-				printf("Building object: %s\n", bob->name);
 				if (malloc_obj_info(&lst, bob))
 					parse_info(temp_list, bob);
 				else

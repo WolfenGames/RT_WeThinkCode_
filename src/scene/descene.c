@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 15:51:18 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/17 12:57:47 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 12:28:49 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,16 @@ static void	del_cam(t_list **cams)
 	}
 }
 
+static void	del_scene_stuff(t_scene *scene)
+{
+	free(scene->fn);
+}
+
 void		del_scene(t_env *env)
 {
 	del_cam(&env->scene.cam);
 	del_lig(&env->scene.lig);
 	del_obj(&env->scene.obj, env);
+	del_scene_stuff(&env->scene);
 	ft_bzero(&env->scene, sizeof(t_scene));
 }
