@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 09:01:47 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/18 08:37:48 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 12:23:47 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ char	*ft_get_filename(char *str, char delim)
 	int		j;
 	char	*ret;
 
-	i = 0;
 	j = 0;
-	while (str[i++] != delim);
-	i = j;
+	while (str[j++] != delim);
+	j--;
 	i = 0;
-	ret = (char *)ft_memalloc(i);
+	ret = ft_strnew(j);
 	while (j-- > 0)
 	{
 		ret[i] = str[i];
