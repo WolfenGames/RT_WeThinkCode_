@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 09:01:47 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/18 08:01:52 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 08:07:40 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,8 @@ void	do_da_scene(char *line, t_env *env)
 {
 	if (match_brackets("raydepth", line))
 		env->scene.raydepth = ft_atod(line + 10);
-	printf("Matches ?? -> %d\n", match_brackets("width", line));
 	if (match_brackets("width", line))
-	{
-		printf("Setting width\n");
 		env->scene.win_w = ft_atoi(line + 7);
-	}
 	if (match_brackets("height", line))
 		env->scene.win_h = ft_atoi(line + 8);
 	if (match_brackets("path", line))
