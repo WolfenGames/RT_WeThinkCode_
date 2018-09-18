@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   obj_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jdorner <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 16:05:20 by jdorner           #+#    #+#             */
-/*   Updated: 2018/09/12 16:05:21 by jdorner          ###   ########.fr       */
+/*   Updated: 2018/09/18 06:49:08 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RT.h"
+#include "rt.h"
 
 t_list	*read_to_list(char *path, t_list *readcontents)
 {
