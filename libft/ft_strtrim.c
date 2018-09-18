@@ -21,13 +21,13 @@ char	*ft_strtrim(const char *s)
 		return (NULL);
 	front = 0;
 	back = ft_strlen(s) - 1;
-	while (s[front] == ' ' || s[front] == '\t' || s[front] == '\n')
+	while (s[front] == ' ' || s[front] == '\t' || s[front] == '\n' || s[front] == '\r')
 	{
 		++front;
 	}
 	if (s[front] == '\0')
 		return (ft_strdup(""));
-	while (s[back] == ' ' || s[back] == '\t' || s[back] == '\n')
+	while (s[back] == ' ' || s[back] == '\t' || s[back] == '\n' || s[back] == '\r')
 		--back;
 	return (ft_strsub(s, front, back - front + 1));
 }

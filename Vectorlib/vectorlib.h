@@ -21,6 +21,7 @@
 
 typedef double	t_matrix[4][4];
 typedef double	t_vec[4];
+typedef double	t_tex[3];
 typedef	struct	s_ray
 {
 	t_vec	dir;

@@ -20,6 +20,8 @@
 
 typedef struct s_env	t_env;
 typedef struct s_img	t_img;
+typedef int				t_vertex[3];
+typedef	t_vertex		t_face[3];	
 
 typedef enum	e_l_type
 {
@@ -67,6 +69,16 @@ typedef struct	s_obj
 	double		transparency;
 	t_vec		tex_scale;
 	t_o_type	type;
+	t_list		subtract;
+	t_list		intersect;
+	int			n_v_point;
+	t_vec		*vertex_point;
+	int			n_v_normal;
+	t_vec		*vertex_normal;
+	int			n_v_t_coord;
+  t_tex		*vertex_texture_coord;
+	int			n_faces;
+  t_face		*faces;
 	t_list		bools;
 	t_list		points;
 	t_list		triangles;
@@ -134,6 +146,9 @@ void			set_obj_params(t_obj *o);
 void			set_o_type(char *s, t_obj *o);
 void			set_tex(t_obj *o, char *filename, t_env *env);
 void			save_image(t_env *env);
+
+int     		read_obj_files(char *paths, t_env *env);
+void			parse_list(t_list *lst, t_env *env);
 
 int				is_line_prop(const char *line);
 int				match_brackets(char *str, char *line);

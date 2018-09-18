@@ -22,6 +22,7 @@ OBJ = src/main.o src/properties.o src/raytracer.o src/loading.o src/blocks.o \
 		src/scene/misc.o src/scene/name_handler.o src/scene/search.o \
 		src/scene/calc.o src/scene/typehandler.o src/scene/handler2.o \
 		src/scene/descene.o src/scene/objects.o src/intersections/shadow.o \
+		src/obj_parser/obj_reader.o src/obj_parser/parse_obj.o \
 
 
 FLAGS = -Wall -Werror -Wextra -I inc -I libft -Ofast -I Renderer -I Vectorlib \
