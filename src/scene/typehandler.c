@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   typehandler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 08:06:31 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/18 16:43:31 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,26 @@ t_l_type	set_l_type(char *s)
 	return (ret);
 }
 
+void		set_obj_params_two(t_obj *o)
+{
+	if (o->type == obj_cylinder)
+	{
+		o->get_norm = cylinder_getnorm;
+		o->get_intersect = cylinder_intersect;
+		o->get_surface_col = cylinder_surface_col;
+	}
+	if (o->type == obj_polygon)
+	{
+		o->get_norm = poly_getnorm;
+		o->get_intersect = poly_intersect;
+		o->get_surface_col = poly_surface_col;
+		if (o->albedo == 0)
+			o->albedo = 0.18;
+		if (o->r_index == 0)
+			o->r_index = 1;
+	}
+}
+
 void		set_obj_params(t_obj *o)
 {
 	o->get_norm = sphere_getnorm;
@@ -43,12 +63,7 @@ void		set_obj_params(t_obj *o)
 		o->get_intersect = plane_intersect;
 		o->get_surface_col = plane_surface_col;
 	}
-	if (o->type == obj_cylinder)
-	{
-		o->get_norm = cylinder_getnorm;
-		o->get_intersect = cylinder_intersect;
-		o->get_surface_col = cylinder_surface_col;
-	}
+	set_obj_params_two(o);
 }
 
 void		set_o_type(char *s, t_obj *o)

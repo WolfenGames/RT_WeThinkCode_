@@ -17,7 +17,7 @@ OBJ = src/main.o src/properties.o src/raytracer.o src/loading.o src/blocks.o \
 		src/scene/scene.o src/scene/handler.o src/scene/scenehandle.o \
 		src/intersections/intersections.o src/intersections/sphere.o \
 		src/intersections/light.o src/intersections/cone.o \
-		src/scene/save.o \
+		src/scene/save.o src/intersections/polygon.o \
 		src/intersections/planes.o src/intersections/cylinder.o \
 		src/scene/misc.o src/scene/name_handler.o src/scene/search.o \
 		src/scene/calc.o src/scene/typehandler.o src/scene/handler2.o \

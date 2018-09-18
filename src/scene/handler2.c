@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 07:51:39 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/18 07:41:47 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 14:44:48 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,11 @@ void	set_tex(t_obj *o, char *filename, t_env *env)
 char	*get_path_param(char *line)
 {
 	char	*path;
-	int		start;
 	int		end;
 
-	start = 0;
 	end = 0;
-	while (line[start++] != '>');
-	end = start;
 	while (line[end++] != '<');
-	path = ft_strsub((const char *)line, start, end - start - 1);
+	path = ft_strsub((const char *)line, 0, end - 1);
 	path = ft_strjoin_n_free(ft_strdup("./"), path);
 	return (path);
 }
@@ -53,4 +49,5 @@ void	do_da_polygon(char *line, t_env *env)
 
 	path = get_path_param(line);
 	read_obj_files(path, env);
+	free(path);
 }

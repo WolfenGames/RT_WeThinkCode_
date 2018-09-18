@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 08:47:53 by jdorner           #+#    #+#             */
-/*   Updated: 2018/09/18 12:40:38 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 15:26:42 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,17 @@ void		face_from_str(char *str, int vert[3])
 {
 	while (*str == '/' || *str == '\t')
 		++str;
-	vert[0] = ft_atoi(str);
+	vert[0] = ft_atoi(str) - 1;
 	while (!(*str == '/' || *str == '\t'))
 		++str;
-	while (*str == '/' || *str == '\t')
+	if (*str == '/' || *str == '\t')
 		++str;
-	vert[1] = ft_atoi(str);
+	vert[1] = ft_atoi(str) - 1;
 	while (!(*str == '/' || *str == '\t'))
 		++str;
-	while (*str == '/' || *str == '\t')
+	if (*str == '/' || *str == '\t')
 		++str;
-	vert[2] = ft_atoi(str);
+	vert[2] = ft_atoi(str) - 1;
 }
 
 void       to_face(char *str, t_obj *obj, int *index)
@@ -84,7 +84,6 @@ void       to_face(char *str, t_obj *obj, int *index)
 	int			i;
 
     faces_arr = ft_strsplit(str, ' ');
-
 	i = 0;
 	total_cnt = 0;
 	while (faces_arr[total_cnt])
@@ -97,9 +96,7 @@ void       to_face(char *str, t_obj *obj, int *index)
 		i++;
 		*index += 1;
 	}
-	while (--total_cnt > 0)
-		free(faces_arr[total_cnt]);
-	free(faces_arr);
+	free_tab(&faces_arr);
 }
 
 void				assign_vertexpoints(t_vec vec, t_vec *ret)
@@ -151,6 +148,22 @@ int				recurr_count(char *str, char delim)
 	return (ret);
 }
 
+void		assign_mem(t_obj *new)
+{
+	if (new->vertex_normal)
+		free(new->vertex_normal);
+	if (new->vertex_texture_coord)
+		free(new->vertex_texture_coord);
+	if (new->vertex_point)
+		free(new->vertex_point);
+	if (new->faces)
+		free(new->faces);
+	new->vertex_point = malloc(sizeof(t_face) * new->n_v_point);
+	new->vertex_normal = malloc(sizeof(t_face) * new->n_v_normal);
+	new->vertex_texture_coord = malloc(sizeof(t_face) * new->n_v_t_coord);
+	new->faces = malloc(sizeof(t_face) * new->n_faces);
+}
+
 int			malloc_obj_info(t_list **lst, t_obj *new)
 {
     while (*lst)
@@ -166,11 +179,7 @@ int			malloc_obj_info(t_list **lst, t_obj *new)
 		*lst = (*lst)->next;
         if (!*lst || ft_strstr((*lst)->content, "o ") || ft_strstr((*lst)->content, "# object"))
         {
-			printf("Size--> P: %i, N: %i, T: %i, F: %i\n", new->n_v_point, new->n_v_normal, new->n_v_t_coord, new->n_faces);
-			new->vertex_point = malloc(sizeof(t_face) * new->n_v_point);
-			new->vertex_normal = malloc(sizeof(t_face) * new->n_v_normal);
-			new->vertex_texture_coord = malloc(sizeof(t_face) * new->n_v_t_coord);
-           	new->faces = malloc(sizeof(t_face) * new->n_faces);
+			assign_mem(new);
 			return (1);
         }
     }

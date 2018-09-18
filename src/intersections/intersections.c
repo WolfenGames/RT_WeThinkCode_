@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/17 13:30:09 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/18 18:34:57 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,11 @@ static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 	t_col	col;
 
 	cur = env->scene.lig;
+	vecs[2][3] = shadow->tri_index;
+	vecs[2][2] = shadow->v;
+	vecs[2][1] = shadow->u;
 	obj->get_norm(vecs[2], shadow->org, obj);
-	sc_col(c, 0, vecs[0]);
+	sc_col(c, 0.01, vecs[0]);
 	while (cur)
 	{
 		generate_shadow_ray(shadow, LIG, env, col);
@@ -91,9 +94,14 @@ void			reflect_crap(t_col c, t_ray point[3], t_obj *obj, double k)
 
 static void		mid(t_ray *ray, t_ray point[3], t_env *env, t_obj *hit_obj)
 {
+	memcpy(&point[0], ray, sizeof(t_ray));
 	v_add(v_multi(ray->dir, ray->len * 0.999999999, point[0].org),
 		ray->org, point[0].org);
+	point[3].dir[3] = ray->tri_index;
 	hit_obj->get_surface_col(hit_obj, point[3].dir, point[0].org);
+	point[2].dir[3] = ray->tri_index;
+	point[2].dir[2] = ray->v;
+	point[2].dir[1] = ray->u;
 	hit_obj->get_norm(point[2].dir, point[0].org, hit_obj);
 	if ((REFLECTIVE || REFRACTIVE) && point[2].len < env->scene.raydepth)
 	{

@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/18 12:34:47 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 16:42:50 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@
 # define BLOCK_W (WIN_W / R_BLOCK_SIZE + 1)
 # define BLOCK_H (WIN_H / R_BLOCK_SIZE + 1)
 # define BLOCK_NO (BLOCK_H * BLOCK_W)
+
+#define VP(N) obj->vertex_point[obj->faces[i][N][0]]
+#define VT(N) obj->vertex_texture_coord[obj->faces[i][N][1]]
+#define VN(N) obj->vertex_normal[obj->faces[i][N][2]]
 
 # include "intersections.h"
 

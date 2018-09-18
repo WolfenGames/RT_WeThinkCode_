@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/18 12:46:28 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 18:41:18 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,6 @@ void	create_scene(int ac, char **names, t_scene *scene, t_env *env)
 	if (fd < 0)
 		exit(EXIT_FAILURE);
 	do_read(fd, scene, env);
-	read_obj_files(names[2], env);
-	
 	/*
 	int i;
 	i = 0;0

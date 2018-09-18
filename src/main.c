@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:01:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/18 12:36:44 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 16:44:21 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int			main(int argc, char **argv)
 	env.amount = argc;
 	create_scene(env.amount, env.names, &env.scene, &env);
 	pthread_create(&env.render, NULL, raytracer, &env);
+	env.running = 1;
 	mlx_loop_hook(env.ren.mlx, fill_windows, &env);
 	env.point_start = -1;
 	mlx_loop(env.ren.mlx);

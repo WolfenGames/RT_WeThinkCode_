@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vectorlib.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/03 17:34:57 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 16:46:22 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/18 18:28:12 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define FILLVEC(V, X, Y, Z, W) (V[0] = X, V[1] = Y, V[2] = Z, V[3] = W)
 # define VEC3_IS(V) (V[0] || V[1] || V[2])
 # define VEC4_IS(V) (V[0] || V[1] || V[2] || V[3])
+# define EPSILON 0.00000001
 # include <math.h>
 # include "libft.h"
 
@@ -27,7 +28,9 @@ typedef	struct	s_ray
 	t_vec	dir;
 	t_vec	org;
 	double	len;
-	double	intersects[2];
+	int		tri_index;
+	double	u;
+	double	v;
 }				t_ray;
 
 double			dot(t_vec a, t_vec b);
