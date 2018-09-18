@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 07:51:39 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/18 07:20:34 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 07:41:47 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ char	*get_path_param(char *line)
 	end = start;
 	while (line[end++] != '<');
 	path = ft_strsub((const char *)line, start, end - start - 1);
+	path = ft_strjoin_n_free(ft_strdup("./"), path);
 	return (path);
 }
 
