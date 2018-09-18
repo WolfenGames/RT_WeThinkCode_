@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/18 07:28:46 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 12:25:03 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct	s_env
 	t_renderer		ren;
 	t_render_block	block[BLOCK_NO];
 	char			**names;
-	char			*fn;
 	int				amount;
 }				t_env;
 
