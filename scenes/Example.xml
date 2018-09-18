@@ -91,3 +91,6 @@
 	<albedo>0.18</albedo>
 	<type>sphere</type>
 </object>
+<polygon name="Da Polygon">
+	<path>objects/test.obj</path>
+</polygon>

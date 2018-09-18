@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 16:58:09 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/18 07:12:44 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,11 +133,12 @@ typedef struct	s_read
 }				t_read;
 
 void			create_scene(int ac, char **av, t_scene *scene, t_env *env);
-void			do_da_scene(char *line, t_scene *scene);
+void			do_da_scene(char *line, t_scene *scene, t_env *env);
 void			do_da_object(char *name, char *line,
 								t_scene *scene, t_env *env);
 void			do_da_object_stuff_one(char *name, char *line,
 										t_obj *new, t_env *env);
+void			do_da_polygon(char *line, t_env *env);
 void			free_tab(char ***tab);
 void			handle_contents(char *line, char *name, t_scene *scene,
 								t_env *env);

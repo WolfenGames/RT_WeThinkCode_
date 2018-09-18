@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:58:08 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/13 11:56:35 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/18 07:24:06 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int		is_line_prop(const char *line)
 		ft_strnequ(line, "<refractionindex>", 17) ||
 		ft_strnequ(line, "<transparency>", 14) ||
 		ft_strnequ(line, "<raydepth>", 10) || ft_strnequ(line, "<width>", 7) ||
-		ft_strnequ(line, "<height>", 8));
+		ft_strnequ(line, "<height>", 8) || ft_strnequ(line, "<path>", 6) ||
+		ft_strnequ(line, "<objfilepath>", 13));
 }
 
 char	*get_prop_name_two(char *s)
@@ -53,6 +54,10 @@ char	*get_prop_name_two(char *s)
 		return ("width");
 	if (ft_strnequ((s + 1), "height", 6))
 		return ("height");
+	if (ft_strnequ((s + 1), "path", 4))
+		return ("path");
+	if (ft_strnequ((s + 1), "objfilepath", 11))
+		return ("objfilepath");
 	return (NULL);
 }
 
@@ -94,7 +99,7 @@ char	*get_name(char *s)
 	{
 		ft_streplace(s, '\"', '\'');
 		if (ft_strnequ(s, "<camera", 7) || ft_strnequ(s, "<object", 7) ||
-			ft_strnequ(s, "<light", 6))
+			ft_strnequ(s, "<light", 6) || ft_strnequ(s, "<polygon", 8))
 		{
 			if ((name = ft_strstr(s, "name='")))
 			{
