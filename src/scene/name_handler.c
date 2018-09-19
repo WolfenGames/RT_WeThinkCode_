@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:58:08 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/19 09:48:03 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 11:10:36 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		is_line_prop(const char *line)
 	return (ft_strnequ(line, "<origin>", 8) ||
 		ft_strnequ(line, "<rotation>", 10) ||
 		ft_strnequ(line, "<fov>", 5) || ft_strnequ(line, "<aperture>", 10) ||
-		ft_strnequ(line, "<scale>", 7) ||  ft_strnequ(line, "<albedo>", 8) ||
+		ft_strnequ(line, "<scale>", 7) || ft_strnequ(line, "<albedo>", 8) ||
 		ft_strnequ(line, "<diffusecolour>", 15) ||
 		ft_strnequ(line, "<specularcolour>", 16) ||
 		ft_strnequ(line, "<refractiveindex>", 17) ||
@@ -28,7 +28,7 @@ int		is_line_prop(const char *line)
 		ft_strnequ(line, "<texturescale>", 14) ||
 		ft_strnequ(line, "<refractionindex>", 17) ||
 		ft_strnequ(line, "<transparency>", 14) ||
-		ft_strnequ(line, "<raydepth>", 10) || 
+		ft_strnequ(line, "<raydepth>", 10) ||
 		ft_strnequ(line, "<path>", 6) || ft_strnequ(line, "<objfilepath>", 13));
 }
 

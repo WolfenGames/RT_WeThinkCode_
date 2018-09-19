@@ -6,11 +6,12 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 07:20:51 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/18 12:43:39 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 11:14:48 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
+#include "rt.h"
 
 void	do_da_object_stuff_two(char *line, t_obj *new)
 {
@@ -45,6 +46,18 @@ void	do_da_object_stuff_one(char *name, char *line, t_obj *new, t_env *env)
 	if (match_brackets("texturescale", line))
 		set_vec(new->tex_scale, ft_strsub(line, 14, ft_strlen(line) - 29));
 	do_da_object_stuff_two(line, new);
+}
+
+void	do_obj_param_set(t_env *env)
+{
+	t_list	*cur;
+
+	cur = env->scene.obj;
+	while (cur)
+	{
+		set_obj_params(OBJ);
+		cur = cur->next;
+	}
 }
 
 void	do_da_object(char *name, char *line, t_scene *scene, t_env *env)
