@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 09:01:47 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/19 09:48:59 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 11:15:48 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	*ft_get_filename(char *str, char delim)
 	char	*ret;
 
 	j = 0;
-	while (str[j++] != delim);
+	while (str[j] != delim)
+		j++;
 	j--;
 	i = 0;
 	ret = ft_strnew(j);

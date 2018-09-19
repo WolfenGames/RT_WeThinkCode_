@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 09:50:45 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 11:15:22 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 typedef struct s_env	t_env;
 typedef struct s_img	t_img;
 typedef int				t_vertex[3];
-typedef	t_vertex		t_face[3];	
+typedef	t_vertex		t_face[3];
 
 typedef enum	e_l_type
 {
@@ -140,6 +140,7 @@ void			do_da_object(char *name, char *line,
 								t_scene *scene, t_env *env);
 void			do_da_object_stuff_one(char *name, char *line,
 										t_obj *new, t_env *env);
+void			do_obj_param_set(t_env *env);
 void			do_da_polygon(char *line, t_env *env);
 void			free_tab(char ***tab);
 void			handle_contents(char *line, char *name, t_scene *scene,
@@ -150,7 +151,7 @@ void			set_o_type(char *s, t_obj *o);
 void			set_tex(t_obj *o, char *filename, t_env *env);
 void			save_image(t_env *env);
 
-int     		read_obj_files(char *paths, t_env *env);
+int				read_obj_files(char *paths, t_env *env);
 void			parse_list(t_list *lst, t_env *env);
 
 int				is_line_prop(const char *line);

@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/18 18:41:18 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 11:13:59 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,6 @@ char	*get_close_tag(char *line)
 	free(name);
 	free_tab(&sp);
 	return (close_tag);
-}
-
-void	do_obj_param_set(t_env *env)
-{
-	t_list	*cur;
-
-	cur = env->scene.obj;
-	while (cur)
-	{
-		set_obj_params(OBJ);
-		cur = cur->next;
-	}
 }
 
 void	end_read(int flag, char *line, char *tmp, t_env *env)
@@ -108,37 +96,6 @@ void	create_scene(int ac, char **names, t_scene *scene, t_env *env)
 	if (fd < 0)
 		exit(EXIT_FAILURE);
 	do_read(fd, scene, env);
-	/*
-	int i;
-	i = 0;0
-	while (i < ((t_obj*)env->scene.obj->content)->n_faces)
-	{
-		printf("%i/%i/%i %i/%i/%i %i/%i/%i\n", ((t_obj*)env->scene.obj->content)->faces[i][0][0]
-		, ((t_obj*)env->scene.obj->content)->faces[i][0][1]
-		, ((t_obj*)env->scene.obj->content)->faces[i][0][2]
-		, ((t_obj*)env->scene.obj->content)->faces[i][1][0]
-		, ((t_obj*)env->scene.obj->content)->faces[i][1][1]
-		, ((t_obj*)env->scene.obj->content)->faces[i][1][2]
-		, ((t_obj*)env->scene.obj->content)->faces[i][2][0]
-		, ((t_obj*)env->scene.obj->content)->faces[i][2][1]
-		, ((t_obj*)env->scene.obj->content)->faces[i][2][2]);
-		i++;
-	}
-	*/
-	/*
-	i = 0;
-	while (((t_obj*)env->scene.obj->content)->vertex_normal)
-	{
-		printf("%f\n", ((t_obj*)env->scene.obj->content)->vertex_normal[i]);
-		i++;
-	}
-	i = 0;
-	while (((t_obj*)env->scene.obj->content)->vertex_texture_coord)
-	{
-		printf("%f\n", ((t_obj*)env->scene.obj->content)->vertex_texture_coord[i]);
-		i++;
-	}
-	*/
 	close(fd);
 	calc_scene(scene);
 }
