@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scenehandle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 09:01:47 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/19 14:29:21 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/19 15:30:21 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ char	*ft_get_filename(char *str, char delim)
 	j = 0;
 	while (str[j] != delim)
 		j++;
-	j--;
 	i = 0;
 	ret = ft_strnew(j);
 	while (j-- > 0)

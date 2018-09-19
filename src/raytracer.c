@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:38 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 14:05:09 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 16:04:58 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static void	render_block(t_env *env, t_render_block *block, t_img *img)
 			generate_ray(&ray, size, env);
 			get_col(&ray, env, c, 0);
 			put_pixel(size[0], size[1], c, img);
+			if (!env->running)
+				pthread_exit(NULL);
 		}
 	}
 }
@@ -62,8 +64,6 @@ static void	*calc_block(void *temp)
 	{
 		if (!(set->env->block[x].taken))
 		{
-			if (!set->env->running)
-				pthread_exit(NULL);
 			set->env->block[x].taken = 1;
 			render_block(set->env, &set->env->block[x], set->img);
 			set->env->progress += 1 / (double)BLOCK_NO;

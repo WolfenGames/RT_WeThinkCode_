@@ -7,9 +7,8 @@
 <scene>
 	<raydepth>5</raydepth>
 	<eyewidth>0.2</eyewidth>
-	<cellshade>0.2</cellshade>
 	<path>Culmination</path>
-	<objfilepath>objects/untitled.obj</objfilepath>
+	<objfilepath>objects/stripobj.obj</objfilepath>
 </scene>
 <light	name='Right light'>
 	<origin>0,0,11,0</origin>
@@ -18,13 +17,6 @@
 	<type>directional</type>
 	<intensity>12</intensity>
 </light>
-<object name="Yum_Torus">
-	<origin>1, 0, 0</origin>
-	<rotation>20, 10, 0</rotation>
+<object name="strip">
 	<diffusecolour>200, 200, 200, 0</diffusecolour>
-	/<specularcolour>255, 255,255</specularcolour>
-	/<texture>Textures/earth.xpm</texture>
-	<texturescale>1,1,1</texturescale>
-	/<transparency>0.5</transparency>
-	/<refractionindex>1.5</refractionindex>
 </object>

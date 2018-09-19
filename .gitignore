@@ -4,8 +4,10 @@
 # Object files
 *.o
 *.ko
+*.mtl
 *.obj
 *.elf
+objects/
 
 # Linker output
 *.ilk

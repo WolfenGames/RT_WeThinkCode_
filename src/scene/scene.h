@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 14:29:28 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/19 15:07:00 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ void			do_da_polygon(char *line, t_env *env);
 void			free_tab(char ***tab);
 void			handle_contents(char *line, char *name, t_scene *scene,
 								t_env *env);
+void			polygon_scale(t_env *env);
 void			set_vec(t_vec vec, char *linesub);
 void			set_obj_params(t_obj *o);
 void			set_o_type(char *s, t_obj *o);

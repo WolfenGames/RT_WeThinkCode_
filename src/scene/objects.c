@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 07:20:51 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/19 14:21:46 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/19 15:18:12 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,22 @@ void	do_da_object(char *name, char *line, t_scene *scene, t_env *env)
 		new = (t_obj*)scene->obj->content;
 	}
 	do_da_object_stuff_one(name, line, new, env);
+}
+
+void	polygon_scale(t_env *env)
+{
+	t_list	*cur;
+	int		i;
+
+	cur = env->scene.obj;
+	while (cur)
+	{
+		if (OBJ->type == obj_polygon)
+		{
+			i = -1;
+			while (++i < OBJ->n_v_point)
+				v_mult(OBJ->vertex_point[i], OBJ->scale, OBJ->vertex_point[i]);
+		}
+		cur = cur->next;
+	}
 }
