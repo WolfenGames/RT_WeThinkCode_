@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 11:14:43 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/19 11:41:57 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 	c[2] *= vecs[0][2] / 255.0;
 }
 
-void			reflect_crap(t_col c, t_ray point[3], t_obj *obj, double k)
+void		reflect_crap(t_col c, t_ray point[3], t_obj *obj, double k)
 {
 	t_col	specular_rat;
 	t_col	refract;
@@ -84,17 +84,17 @@ void			reflect_crap(t_col c, t_ray point[3], t_obj *obj, double k)
 	refract[0] = (point[3].dir[0] / 255.0) * point[1].org[0];
 	refract[1] = (point[3].dir[1] / 255.0) * point[1].org[1];
 	refract[2] = (point[3].dir[2] / 255.0) * point[1].org[2];
-	k *= 1 - obj->transparency;
-	k += 1 - obj->transparency;
+	k *= 1 - obj->trans;
+	k += 1 - obj->trans;
 	c[0] = ft_clamp(255, 0, specular_rat[0] * point[1].dir[0] * k + (c[0])
-		* (1 - obj->transparency) + point[1].org[0] * (obj->transparency) * (1 - k));
+		* (1 - obj->trans) + point[1].org[0] * (obj->trans) * (1 - k));
 	c[1] = ft_clamp(255, 0, specular_rat[1] * point[1].dir[1] * k + (c[1])
-		* (1 - obj->transparency) + point[1].org[1] * (obj->transparency) * (1 - k));
+		* (1 - obj->trans) + point[1].org[1] * (obj->trans) * (1 - k));
 	c[2] = ft_clamp(255, 0, specular_rat[2] * point[1].dir[2] * k + (c[2])
-		* (1 - obj->transparency) + point[1].org[2] * (obj->transparency) * (1 - k));
+		* (1 - obj->trans) + point[1].org[2] * (obj->trans) * (1 - k));
 }
 
-static void		mid(t_ray *ray, t_ray point[3], t_env *env, t_obj *hit_obj)
+static void	mid(t_ray *ray, t_ray point[3], t_env *env, t_obj *hit_obj)
 {
 	memcpy(&point[0], ray, sizeof(t_ray));
 	v_add(v_multi(ray->dir, ray->len * 0.9999999, point[0].org),
@@ -104,11 +104,11 @@ static void		mid(t_ray *ray, t_ray point[3], t_env *env, t_obj *hit_obj)
 	if ((REFLECTIVE || REFRACTIVE) && point[2].len < env->scene.raydepth)
 	{
 		if (REFLECTIVE && reflect(ray->dir, point[2].dir, point[0].dir))
-				get_col(&point[0], env, point[1].dir, point[2].len + 1);
+			get_col(&point[0], env, point[1].dir, point[2].len + 1);
 		refract(ray->dir, point[2].dir, hit_obj->r_index, point[0].dir);
 		v_add(point[0].org,
 			v_multi(point[0].dir, 0.00001, point[2].org), point[0].org);
-		if (hit_obj->transparency)
+		if (hit_obj->trans)
 			get_col(&point[0], env, point[1].org, point[2].len + 1);
 		v_sub(point[0].org, point[2].org, point[0].org);
 		reflect_crap(point[3].dir, point, hit_obj,
@@ -117,7 +117,7 @@ static void		mid(t_ray *ray, t_ray point[3], t_env *env, t_obj *hit_obj)
 	light_thing(&point[0], env, hit_obj, point[3].dir);
 }
 
-void			get_col(t_ray *ray, t_env *env, t_col c, int level)
+void		get_col(t_ray *ray, t_env *env, t_col c, int level)
 {
 	t_obj	*hit_obj;
 	t_ray	point[4];

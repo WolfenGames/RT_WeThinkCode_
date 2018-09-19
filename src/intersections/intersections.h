@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:13 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/18 13:23:03 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 12:22:42 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # define OBJ ((t_obj*)cur->content)
 # define CAM ((t_cam*)cur->content)
 # define REFLECTIVE VEC3_IS(hit_obj->specular_colour)
-# define REFRACTIVE (hit_obj->transparency)
-# define DIV_P(N) (N ? N : 0.0001)
+# define REFRACTIVE (hit_obj->trans)
+# define DIV_P(N) ((ABS(N) > EPSILON) ? N : EPSILON)
 
-#include "scene.h"
+# include "scene.h"
 
 void	get_col(t_ray *ray, t_env *env, t_col c, int level);
 void	get_surface_col(t_obj *obj, t_col c, t_vec point, t_env *env);
@@ -36,17 +36,17 @@ void	cone_surface_col(t_obj *ob, t_col c, t_vec point);
 int		cone_intersect(t_ray *ray, t_obj *obj);
 void	cone_getnorm(t_vec norm, t_vec point, t_obj *obj);
 
-void    plane_surface_col(t_obj *ob, t_col c, t_vec point);
-int     plane_intersect(t_ray *ray, t_obj *obj);
-void    plane_getnorm(t_vec norm, t_vec point, t_obj *obj);
+void	plane_surface_col(t_obj *ob, t_col c, t_vec point);
+int		plane_intersect(t_ray *ray, t_obj *obj);
+void	plane_getnorm(t_vec norm, t_vec point, t_obj *obj);
 
-void    cylinder_surface_col(t_obj *ob, t_col c, t_vec point);
-int     cylinder_intersect(t_ray *ray, t_obj *obj);
-void    cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj);
+void	cylinder_surface_col(t_obj *ob, t_col c, t_vec point);
+int		cylinder_intersect(t_ray *ray, t_obj *obj);
+void	cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj);
 
-void    poly_surface_col(t_obj *ob, t_col c, t_vec point);
-int     poly_intersect(t_ray *ray, t_obj *obj);
-void    poly_getnorm(t_vec norm, t_vec point, t_obj *obj);
+void	poly_surface_col(t_obj *ob, t_col c, t_vec point);
+int		poly_intersect(t_ray *ray, t_obj *obj);
+void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj);
 
 void	cap_col(double o[2], t_vec lpoint, t_obj *obj);
 

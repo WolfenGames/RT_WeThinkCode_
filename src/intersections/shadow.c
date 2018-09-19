@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 11:47:01 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/17 13:23:45 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/19 11:50:27 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	make_shadow(t_lig *lig, t_ray *shadow)
 	normalize(shadow->dir);
 }
 
-void	generate_shadow_ray(t_ray *point, t_lig *lig, t_env *env, t_col col)
+void		generate_shadow_ray(t_ray *point, t_lig *lig, t_env *env, t_col col)
 {
 	t_ray	sh;
 	t_obj	*obj;
@@ -45,10 +45,10 @@ void	generate_shadow_ray(t_ray *point, t_lig *lig, t_env *env, t_col col)
 			v_add(sh.org, v_multi(sh.dir, sh.len + 0.0001, sh.dir), sh.org);
 			obj->get_surface_col(obj, temp[0], sh.org);
 			FILLCOL(temp[1], 255, 255, 255, 255);
-			sc_col(temp[0], 1 - obj->transparency, temp[0]);
-			sc_col(temp[1], obj->transparency, temp[1]);
+			sc_col(temp[0], 1 - obj->trans, temp[0]);
+			sc_col(temp[1], obj->trans, temp[1]);
 			add_col(temp[0], temp[1], temp[0]);
-			sc_col(temp[0], obj->transparency, temp[0]);
+			sc_col(temp[0], obj->trans, temp[0]);
 			mask_col(col, temp[0], col);
 		}
 		else

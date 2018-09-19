@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 13:20:45 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/19 11:11:16 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/19 12:58:57 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	poly_surface_col(t_obj *obj, t_col c, t_vec point)
 {
-	int i;
+	int		i;
 	t_vec	len;
 	t_vec	o;
 
@@ -42,7 +42,7 @@ void	poly_surface_col(t_obj *obj, t_col c, t_vec point)
 
 void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj)
 {
-	int i;
+	int		i;
 	t_vec	len;
 	t_vec	temp;
 
@@ -56,59 +56,49 @@ void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj)
 	transformvec(obj->otw, norm, norm);
 }
 
-int		tri_intersect(t_ray	*ray, t_ray *tr, t_obj *obj, int i)
+int		left_of(t_vec to, t_vec from, t_vec point[2], t_vec perp)
 {
-	t_vec	v1v0;
-	t_vec	v2v0;
-	t_vec	norm;
-	double	area2;
+	t_vec	to_from;
+	t_vec	to_point;
 
-	v_sub(VP(1), VP(0), v1v0);
-	v_sub(VP(2), VP(0), v2v0);
-	v_cross(v1v0, v2v0, norm);
-	area2 = length(norm);
+	v_sub(to, from, to_from);
+	v_sub(point[1], from, to_point);
+	v_cross(to_from, to_point, perp);
+	if (dot(point[0], perp) < 0)
+		return (0);
+	return (1);
+}
 
-	double	NdotDir = dot(norm, tr->dir);
-	if (ABS(NdotDir) < EPSILON)
+int		tri_intersect(t_ray *ray, t_ray *tr, t_obj *obj, int i)
+{
+	t_vec	norm[6];
+	double	var[3];
+
+	v_sub(VP(1), VP(0), norm[2]);
+	v_sub(VP(2), VP(0), norm[3]);
+	v_cross(norm[2], norm[3], norm[0]);
+	var[0] = length(norm[0]);
+	var[1] = dot(norm[0], tr->dir);
+	if (ABS(var[1]) < EPSILON)
 		return (0);
-	double d = dot(norm, VP(0));
-	double t = (-dot(norm, tr->org) + d) / NdotDir;
-	if (t < 0 || t > ray->len)
-		return(0);
-	t_vec	point;
-	v_add(tr->org, v_multi(tr->dir, t, point), point);
-	t_vec	perp;
-	t_vec	topoint;
-	v_sub(point, VP(0), topoint);
-	v_cross(v1v0, topoint, perp);
-	if (dot(norm, perp) < 0)
+	var[2] = (-dot(norm[0], tr->org) + dot(norm[0], VP(0))) / var[1];
+	v_add(tr->org, v_multi(tr->dir, var[2], norm[1]), norm[1]);
+	if (var[2] < 0 || var[2] > ray->len || !left_of(VP(1), VP(0), norm, norm[4])
+		|| !left_of(VP(2), VP(1), norm, norm[4])
+		|| !left_of(VP(0), VP(2), norm, norm[5]))
 		return (0);
-	t_vec	v2v1;
-	v_sub(VP(2), VP(1), v2v1);
-	v_sub(point, VP(1), topoint);
-	v_cross(v2v1, topoint, perp);
-	d = length(perp) / area2;
-	if (dot(norm, perp) < 0)
-		return (0);
-	t_vec	v0v2;
-	v_sub(VP(0), VP(2), v0v2);
-	v_sub(point, VP(2), topoint);
-	v_cross(v0v2, topoint, perp);
-	area2 = length(perp) / area2;
-	if (dot(norm, perp) < 0)
-		return (0);
-	ray->len = t;
-	ray->u = d;
-	ray->v = area2;
+	ray->u = length(norm[4]) / var[0];
+	ray->v = length(norm[5]) / var[0];
+	ray->len = var[2];
 	ray->tri_index = i;
 	return (1);
 }
 
 int		poly_intersect(t_ray *ray, t_obj *obj)
 {
-	t_ray   tr;
-	int i;
-	int hitthis;
+	t_ray	tr;
+	int		i;
+	int		hitthis;
 
 	i = -1;
 	hitthis = 0;

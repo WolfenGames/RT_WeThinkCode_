@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/18 13:48:52 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 11:51:11 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	sphere_surface_col(t_obj *ob, t_col c, t_vec point)
 	t_vec		norm;
 	t_vec		tempvec[3];
 	t_vec		o;
-	t_img		*img = ob->tex;
+	const t_img	*img = ob->tex;
 
 	transform(ob->wto, point, norm);
 	normalize(norm);
@@ -35,7 +35,7 @@ void	sphere_surface_col(t_obj *ob, t_col c, t_vec point)
 		* find_angle(tempvec[0], tempvec[1])) / (2.f * M_PI);
 	o[0] = (o[0] * ob->tex_scale[0] - (int)(o[0] * ob->tex_scale[0])) * img->w;
 	o[1] = (o[1] * ob->tex_scale[1] - (int)(o[1] * ob->tex_scale[1])) * img->h;
-	get_img_col(o[0], o[1], img, c);
+	get_img_col(o[0], o[1], (t_img*)img, c);
 }
 
 void	sphere_getnorm(t_vec norm, t_vec point, t_obj *obj)

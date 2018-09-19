@@ -6,19 +6,19 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 14:20:25 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/19 11:44:39 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	cap_col(double o[2], t_vec lpoint, t_obj *obj)
+void		cap_col(double o[2], t_vec lpoint, t_obj *obj)
 {
 	o[0] = (ABS(lpoint[0] + obj->radius) / (obj->radius * 2));
 	o[1] = (ABS(lpoint[1] + obj->radius) / (obj->radius * 2));
 }
 
-int	visible(t_ray *ray, t_lig *lig, t_env *env)
+static int	visible(t_ray *ray, t_lig *lig, t_env *env)
 {
 	t_ray	vis;
 
@@ -45,7 +45,7 @@ static void	check_light(t_ray *ray, t_lig *lig, t_col c, t_env *env)
 	if (!visible(ray, lig, env))
 		return ;
 	normalize(l);
-	dot_l_r = dot(l ,ray->dir);
+	dot_l_r = dot(l, ray->dir);
 	if (dot_l_r < 0)
 		return ;
 	sc_col(lig->col, pow(dot_l_r, (10000 * light_length) / lig->intensity), b);

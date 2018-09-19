@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 10:07:15 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/19 11:32:56 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 
 void		cone_surface_col(t_obj *ob, t_col c, t_vec point)
 {
-	t_vec		lpoint;
+	t_vec		lp;
 	t_vec		temp;
 	t_vec		o;
 	t_img		*img;
 
 	img = ob->tex;
-	transform(ob->wto, point, lpoint);
+	transform(ob->wto, point, lp);
 	if (!img)
 	{
 		FILLCOL(c, ob->surface_colour[0], ob->surface_colour[1],
 			ob->surface_colour[2], ob->surface_colour[3]);
 		return ;
 	}
-	o[1] = 1 - (lpoint[2] + ob->scale[0] / 2.0) / ob->scale[0];
-	o[2] = lpoint[2];
-	lpoint[2] = 0;
-	FILLVEC(temp, 0, (lpoint[0] < 0 ? 1 : -1), 0, 0);
-	o[0] = 1 - (((lpoint[0] < 0 ? 0 : M_PI) + find_angle(temp, lpoint)) / (2 * M_PI));
+	o[1] = 1 - (lp[2] + ob->scale[0] / 2.0) / ob->scale[0];
+	o[2] = lp[2];
+	lp[2] = 0;
+	FILLVEC(temp, 0, (lp[0] < 0 ? 1 : -1), 0, 0);
+	o[0] = 1 - (((lp[0] < 0 ? 0 : M_PI) + find_angle(temp, lp)) / (2 * M_PI));
 	if (ABS(o[2]) > ((ob->scale[0] / 2.0) * 0.99999))
-		cap_col(o, lpoint, ob);
+		cap_col(o, lp, ob);
 	o[0] = (o[0] * ob->tex_scale[0] - (int)(o[0] * ob->tex_scale[0])) * img->w;
 	o[1] = (o[1] * ob->tex_scale[1] - (int)(o[1] * ob->tex_scale[1])) * img->h;
 	get_img_col(o[0], o[1], img, c);
