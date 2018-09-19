@@ -6,15 +6,16 @@
 </camera>
 <scene>
 	<raydepth>5</raydepth>
+	<cellshade>1</cellshade>
 	<path>Test Scene</path>
 	<objfilepath>objects/cokecan.obj</objfilepath>
 </scene>
 <light	name='Right light'>
 	<origin>0,0,11,0</origin>
-	<direction>0,0,-1</direction>
+	<direction>0,-1,-1</direction>
 	<colour>255,255,255,255</colour>
-	<type>point</type>
-	<intensity>300</intensity>
+	<type>directional</type>
+	<intensity>12</intensity>
 </light>
 <object name="35_Coca_Cola_can">
 	<origin>0, 0, 0</origin>
