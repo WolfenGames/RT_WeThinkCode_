@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:27:23 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/18 12:30:38 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 11:13:28 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,22 @@ void	save_image(t_env *env)
 	int				i;
 	int				j;
 
- 	i = 0;
-	while (i < WIN_H)
+	i = -1;
+	while (++i < WIN_H)
 	{
-		j = 0;
-		while (j < WIN_W)
+		j = -1;
+		while (++j < WIN_W)
 		{
 			get_img_col(j, WIN_H - i, env->img[2], c);
 			image[i][j][2] = (unsigned char)c[0];
 			image[i][j][1] = (unsigned char)c[1];
 			image[i][j][0] = (unsigned char)c[2];
-			j++;
 		}
-		i++;
 	}
-	fn = ft_strjoin_n_free(ft_strdup("Screen Shots/"), ft_strdup(env->scene.fn));
+	fn = ft_strjoin_n_free(ft_strdup("Screen Shots/"),
+								ft_strdup(env->scene.fn));
 	fn = ft_strjoin_n_free(fn, ft_strdup(" "));
 	fn = ft_strjoin_n_free(fn, ft_strdup(ft_get_time()));
 	fn = ft_strjoin_n_free(fn, ft_strdup(".bmp"));
-	generate_bitmap_image((unsigned char *)image, WIN_H,
-							WIN_W, fn);
+	generate_bitmap_image((unsigned char *)image, WIN_H, WIN_W, fn);
 }
