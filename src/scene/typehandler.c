@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 08:06:31 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/18 16:43:31 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 09:41:32 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,6 @@ void		set_obj_params_two(t_obj *o)
 		o->get_norm = poly_getnorm;
 		o->get_intersect = poly_intersect;
 		o->get_surface_col = poly_surface_col;
-		if (o->albedo == 0)
-			o->albedo = 0.18;
-		if (o->r_index == 0)
-			o->r_index = 1;
 	}
 }
 
@@ -51,6 +47,10 @@ void		set_obj_params(t_obj *o)
 	o->get_norm = sphere_getnorm;
 	o->get_intersect = sphere_intersect;
 	o->get_surface_col = sphere_surface_col;
+	if (o->albedo == 0)
+		o->albedo = 0.18;
+	if (o->r_index == 0)
+		o->r_index = 1;
 	if (o->type == obj_cone)
 	{
 		o->get_norm = cone_getnorm;
