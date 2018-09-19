@@ -1,30 +1,41 @@
 <camera name='Lord ISSAARRD THE LIZARD'>
-	<origin>0,0,5</origin>
-	<rotation>0,0,0</rotation>
+	<origin>0,6,10</origin>
+	<rotation>0,-30,0</rotation>
 	<aperture>1</aperture>
 	<fov>40</fov>
 </camera>
 <scene>
 	<raydepth>5</raydepth>
-	<width>1920</width>
-	<height>1080</height>
+	<cellshaded>1</cellshaded>
 	<path>Test Scene</path>
 	<objfilepath>objects/untitled.obj</objfilepath>
 </scene>
 <light	name='Right light'>
 	<origin>0,0,11,0</origin>
-	<direction>0,0,-1</direction>
+	<direction>0,-1,-1</direction>
 	<colour>255,255,255,255</colour>
-	<type>point</type>
-	<intensity>300</intensity>
+	<type>directional</type>
+	<intensity>12</intensity>
 </light>
-<object name="Ball_Sphere.001">
+<object name="Yum_Torus">
 	<origin>0, 0, 0</origin>
-	<rotation>0, 70, 0</rotation>
+	<rotation>20, 10, 0</rotation>
 	<diffusecolour>200, 200, 200, 0</diffusecolour>
-	/<specularcolour>255, 255,255</specularcolour>
-	/<texture>Textures/earth.xpm</texture>
+	<specularcolour>55, 55,55</specularcolour>
+	<texture>Textures/skin.xpm</texture>
 	<texturescale>1,1,1</texturescale>
-	//<transparency>0.5</transparency>
-	//<refractionindex>1.5</refractionindex>
+	<transparency>0.9</transparency>
+	<refractionindex>1.5</refractionindex>
+</object>
+<object name="back">
+	<origin>0, -40, -100</origin>
+	<rotation>0, 0, 0</rotation>
+	<scale>1000, 1000</scale>
+	<diffusecolour>200, 200, 200, 0</diffusecolour>
+	<specularcolour>55, 55,55</specularcolour>
+	<type>plane</type>
+	<texture>Textures/earth.xpm</texture>
+	<texturescale>1,1,1</texturescale>
+	<transparency>0</transparency>
+	<refractionindex>1.5</refractionindex>
 </object>
