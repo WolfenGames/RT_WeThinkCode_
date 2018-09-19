@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 11:41:57 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/19 14:30:00 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,16 @@ t_obj		*trace(t_ray *ray, t_list *cur)
 **	vec[2] is the normal of the object at that point
 */
 
+static double	shade(double dot, double shaded)
+{
+	if (!shaded)
+		return (dot);
+	dot *= 1 / shaded;
+	dot = (int)dot;
+	dot *= shaded;
+	return (dot);
+}
+
 static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 {
 	t_list	*cur;
@@ -64,7 +74,8 @@ static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 		generate_shadow_ray(shadow, LIG, env, col);
 		sc_col(col, (obj->albedo / M_PI) * (LIG->intensity
 			/ (LIG->type == light_point ? DIV_P(shadow->len) : 1.0))
-			* ABS(dot(shadow->dir, vecs[2])), vecs[1]);
+			* shade(ABS(dot(shadow->dir, vecs[2])), env->scene.cellshade),
+			vecs[1]);
 		add_col(vecs[0], vecs[1], vecs[0]);
 		cur = cur->next;
 	}

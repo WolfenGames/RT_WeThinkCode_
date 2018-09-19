@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scenehandle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 09:01:47 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/19 14:15:15 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 14:29:21 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	do_da_scene(char *line, t_env *env)
 	if (match_brackets("objfilepath", line))
 		do_da_polygon(line + 13, env);
 	if (match_brackets("cellshade", line))
-		env->scene.cellshade = 1;
+		env->scene.cellshade = ft_atod(line + 11);
 	if (match_brackets("eyewidth", line))
 		env->eye_w = ft_atod(line + 10);
 }

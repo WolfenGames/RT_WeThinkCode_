@@ -1,5 +1,6 @@
 <scene>
     <raydepth>10</raydepth>
+	<cellshade>0.1</cellshade>
 </scene>
 <camera name='Bill'>
     <origin>0,0,10</origin>
@@ -10,7 +11,7 @@
 </camera>
 <light  name="light">
     <origin>0,0,10.01</origin>
-    <intensity>700</intensity>
+    <intensity>70</intensity>
     <colour>255,255,255</colour>
     <type>point</type>
 </light>

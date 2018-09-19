@@ -6,13 +6,14 @@
 </camera>
 <scene>
 	<raydepth>5</raydepth>
-	<cellshade>1</cellshade>
-	<path>Test Scene</path>
-	<objfilepath>objects/cokecan.obj</objfilepath>
+	<eyewidth>0.2</eyewidth>
+	<cellshade>0.2</cellshade>
+	<path>Culmination</path>
+	<objfilepath>objects/untitled.obj</objfilepath>
 </scene>
 <light	name='Right light'>
 	<origin>0,0,11,0</origin>
-	<direction>0,-1,-1</direction>
+	<direction>0,1,-1</direction>
 	<colour>255,255,255,255</colour>
 	<type>directional</type>
 	<intensity>12</intensity>
@@ -21,9 +22,9 @@
 	<origin>1, 0, 0</origin>
 	<rotation>20, 10, 0</rotation>
 	<diffusecolour>200, 200, 200, 0</diffusecolour>
-	<specularcolour>255, 255,255</specularcolour>
+	/<specularcolour>255, 255,255</specularcolour>
 	/<texture>Textures/earth.xpm</texture>
 	<texturescale>1,1,1</texturescale>
-	<transparency>0.5</transparency>
-	<refractionindex>1.5</refractionindex>
+	/<transparency>0.5</transparency>
+	/<refractionindex>1.5</refractionindex>
 </object>

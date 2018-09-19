@@ -35,7 +35,7 @@
 	<scale>400,400,1</scale>
 	<diffusecolour>255,255,255</diffusecolour>
 	<specularcolour>255,255,255</specularcolour>
-	<texture>Textures/Inseption.xpm</texture>
+	<texture>Textures/earth.xpm</texture>
 	<texturescale>1,1,1</texturescale>
 	<albedo>0.18</albedo>
 	<type>plane</type>

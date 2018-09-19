@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 07:20:51 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/19 11:14:48 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 14:21:46 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	do_da_object_stuff_two(char *line, t_obj *new)
 {
 	if (match_brackets("transparency", line))
-		new->transparency = ft_clamp(1, 0, ft_atod(line + 14));
+		new->trans = ft_clamp(1, 0, ft_atod(line + 14));
 	if (match_brackets("refractionindex", line))
 		new->r_index = ft_max(0, ft_atod(line + 17));
 }

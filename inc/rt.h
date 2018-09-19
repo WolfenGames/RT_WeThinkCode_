@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 14:05:44 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 14:58:18 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # define M_WIN_NAME "The Best RT You Ever Did See!"
 
 # define R_BLOCK_SIZE 32
-# define WIN_H 1080
-# define WIN_W 1920
+# define WIN_H 900
+# define WIN_W 1500
 # define P_WIN_H 900
 # define P_WIN_W 300
 # define BLOCK_W (WIN_W / R_BLOCK_SIZE + 1)

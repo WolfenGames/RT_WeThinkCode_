@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 14:08:15 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/19 14:29:28 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ typedef struct	s_scene
 	t_list		*lig;
 	t_list		*cam;
 	t_cam		*c_cam;
-	int			cellshade;
+	double		cellshade;
 }				t_scene;
 
 typedef struct	s_read
