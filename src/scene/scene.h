@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 09:49:18 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 09:50:45 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ typedef struct	s_obj
 	int			n_v_normal;
 	t_vec		*vertex_normal;
 	int			n_v_t_coord;
-  t_tex		*vertex_texture_coord;
+	t_tex		*vertex_texture_coord;
 	int			n_faces;
-  t_face		*faces;
+	t_face		*faces;
 	t_list		bools;
 	t_list		points;
 	t_list		triangles;
