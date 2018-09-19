@@ -1,5 +1,5 @@
 <camera name='Lord ISSAARRD THE LIZARD'>
-	<origin>0,0,10</origin>
+	<origin>0,0,5</origin>
 	<rotation>0,0,0</rotation>
 	<aperture>1</aperture>
 	<fov>40</fov>
@@ -9,20 +9,22 @@
 	<width>1920</width>
 	<height>1080</height>
 	<path>Test Scene</path>
-	<objfilepath>objects/cokecan2.obj</objfilepath>
+	<objfilepath>objects/untitled.obj</objfilepath>
 </scene>
 <light	name='Right light'>
 	<origin>0,0,11,0</origin>
 	<direction>0,0,-1</direction>
 	<colour>255,255,255,255</colour>
-	<type>directional</type>
-	<intensity>20</intensity>
+	<type>point</type>
+	<intensity>300</intensity>
 </light>
-<object name="35_Coca_Cola_can">
+<object name="Ball_Sphere.001">
 	<origin>0, 0, 0</origin>
-	<rotation>-20, -20, 20</rotation>
-	<radius>5</radius>
-	<diffusecolour>0, 255, 255, 0</diffusecolour>
-	<refractionindex>1.5</refractionindex>
-	<albedo>0.18</albedo>
+	<rotation>0, 70, 0</rotation>
+	<diffusecolour>200, 200, 200, 0</diffusecolour>
+	/<specularcolour>255, 255,255</specularcolour>
+	/<texture>Textures/earth.xpm</texture>
+	<texturescale>1,1,1</texturescale>
+	//<transparency>0.5</transparency>
+	//<refractionindex>1.5</refractionindex>
 </object>

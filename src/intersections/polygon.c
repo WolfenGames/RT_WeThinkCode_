@@ -3,20 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   polygon.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 13:20:45 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/18 18:42:43 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 10:25:18 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	poly_surface_col(t_obj *ob, t_col c, t_vec point)
+void	poly_surface_col(t_obj *obj, t_col c, t_vec point)
 {
+	int i;
+	t_vec	len;
+	t_vec	o;
+
 	(void)point;
-	(void)ob;
-	vec_dup(ob->surface_colour, c);
+	i = c[3];
+	if (!obj->tex)
+	{
+		vec_dup(obj->surface_colour, c);
+		return ;
+	}
+	len[1] = c[1];
+	len[2] = c[2];
+	len[0] = 1 - c[1] - c[2];
+	o[0] = VT(2)[0] * len[0];
+	o[1] = VT(2)[1] * len[0];
+	o[0] += VT(0)[0] * len[1];
+	o[1] += VT(0)[1] * len[1];
+	o[0] += VT(1)[0] * len[2];
+	o[1] += VT(1)[1] * len[2];
+	o[1] = 1 - o[1];
+	FILLCOL(c, o[0] * 255, o[1] * 255, 255, 0);
+	o[0] *= obj->tex->w;
+	o[1] *= obj->tex->h;
+	get_img_col(o[0], o[1], obj->tex, c);
 }
 
 void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj)
@@ -30,8 +52,9 @@ void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj)
 	len[1] = norm[1];
 	len[2] = norm[2];
 	len[0] = 1 - norm[1] - norm[2];
-	v_add(v_multi(VN(0), len[0], temp), v_multi(VN(1), len[1], norm), norm);
-	v_add(norm, v_multi(VN(2), len[2], temp), norm);
+	v_add(v_multi(VN(2), len[0], temp), v_multi(VN(0), len[1], norm), norm);
+	v_add(norm, v_multi(VN(1), len[2], temp), norm);
+	transformvec(obj->otw, norm, norm);
 }
 
 int		tri_intersect(t_ray	*ray, t_ray *tr, t_obj *obj, int i)
