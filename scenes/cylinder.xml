@@ -6,6 +6,7 @@
     <rotation>0,0,0</rotation>
     <fov>30</fov>
     <aperture>1</aperture>
+	<eyewidth>0.5</eyewidth>
 </camera>
 <light  name="light">
     <origin>0,0,10.01</origin>

@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:58:08 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/19 11:10:36 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 14:11:49 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int		is_line_prop(const char *line)
 		ft_strnequ(line, "<refractionindex>", 17) ||
 		ft_strnequ(line, "<transparency>", 14) ||
 		ft_strnequ(line, "<raydepth>", 10) ||
+		ft_strnequ(line, "<eyewidth>", 10) ||
 		ft_strnequ(line, "<path>", 6) || ft_strnequ(line, "<objfilepath>", 13));
 }
 
@@ -54,6 +55,8 @@ char	*get_prop_name_two(char *s)
 		return ("objfilepath");
 	if (ft_strnequ((s + 1), "cellshade", 9))
 		return ("cellshade");
+	if (ft_strnequ((s + 1), "eyewidth", 8))
+		return ("eyewidth");
 	return (NULL);
 }
 

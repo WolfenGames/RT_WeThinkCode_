@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 11:15:02 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/19 14:01:16 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,14 @@ static void	calc_obj(t_obj *obj)
 	t_vec		tempvec;
 	t_matrix	temp;
 
-	fill_m_rot_x(obj->otw, (-obj->rot[0] * M_PI) / 180.f);
 	fill_m_rot_y(temp, (obj->rot[1] * M_PI) / 180.f);
+	fill_m_rot_x(obj->otw, (-obj->rot[0] * M_PI) / 180.f);
 	m4_mult(obj->otw, temp, obj->otw);
 	FILLVEC(tempvec, 0, 0, -1, 0);
 	transformvec(obj->otw, tempvec, tempvec);
 	fill_m_rot_v((-obj->rot[2] * M_PI) / 180.f, tempvec, temp);
 	m4_mult(obj->otw, temp, obj->otw);
-	v_multi(obj->org, 1.0f, tempvec);
-	fill_m_transform(temp, tempvec);
+	fill_m_transform(temp, obj->org);
 	m4_mult(obj->otw, temp, obj->otw);
 	m4_invert(obj->otw, obj->wto);
 }
@@ -36,12 +35,14 @@ static void	calc_cam(t_cam *cam)
 
 	ft_bzero(&temp, sizeof(temp));
 	ft_bzero(&cam->ctw, sizeof(t_matrix));
-	fill_m_rot_x(cam->ctw, (cam->rot[1] * M_PI) / 180.f);
-	fill_m_rot_y(temp, (cam->rot[0] * M_PI) / 180.f);
+	fill_m_rot_y(cam->ctw, (cam->rot[1] * M_PI) / 180.f);
+	fill_m_rot_x(temp, (cam->rot[0] * M_PI) / 180.f);
 	m4_mult(cam->ctw, temp, cam->ctw);
 	FILLVEC(cam->dir, 0, 0, -1, 0);
 	transformvec(cam->ctw, cam->dir, cam->dir);
 	fill_m_rot_v((cam->rot[2] * M_PI) / 180.f, cam->dir, temp);
+	m4_mult(cam->ctw, temp, cam->ctw);
+	fill_m_transform(temp, cam->org);
 	m4_mult(cam->ctw, temp, cam->ctw);
 	cam->rot[0] += cam->rot[0] >= 360 ? -360 : 0;
 	cam->rot[0] += cam->rot[0] <= 0 ? +360 : 0;
