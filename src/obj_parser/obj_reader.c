@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 16:05:20 by jdorner           #+#    #+#             */
-/*   Updated: 2018/09/18 18:40:21 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 11:22:58 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_list	*read_to_list(char *path, t_list *readcontents)
 t_list	*read_file(char *path)
 {
 	t_list		*readcontents;
-	
+
 	readcontents = NULL;
 	if (!(readcontents = read_to_list(path, readcontents)))
 		return (NULL);
@@ -53,23 +53,16 @@ void	kill_lst(void *content, size_t size)
 	free(content);
 }
 
-int     read_obj_files(char *paths, t_env *env)
+int		read_obj_files(char *paths, t_env *env)
 {
-    char    *er;
-    t_list  *read_list;
+	char	*er;
+	t_list	*read_list;
 
-	if((read_list = read_file(paths)) == NULL)
+	if ((read_list = read_file(paths)) == NULL)
 	{
-		er = ft_strjoin_n_free(ft_strdup("\x1b[34mWarn[ng: Unable to locate the object file at the path: \x1b[0m"), paths);
+		er = ft_strjoin_n_free(ft_strdup("\x1b[34mBad .obj: \x1b[0m"), paths);
 		die(er);
 	}
-	/*
-	while (read_list)
-	{
-		printf("%s\n", read_list->content);
-		read_list = read_list->next;
-	}
-	*/
 	parse_list(read_list, env);
 	ft_lstdel(&read_list, kill_lst);
 	return (1);
