@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/18 18:34:57 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 09:42:35 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,11 @@ void			reflect_crap(t_col c, t_ray point[3], t_obj *obj, double k)
 static void		mid(t_ray *ray, t_ray point[3], t_env *env, t_obj *hit_obj)
 {
 	memcpy(&point[0], ray, sizeof(t_ray));
-	v_add(v_multi(ray->dir, ray->len * 0.999999999, point[0].org),
+	v_add(v_multi(ray->dir, ray->len * 0.9999999, point[0].org),
 		ray->org, point[0].org);
 	point[3].dir[3] = ray->tri_index;
+	point[3].dir[2] = ray->v;
+	point[3].dir[1] = ray->u;
 	hit_obj->get_surface_col(hit_obj, point[3].dir, point[0].org);
 	point[2].dir[3] = ray->tri_index;
 	point[2].dir[2] = ray->v;
@@ -108,7 +110,7 @@ static void		mid(t_ray *ray, t_ray point[3], t_env *env, t_obj *hit_obj)
 		if (REFLECTIVE && reflect(ray->dir, point[2].dir, point[0].dir))
 				get_col(&point[0], env, point[1].dir, point[2].len + 1);
 		refract(ray->dir, point[2].dir, hit_obj->r_index, point[0].dir);
-		v_add(point[0].org, v_multi(point[0].dir, 0.000001, point[2].org), point[0].org);
+		v_add(point[0].org, v_multi(point[0].dir, 0.00001, point[2].org), point[0].org);
 		if (hit_obj->transparency)
 			get_col(&point[0], env, point[1].org, point[2].len + 1);
 		v_sub(point[0].org, point[2].org, point[0].org);

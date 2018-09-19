@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:50:41 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/19 09:02:18 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	plane_surface_col(t_obj *ob, t_col c, t_vec point)
 		return ;
 	}
 	o[0] = tempvec[2][0] / ob->scale[0];
-	o[1] = tempvec[2][1] / ob->scale[1];
+	o[1] = 1 - tempvec[2][1] / ob->scale[1];
 	o[0] = (o[0] * ob->tex_scale[0] - (int)(o[0] * ob->tex_scale[0])) * img->w;
 	o[1] = (o[1] * ob->tex_scale[1] - (int)(o[1] * ob->tex_scale[1])) * img->h;
 	get_img_col(o[0], o[1], img, c);
