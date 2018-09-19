@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   blocks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 13:17:55 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/19 12:59:37 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-#define	INBOUNDS(C) (C[0] >= 0 && C[0] < BLOCK_W && C[1] >= 0 && C[1] < BLOCK_H)
+#define INBOUNDS(C) (C[0] >= 0 && C[0] < BLOCK_W && C[1] >= 0 && C[1] < BLOCK_H)
 #define LEFT -1
 #define RIGHT 1
 #define UP -2
@@ -25,7 +25,7 @@ static void	make_block(t_render_block *block, t_xy cur, int *placed)
 	block->start[1] = cur[1] * R_BLOCK_SIZE;
 }
 
-static void walk(int length, t_render_block *blocks, t_xy c[2], int dir)
+static void	walk(int length, t_render_block *blocks, t_xy c[2], int dir)
 {
 	int i;
 
@@ -39,14 +39,16 @@ static void walk(int length, t_render_block *blocks, t_xy c[2], int dir)
 	}
 }
 
-// c[0] = cur;
-// c[1][0] = i;
-// c[1][1] = placed;
+/*
+** c[0] = cur;
+** c[1][0] = i;
+** c[1][1] = placed;
+*/
 
 void		create_blocks(t_render_block *blocks)
 {
 	int		r;
-	t_xy 	c[2];
+	t_xy	c[2];
 
 	r = 0;
 	c[0][0] = BLOCK_W / 2;

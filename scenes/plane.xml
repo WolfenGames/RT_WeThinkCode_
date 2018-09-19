@@ -1,11 +1,12 @@
 <camera name='Lord ISSAARRD THE LIZARD'>
 	<origin>-100,40,-80</origin>
-	<rotation>135,-20,0</rotation>
+	<rotation>20,135,0</rotation>
 	<aperture>1</aperture>
 	<fov>50</fov>
 </camera>
 <scene>
 	<raydepth>5</raydepth>
+	<eyewidth>1</eyewidth>
 </scene>
 <light name="light">
 	<origin>-100,20,0</origin>

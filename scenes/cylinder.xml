@@ -2,10 +2,11 @@
     <raydepth>10</raydepth>
 </scene>
 <camera name='Bill'>
-    <origin>0,10,0</origin>
-    <rotation>0,-90,0</rotation>
+    <origin>0,0,10</origin>
+    <rotation>0,0,0</rotation>
     <fov>30</fov>
     <aperture>1</aperture>
+	<eyewidth>0.5</eyewidth>
 </camera>
 <light  name="light">
     <origin>0,10.01,0</origin>

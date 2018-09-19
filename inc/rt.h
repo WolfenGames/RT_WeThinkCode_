@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/18 16:42:50 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 14:05:44 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@
 # define PROP_WIN ((t_env*)env)->win[1]
 # define PROP_BACK ((t_env*)env)->img[0]
 # define LOAD ((t_env*)env)->img[1]
-# define RENDER ((t_env*)env)->img[2]
+# define ILEFT ((t_env*)env)->img[2]
+# define IRIGHT ((t_env*)env)->img[3]
+# define IFINAL ((t_env*)env)->img[4]
+# define RENDER ((t_env*)env)->curr_img
 # define REN &((t_env*)env)->ren
 # define PROG ((t_env*)env)->progress
 # define M_WIN_NAME "The Best RT You Ever Did See!"
@@ -35,9 +38,9 @@
 # define BLOCK_H (WIN_H / R_BLOCK_SIZE + 1)
 # define BLOCK_NO (BLOCK_H * BLOCK_W)
 
-#define VP(N) obj->vertex_point[obj->faces[i][N][0]]
-#define VT(N) obj->vertex_texture_coord[obj->faces[i][N][1]]
-#define VN(N) obj->vertex_normal[obj->faces[i][N][2]]
+# define VP(N) obj->vertex_point[obj->faces[i][N][0]]
+# define VT(N) obj->vertex_texture_coord[obj->faces[i][N][1]]
+# define VN(N) obj->vertex_normal[obj->faces[i][N][2]]
 
 # include "intersections.h"
 
@@ -54,6 +57,7 @@ typedef struct	s_env
 	float			progress;
 	t_win			*win[10];
 	t_img			*img[10];
+	t_img			*curr_img;
 	int				running;
 	int				point;
 	double			point_start;
@@ -61,6 +65,10 @@ typedef struct	s_env
 	t_render_block	block[BLOCK_NO];
 	char			**names;
 	int				amount;
+	int				mode;
+	int				side;
+	int				stereod;
+	double			eye_w;
 }				t_env;
 
 typedef struct	s_render_set
@@ -76,5 +84,6 @@ void			print_vector(t_env *env, void *win, char *name, t_vec vec);
 void			create_scene(int ac, char **av, t_scene *scene, t_env *env);
 void			create_blocks(t_render_block *blocks);
 void			del_scene(t_env *env);
+void			gen_stereo(t_env *env);
 
 #endif

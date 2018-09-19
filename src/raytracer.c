@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:38 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/17 09:36:47 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 14:05:09 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ static void	generate_ray(t_ray *ray, t_xy coord, t_env *env)
 	const double	invheight = 1 / (double)WIN_H;
 	const double	invwidth = 1 / (double)WIN_W;
 	const double	angle = tan(env->scene.c_cam->fov * 0.5 * M_PI / 180.0);
+	t_vec			temp;
 
-	ft_memcpy(ray->org, env->scene.c_cam->org, sizeof(double) * 4);
+	FILLVEC(temp, env->mode == 1 ? 0 : ((env->side - 0.5) * env->eye_w),
+            0, 0, 0);
+	transform(env->scene.c_cam->ctw, temp, ray->org);
 	ray->dir[0] = (2 * (coord[0] + 0.5) * invwidth - 1) * (double)WIN_W
 		* invheight * angle;
 	ray->dir[1] = (1 - 2 * (coord[1] + 0.5) * invheight) * angle;
@@ -83,20 +86,25 @@ void		*raytracer(void *env)
 	t_render_set	set;
 	pthread_t		threads[4];
 
-	PROG = 0;
 	set.env = env;
 	set.env->running = 1;
-	set.img = RENDER;
-	pthread_create(&threads[0], NULL, calc_block, &set);
-	pthread_create(&threads[1], NULL, calc_block, &set);
-	pthread_create(&threads[2], NULL, calc_block, &set);
-	pthread_create(&threads[3], NULL, calc_block, &set);
-	pthread_join(threads[0], NULL);
-	pthread_join(threads[1], NULL);
-	pthread_join(threads[2], NULL);
-	pthread_join(threads[3], NULL);
-	PROG = 1;
-	clear_blocks(set.env->block);
+	((t_env*)env)->side = -1;
+	while (++((t_env*)env)->side < ((t_env*)env)->mode)
+	{
+		PROG = 0;
+		RENDER = ((t_env*)env)->img[2 + ((t_env*)env)->side];
+		set.img = RENDER;
+		pthread_create(&threads[0], NULL, calc_block, &set);
+		pthread_create(&threads[1], NULL, calc_block, &set);
+		pthread_create(&threads[2], NULL, calc_block, &set);
+		pthread_create(&threads[3], NULL, calc_block, &set);
+		pthread_join(threads[0], NULL);
+		pthread_join(threads[1], NULL);
+		pthread_join(threads[2], NULL);
+		pthread_join(threads[3], NULL);
+		PROG = 1;
+		clear_blocks(set.env->block);
+	}
 	set.env->running = 0;
 	return (0);
 }
