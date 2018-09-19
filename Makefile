@@ -24,7 +24,7 @@ OBJ = src/main.o src/properties.o src/raytracer.o src/loading.o src/blocks.o \
 		src/scene/descene.o src/scene/objects.o src/intersections/shadow.o \
 		src/obj_parser/obj_reader.o src/obj_parser/parse_obj.o \
 		src/obj_parser/parse_obj_two.o src/obj_parser/parse_obj_three.o \
-		src/post_proc/stereo.o
+		src/post_proc/stereo.o src/post_proc/aa.o
 
 
 FLAGS = -Wall -Werror -Wextra -I inc -I libft -Ofast -I Renderer -I Vectorlib \

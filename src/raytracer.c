@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:38 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 16:04:58 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 18:00:13 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "scene.h"
 
-static void	generate_ray(t_ray *ray, t_xy coord, t_env *env)
+void		generate_ray(t_ray *ray, double x, double y, t_env *env)
 {
 	const double	invheight = 1 / (double)WIN_H;
 	const double	invwidth = 1 / (double)WIN_W;
@@ -23,9 +23,9 @@ static void	generate_ray(t_ray *ray, t_xy coord, t_env *env)
 	FILLVEC(temp, env->mode == 1 ? 0 : ((env->side - 0.5) * env->eye_w),
             0, 0, 0);
 	transform(env->scene.c_cam->ctw, temp, ray->org);
-	ray->dir[0] = (2 * (coord[0] + 0.5) * invwidth - 1) * (double)WIN_W
+	ray->dir[0] = (2 * (x + 0.5) * invwidth - 1) * (double)WIN_W
 		* invheight * angle;
-	ray->dir[1] = (1 - 2 * (coord[1] + 0.5) * invheight) * angle;
+	ray->dir[1] = (1 - 2 * (y + 0.5) * invheight) * angle;
 	ray->dir[2] = -1;
 	transformvec(env->scene.c_cam->ctw, ray->dir, ray->dir);
 	normalize(ray->dir);
@@ -44,7 +44,7 @@ static void	render_block(t_env *env, t_render_block *block, t_img *img)
 		size[0] = block->start[0] - 1;
 		while (++size[0] < (R_BLOCK_SIZE + block->start[0]) && size[0] < WIN_W)
 		{
-			generate_ray(&ray, size, env);
+			generate_ray(&ray, size[0], size[1], env);
 			get_col(&ray, env, c, 0);
 			put_pixel(size[0], size[1], c, img);
 			if (!env->running)
@@ -104,6 +104,7 @@ void		*raytracer(void *env)
 		pthread_join(threads[3], NULL);
 		PROG = 1;
 		clear_blocks(set.env->block);
+		aa(env);
 	}
 	set.env->running = 0;
 	return (0);

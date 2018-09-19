@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 14:30:00 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/19 16:26:15 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static double	shade(double dot, double shaded)
 	dot *= 1 / shaded;
 	dot = (int)dot;
 	dot *= shaded;
+	dot += shaded;
+	dot = ft_min(1, dot);
 	return (dot);
 }
 
