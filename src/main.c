@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:01:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 13:55:37 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 15:14:59 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,32 +79,37 @@ static int	fill_windows(t_env *env)
 **	img[2] = Render Image
 */
 
+void		setup(t_env *env, int argc, char **argv)
+{
+	ft_bzero(env, sizeof(t_env));
+	renderer_set(&env->ren);
+	create_blocks(env->block);
+	env->win[0] = add_win(&env->ren, M_WIN_NAME, WIN_W, WIN_H);
+	env->win[1] = add_win(&env->ren, "Properties", P_WIN_W, P_WIN_H);
+	env->img[0] = add_img(&env->ren, P_WIN_W, P_WIN_H);
+	env->img[1] = add_img(&env->ren, WIN_W - 50, 20);
+	set_img_pos(env->img[1], 25, WIN_H - 60);
+	env->img[2] = add_img(&env->ren, WIN_W, WIN_H);
+	env->img[3] = add_img(&env->ren, WIN_W, WIN_H);
+	env->img[4] = add_img(&env->ren, WIN_W, WIN_H);
+	env->names = argv;
+	env->amount = argc;
+	env->mode = 1;
+	create_scene(env->amount, env->names, &env->scene, env);
+	pthread_create(&env->render, NULL, raytracer, env);
+	env->running = 1;
+	mlx_loop_hook(env->ren.mlx, fill_windows, env);
+	env->point_start = -1;
+	env->curr_img = env->img[2];
+}
+
 int			main(int argc, char **argv)
 {
 	t_env	env;
 
 	if (argc == 1)
 		die("Usage: ./RT [Scene1]...[SceneN]");
-	ft_bzero(&env, sizeof(t_env));
-	renderer_set(&env.ren);
-	create_blocks(env.block);
-	env.win[0] = add_win(&env.ren, M_WIN_NAME, WIN_W, WIN_H);
-	env.win[1] = add_win(&env.ren, "Properties", P_WIN_W, P_WIN_H);
-	env.img[0] = add_img(&env.ren, P_WIN_W, P_WIN_H);
-	env.img[1] = add_img(&env.ren, WIN_W - 50, 20);
-	set_img_pos(env.img[1], 25, WIN_H - 60);
-	env.img[2] = add_img(&env.ren, WIN_W, WIN_H);
-	env.img[3] = add_img(&env.ren, WIN_W, WIN_H);
-	env.img[4] = add_img(&env.ren, WIN_W, WIN_H);
-	env.names = argv;
-	env.amount = argc;
-	env.mode = 1;
-	create_scene(env.amount, env.names, &env.scene, &env);
-	pthread_create(&env.render, NULL, raytracer, &env);
-	env.running = 1;
-	mlx_loop_hook(env.ren.mlx, fill_windows, &env);
-	env.point_start = -1;
-	env.curr_img = env.img[2];
+	setup(&env, argc, argv);
 	mlx_loop(env.ren.mlx);
 	return (0);
 }

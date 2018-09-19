@@ -6,12 +6,12 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:20 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 14:03:10 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 16:03:10 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
- 
+
 static void	print_cam_properties(t_env *env, void *win, t_cam *cam)
 {
 	t_vec	cam_prop;
@@ -19,7 +19,6 @@ static void	print_cam_properties(t_env *env, void *win, t_cam *cam)
 	cam_prop[0] = cam->fov;
 	cam_prop[1] = cam->aperture;
 	cam_prop[2] = 1 / (cam->aperture ? cam->aperture : 1);
-
 	if (++env->point > -1 && env->point < 43)
 		mlx_string_put(env->ren.mlx, win, 10, env->point * 20, 0xff8cff,
 			cam->name);
@@ -58,9 +57,15 @@ static void	print_obj_properties(t_env *env, void *win, t_obj *obj)
 	print_vector(env, win, "S", obj->scale);
 	print_vector(env, win, "C", obj->surface_colour);
 	print_vector(env, win, "SP_C", obj->specular_colour);
+	if (obj->type == obj_polygon)
+	{
+		t_vec	t;
+		FILLVEC(t, obj->n_v_point, obj->n_v_t_coord, obj->n_faces, 0);
+		print_vector(env, win, "P_MEM", t);
+	}
 }
 
-void	print_lig_properties(t_env *env, void *win, t_lig *lig)
+void		print_lig_properties(t_env *env, void *win, t_lig *lig)
 {
 	char *type;
 
@@ -72,12 +77,13 @@ void	print_lig_properties(t_env *env, void *win, t_lig *lig)
 		type = "Invalid Type!";
 	if (++env->point > -1 && env->point < 43)
 		mlx_string_put(env->ren.mlx, win, 10, env->point * 20, 0xff8c00,
-			lig->name);
+						lig->name);
 	if (++env->point > -1 && env->point < 43)
 		mlx_string_put(env->ren.mlx, win, 40, env->point * 20, 0x886611, type);
-	type = ft_strjoin_n_free(ft_strdup("Intesity: "), ft_dtoa(lig->intensity, 3));
+	type = ft_strjoin_n_free(ft_strdup("Intesity: "),
+								ft_dtoa(lig->intensity, 3));
 	mlx_string_put(env->ren.mlx, win, 40, ++env->point * 20, 0xcccccc,
-		type);
+					type);
 	free(type);
 	print_vector(env, win, "O", lig->org);
 	print_vector(env, win, "C", lig->col);
@@ -118,8 +124,8 @@ void		properties(t_env *env)
 
 	start[0][0] = 0;
 	start[0][1] = 0;
-	start[1][0] = 300;
-	start[1][1] = 900;
+	start[1][0] = P_WIN_W;
+	start[1][1] = P_WIN_H;
 	FILLCOL(col, 25, 25, 25, 255);
 	draw_box(start[0], start[1], col, PROP_BACK);
 	start[0][1] = 870;

@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 16:05:20 by jdorner           #+#    #+#             */
-/*   Updated: 2018/09/19 11:36:59 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 15:48:23 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ t_list	*read_file(char *path)
 void	kill_lst(void *content, size_t size)
 {
 	(void)size;
-	free(content);
+	if (content)
+		free(content);
 }
 
 int		read_obj_files(char *paths, t_env *env)

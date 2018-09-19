@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 14:58:18 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/19 16:00:13 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define WIN_H 900
 # define WIN_W 1500
 # define P_WIN_H 900
-# define P_WIN_W 300
+# define P_WIN_W 450
 # define BLOCK_W (WIN_W / R_BLOCK_SIZE + 1)
 # define BLOCK_H (WIN_H / R_BLOCK_SIZE + 1)
 # define BLOCK_NO (BLOCK_H * BLOCK_W)

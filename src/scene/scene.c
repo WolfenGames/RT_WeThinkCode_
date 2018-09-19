@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 11:13:59 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/19 15:06:37 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,5 @@ void	create_scene(int ac, char **names, t_scene *scene, t_env *env)
 	do_read(fd, scene, env);
 	close(fd);
 	calc_scene(scene);
+	polygon_scale(env);
 }
