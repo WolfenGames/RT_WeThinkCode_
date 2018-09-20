@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 16:26:15 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/20 17:51:44 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ t_obj		*trace(t_ray *ray, t_list *cur)
 **	vec[2] is the normal of the object at that point
 */
 
-static double	shade(double dot, double shaded)
+static double	shade(double dot, double shaded, t_obj *obj)
 {
+	dot += obj->trans;
+	dot = ft_min(1, dot);
 	if (!shaded)
 		return (dot);
 	dot *= 1 / shaded;
@@ -75,8 +77,8 @@ static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 	{
 		generate_shadow_ray(shadow, LIG, env, col);
 		sc_col(col, (obj->albedo / M_PI) * (LIG->intensity
-			/ (LIG->type == light_point ? DIV_P(shadow->len) : 1.0))
-			* shade(ABS(dot(shadow->dir, vecs[2])), env->scene.cellshade),
+			/ (LIG->type == light_point ? shadow->len : 1.0))
+			* shade(ABS(dot(shadow->dir, vecs[2])), env->scene.cellshade, obj),
 			vecs[1]);
 		add_col(vecs[0], vecs[1], vecs[0]);
 		cur = cur->next;
@@ -114,16 +116,18 @@ static void	mid(t_ray *ray, t_ray point[3], t_env *env, t_obj *hit_obj)
 		ray->org, point[0].org);
 	hit_obj->get_surface_col(hit_obj, point[3].dir, point[0].org);
 	hit_obj->get_norm(point[2].dir, point[0].org, hit_obj);
+	vec_dup(point[3].dir, point[1].org);
 	if ((REFLECTIVE || REFRACTIVE) && point[2].len < env->scene.raydepth)
 	{
-		if (REFLECTIVE && reflect(ray->dir, point[2].dir, point[0].dir))
-			get_col(&point[0], env, point[1].dir, point[2].len + 1);
 		refract(ray->dir, point[2].dir, hit_obj->r_index, point[0].dir);
 		v_add(point[0].org,
-			v_multi(point[0].dir, 0.00001, point[2].org), point[0].org);
+			v_multi(point[2].dir, 0.00000009 * (dot(point[2].dir, point[0].dir) < 0 ? -1 : 1), point[2].org), point[0].org);
 		if (hit_obj->trans)
 			get_col(&point[0], env, point[1].org, point[2].len + 1);
 		v_sub(point[0].org, point[2].org, point[0].org);
+		vec_dup(point[1].org, point[1].dir);
+		if (REFLECTIVE && reflect(ray->dir, point[2].dir, point[0].dir))
+			get_col(&point[0], env, point[1].dir, point[2].len + 1);
 		reflect_crap(point[3].dir, point, hit_obj,
 			fresnel(ray->dir, point[2].dir, hit_obj->r_index));
 	}
@@ -136,9 +140,11 @@ void		get_col(t_ray *ray, t_env *env, t_col c, int level)
 	t_ray	point[4];
 
 	ray->len = INFINITY;
+	ray->u = 0;
+	ray->tri_index = 0;
+	ray->v = 0;
 	hit_obj = trace(ray, env->scene.obj);
 	point[2].len = level;
-	FILLCOL(point[3].dir, 0, 0, 0, 255);
 	point[2].dir[3] = ray->tri_index;
 	point[2].dir[2] = ray->v;
 	point[2].dir[1] = ray->u;

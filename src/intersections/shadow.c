@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 11:47:01 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 11:50:27 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/20 17:42:06 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ void		generate_shadow_ray(t_ray *point, t_lig *lig, t_env *env, t_col col)
 	ft_memmove(&sh, point, sizeof(t_ray));
 	vec_dup(lig->col, col);
 	sh.len = 1;
+	temp[0][3] = point->tri_index;
+	temp[0][2] = point->v;
+	temp[0][1] = point->u;
 	while (VEC3_IS(col) && sh.len > 0)
 	{
 		make_shadow(lig, &sh);

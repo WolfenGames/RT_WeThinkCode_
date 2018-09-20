@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_reader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 16:05:20 by jdorner           #+#    #+#             */
-/*   Updated: 2018/09/19 15:48:23 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/20 13:48:45 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int		read_obj_files(char *paths, t_env *env)
 		er = ft_strjoin_n_free(ft_strdup("\x1b[34mBad .obj: \x1b[0m"), paths);
 		die(er);
 	}
+	(void)env;
 	parse_list(read_list, env);
 	ft_lstdel(&read_list, kill_lst);
 	return (1);

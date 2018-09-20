@@ -6,12 +6,12 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 16:54:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 18:30:07 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/20 18:31:24 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-#define LIM 4
+#define LIM 15
 
 int		di(t_col c1, t_col c2)
 {
@@ -46,12 +46,11 @@ double	*cast(t_env *env, t_xy point, t_col ret)
 	get_col(&ray, env, c[2], 0);
 	generate_ray(&ray, point[0], point[1] + 0.5, env);
 	get_col(&ray, env, c[3], 0);
-	add_col(c[0], c[1], ret);
-	add_col(ret, c[2], ret);
-	add_col(ret, c[3], ret);
+	v_add(c[0], c[1], ret);
+	v_add(ret, c[2], ret);
+	v_add(ret, c[3], ret);
 	v_multi(ret, 0.25, ret);
 	ret[3] = 255;
-	FILLCOL(ret, 255, 0, 0, 255);
 	return (ret);
 }
 
@@ -61,13 +60,17 @@ void	aa(t_env *env)
 	t_col	c;
 
 	point[0] = -1;
-	while (++point[0] < RENDER->w)
+	while (++point[0] < RENDER->w && env->running)
 	{
 		point[1] = -1;
-		while (++point[1] < RENDER->h)
+		while (++point[1] < RENDER->h && env->running)
 		{
+			FILLCOL(c, 255, 0, 0, 255);
 			if (checkpoint(env, point))
-				put_pixel(point[0], point[1], cast(env, point, c), RENDER);
+			{
+				put_pixel(point[0], point[1], c, RENDER);
+				//put_pixel(point[0], point[1], cast(env, point, c), RENDER);
+			}
 		}
 	}
 }

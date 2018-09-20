@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 13:20:45 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/19 12:58:57 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/20 17:41:15 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	poly_surface_col(t_obj *obj, t_col c, t_vec point)
 
 	(void)point;
 	i = c[3];
-	if (!obj->tex)
+	if (!obj->tex || i < 0 || i >= obj->n_faces)
 	{
 		vec_dup(obj->surface_colour, c);
 		return ;
@@ -28,16 +28,20 @@ void	poly_surface_col(t_obj *obj, t_col c, t_vec point)
 	len[1] = c[1];
 	len[2] = c[2];
 	len[0] = 1 - c[1] - c[2];
+	if ((obj->faces[i][0][1] >= obj->n_v_t_coord || obj->faces[i][0][1] < 0) ||
+		(obj->faces[i][1][1] >= obj->n_v_t_coord || obj->faces[i][1][1] < 0) ||
+		(obj->faces[i][2][1] >= obj->n_v_t_coord || obj->faces[i][2][1] < 0))
+		return ;
 	o[0] = VT(2)[0] * len[0];
 	o[1] = 1 - VT(2)[1] * len[0];
 	o[0] += VT(0)[0] * len[1];
 	o[1] -= VT(0)[1] * len[1];
 	o[0] += VT(1)[0] * len[2];
 	o[1] -= VT(1)[1] * len[2];
-	FILLCOL(c, o[0] * 255, o[1] * 255, 255, 0);
 	o[0] *= obj->tex->w;
 	o[1] *= obj->tex->h;
 	get_img_col(o[0], o[1], obj->tex, c);
+	return ;
 }
 
 void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj)
@@ -51,8 +55,13 @@ void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj)
 	len[1] = norm[1];
 	len[2] = norm[2];
 	len[0] = 1 - norm[1] - norm[2];
+	if ((obj->faces[i][0][2] >= obj->n_v_normal || obj->faces[i][0][2] < 0) ||
+		(obj->faces[i][1][2] >= obj->n_v_normal || obj->faces[i][1][2] < 0) ||
+		(obj->faces[i][2][2] >= obj->n_v_normal || obj->faces[i][2][2] < 0))
+		return ;
 	v_add(v_multi(VN(2), len[0], temp), v_multi(VN(0), len[1], norm), norm);
 	v_add(norm, v_multi(VN(1), len[2], temp), norm);
+	normalize(norm);
 	transformvec(obj->otw, norm, norm);
 }
 
@@ -74,6 +83,10 @@ int		tri_intersect(t_ray *ray, t_ray *tr, t_obj *obj, int i)
 	t_vec	norm[6];
 	double	var[3];
 
+	if ((obj->faces[i][0][0] >= obj->n_v_point || obj->faces[i][0][0] < 0) ||
+		(obj->faces[i][1][0] >= obj->n_v_point || obj->faces[i][1][0] < 0) ||
+		(obj->faces[i][2][0] >= obj->n_v_point || obj->faces[i][2][0] < 0))
+		return (0);
 	v_sub(VP(1), VP(0), norm[2]);
 	v_sub(VP(2), VP(0), norm[3]);
 	v_cross(norm[2], norm[3], norm[0]);

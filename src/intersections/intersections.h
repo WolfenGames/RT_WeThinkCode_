@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:13 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 12:22:42 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/20 15:50:43 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # define CAM ((t_cam*)cur->content)
 # define REFLECTIVE VEC3_IS(hit_obj->specular_colour)
 # define REFRACTIVE (hit_obj->trans)
-# define DIV_P(N) ((ABS(N) > EPSILON) ? N : EPSILON)
 
 # include "scene.h"
 

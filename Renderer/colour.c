@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 13:10:26 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 17:28:19 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/20 11:09:40 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ double	*sc_col(t_col c, double s, t_col ret)
 
 double	*add_col(t_col a, t_col b, t_col ret)
 {
-	BLU(ret) = BLU(a) + BLU(b);
-	GRN(ret) = GRN(a) + GRN(b);
-	RED(ret) = RED(a) + RED(b);
-	ALP(ret) = ALP(a) + ALP(b);
+	BLU(ret) = ft_clamp(255, 0, BLU(a) + BLU(b));
+	GRN(ret) = ft_clamp(255, 0, GRN(a) + GRN(b));
+	RED(ret) = ft_clamp(255, 0, RED(a) + RED(b));
+	ALP(ret) = ft_clamp(255, 0, ALP(a) + ALP(b));
 	return (ret);
 }
 

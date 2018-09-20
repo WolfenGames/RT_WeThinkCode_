@@ -1,0 +1,123 @@
+<camera name='Lord ISSAARRD THE LIZARD'>
+	<origin>5,5,18</origin>
+	<rotation>-20,-20,-5</rotation>
+	<aperture>1</aperture>
+	<fov>50</fov>
+</camera>
+<scene>
+	<raydepth>10</raydepth>
+	<eyewidth>1</eyewidth>
+	<objfilepath>objects/Glass.obj</objfilepath>
+	<objfilepath>objects/Perf.obj</objfilepath>
+</scene>
+<light name="light">
+	<origin>-10,14,0</origin>
+	<direction>1,-1,-1</direction>
+	<colour>250,230,220</colour>
+	<type>point</type>
+	<intensity>500</intensity>
+</light>
+<light name="light2">
+	<origin>10,14,0</origin>
+	<direction>1,-1,-1</direction>
+	<colour>250,230,220</colour>
+	<type>point</type>
+	<intensity>100</intensity>
+</light>
+<light name="Sun">
+	<origin>-100,20,0</origin>
+	<direction>1,-0.1,0</direction>
+	<colour>255,240,235</colour>
+	<type>directional</type>
+	<intensity>80</intensity>
+</light>
+<object name="Glass">
+	<origin>-2, -1, 0</origin>
+	<diffusecolour>155, 155, 155</diffusecolour>
+	<scale>1, 1, 1</scale>
+	<radius>2</radius>
+	<transparency>0.95</transparency>
+	<refractionindex>1.5</refractionindex>
+	<specularcolour>100, 100, 100</specularcolour>
+</object>
+<object name="Cube">
+	<origin>-4, 0, -4</origin>
+	<diffusecolour>255, 55, 255</diffusecolour>
+	<scale>2, 2, 1.5</scale>
+	<radius>2</radius>
+	//<transparency>0.99</transparency>
+	//<refractionindex>1.5</refractionindex>
+	<specularcolour>10, 10, 10</specularcolour>
+	<texture>Textures/Light Wood.xpm</texture>
+	<texturescale>1, 1</texturescale>
+</object>
+<object name="sphere">
+	<origin>2, -1, 0</origin>
+	<diffusecolour>5, 5, 155</diffusecolour>
+	<scale>2, 2, 2</scale>
+	<radius>1</radius>
+	<transparency>0</transparency>
+	<refractionindex>1.5</refractionindex>
+	<specularcolour>155, 155, 155</specularcolour>
+</object>
+<object name="Table">
+	<origin>0,-2.0001,0</origin>
+	<rotation>90, 0, 0</rotation>
+	<scale>40, 40</scale>
+	<diffusecolour>255, 255, 255</diffusecolour>
+	<texture>Textures/table tex.xpm</texture>
+	<specularcolour>50, 50, 50</specularcolour>
+	<texturescale>1, 1</texturescale>
+	<albedo>0.18<albedo>
+	<type>plane</type>
+</object>
+<object name="wall">
+	<origin>-20,0,-20</origin>
+	<rotation>0, 0, 0</rotation>
+	<scale>80, 50</scale>
+	<diffusecolour>200, 200, 255</diffusecolour>
+	<texture>Textures/wall.xpm</texture>
+	<texturescale>1, 1</texturescale>
+	<albedo>0.18<albedo>
+	<type>plane</type>
+</object>
+<object name="roof">
+	<origin>0,40,0</origin>
+	<rotation>90, 0, 0</rotation>
+	<scale>400, 400</scale>
+	<diffusecolour>0, 200, 255</diffusecolour>
+	<texture>Textures/wall.xpm</texture>
+	<texturescale>5, 5</texturescale>
+	<albedo>0.18<albedo>
+	<type>plane</type>
+</object>
+<object name="wallB">
+	<origin>20,0,0</origin>
+	<rotation>0, 90, 0</rotation>
+	<scale>80, 60</scale>
+	<diffusecolour>200, 200, 255</diffusecolour>
+	<texture>Textures/wall.xpm</texture>
+	<texturescale>1, 1</texturescale>
+	<albedo>0.18<albedo>
+	<type>plane</type>
+</object>
+<object name="wallR">
+	<origin>0,0,20</origin>
+	<rotation>0, 0, 0</rotation>
+	<scale>80, 60</scale>
+	<diffusecolour>200, 200, 255</diffusecolour>
+	<texture>Textures/wall.xpm</texture>
+	<texturescale>1, 1</texturescale>
+	<albedo>0.18<albedo>
+	<type>plane</type>
+</object>
+<object name="wallL">
+	<origin>0,0,-20</origin>
+	<rotation>0, 0, 0</rotation>
+	<scale>80, 60</scale>
+	<diffusecolour>200, 200, 255</diffusecolour>
+	<texture>Textures/wall.xpm</texture>
+	<texturescale>1, 1</texturescale>
+	<albedo>0.18<albedo>
+	<type>plane</type>
+</object>

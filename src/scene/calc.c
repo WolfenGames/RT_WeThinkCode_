@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 11:15:02 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 14:01:16 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/20 10:34:12 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static void	calc_obj(t_obj *obj)
 	t_vec		tempvec;
 	t_matrix	temp;
 
-	fill_m_rot_y(temp, (obj->rot[1] * M_PI) / 180.f);
 	fill_m_rot_x(obj->otw, (-obj->rot[0] * M_PI) / 180.f);
+	fill_m_rot_y(temp, (obj->rot[1] * M_PI) / 180.f);
 	m4_mult(obj->otw, temp, obj->otw);
 	FILLVEC(tempvec, 0, 0, -1, 0);
 	transformvec(obj->otw, tempvec, tempvec);
@@ -35,8 +35,8 @@ static void	calc_cam(t_cam *cam)
 
 	ft_bzero(&temp, sizeof(temp));
 	ft_bzero(&cam->ctw, sizeof(t_matrix));
-	fill_m_rot_y(cam->ctw, (cam->rot[1] * M_PI) / 180.f);
 	fill_m_rot_x(temp, (cam->rot[0] * M_PI) / 180.f);
+	fill_m_rot_y(cam->ctw, (cam->rot[1] * M_PI) / 180.f);
 	m4_mult(cam->ctw, temp, cam->ctw);
 	FILLVEC(cam->dir, 0, 0, -1, 0);
 	transformvec(cam->ctw, cam->dir, cam->dir);
