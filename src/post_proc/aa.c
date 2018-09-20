@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 16:54:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/20 18:31:24 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/20 18:35:47 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	aa(t_env *env)
 			if (checkpoint(env, point))
 			{
 				put_pixel(point[0], point[1], c, RENDER);
-				//put_pixel(point[0], point[1], cast(env, point, c), RENDER);
+				put_pixel(point[0], point[1], cast(env, point, c), RENDER);
 			}
 		}
 	}
