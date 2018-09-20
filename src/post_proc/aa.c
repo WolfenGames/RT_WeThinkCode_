@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aa.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 16:54:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 18:30:07 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/20 06:58:31 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ double	*cast(t_env *env, t_xy point, t_col ret)
 	add_col(ret, c[3], ret);
 	v_multi(ret, 0.25, ret);
 	ret[3] = 255;
-	FILLCOL(ret, 255, 0, 0, 255);
+	//FILLCOL(ret, 255, 0, 0, 255);
 	return (ret);
 }
 

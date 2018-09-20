@@ -1,5 +1,5 @@
 <camera name='Lord ISSAARRD THE LIZARD'>
-	<origin>0,0,10</origin>
+	<origin>0,0,5</origin>
 	<rotation>0,0,0</rotation>
 	<aperture>1</aperture>
 	<fov>40</fov>
@@ -8,15 +8,20 @@
 	<raydepth>5</raydepth>
 	<eyewidth>0.2</eyewidth>
 	<path>Culmination</path>
-	<objfilepath>objects/stripobj.obj</objfilepath>
+	<objfilepath>objects/strip_low.obj</objfilepath>
 </scene>
 <light	name='Right light'>
 	<origin>0,0,11,0</origin>
 	<direction>0,1,-1</direction>
 	<colour>255,255,255,255</colour>
 	<type>directional</type>
-	<intensity>12</intensity>
+	<intensity>24</intensity>
 </light>
-<object name="strip">
+<object name="strip_strip.001">
+	<origin>0,0,0</origin>
+	<rotation>0,0,0</rotation>
 	<diffusecolour>200, 200, 200, 0</diffusecolour>
+	<specularcolour>255,255,255,255</specularcolour>
+	<transparency>0.6</transparency>
+	<refractionindex>1.7</refractionindex>
 </object>
