@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:01:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 17:48:52 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/20 10:48:03 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ static void	mode_set(t_env *env)
 		create_scene(env->amount, env->names, &env->scene, env);
 		pthread_create(&env->render, NULL, raytracer, env);
 	}
+	if (PRESSED(TRACER, np_4))
+		floid_dithering(env);
 	if (env->mode == 2 && env->running == 0 && !env->stereod)
 		gen_stereo(env);
 }
@@ -92,6 +94,7 @@ void		setup(t_env *env, int argc, char **argv)
 	env->img[2] = add_img(&env->ren, WIN_W, WIN_H);
 	env->img[3] = add_img(&env->ren, WIN_W, WIN_H);
 	env->img[4] = add_img(&env->ren, WIN_W, WIN_H);
+	env->img[5] = add_img(&env->ren, WIN_W, WIN_H);
 	env->names = argv;
 	env->amount = argc;
 	env->mode = 1;

@@ -9,6 +9,7 @@
 	<width>1920</width>
 	<height>1080</height>
 	<path>Test Scene</path>
+	<eyewidth>2</eyewidth>
 </scene>
 <light	name='Right light'>
 	<origin>20,20,0,0</origin>
