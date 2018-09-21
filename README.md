@@ -84,7 +84,7 @@ A surfacecolour                                \<surfacecolour\> r, g, b \</surf
 
 A specularcolour                               \<specularcolour\> r, g, b \</specularcolour\>
 
-A texture                                      \<texture\> Tex.xpm \</texture\>
+A texture                                      \<texture\> Tex.xpm or .png \</texture\>
 
 A texturescale                                 \<texturescale\> x, y \</texturescale\>
 
