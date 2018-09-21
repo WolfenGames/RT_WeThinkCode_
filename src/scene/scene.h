@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/21 09:01:51 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/21 10:46:04 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void			save_image(t_env *env);
 int				read_obj_files(char *paths, t_env *env);
 void			parse_list(t_list *lst, t_env *env);
 
-void			load_png(t_obj *obj, char *fn);
+void			load_png(t_obj *obj, char *fn, t_env *env);
 
 int				is_line_prop(const char *line);
 int				match_brackets(char *str, char *line);

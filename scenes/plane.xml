@@ -47,7 +47,7 @@
 	<specularcolour>255,255,255</specularcolour>
 	<transparency>0.8</transparency>
 	<refractionindex>1.5</refractionindex>
-	<texture>Textures/glass.xpm</texture>
+	<texture>Textures/wall.png</texture>
 	<texturescale>1,1,1</texturescale>
 	<albedo>0.18</albedo>
 	<type>plane</type>
@@ -61,7 +61,7 @@
 	//<specularcolour>255,255,255</specularcolour>
 	<transparency>0.8</transparency>
 	<refractionindex>1.5</refractionindex>
-	<texture>Textures/glass.xpm</texture>
+	<texture>Textures/wall.png</texture>
 	<texturescale>1,1,1</texturescale>
 	<albedo>0.18</albedo>
 	<type>plane</type>
@@ -148,7 +148,7 @@
 	<scale>180, 20</scale>
 	<radius>3</radius>
 	<diffusecolour>255,55,255</diffusecolour>
-	<texture>Textures/wall.xpm</texture>
+	<texture>Textures/wall.png</texture>
 	<texturescale>5,1,1</texturescale>
 	<transparency>0</transparency>
 	<refractionindex>1</refractionindex>

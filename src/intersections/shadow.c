@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 11:47:01 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/20 17:42:06 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/21 10:21:21 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ static void	make_shadow(t_lig *lig, t_ray *shadow)
 	normalize(shadow->dir);
 }
 
+/*
+**temp[0][3] = point->tri_index;
+**temp[0][2] = point->v;
+**temp[0][1] = point->u;
+*/
+
+void		set_value(t_ray sh, t_lig *lig, t_col col)
+{
+	vec_dup(lig->col, col);
+	sh.len = 1;
+}
+
 void		generate_shadow_ray(t_ray *point, t_lig *lig, t_env *env, t_col col)
 {
 	t_ray	sh;
@@ -35,11 +47,8 @@ void		generate_shadow_ray(t_ray *point, t_lig *lig, t_env *env, t_col col)
 
 	make_shadow(lig, point);
 	ft_memmove(&sh, point, sizeof(t_ray));
-	vec_dup(lig->col, col);
-	sh.len = 1;
-	temp[0][3] = point->tri_index;
-	temp[0][2] = point->v;
-	temp[0][1] = point->u;
+	set_value(sh, lig, col);
+	FILLVEC(temp[0], temp[0][0], point->u, point->v, point->tri_index);
 	while (VEC3_IS(col) && sh.len > 0)
 	{
 		make_shadow(lig, &sh);
