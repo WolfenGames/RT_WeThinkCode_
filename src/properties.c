@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:20 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 16:03:10 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/21 12:54:37 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,7 @@ static void	print_obj_properties(t_env *env, void *win, t_obj *obj)
 	if (++env->point > -1 && env->point < 43)
 		mlx_string_put(env->ren.mlx, win, 40, env->point * 20, 0x886611,
 			type);
-	print_vector(env, win, "O", obj->org);
-	print_vector(env, win, "R", obj->rot);
-	print_vector(env, win, "S", obj->scale);
-	print_vector(env, win, "C", obj->surface_colour);
-	print_vector(env, win, "SP_C", obj->specular_colour);
-	if (obj->type == obj_polygon)
-	{
-		t_vec	t;
-		FILLVEC(t, obj->n_v_point, obj->n_v_t_coord, obj->n_faces, 0);
-		print_vector(env, win, "P_MEM", t);
-	}
+	vector_print(env, win, obj);
 }
 
 void		print_lig_properties(t_env *env, void *win, t_lig *lig)

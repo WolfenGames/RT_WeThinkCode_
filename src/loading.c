@@ -6,13 +6,13 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 14:46:45 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 14:03:00 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/21 12:52:16 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		loading(t_env *env)
+void	loading(t_env *env)
 {
 	t_xy		start;
 	t_xy		end;
@@ -49,6 +49,7 @@ void	print_vector(t_env *env, void *win, char *name, t_vec vec)
 	string = ft_strjoin_n_free(string, ft_strdup(", "));
 	string = ft_strjoin_n_free(string, ft_dtoa(vec[2], 3));
 	if (++env->point > -1 && env->point < 43)
-		mlx_string_put(env->ren.mlx, win, 40, env->point * 20, 0xcccccc, string);
+		mlx_string_put(env->ren.mlx, win, 40, env->point * 20,
+						0xcccccc, string);
 	free(string);
 }
