@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 17:12:38 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/20 16:25:23 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/21 12:55:32 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		generate_ray(t_ray *ray, double x, double y, t_env *env)
 	t_vec			temp;
 
 	FILLVEC(temp, env->mode == 1 ? 0 : ((env->side - 0.5) * env->eye_w),
-            0, 0, 0);
+			0, 0, 0);
 	transform(env->scene.c_cam->ctw, temp, ray->org);
 	ray->dir[0] = (2 * (x + 0.5) * invwidth - 1) * (double)WIN_W
 		* invheight * angle;
