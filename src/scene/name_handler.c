@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   name_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:58:08 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/19 14:27:22 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/21 12:46:46 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int		is_line_prop(const char *line)
 		ft_strnequ(line, "<type>", 6) || ft_strnequ(line, "<direction>", 11) ||
 		ft_strnequ(line, "<intensity>", 11) ||
 		ft_strnequ(line, "<radius>", 8) || ft_strnequ(line, "<colour>", 8) ||
-		ft_strnequ(line, "<texture>", 9) || ft_strnequ(line, "<cellshade>", 11) ||
+		ft_strnequ(line, "<texture>", 9) ||
+		ft_strnequ(line, "<cellshade>", 11) ||
 		ft_strnequ(line, "<texturescale>", 14) ||
 		ft_strnequ(line, "<refractionindex>", 17) ||
 		ft_strnequ(line, "<transparency>", 14) ||

@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   polygon.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 13:20:45 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/20 17:41:15 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/21 09:40:15 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+/*
+** Each C = Case;
+** Each case looks to see if the information is valid, or invalid;
+*/
+
+#define C1 (obj->faces[i][0][1] >= obj->n_v_t_coord || obj->faces[i][0][1] < 0)
+#define C2 (obj->faces[i][1][1] >= obj->n_v_t_coord || obj->faces[i][1][1] < 0)
+#define C3 (obj->faces[i][2][1] >= obj->n_v_t_coord || obj->faces[i][2][1] < 0)
 
 void	poly_surface_col(t_obj *obj, t_col c, t_vec point)
 {
@@ -28,9 +37,7 @@ void	poly_surface_col(t_obj *obj, t_col c, t_vec point)
 	len[1] = c[1];
 	len[2] = c[2];
 	len[0] = 1 - c[1] - c[2];
-	if ((obj->faces[i][0][1] >= obj->n_v_t_coord || obj->faces[i][0][1] < 0) ||
-		(obj->faces[i][1][1] >= obj->n_v_t_coord || obj->faces[i][1][1] < 0) ||
-		(obj->faces[i][2][1] >= obj->n_v_t_coord || obj->faces[i][2][1] < 0))
+	if (C1 || C2 || C3)
 		return ;
 	o[0] = VT(2)[0] * len[0];
 	o[1] = 1 - VT(2)[1] * len[0];
@@ -41,7 +48,6 @@ void	poly_surface_col(t_obj *obj, t_col c, t_vec point)
 	o[0] *= obj->tex->w;
 	o[1] *= obj->tex->h;
 	get_img_col(o[0], o[1], obj->tex, c);
-	return ;
 }
 
 void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj)

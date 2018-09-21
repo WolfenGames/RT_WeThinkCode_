@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aa.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 16:54:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/20 18:35:47 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/21 12:44:14 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int		checkpoint(t_env *env, t_xy point)
 	get_img_col(point[0] + 1, point[1], RENDER, col[1]);
 	get_img_col(point[0] + 1, point[1] + 1, RENDER, col[2]);
 	get_img_col(point[0], point[1] + 1, RENDER, col[3]);
-
 	return (di(col[0], col[1]) || di(col[0], col[2]) || di(col[0], col[3]));
 }
 
@@ -38,15 +37,13 @@ double	*cast(t_env *env, t_xy point, t_col ret)
 	t_ray	ray;
 	t_col	c[4];
 
-	generate_ray(&ray, point[0], point[1], env);
-	get_col(&ray, env, ret, 0);
 	generate_ray(&ray, point[0] + 0.5, point[1], env);
 	get_col(&ray, env, c[1], 0);
 	generate_ray(&ray, point[0] + 0.5, point[1] + 0.5, env);
 	get_col(&ray, env, c[2], 0);
 	generate_ray(&ray, point[0], point[1] + 0.5, env);
 	get_col(&ray, env, c[3], 0);
-	v_add(c[0], c[1], ret);
+	v_add(ret, c[1], ret);
 	v_add(ret, c[2], ret);
 	v_add(ret, c[3], ret);
 	v_multi(ret, 0.25, ret);
@@ -65,12 +62,11 @@ void	aa(t_env *env)
 		point[1] = -1;
 		while (++point[1] < RENDER->h && env->running)
 		{
-			FILLCOL(c, 255, 0, 0, 255);
+			get_img_col(point[0], point[1], RENDER, c);
 			if (checkpoint(env, point))
-			{
-				put_pixel(point[0], point[1], c, RENDER);
-				put_pixel(point[0], point[1], cast(env, point, c), RENDER);
-			}
+				cast(env, point, c);
+			//post effects go here
+			put_pixel(point[0],  point[1], c, RENDER);
 		}
 	}
 }

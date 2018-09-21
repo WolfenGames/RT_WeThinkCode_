@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stereo.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/16 14:04:48 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/20 16:25:08 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/21 11:23:28 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	red(t_img *stereo, t_img *img)
 	}
 }
 
-void		gen_stereo(t_env *env)
+void	gen_stereo(t_env *env)
 {
 	RENDER = env->img[4];
 	cyan(RENDER, ILEFT);

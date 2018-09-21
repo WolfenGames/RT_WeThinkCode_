@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 17:41:11 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 15:21:22 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/21 10:57:19 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,7 @@ void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void			ft_lstadd(t_list **alst, t_list *bob);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 void			ft_lstrev(t_list **lst);
-void			*ft_bzero(void *str, size_t n);
-void			*ft_memalloc(size_t size);
-void			*ft_memccpy(void *str1, const void *str2, int c, size_t n);
-void			*ft_memcpy(void *str1, const void *str2, size_t n);
 void			ft_memdel(void **ap);
-void			*ft_memmove(void *str1, const void *str2, size_t n);
-void			*ft_memchr(const void *s, int c, size_t n);
-void			*ft_memset(void *str, int c, size_t n);
-void			*ft_memrcpy(void *str1, const void *str2, size_t n);
 void			ft_putchar(char c);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putendl(char const *s);
@@ -61,6 +53,16 @@ void			ft_strclr(char *s);
 void			ft_strdel(char **ap);
 void			ft_striter(char *s, void (*f)(char *));
 void			ft_striteri(char *s, void (*f)(unsigned int, char *));
+
+void			*ft_memmove(void *str1, const void *str2, size_t n);
+void			*ft_memchr(const void *s, int c, size_t n);
+void			*ft_memset(void *str, int c, size_t n);
+void			*ft_memrcpy(void *str1, const void *str2, size_t n);
+void			*ft_bzero(void *str, size_t n);
+void			*ft_memalloc(size_t size);
+void			*ft_memccpy(void *str1, const void *str2, int c, size_t n);
+void			*ft_memscpy(void *str1, const void *str2, size_t n);
+void			*ft_memcpy(void *str1, const void *str2, size_t n);
 
 int				get_next_line(const int fd, char **line);
 int				ft_atoi(const char *str);

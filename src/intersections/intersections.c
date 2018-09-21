@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/20 17:51:44 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/21 10:25:20 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-/*
-**	The trace function takes a ray and determines if it hits an object,
-**	it shortens the ray to the distance to the point of intersection and
-**	returns the hit object.
-*/
-
-t_obj		*trace(t_ray *ray, t_list *cur)
-{
-	t_obj	*ret;
-
-	ret = NULL;
-	while (cur)
-	{
-		if (((t_obj*)cur->content)->get_intersect(ray, cur->content))
-			ret = (t_obj*)cur->content;
-		cur = cur->next;
-	}
-	return (ret);
-}
 
 /*
 **	This function is used to scale the objects colour by the amount of light
@@ -61,7 +41,7 @@ static double	shade(double dot, double shaded, t_obj *obj)
 	return (dot);
 }
 
-static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
+static void		light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 {
 	t_list	*cur;
 	t_vec	vecs[3];
@@ -88,7 +68,7 @@ static void	light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 	c[2] *= vecs[0][2] / 255.0;
 }
 
-void		reflect_crap(t_col c, t_ray point[3], t_obj *obj, double k)
+void			reflect_crap(t_col c, t_ray point[3], t_obj *obj, double k)
 {
 	t_col	specular_rat;
 	t_col	refract;
@@ -109,7 +89,7 @@ void		reflect_crap(t_col c, t_ray point[3], t_obj *obj, double k)
 		* (1 - obj->trans) + point[1].org[2] * (obj->trans) * (1 - k));
 }
 
-static void	mid(t_ray *ray, t_ray point[3], t_env *env, t_obj *hit_obj)
+static void		mid(t_ray *ray, t_ray point[3], t_env *env, t_obj *hit_obj)
 {
 	memcpy(&point[0], ray, sizeof(t_ray));
 	v_add(v_multi(ray->dir, ray->len * 0.9999999, point[0].org),
@@ -121,7 +101,9 @@ static void	mid(t_ray *ray, t_ray point[3], t_env *env, t_obj *hit_obj)
 	{
 		refract(ray->dir, point[2].dir, hit_obj->r_index, point[0].dir);
 		v_add(point[0].org,
-			v_multi(point[2].dir, 0.00000009 * (dot(point[2].dir, point[0].dir) < 0 ? -1 : 1), point[2].org), point[0].org);
+			v_multi(point[2].dir, 0.00000009 *
+				(dot(point[2].dir, point[0].dir) < 0 ? -1 : 1),
+				point[2].org), point[0].org);
 		if (hit_obj->trans)
 			get_col(&point[0], env, point[1].org, point[2].len + 1);
 		v_sub(point[0].org, point[2].org, point[0].org);
@@ -134,7 +116,7 @@ static void	mid(t_ray *ray, t_ray point[3], t_env *env, t_obj *hit_obj)
 	light_thing(&point[0], env, hit_obj, point[3].dir);
 }
 
-void		get_col(t_ray *ray, t_env *env, t_col c, int level)
+void			get_col(t_ray *ray, t_env *env, t_col c, int level)
 {
 	t_obj	*hit_obj;
 	t_ray	point[4];
@@ -153,6 +135,8 @@ void		get_col(t_ray *ray, t_env *env, t_col c, int level)
 	point[3].dir[1] = ray->u;
 	if (hit_obj)
 		mid(ray, point, env, hit_obj);
+	else
+		FILLVEC(point[3].dir, 0, 0, 0, 255);
 	vec_dup(point[3].dir, c);
 	c[3] = 255;
 	glare(ray, env, c);
