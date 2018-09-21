@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 07:51:39 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/21 09:01:08 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/21 09:15:51 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	set_tex(t_obj *o, char *filename, t_env *env)
 		o->tex = add_img_xpm(REN, filename, 0, 0);
 	}
 	else
-		set_tex_png(o, filename);
+		load_png(o, filename);
 	free(small);
 	free(filename);
 }

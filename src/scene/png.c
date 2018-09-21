@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 07:50:46 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/21 09:03:02 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/21 09:16:11 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	do_da_image(upng_t *img, t_obj *obj)
 {
 	obj->tex->img = img;
-	obj->tex->dat = upng_get_buffer(img);
+	obj->tex->dat = (unsigned char *)upng_get_buffer(img);
 }
 
 void	load_png(t_obj *obj, char *fn)

@@ -32,7 +32,8 @@ FLAGS = -Wall -Werror -Wextra -I inc -I libft -Ofast -I Renderer -I Vectorlib \
 		-I src/scene -I src/intersections -I bmplib/inc/ -I src/obj_parser/ \
 		-I upng
 
-LIBS = libft/libft.a Vectorlib/vectorlib.a bmplib/libbmp.a Renderer/renderer.a
+LIBS = libft/libft.a Vectorlib/vectorlib.a bmplib/libbmp.a Renderer/renderer.a \
+		upng/libpng.a
 
 DEP = inc/rt.h
 
@@ -53,6 +54,7 @@ lib:
 	@make -C Vectorlib
 	@make -C Renderer
 	@make -C bmplib
+	@make -C upng
 
 patience:
 	@clear
