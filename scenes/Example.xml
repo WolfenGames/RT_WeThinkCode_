@@ -78,9 +78,11 @@
 <object	name="Z Blue">
 	<origin>0,0,10</origin>
 	<rotation>0,0,0</rotation>
-	<radius>2</radius>
+	<radius>5</radius>
 	<diffusecolour>80,80,255</diffusecolour>
 	<specularcolour>80,80,255</specularcolour>
+	<transparency>0.9</transparency>
+	<refractionindex>1.7</refractionindex>
 	<albedo>0.18</albedo>
 	<type>sphere</type>
 </object>
