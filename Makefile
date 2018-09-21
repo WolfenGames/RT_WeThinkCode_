@@ -105,14 +105,16 @@ clean:
 	@make clean -C Renderer
 	@make clean -C Vectorlib
 	@make clean -C bmplib
+	@make clean -C upng
 	@rm -f $(OBJ)
 
 fclean: clean
 	@echo "[ \x1b[32mFull \x1b[0m]"
-	@rm -f libft/libft.a
-	@rm -f Renderer/renderer.a
-	@rm -f Vectorlib/vectorlib.a
-	@rm -f bmplib/libbmp.a
+	@make -C bmplib fclean
+	@make -C Renderer fclean
+	@make -C Vectorlib fclean
+	@make -C libft fclean
+	@make -C upng fclean
 	@rm -f $(NAME)
 
 re: fclean all
