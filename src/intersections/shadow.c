@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 11:47:01 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 12:02:32 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 12:53:08 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,10 @@ void		generate_shadow_ray(t_ray *point, t_lig *lig, t_env *env, t_col col)
 		else
 			sh.len = 0;
 	}
+}
+
+void	surface_scale(t_vec o, t_obj *obj)
+{
+	o[0] = ABS(o[0] * obj->tex_scale[0]) - (int)(ABS(o[0] * obj->tex_scale[0]));
+	o[1] = ABS(o[1] * obj->tex_scale[1]) - (int)(ABS(o[1] * obj->tex_scale[1]));
 }

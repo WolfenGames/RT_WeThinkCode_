@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 11:53:17 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 12:28:37 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void	sphere_surface_col(t_obj *ob, t_ray *c, t_vec point)
 	FILLVEC(tempvec[0], 0, 0, 1, 0);
 	o[0] = 1 - ((norm[0] < 0 ? 0 : 2 * M_PI) + (norm[0] < 0 ? 1 : -1)
 		* find_angle(tempvec[0], tempvec[1])) / (2.f * M_PI);
-	o[0] = (o[0] * ob->tex_scale[0] - (int)(o[0] * ob->tex_scale[0]));
-	o[1] = (o[1] * ob->tex_scale[1] - (int)(o[1] * ob->tex_scale[1]));
+	surface_scale(o, ob);
 	get_p_img_col(o[0], o[1], ob->tex, c->dir);
 }
 

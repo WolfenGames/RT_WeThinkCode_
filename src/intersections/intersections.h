@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:13 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 11:32:31 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 12:27:35 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int		poly_intersect(t_ray *ray, t_obj *obj);
 void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj);
 
 void	cap_col(double o[2], t_vec lpoint, t_obj *obj);
+void	surface_scale(t_vec o, t_obj *obj);
 
 t_obj	*trace(t_ray *ray, t_list *cur);
 

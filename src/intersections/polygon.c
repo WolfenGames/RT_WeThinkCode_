@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 13:20:45 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 11:57:30 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 12:28:13 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	poly_surface_col(t_obj *obj, t_ray* c, t_vec point)
 	o[1] -= VT(0)[1] * len[1];
 	o[0] += VT(1)[0] * len[2];
 	o[1] -= VT(1)[1] * len[2];
+	surface_scale(o, obj);
 	get_p_img_col(o[0], o[1], obj->tex, c->dir);
 }
 
