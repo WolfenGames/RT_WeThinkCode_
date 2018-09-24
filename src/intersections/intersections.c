@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 12:17:58 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 15:15:05 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,7 @@ void			reflect_crap(t_ray *c, t_ray point[3], t_obj *obj, double k)
 	t_col	specular_rat;
 	t_col	refract;
 
-	specular_rat[0] = c->org[0] / 255.0;
-	specular_rat[1] = c->org[1] / 255.0;
-	specular_rat[2] = c->org[2] / 255.0;
+	v_multi(c->org, 1 / 255.0, specular_rat);
 	refract[0] = (point[3].dir[0] / 255.0) * point[1].org[0];
 	refract[1] = (point[3].dir[1] / 255.0) * point[1].org[1];
 	refract[2] = (point[3].dir[2] / 255.0) * point[1].org[2];
@@ -149,5 +147,5 @@ void			get_col(t_ray *ray, t_env *env, t_col c, int level)
 		FILLCOL(point[3].dir, 0 ,0, 0, 255);
 	vec_dup(point[3].dir, c);
 	c[3] = 255;
-	glare(ray, env, c);
+	//glare(ray, env, c);
 }
