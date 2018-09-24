@@ -63,6 +63,8 @@ typedef struct	s_obj
 	t_vec		surface_colour;
 	t_vec		specular_colour;
 	t_img		*tex;
+	t_img		*norm;
+	t_img		*spec_map;
 	double		albedo;
 	double		radius;
 	double		r_index;
