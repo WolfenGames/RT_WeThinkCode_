@@ -1,0 +1,93 @@
+<camera name='Lord ISSAARRD THE LIZARD'>
+	<origin>0,0,9</origin>
+	<rotation>0,0,0</rotation>
+	<aperture>1</aperture>
+	<fov>40</fov>
+</camera>
+<scene>
+	<raydepth>20</raydepth>
+	<eyewidth>0.2</eyewidth>
+	<path>Bounce</path>
+	<ambience>50,50,50,255</ambience>
+</scene>
+<light	name='Left light'>
+	<origin>0,0,10,0</origin>
+	<direction>0,1,-1</direction>
+	<colour>255,255,255,255</colour>
+	<type>point</type>
+	<intensity>100</intensity>
+</light>
+<object name="Left-Red">
+	<origin>1,-1,0</origin>
+	<radius>1</radius>
+	<diffusecolour>255,0,0,255</diffusecolour>
+	<specularcolour>255,255,255,255</specularcolour>
+	<type>sphere</type>
+	<albedo>0.18</albedo>
+</object>
+<object name="Right-Blue">
+	<origin>-1,-1</origin>
+	<radius>1</radius>
+	<diffusecolour>0,0,255,255</diffusecolour>
+	<specularcolour>255,255,255,255</specularcolour>
+	<albedo>0.18</albedo>
+	<type>sphere</type>
+</object>
+<object name="Top-Green">
+	<origin>0,0.74,0</origin>
+	<radius>1</radius>
+	<diffusecolour>0,255,0,255</diffusecolour>
+	<specularcolour>255,255,255,255</specularcolour>
+	<albedo>0.18</albedo>
+	<type>sphere</type>
+</object>
+<object name="Backwall">
+	<origin>0,0,11</origin>
+	<scale>20,20</scale>
+	<diffusecolour>255,255,255,255</diffusecolour>
+	<specularcolour>255,255,255,255</specularcolour>
+	<refractionindex>1.3</refractionindex>
+	<transparency>0.3</transparency>
+	<type>plane</type>
+</object>
+<object name="Front">
+	<origin>0,0,-4</origin>
+	<scale>20,20</scale>
+	<diffusecolour>255,255,255,255</diffusecolour>
+	<specularcolour>255,255,255,255</specularcolour>
+	<refractionindex>1.3</refractionindex>
+	<transparency>0.3</transparency>
+	<type>plane</type>
+</object>
+<object name="Floor">
+	<origin>0,-4,0</origin>
+	<rotation>90,0,0</rotation>
+	<scale>20,20</scale>
+	<diffusecolour>255,255,255,255</diffusecolour>
+	<specularcolour>255,255,255,255</specularcolour>
+	<type>plane</type>
+</object>
+<object name="Rightwall">
+	<origin>4,0,0</origin>
+	<rotation>0,90,0</rotation>
+	<scale>20,20</scale>
+	<diffusecolour>255,255,255,255</diffusecolour>
+	<specularcolour>255,255,255,255</specularcolour>
+	<type>plane</type>
+</object>
+<object name="Leftwall">
+	<origin>-4,0,0</origin>
+	<rotation>0,90,0</rotation>
+	<scale>20,20</scale>
+	<diffusecolour>255,255,255,255</diffusecolour>
+	<specularcolour>255,255,255,255</specularcolour>
+	<type>plane</type>
+</object>
+<object name="Roof">
+	<origin>0,4,0</origin>
+	<rotation>270,0,0</rotation>
+	<scale>20,20</scale>
+	<diffusecolour>255,255,255,255</diffusecolour>
+	<specularcolour>255,255,255,255</specularcolour>
+	<type>plane</type>
+</object>
