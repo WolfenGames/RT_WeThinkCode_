@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 07:20:51 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 13:40:59 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/24 13:51:14 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	do_da_object_stuff_two(char *line, t_obj *new, t_env *env)
 		new->trans = ft_clamp(1, 0, ft_atod(line + 14));
 	if (match_brackets("refractionindex", line))
 		new->r_index = ft_max(0, ft_atod(line + 17));
-	if (match_brackets("nomralmap", line))
-		set_n_tex(new, ft_strsub(line, 9, ft_strlen(line) - 19), env);
+	if (match_brackets("normalmap", line))
+		set_n_tex(new, ft_strsub(line, 11, ft_strlen(line) - 23), env);
 	if (match_brackets("specularmap", line))
-		set_s_tex(new, ft_strsub(line, 11, ft_strlen(line) - 23), env);
+		set_s_tex(new, ft_strsub(line, 13, ft_strlen(line) - 27), env);
 }
 
 void	do_da_object_stuff_one(char *name, char *line, t_obj *new, t_env *env)
