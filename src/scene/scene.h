@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/21 10:46:04 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/24 11:18:56 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef enum	e_o_type
 	obj_plane,
 	obj_cone,
 	obj_cylinder,
-	obj_polygon
+	obj_polygon,
 }				t_o_type;
 
 typedef enum	e_bool_type

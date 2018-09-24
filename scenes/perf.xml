@@ -48,7 +48,7 @@
 	//<transparency>0.99</transparency>
 	//<refractionindex>1.5</refractionindex>
 	<specularcolour>10, 10, 10</specularcolour>
-	<texture>Textures/Light Wood.xpm</texture>
+	<texture>Textures/table tex.xpm</texture>
 	<texturescale>1, 1</texturescale>
 </object>
 <object name="sphere">
@@ -65,7 +65,7 @@
 	<rotation>90, 0, 0</rotation>
 	<scale>40, 40</scale>
 	<diffusecolour>255, 255, 255</diffusecolour>
-	<texture>Textures/table tex.xpm</texture>
+	<texture>Textures/Light wood.xpm</texture>
 	<specularcolour>50, 50, 50</specularcolour>
 	<texturescale>1, 1</texturescale>
 	<albedo>0.18<albedo>
