@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 07:51:39 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/21 11:15:44 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/24 14:08:51 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	try_load_png(char *small, char *filename, t_env *env, t_obj *o)
 		if ((fd = open(filename, O_RDONLY)) < 0)
 			return ;
 		close(fd);
-		load_png(o, ft_strdup(filename), env);
+		load_png(o, ft_strdup(filename), env, 0);
 	}
 }
 

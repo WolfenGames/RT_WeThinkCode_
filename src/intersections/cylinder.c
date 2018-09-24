@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:32:18 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 12:28:27 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 14:29:13 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,7 @@ void			cylinder_surface_col(t_obj *ob, t_ray *c, t_vec point)
 	t_vec		temp;
 	t_vec		o;
 
-	//if (!ob->spec)
-	//{
-		vec_dup(ob->specular_colour, c->org);
-	//	return ;
-	//}
 	transform(ob->wto, point, lpoint);
-	if (!ob->tex)
-	{
-		vec_dup(ob->surface_colour, c->dir);
-		return ;
-	}
 	o[1] = 1 - (lpoint[2] + ob->scale[0] / 2.0) / ob->scale[0];
 	o[2] = lpoint[2];
 	lpoint[2] = 0;
@@ -38,7 +28,13 @@ void			cylinder_surface_col(t_obj *ob, t_ray *c, t_vec point)
 	if (ABS(o[2]) > ((ob->scale[0] / 2.0) * 0.99999))
 		cap_col(o, lpoint, ob);
 	surface_scale(o, ob);
-	get_p_img_col(o[0], o[1], ob->tex, c->dir);
+	ob->spec_map ? (get_p_img_col(o[0], o[1], ob->spec_map, c->org), FILLVEC(c->org,
+		(c->org[0] / 255.0) * ob->specular_colour[0],
+		(c->org[1] / 255.0) * ob->specular_colour[1],
+		(c->org[2] / 255.0) * ob->specular_colour[2], 0)) : 
+		vec_dup(ob->specular_colour, c->org);
+	ob->tex ? get_p_img_col(o[0], o[1], ob->tex, c->dir) :
+		vec_dup(ob->surface_colour, c->dir);
 }
 
 static void		c_bound(t_obj *obj, double t[3], t_ray *tr)
