@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 09:01:47 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 00:32:50 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/24 13:41:16 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	do_da_scene(char *line, t_env *env)
 	if (match_brackets("eyewidth", line))
 		env->eye_w = ft_atod(line + 10);
 	if (match_brackets("ambience", line))
-		env->ambience = ft_atod(line + 10);
+		set_vec(env->ambience, ft_strsub(line + 9, 11, ft_strlen(line) - 23));
 	if (match_brackets("posteffect", line))
 	{
 		//sepai effect number and stuff;
