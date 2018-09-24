@@ -3,6 +3,7 @@
 	<rotation>0,0,0</rotation>
 	<aperture>1</aperture>
 	<fov>40</fov>
+	<ambience>50,50,50,255</ambience>
 </camera>
 <scene>
 	<raydepth>2</raydepth>
@@ -24,4 +25,6 @@
 	<specularcolour>34,90,181,255</specularcolour>
 	<transparency>0.6</transparency>
 	<refractionindex>1.7</refractionindex>
+	<normalmap>Textures/wall.png</normalmap>
+	<specularmap>Textures/wall.png</normalmap>
 </object>

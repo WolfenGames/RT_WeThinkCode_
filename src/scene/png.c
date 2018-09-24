@@ -6,24 +6,40 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 07:50:46 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/21 12:47:09 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/24 13:42:15 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "upng.h"
 #include "rt.h"
 
-void	do_da_image(upng_t *img, t_obj *obj, t_env *env)
+void	do_da_image(upng_t *img, t_obj *obj, t_env *env, int i)
 {
-	if (obj->tex)
-		return ;
-	obj->tex = add_img(&env->ren, upng_get_width(img),
-								upng_get_height(img));
-	ft_memscpy(obj->tex->dat, (unsigned char *)upng_get_buffer(img),
-				obj->tex->w * obj->tex->h * upng_get_bpp(img) / 8);
+	if (!obj->tex && i == 0)
+	{
+		obj->tex = add_img(&env->ren, upng_get_width(img),
+									upng_get_height(img));
+		ft_memscpy(obj->tex->dat, (unsigned char *)upng_get_buffer(img),
+					obj->tex->w * obj->tex->h * upng_get_bpp(img) / 8);
+	}
+	if (!obj->norm && i == 1)
+	{
+		obj->norm = add_img(&env->ren, upng_get_width(img),
+									upng_get_height(img));
+		ft_memscpy(obj->norm->dat, (unsigned char *)upng_get_buffer(img),
+					obj->norm->w * obj->norm->h * upng_get_bpp(img) / 8);
+	}
+	if (!obj->spec_map && i == 2)
+	{
+		obj->spec_map = add_img(&env->ren, upng_get_width(img),
+									upng_get_height(img));
+		ft_memscpy(obj->spec_map->dat, (unsigned char *)upng_get_buffer(img),
+					obj->spec_map->w * obj->spec_map->h *
+					upng_get_bpp(img) / 8);
+	}
 }
 
-void	load_png(t_obj *obj, char *fn, t_env *env)
+void	load_png(t_obj *obj, char *fn, t_env *env, int i)
 {
 	upng_t	*img;
 
@@ -37,7 +53,7 @@ void	load_png(t_obj *obj, char *fn, t_env *env)
 	{
 		upng_decode(img);
 		if (upng_get_error(img) == UPNG_EOK)
-			do_da_image(img, obj, env);
+			do_da_image(img, obj, env, i);
 		upng_free(img);
 	}
 	free(fn);

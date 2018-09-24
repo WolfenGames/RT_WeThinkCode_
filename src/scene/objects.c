@@ -6,29 +6,23 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 07:20:51 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 00:28:47 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/24 13:40:59 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "rt.h"
 
-void	do_da_object_stuff_two(char *line, t_obj *new)
+void	do_da_object_stuff_two(char *line, t_obj *new, t_env *env)
 {
 	if (match_brackets("transparency", line))
 		new->trans = ft_clamp(1, 0, ft_atod(line + 14));
 	if (match_brackets("refractionindex", line))
 		new->r_index = ft_max(0, ft_atod(line + 17));
 	if (match_brackets("nomralmap", line))
-	{
-		//set normal tex
-		// new->normalmap
-	}
+		set_n_tex(new, ft_strsub(line, 9, ft_strlen(line) - 19), env);
 	if (match_brackets("specularmap", line))
-	{
-		//set specular map
-		// new->specularmap
-	}
+		set_s_tex(new, ft_strsub(line, 11, ft_strlen(line) - 23), env);
 }
 
 void	do_da_object_stuff_one(char *name, char *line, t_obj *new, t_env *env)
@@ -55,7 +49,7 @@ void	do_da_object_stuff_one(char *name, char *line, t_obj *new, t_env *env)
 		set_tex(new, ft_strsub(line, 9, ft_strlen(line) - 19), env);
 	if (match_brackets("texturescale", line))
 		set_vec(new->tex_scale, ft_strsub(line, 14, ft_strlen(line) - 29));
-	do_da_object_stuff_two(line, new);
+	do_da_object_stuff_two(line, new, env);
 }
 
 void	do_obj_param_set(t_env *env)
