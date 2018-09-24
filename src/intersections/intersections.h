@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:13 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/20 15:50:43 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/21 09:35:39 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,7 @@ int		poly_intersect(t_ray *ray, t_obj *obj);
 void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj);
 
 void	cap_col(double o[2], t_vec lpoint, t_obj *obj);
+
+t_obj	*trace(t_ray *ray, t_list *cur);
 
 #endif

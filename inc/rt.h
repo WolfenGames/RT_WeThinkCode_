@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/20 07:21:54 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/21 12:54:54 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void			del_scene(t_env *env);
 void			gen_stereo(t_env *env);
 void			generate_ray(t_ray *ray, double x, double y, t_env *env);
 void			floid_dithering(t_env *env);
+void			vector_print(t_env *env, void *win, t_obj *obj);
 void			aa(t_env *env);
 
 #endif

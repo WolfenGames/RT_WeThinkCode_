@@ -24,13 +24,16 @@ OBJ = src/main.o src/properties.o src/raytracer.o src/loading.o src/blocks.o \
 		src/scene/descene.o src/scene/objects.o src/intersections/shadow.o \
 		src/obj_parser/obj_reader.o src/obj_parser/parse_obj.o \
 		src/obj_parser/parse_obj_two.o src/obj_parser/parse_obj_three.o \
-		src/post_proc/stereo.o src/post_proc/aa.o src/post_proc/oldschool.o
+		src/post_proc/stereo.o src/post_proc/aa.o src/post_proc/oldschool.o \
+		src/scene/png.o src/intersections/trace.o src/vectorprint.o \
 
 
 FLAGS = -Wall -Werror -Wextra -I inc -I libft -Ofast -I Renderer -I Vectorlib \
-		-I src/scene -I src/intersections -I bmplib/inc/ -I src/obj_parser/
+		-I src/scene -I src/intersections -I bmplib/inc/ -I src/obj_parser/ \
+		-I upng
 
-LIBS = libft/libft.a Vectorlib/vectorlib.a bmplib/libbmp.a Renderer/renderer.a
+LIBS = libft/libft.a Vectorlib/vectorlib.a bmplib/libbmp.a Renderer/renderer.a \
+		upng/libpng.a
 
 DEP = inc/rt.h
 
@@ -51,6 +54,7 @@ lib:
 	@make -C Vectorlib
 	@make -C Renderer
 	@make -C bmplib
+	@make -C upng
 
 patience:
 	@clear
@@ -101,14 +105,16 @@ clean:
 	@make clean -C Renderer
 	@make clean -C Vectorlib
 	@make clean -C bmplib
+	@make clean -C upng
 	@rm -f $(OBJ)
 
 fclean: clean
 	@echo "[ \x1b[32mFull \x1b[0m]"
-	@rm -f libft/libft.a
-	@rm -f Renderer/renderer.a
-	@rm -f Vectorlib/vectorlib.a
-	@rm -f bmplib/libbmp.a
+	@make -C bmplib fclean
+	@make -C Renderer fclean
+	@make -C Vectorlib fclean
+	@make -C libft fclean
+	@make -C upng fclean
 	@rm -f $(NAME)
 
 re: fclean all
