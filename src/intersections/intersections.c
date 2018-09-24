@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/20 17:51:44 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/21 11:58:08 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,8 @@ void		get_col(t_ray *ray, t_env *env, t_col c, int level)
 	point[3].dir[1] = ray->u;
 	if (hit_obj)
 		mid(ray, point, env, hit_obj);
+	else
+		FILLCOL(point[3].dir, 0 ,0, 0, 255);
 	vec_dup(point[3].dir, c);
 	c[3] = 255;
 	glare(ray, env, c);

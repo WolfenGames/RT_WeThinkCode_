@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 09:01:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/20 18:35:53 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/21 12:02:36 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,12 @@ static int	fill_windows(t_env *env)
 	loading(env);
 	check_alive(env, &env->render);
 	properties(env);
+	if (PRESSED(TRACER, left) && !env->running)
+		RENDER = ILEFT;
+	if (PRESSED(TRACER, right) && !env->running)
+		RENDER = IRIGHT;
+	if (PRESSED(TRACER, up) && !env->running)
+		RENDER = IFINAL;
 	present_img(&env->ren, TRACER, RENDER);
 	if (env->progress < 0.99999)
 		present_img(&env->ren, TRACER, LOAD);
