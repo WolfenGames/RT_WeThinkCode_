@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/21 12:54:54 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/24 00:31:29 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct	s_env
 	int				side;
 	int				stereod;
 	double			eye_w;
+	double			ambience;
 }				t_env;
 
 typedef struct	s_render_set

@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:58:08 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/21 12:46:46 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/24 00:26:41 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,62 +30,11 @@ int		is_line_prop(const char *line)
 		ft_strnequ(line, "<refractionindex>", 17) ||
 		ft_strnequ(line, "<transparency>", 14) ||
 		ft_strnequ(line, "<raydepth>", 10) ||
-		ft_strnequ(line, "<eyewidth>", 10) ||
-		ft_strnequ(line, "<path>", 6) || ft_strnequ(line, "<objfilepath>", 13));
-}
-
-char	*get_prop_name_two(char *s)
-{
-	if (ft_strnequ((s + 1), "type", 4))
-		return ("type");
-	if (ft_strnequ((s + 1), "intensity", 9))
-		return ("intensity");
-	if (ft_strnequ((s + 1), "radius", 6))
-		return ("radius");
-	if (ft_strnequ((s + 1), "texturescale", 12))
-		return ("texturescale");
-	if (ft_strnequ((s + 1), "texture", 7))
-		return ("texture");
-	if (ft_strnequ((s + 1), "transparency", 12))
-		return ("transparency");
-	if (ft_strnequ((s + 1), "raydepth", 8))
-		return ("raydepth");
-	if (ft_strnequ((s + 1), "path", 4))
-		return ("path");
-	if (ft_strnequ((s + 1), "objfilepath", 11))
-		return ("objfilepath");
-	if (ft_strnequ((s + 1), "cellshade", 9))
-		return ("cellshade");
-	if (ft_strnequ((s + 1), "eyewidth", 8))
-		return ("eyewidth");
-	return (NULL);
-}
-
-char	*get_prop_name(char *s)
-{
-	if (ft_strnequ((s + 1), "origin", 6))
-		return ("origin");
-	if (ft_strnequ((s + 1), "colour", 6))
-		return ("colour");
-	if (ft_strnequ((s + 1), "rotation", 8))
-		return ("rotation");
-	if (ft_strnequ((s + 1), "direction", 9))
-		return ("direction");
-	if (ft_strnequ((s + 1), "fov", 3))
-		return ("fov");
-	if (ft_strnequ((s + 1), "aperture", 8))
-		return ("aperture");
-	if (ft_strnequ((s + 1), "scale", 5))
-		return ("scale");
-	if (ft_strnequ((s + 1), "diffusecolour", 13))
-		return ("diffusecolour");
-	if (ft_strnequ((s + 1), "specularcolour", 14))
-		return ("specularcolour");
-	if (ft_strnequ((s + 1), "albedo", 6))
-		return ("albedo");
-	if (ft_strnequ((s + 1), "refractionindex", 15))
-		return ("refractionindex");
-	return (get_prop_name_two(s));
+		ft_strnequ(line, "<eyewidth>", 10) || 
+		ft_strnequ(line, "<ambience>", 10) ||
+		ft_strnequ(line, "<path>", 6) || ft_strnequ(line, "<objfilepath>", 13)
+		ft_strnequ(line, "<normalmap>", 11) ||
+		ft_strnequ(line, "<specularmap>", 13));
 }
 
 char	*get_name(char *s)
