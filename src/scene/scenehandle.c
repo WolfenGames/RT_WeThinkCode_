@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 09:01:47 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/19 15:30:21 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/24 00:32:50 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,10 @@ void	do_da_scene(char *line, t_env *env)
 		env->scene.cellshade = ft_atod(line + 11);
 	if (match_brackets("eyewidth", line))
 		env->eye_w = ft_atod(line + 10);
+	if (match_brackets("ambience", line))
+		env->ambience = ft_atod(line + 10);
+	if (match_brackets("posteffect", line))
+	{
+		//sepai effect number and stuff;
+	}
 }
