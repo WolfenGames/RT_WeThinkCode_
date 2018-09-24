@@ -3,13 +3,13 @@
 	<rotation>0,0,0</rotation>
 	<aperture>1</aperture>
 	<fov>40</fov>
-	<ambience>50,50,50,255</ambience>
 </camera>
 <scene>
 	<raydepth>2</raydepth>
 	<eyewidth>0.2</eyewidth>
 	<path>Culmination</path>
 	<objfilepath>objects/strip_low.obj</objfilepath>
+	<ambience>50,50,50,255</ambience>
 </scene>
 <light	name='Right light'>
 	<origin>0,0,11,0</origin>
