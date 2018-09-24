@@ -26,5 +26,5 @@
 	<transparency>0.6</transparency>
 	<refractionindex>1.7</refractionindex>
 	<normalmap>Textures/wall.png</normalmap>
-	<specularmap>Textures/wall.png</normalmap>
+	<specularmap>Textures/wall.png</specularmap>
 </object>
