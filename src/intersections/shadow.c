@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 11:47:01 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/21 10:21:21 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/24 12:02:32 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,25 @@ void		generate_shadow_ray(t_ray *point, t_lig *lig, t_env *env, t_col col)
 {
 	t_ray	sh;
 	t_obj	*obj;
-	t_col	temp[2];
+	t_ray	temp;
 
 	make_shadow(lig, point);
 	ft_memmove(&sh, point, sizeof(t_ray));
 	set_value(sh, lig, col);
-	FILLVEC(temp[0], temp[0][0], point->u, point->v, point->tri_index);
+	FILLVEC(temp.dir, temp.dir[0], point->u, point->v, point->tri_index);
 	while (VEC3_IS(col) && sh.len > 0)
 	{
 		make_shadow(lig, &sh);
 		if ((obj = trace(&sh, env->scene.obj)))
 		{
 			v_add(sh.org, v_multi(sh.dir, sh.len + 0.0001, sh.dir), sh.org);
-			obj->get_surface_col(obj, temp[0], sh.org);
-			FILLCOL(temp[1], 255, 255, 255, 255);
-			sc_col(temp[0], 1 - obj->trans, temp[0]);
-			sc_col(temp[1], obj->trans, temp[1]);
-			add_col(temp[0], temp[1], temp[0]);
-			sc_col(temp[0], obj->trans, temp[0]);
-			mask_col(col, temp[0], col);
+			obj->get_surface_col(obj, &temp, sh.org);
+			FILLCOL(temp.org, 255, 255, 255, 255);
+			sc_col(temp.dir, 1 - obj->trans, temp.dir);
+			sc_col(temp.org, obj->trans, temp.org);
+			add_col(temp.dir, temp.org, temp.dir);
+			sc_col(temp.dir, obj->trans, temp.dir);
+			mask_col(col, temp.dir, col);
 		}
 		else
 			sh.len = 0;

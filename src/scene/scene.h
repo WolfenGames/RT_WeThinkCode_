@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 11:18:56 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 11:32:21 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ typedef struct	s_obj
 	t_bool_type	bool_type;
 	void		(*get_norm)(t_vec norm, t_vec point, struct s_obj *obj);
 	int			(*get_intersect)(t_ray *ray, struct s_obj *obj);
-	void		(*get_surface_col)(struct s_obj *obj, t_vec c, t_vec point);
+	void		(*get_surface_col)(struct s_obj *obj, t_ray *c, t_vec point);
 }				t_obj;
 
 typedef struct	s_lig

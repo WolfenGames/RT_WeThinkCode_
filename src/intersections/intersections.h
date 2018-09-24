@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:13 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 11:18:49 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 11:32:31 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,23 @@ void	glare(t_ray *ray, t_env *env, t_col c);
 t_obj	*trace(t_ray *ray, t_list *list);
 void	generate_shadow_ray(t_ray *point, t_lig *lig, t_env *env, t_col col);
 
-void	sphere_surface_col(t_obj *obj, t_col c, t_vec point);
+void	sphere_surface_col(t_obj *obj, t_ray *c, t_vec point);
 int		sphere_intersect(t_ray *ray, t_obj *obj);
 void	sphere_getnorm(t_vec norm, t_vec point, t_obj *obj);
 
-void	cone_surface_col(t_obj *ob, t_col c, t_vec point);
+void	cone_surface_col(t_obj *ob, t_ray *c, t_vec point);
 int		cone_intersect(t_ray *ray, t_obj *obj);
 void	cone_getnorm(t_vec norm, t_vec point, t_obj *obj);
 
-void	plane_surface_col(t_obj *ob, t_col c, t_vec point);
+void	plane_surface_col(t_obj *ob, t_ray *c, t_vec point);
 int		plane_intersect(t_ray *ray, t_obj *obj);
 void	plane_getnorm(t_vec norm, t_vec point, t_obj *obj);
 
-void	cylinder_surface_col(t_obj *ob, t_col c, t_vec point);
+void	cylinder_surface_col(t_obj *ob, t_ray *c, t_vec point);
 int		cylinder_intersect(t_ray *ray, t_obj *obj);
 void	cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj);
 
-void	poly_surface_col(t_obj *ob, t_col c, t_vec point);
+void	poly_surface_col(t_obj *ob, t_ray *c, t_vec point);
 int		poly_intersect(t_ray *ray, t_obj *obj);
 void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj);
 

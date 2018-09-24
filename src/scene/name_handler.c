@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   name_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:58:08 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 00:26:41 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/24 11:59:24 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		is_line_prop(const char *line)
 		ft_strnequ(line, "<raydepth>", 10) ||
 		ft_strnequ(line, "<eyewidth>", 10) || 
 		ft_strnequ(line, "<ambience>", 10) ||
-		ft_strnequ(line, "<path>", 6) || ft_strnequ(line, "<objfilepath>", 13)
+		ft_strnequ(line, "<path>", 6) || ft_strnequ(line, "<objfilepath>", 13) ||
 		ft_strnequ(line, "<normalmap>", 11) ||
 		ft_strnequ(line, "<specularmap>", 13));
 }

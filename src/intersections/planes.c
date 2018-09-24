@@ -6,33 +6,35 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:50:41 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/19 11:49:46 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 12:05:32 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	plane_surface_col(t_obj *ob, t_col c, t_vec point)
+void	plane_surface_col(t_obj *ob, t_ray *c, t_vec point)
 {
 	t_vec		tempvec[3];
 	t_vec		o;
-	t_img		*img;
 
-	img = ob->tex;
 	transform(ob->wto, point, tempvec[2]);
 	tempvec[2][0] += ob->scale[0] / 2.0;
 	tempvec[2][1] += ob->scale[1] / 2.0;
-	if (!img)
+	//if (!ob->spec)
+	//{
+		vec_dup(ob->specular_colour, c->org);
+	//	return ;
+	//}
+	if (!ob->tex)
 	{
-		FILLCOL(c, ob->surface_colour[0], ob->surface_colour[1],
-				ob->surface_colour[2], ob->surface_colour[3]);
+		vec_dup(ob->surface_colour, c->dir);
 		return ;
 	}
 	o[0] = tempvec[2][0] / ob->scale[0];
 	o[1] = 1 - tempvec[2][1] / ob->scale[1];
-	o[0] = (o[0] * ob->tex_scale[0] - (int)(o[0] * ob->tex_scale[0])) * img->w;
-	o[1] = (o[1] * ob->tex_scale[1] - (int)(o[1] * ob->tex_scale[1])) * img->h;
-	get_img_col(o[0], o[1], img, c);
+	o[0] = (o[0] * ob->tex_scale[0] - (int)(o[0] * ob->tex_scale[0]));
+	o[1] = (o[1] * ob->tex_scale[1] - (int)(o[1] * ob->tex_scale[1]));
+	get_p_img_col(o[0], o[1], ob->tex, c->dir);
 }
 
 void	plane_getnorm(t_vec norm, t_vec point, t_obj *obj)

@@ -6,25 +6,28 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 11:51:11 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 11:53:17 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	sphere_surface_col(t_obj *ob, t_col c, t_vec point)
+void	sphere_surface_col(t_obj *ob, t_ray *c, t_vec point)
 {
 	t_vec		norm;
 	t_vec		tempvec[3];
 	t_vec		o;
-	const t_img	*img = ob->tex;
 
 	transform(ob->wto, point, norm);
 	normalize(norm);
-	if (!img)
+	//if (!ob->spec)
+	//{
+		vec_dup(ob->specular_colour, c->org);
+	//	return ;
+	//}
+	if (!ob->tex)
 	{
-		FILLCOL(c, ob->surface_colour[0], ob->surface_colour[1],
-			ob->surface_colour[2], ob->surface_colour[3]);
+		vec_dup(ob->surface_colour, c->dir);
 		return ;
 	}
 	FILLVEC(tempvec[0], 0, 1, 0, 0);
@@ -33,9 +36,9 @@ void	sphere_surface_col(t_obj *ob, t_col c, t_vec point)
 	FILLVEC(tempvec[0], 0, 0, 1, 0);
 	o[0] = 1 - ((norm[0] < 0 ? 0 : 2 * M_PI) + (norm[0] < 0 ? 1 : -1)
 		* find_angle(tempvec[0], tempvec[1])) / (2.f * M_PI);
-	o[0] = (o[0] * ob->tex_scale[0] - (int)(o[0] * ob->tex_scale[0])) * img->w;
-	o[1] = (o[1] * ob->tex_scale[1] - (int)(o[1] * ob->tex_scale[1])) * img->h;
-	get_img_col(o[0], o[1], (t_img*)img, c);
+	o[0] = (o[0] * ob->tex_scale[0] - (int)(o[0] * ob->tex_scale[0]));
+	o[1] = (o[1] * ob->tex_scale[1] - (int)(o[1] * ob->tex_scale[1]));
+	get_p_img_col(o[0], o[1], ob->tex, c->dir);
 }
 
 void	sphere_getnorm(t_vec norm, t_vec point, t_obj *obj)

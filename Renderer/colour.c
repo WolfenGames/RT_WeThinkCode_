@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/21 13:10:26 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/20 18:35:32 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 11:46:01 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,27 @@ double	*mask_col(t_col base, t_col mask, t_col ret)
 	ret[1] = ft_min(mask[1], base[1]);
 	ret[2] = ft_min(mask[2], base[2]);
 	ret[3] = ft_min(mask[3], base[3]);
+	return (ret);
+}
+
+double	*get_p_img_col(double ox, double oy, t_img *img, t_col ret)
+{
+	unsigned int	*dat;
+	unsigned int	tmp;
+	const int		x = ox * img->w;
+	const int		y = oy * img->h;
+
+	dat = (unsigned int*)img->dat;
+	if (x >= 0 && x < img->w && y >= 0 && y < img->h)
+		tmp = dat[x + (int)(y * img->w)];
+	else
+		tmp = 0;
+	BLU(ret) = (tmp & 0xff);
+	tmp /= 0x100;
+	GRN(ret) = (tmp & 0xff);
+	tmp /= 0x100;
+	RED(ret) = (tmp & 0xff);
+	tmp /= 0x100;
+	ALP(ret) = (tmp & 0xff);
 	return (ret);
 }

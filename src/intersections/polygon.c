@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   polygon.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 13:20:45 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/21 09:40:15 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/24 11:57:30 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,27 @@
 #define C2 (obj->faces[i][1][1] >= obj->n_v_t_coord || obj->faces[i][1][1] < 0)
 #define C3 (obj->faces[i][2][1] >= obj->n_v_t_coord || obj->faces[i][2][1] < 0)
 
-void	poly_surface_col(t_obj *obj, t_col c, t_vec point)
+void	poly_surface_col(t_obj *obj, t_ray* c, t_vec point)
 {
 	int		i;
 	t_vec	len;
 	t_vec	o;
 
 	(void)point;
-	i = c[3];
+	i = c->dir[3];
+	//if (!ob->spec)
+	//{
+		vec_dup(obj->specular_colour, c->org);
+	//	return ;
+	//}
 	if (!obj->tex || i < 0 || i >= obj->n_faces)
 	{
-		vec_dup(obj->surface_colour, c);
+		vec_dup(obj->surface_colour, c->dir);
 		return ;
 	}
-	len[1] = c[1];
-	len[2] = c[2];
-	len[0] = 1 - c[1] - c[2];
+	len[1] = c->dir[1];
+	len[2] = c->dir[2];
+	len[0] = 1 - c->dir[1] - c->dir[2];
 	if (C1 || C2 || C3)
 		return ;
 	o[0] = VT(2)[0] * len[0];
@@ -45,9 +50,7 @@ void	poly_surface_col(t_obj *obj, t_col c, t_vec point)
 	o[1] -= VT(0)[1] * len[1];
 	o[0] += VT(1)[0] * len[2];
 	o[1] -= VT(1)[1] * len[2];
-	o[0] *= obj->tex->w;
-	o[1] *= obj->tex->h;
-	get_img_col(o[0], o[1], obj->tex, c);
+	get_p_img_col(o[0], o[1], obj->tex, c->dir);
 }
 
 void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj)

@@ -6,25 +6,27 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:32:18 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/16 15:42:19 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 11:55:45 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void			cylinder_surface_col(t_obj *ob, t_col c, t_vec point)
+void			cylinder_surface_col(t_obj *ob, t_ray *c, t_vec point)
 {
 	t_vec		lpoint;
 	t_vec		temp;
 	t_vec		o;
-	t_img		*img;
 
-	img = ob->tex;
+	//if (!ob->spec)
+	//{
+		vec_dup(ob->specular_colour, c->org);
+	//	return ;
+	//}
 	transform(ob->wto, point, lpoint);
-	if (!img)
+	if (!ob->tex)
 	{
-		FILLCOL(c, ob->surface_colour[0], ob->surface_colour[1],
-			ob->surface_colour[2], ob->surface_colour[3]);
+		vec_dup(ob->surface_colour, c->dir);
 		return ;
 	}
 	o[1] = 1 - (lpoint[2] + ob->scale[0] / 2.0) / ob->scale[0];
@@ -35,9 +37,9 @@ void			cylinder_surface_col(t_obj *ob, t_col c, t_vec point)
 		+ find_angle(temp, lpoint)) / (2 * M_PI));
 	if (ABS(o[2]) > ((ob->scale[0] / 2.0) * 0.99999))
 		cap_col(o, lpoint, ob);
-	o[0] = (o[0] * ob->tex_scale[0] - (int)(o[0] * ob->tex_scale[0])) * img->w;
-	o[1] = (o[1] * ob->tex_scale[1] - (int)(o[1] * ob->tex_scale[1])) * img->h;
-	get_img_col(o[0], o[1], img, c);
+	o[0] = (o[0] * ob->tex_scale[0] - (int)(o[0] * ob->tex_scale[0]));
+	o[1] = (o[1] * ob->tex_scale[1] - (int)(o[1] * ob->tex_scale[1]));
+	get_p_img_col(o[0], o[1], ob->tex, c->dir);
 }
 
 static void		c_bound(t_obj *obj, double t[3], t_ray *tr)

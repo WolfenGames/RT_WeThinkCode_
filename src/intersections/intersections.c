@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 11:26:59 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 12:17:58 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static double	shade(double dot, double shaded, t_obj *obj)
 	return (dot);
 }
 
-static void		light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
+static void		light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_ray *c)
 {
 	t_list	*cur;
 	t_vec	vecs[3];
@@ -52,7 +52,7 @@ static void		light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 	vecs[2][2] = shadow->v;
 	vecs[2][1] = shadow->u;
 	obj->get_norm(vecs[2], shadow->org, obj);
-	sc_col(c, 0.01, vecs[0]);
+	sc_col(c->dir, 0.01, vecs[0]);
 	while (cur)
 	{
 		generate_shadow_ray(shadow, LIG, env, col);
@@ -63,45 +63,45 @@ static void		light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_col c)
 		add_col(vecs[0], vecs[1], vecs[0]);
 		cur = cur->next;
 	}
-	c[0] *= vecs[0][0] / 255.0;
-	c[1] *= vecs[0][1] / 255.0;
-	c[2] *= vecs[0][2] / 255.0;
+	c->dir[0] *= vecs[0][0] / 255.0;
+	c->dir[1] *= vecs[0][1] / 255.0;
+	c->dir[2] *= vecs[0][2] / 255.0;
 }
 
-void			reflect_crap(t_col c, t_ray point[3], t_obj *obj, double k)
+void			reflect_crap(t_ray *c, t_ray point[3], t_obj *obj, double k)
 {
 	t_col	specular_rat;
 	t_col	refract;
 
-	specular_rat[0] = obj->specular_colour[0] / 255.0;
-	specular_rat[1] = obj->specular_colour[1] / 255.0;
-	specular_rat[2] = obj->specular_colour[2] / 255.0;
+	specular_rat[0] = c->org[0] / 255.0;
+	specular_rat[1] = c->org[1] / 255.0;
+	specular_rat[2] = c->org[2] / 255.0;
 	refract[0] = (point[3].dir[0] / 255.0) * point[1].org[0];
 	refract[1] = (point[3].dir[1] / 255.0) * point[1].org[1];
 	refract[2] = (point[3].dir[2] / 255.0) * point[1].org[2];
 	k *= 1 - obj->trans;
 	k += 1 - obj->trans;
-	c[0] = ft_clamp(255, 0, specular_rat[0] * point[1].dir[0] * k + (c[0])
+	c->dir[0] = ft_clamp(255, 0, specular_rat[0] * point[1].dir[0] * k + (c->dir[0])
 		* (1 - obj->trans) + point[1].org[0] * (obj->trans) * (1 - k));
-	c[1] = ft_clamp(255, 0, specular_rat[1] * point[1].dir[1] * k + (c[1])
+	c->dir[1] = ft_clamp(255, 0, specular_rat[1] * point[1].dir[1] * k + (c->dir[1])
 		* (1 - obj->trans) + point[1].org[1] * (obj->trans) * (1 - k));
-	c[2] = ft_clamp(255, 0, specular_rat[2] * point[1].dir[2] * k + (c[2])
+	c->dir[2] = ft_clamp(255, 0, specular_rat[2] * point[1].dir[2] * k + (c->dir[2])
 		* (1 - obj->trans) + point[1].org[2] * (obj->trans) * (1 - k));
 }
 
-static void		mid(t_ray *ray, t_ray point[3], t_env *env, t_obj *hit_obj)
+static void		mid(t_ray *ray, t_ray point[4], t_env *env, t_obj *hit_obj)
 {
 	memcpy(&point[0], ray, sizeof(t_ray));
 	v_add(v_multi(ray->dir, ray->len * 0.9999999, point[0].org),
 		ray->org, point[0].org);
-	hit_obj->get_surface_col(hit_obj, point[3].dir, point[0].org);
+	hit_obj->get_surface_col(hit_obj, &point[3], point[0].org);
 	hit_obj->get_norm(point[2].dir, point[0].org, hit_obj);
 	vec_dup(point[3].dir, point[1].org);
 	if ((REFLECTIVE || REFRACTIVE) && point[2].len < env->scene.raydepth)
 	{
 		refract(ray->dir, point[2].dir, hit_obj->r_index, point[0].dir);
 		v_add(point[0].org,
-			v_multi(point[2].dir, 0.00000009 *
+			v_multi(point[2].dir, 0.00000003 *
 				(dot(point[2].dir, point[0].dir) < 0 ? -1 : 1),
 				point[2].org), point[0].org);
 		if (hit_obj->trans)
@@ -110,11 +110,21 @@ static void		mid(t_ray *ray, t_ray point[3], t_env *env, t_obj *hit_obj)
 		vec_dup(point[1].org, point[1].dir);
 		if (REFLECTIVE && reflect(ray->dir, point[2].dir, point[0].dir))
 			get_col(&point[0], env, point[1].dir, point[2].len + 1);
-		reflect_crap(point[3].dir, point, hit_obj,
+		reflect_crap(&point[3], point, hit_obj,
 			fresnel(ray->dir, point[2].dir, hit_obj->r_index));
 	}
-	light_thing(&point[0], env, hit_obj, point[3].dir);
+	light_thing(&point[0], env, hit_obj, &point[3]);
 }
+
+/*
+**	point[0] = temp ray
+**	point[1].org = refract col
+**	point[1].dir = reflect col
+**	point[2].org = tempvec
+**	point[2].dir = normal
+**	point[3].org = specular col
+**	point[3].dir = surface col
+*/
 
 void			get_col(t_ray *ray, t_env *env, t_col c, int level)
 {

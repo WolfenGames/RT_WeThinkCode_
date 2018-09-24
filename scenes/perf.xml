@@ -5,7 +5,7 @@
 	<fov>50</fov>
 </camera>
 <scene>
-	<raydepth>10</raydepth>
+	<raydepth>8</raydepth>
 	<eyewidth>1</eyewidth>
 	<objfilepath>objects/Glass.obj</objfilepath>
 	<objfilepath>objects/Perf.obj</objfilepath>
