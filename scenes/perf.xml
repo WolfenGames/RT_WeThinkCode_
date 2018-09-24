@@ -66,7 +66,8 @@
 	<scale>40, 40</scale>
 	<diffusecolour>255, 255, 255</diffusecolour>
 	<texture>Textures/Light wood.xpm</texture>
-	<specularcolour>50, 50, 50</specularcolour>
+	<specularmap>Textures/Light wood spec.png</specularmap>
+	<specularcolour>30, 30, 30</specularcolour>
 	<texturescale>1, 1</texturescale>
 	<albedo>0.18<albedo>
 	<type>plane</type>

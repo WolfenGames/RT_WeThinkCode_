@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 16:54:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 09:03:46 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 14:49:22 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	aa(t_env *env)
 		while (++point[1] < RENDER->h && env->running)
 		{
 			get_img_col(point[0], point[1], RENDER, c);
+			c[3] = 255;
 			if (checkpoint(env, point))
 				cast(env, point, c);
 			//post effects go here

@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 13:20:45 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 12:28:13 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 14:30:24 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,6 @@ void	poly_surface_col(t_obj *obj, t_ray* c, t_vec point)
 
 	(void)point;
 	i = c->dir[3];
-	//if (!ob->spec)
-	//{
-		vec_dup(obj->specular_colour, c->org);
-	//	return ;
-	//}
-	if (!obj->tex || i < 0 || i >= obj->n_faces)
-	{
-		vec_dup(obj->surface_colour, c->dir);
-		return ;
-	}
 	len[1] = c->dir[1];
 	len[2] = c->dir[2];
 	len[0] = 1 - c->dir[1] - c->dir[2];
@@ -51,7 +41,13 @@ void	poly_surface_col(t_obj *obj, t_ray* c, t_vec point)
 	o[0] += VT(1)[0] * len[2];
 	o[1] -= VT(1)[1] * len[2];
 	surface_scale(o, obj);
-	get_p_img_col(o[0], o[1], obj->tex, c->dir);
+	obj->spec_map ? (get_p_img_col(o[0], o[1], obj->spec_map, c->org), FILLVEC(c->org,
+		(c->org[0] / 255.0) * obj->specular_colour[0],
+		(c->org[1] / 255.0) * obj->specular_colour[1],
+		(c->org[2] / 255.0) * obj->specular_colour[2], 0)) : 
+		vec_dup(obj->specular_colour, c->org);
+	obj->tex ? get_p_img_col(o[0], o[1], obj->tex, c->dir) :
+		vec_dup(obj->surface_colour, c->dir);
 }
 
 void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj)
