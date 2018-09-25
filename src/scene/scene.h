@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 13:38:32 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 10:40:19 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,20 +137,20 @@ typedef struct	s_read
 }				t_read;
 
 void			create_scene(int ac, char **av, t_scene *scene, t_env *env);
-void			do_da_scene(char *line, t_env *env);
-void			do_da_object(char *name, char *line,
+void			set_scene_properties(char *line, t_env *env);
+void			set_object_properties(char *name, char *line,
 								t_scene *scene, t_env *env);
-void			do_da_object_stuff_one(char *name, char *line,
+void			set_object_properties_one(char *name, char *line,
 										t_obj *new, t_env *env);
-void			do_obj_param_set(t_env *env);
-void			do_da_polygon(char *line, t_env *env);
+void			set_object_param(t_env *env);
+void			set_polygon_properties(char *line, t_env *env);
 void			free_tab(char ***tab);
 void			handle_contents(char *line, char *name, t_scene *scene,
 								t_env *env);
 void			polygon_scale(t_env *env);
 void			set_vec(t_vec vec, char *linesub);
 void			set_obj_params(t_obj *o);
-void			set_o_type(char *s, t_obj *o);
+void			set_object_type(char *s, t_obj *o);
 void			set_tex(t_obj *o, char *filename, t_env *env);
 void			set_n_tex(t_obj *o, char *filename, t_env *env);
 void			set_s_tex(t_obj *o, char *filename, t_env *env);
@@ -174,7 +174,7 @@ t_cam			*search_cam_list(t_scene *scene, char *name);
 t_obj			*search_obj_list(t_scene *scene, char *name);
 t_lig			*search_light_list(t_scene *scene, char *name);
 
-t_l_type		set_l_type(char *s);
+t_l_type		set_light_type(char *s);
 
 void			calc_scene(t_scene *scene);
 

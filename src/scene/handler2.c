@@ -6,12 +6,16 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 07:51:39 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 15:18:09 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 10:34:32 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "rt.h"
+
+/*
+** Here we have the initial png, xpm loader for our images system
+*/
 
 void	try_load_xpm(char *small, char *filename, t_env *env, t_obj *o)
 {
@@ -52,6 +56,10 @@ void	set_tex(t_obj *o, char *filename, t_env *env)
 	free(filename);
 }
 
+/*
+** This is to make sure we get the right path for the object in relative space
+*/
+
 char	*get_path_param(char *line)
 {
 	char	*path;
@@ -65,7 +73,7 @@ char	*get_path_param(char *line)
 	return (path);
 }
 
-void	do_da_polygon(char *line, t_env *env)
+void	set_polygon_properties(char *line, t_env *env)
 {
 	char	*path;
 

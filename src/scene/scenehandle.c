@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 09:01:47 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/25 10:22:00 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 10:39:28 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ char	*ft_get_filename(char *str, char delim)
 	return (ret);
 }
 
-void	do_da_scene(char *line, t_env *env)
+void	set_scene_properties(char *line, t_env *env)
 {
 	if (match_brackets("raydepth", line))
 		env->scene.raydepth = ft_atod(line + 10);
 	if (match_brackets("path", line))
 		env->scene.fn = ft_get_filename(line + 6, '<');
 	if (match_brackets("objfilepath", line))
-		do_da_polygon(line + 13, env);
+		set_polygon_properties(line + 13, env);
 	if (match_brackets("cellshade", line))
 		env->scene.cellshade = ft_atod(line + 11);
 	if (match_brackets("eyewidth", line))

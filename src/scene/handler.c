@@ -6,13 +6,17 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 07:48:27 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/18 13:02:04 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 10:40:19 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 
-void	do_da_camera(char *name, char *line, t_scene *scene)
+/*
+** Here we set camera/light properties
+*/ 
+
+void	set_camera_properties(char *name, char *line, t_scene *scene)
 {
 	t_cam	*newcam;
 	t_cam	template;
@@ -35,7 +39,7 @@ void	do_da_camera(char *name, char *line, t_scene *scene)
 	scene->c_cam = (scene->c_cam != NULL) ? scene->c_cam : scene->cam->content;
 }
 
-void	do_da_light(char *name, char *line, t_scene *scene)
+void	set_light_properties(char *name, char *line, t_scene *scene)
 {
 	t_lig	*new;
 	t_lig	template;
@@ -54,10 +58,14 @@ void	do_da_light(char *name, char *line, t_scene *scene)
 	if (match_brackets("colour", line))
 		set_vec(new->col, ft_strsub(line, 8, ft_strlen(line) - 17));
 	if (match_brackets("type", line))
-		new->type = set_l_type(ft_strsub(line, 6, ft_strlen(line) - 13));
+		new->type = set_light_type(ft_strsub(line, 6, ft_strlen(line) - 13));
 	if (match_brackets("intensity", line))
 		new->intensity = ft_clamp(__LONG_LONG_MAX__, 0.1, ft_atod(line + 11));
 }
+
+/*
+** Here we call a variety of functions based on what is needed by the HEAD
+*/
 
 void	handle_contents(char *line, char *name, t_scene *scene, t_env *env)
 {
@@ -69,13 +77,13 @@ void	handle_contents(char *line, char *name, t_scene *scene, t_env *env)
 	if (is_line_prop(small))
 	{
 		if (ft_strnequ(small2, "<object", 7))
-			do_da_object(name, line, scene, env);
+			set_object_properties(name, line, scene, env);
 		if (ft_strnequ(small2, "<camera", 7))
-			do_da_camera(name, line, scene);
+			set_camera_properties(name, line, scene);
 		if (ft_strnequ(small2, "<light", 6))
-			do_da_light(name, line, scene);
+			set_light_properties(name, line, scene);
 		if (ft_strnequ(small2, "<scene", 6))
-			do_da_scene(line, env);
+			set_scene_properties(line, env);
 	}
 	free(small);
 	free(small2);

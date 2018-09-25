@@ -6,14 +6,14 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 07:20:51 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 13:51:14 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 10:40:07 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "rt.h"
 
-void	do_da_object_stuff_two(char *line, t_obj *new, t_env *env)
+void	set_object_properties_two(char *line, t_obj *new, t_env *env)
 {
 	if (match_brackets("transparency", line))
 		new->trans = ft_clamp(1, 0, ft_atod(line + 14));
@@ -25,7 +25,7 @@ void	do_da_object_stuff_two(char *line, t_obj *new, t_env *env)
 		set_s_tex(new, ft_strsub(line, 13, ft_strlen(line) - 27), env);
 }
 
-void	do_da_object_stuff_one(char *name, char *line, t_obj *new, t_env *env)
+void	set_object_properties_one(char *name, char *line, t_obj *new, t_env *env)
 {
 	new->name = (new->name != NULL) ? new->name : get_name(name);
 	if (match_brackets("origin", line))
@@ -42,17 +42,17 @@ void	do_da_object_stuff_one(char *name, char *line, t_obj *new, t_env *env)
 	if (match_brackets("radius", line))
 		new->radius = ft_clamp(__LONG_MAX__, 0.1, ft_atod(line + 8));
 	if (match_brackets("type", line))
-		set_o_type(ft_strsub(line, 6, ft_strlen(line) - 13), new);
+		set_object_type(ft_strsub(line, 6, ft_strlen(line) - 13), new);
 	if (match_brackets("scale", line))
 		set_vec(new->scale, ft_strsub(line, 7, ft_strlen(line) - 15));
 	if (match_brackets("texture", line))
 		set_tex(new, ft_strsub(line, 9, ft_strlen(line) - 19), env);
 	if (match_brackets("texturescale", line))
 		set_vec(new->tex_scale, ft_strsub(line, 14, ft_strlen(line) - 29));
-	do_da_object_stuff_two(line, new, env);
+	set_object_properties_two(line, new, env);
 }
 
-void	do_obj_param_set(t_env *env)
+void	set_object_param(t_env *env)
 {
 	t_list	*cur;
 
@@ -64,7 +64,7 @@ void	do_obj_param_set(t_env *env)
 	}
 }
 
-void	do_da_object(char *name, char *line, t_scene *scene, t_env *env)
+void	set_object_properties(char *name, char *line, t_scene *scene, t_env *env)
 {
 	t_obj	*new;
 	t_obj	template;
@@ -75,7 +75,7 @@ void	do_da_object(char *name, char *line, t_scene *scene, t_env *env)
 		ft_lstadd(&scene->obj, ft_lstnew(&template, sizeof(t_obj)));
 		new = (t_obj*)scene->obj->content;
 	}
-	do_da_object_stuff_one(name, line, new, env);
+	set_object_properties_one(name, line, new, env);
 }
 
 void	polygon_scale(t_env *env)
