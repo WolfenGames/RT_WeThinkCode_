@@ -9,7 +9,7 @@
 	<eyewidth>0.2</eyewidth>
 	<path>Culmination</path>
 	<objfilepath>objects/strip_low.obj</objfilepath>
-	<ambience>50,50,50,255</ambience>
+	<ambience>255,255,255,255</ambience>
 </scene>
 <light	name='Right light'>
 	<origin>0,0,11,0</origin>

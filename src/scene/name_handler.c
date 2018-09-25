@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   name_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:58:08 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 11:59:24 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 10:36:17 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
+
+/*
+** similar to get_prop_name, this makes sure the initial part of the line
+** matches.
+*/
 
 int		is_line_prop(const char *line)
 {
@@ -30,12 +35,17 @@ int		is_line_prop(const char *line)
 		ft_strnequ(line, "<refractionindex>", 17) ||
 		ft_strnequ(line, "<transparency>", 14) ||
 		ft_strnequ(line, "<raydepth>", 10) ||
-		ft_strnequ(line, "<eyewidth>", 10) || 
+		ft_strnequ(line, "<eyewidth>", 10) ||
 		ft_strnequ(line, "<ambience>", 10) ||
-		ft_strnequ(line, "<path>", 6) || ft_strnequ(line, "<objfilepath>", 13) ||
+		ft_strnequ(line, "<path>", 6) ||
+		ft_strnequ(line, "<objfilepath>", 13) ||
 		ft_strnequ(line, "<normalmap>", 11) ||
 		ft_strnequ(line, "<specularmap>", 13));
 }
+
+/*
+** This gets the name of our HEAD object
+*/
 
 char	*get_name(char *s)
 {

@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 13:20:45 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 17:16:59 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 11:22:32 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,25 @@ void	poly_surface_col(t_obj *obj, t_ray* c, t_vec point)
 	len[1] = c->dir[1];
 	len[2] = c->dir[2];
 	len[0] = 1 - c->dir[1] - c->dir[2];
-	if (C1 || C2 || C3)
-		return ;
-	o[0] = VT(2)[0] * len[0];
-	o[1] = 1 - VT(2)[1] * len[0];
-	o[0] += VT(0)[0] * len[1];
-	o[1] -= VT(0)[1] * len[1];
-	o[0] += VT(1)[0] * len[2];
-	o[1] -= VT(1)[1] * len[2];
-	surface_scale(o, obj);
-	obj->spec_map ? (get_p_img_col(o[0], o[1], obj->spec_map, c->org), FILLVEC(c->org,
+	if (!C1 && !C2 && !C3)
+	{
+		o[0] = VT(2)[0] * len[0];
+		o[1] = 1 - VT(2)[1] * len[0];
+		o[0] += VT(0)[0] * len[1];
+		o[1] -= VT(0)[1] * len[1];
+		o[0] += VT(1)[0] * len[2];
+		o[1] -= VT(1)[1] * len[2];
+		surface_scale(o, obj);
+	}
+	if (obj->spec_map)
+	{
+		get_p_img_col(o[0], o[1], obj->spec_map, c->org);
+		FILLVEC(c->org,
 		(c->org[0] / 255.0) * obj->specular_colour[0],
 		(c->org[1] / 255.0) * obj->specular_colour[1],
-		(c->org[2] / 255.0) * obj->specular_colour[2], 0)) : 
+		(c->org[2] / 255.0) * obj->specular_colour[2], 0);
+	}
+	else 
 		vec_dup(obj->specular_colour, c->org);
 	obj->tex ? get_p_img_col(o[0], o[1], obj->tex, c->dir) :
 		vec_dup(obj->surface_colour, c->dir);

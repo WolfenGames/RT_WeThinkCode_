@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:32:18 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 16:59:47 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 11:22:18 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,15 @@ void			cylinder_surface_col(t_obj *ob, t_ray *c, t_vec point)
 	if (ABS(o[2]) > ((ob->scale[0] / 2.0) * 0.99999))
 		cap_col(o, lpoint, ob);
 	surface_scale(o, ob);
-	ob->spec_map ? (get_p_img_col(o[0], o[1], ob->spec_map, c->org), FILLVEC(c->org,
+	if (ob->spec_map)
+ 	{
+		get_p_img_col(o[0], o[1], ob->spec_map, c->org);
+		FILLVEC(c->org,
 		(c->org[0] / 255.0) * ob->specular_colour[0],
 		(c->org[1] / 255.0) * ob->specular_colour[1],
-		(c->org[2] / 255.0) * ob->specular_colour[2], 0)) : 
+		(c->org[2] / 255.0) * ob->specular_colour[2], 0);
+	 }
+	 else 
 		vec_dup(ob->specular_colour, c->org);
 	ob->tex ? get_p_img_col(o[0], o[1], ob->tex, c->dir) :
 		vec_dup(ob->surface_colour, c->dir);

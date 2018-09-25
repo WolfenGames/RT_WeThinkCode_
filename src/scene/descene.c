@@ -6,11 +6,15 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 15:51:18 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/18 14:24:48 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 10:30:08 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+/*
+** Here we handle deleting of elements of are no longer required,
+*/
 
 static void	del_obj(t_list **objs, t_env *env)
 {

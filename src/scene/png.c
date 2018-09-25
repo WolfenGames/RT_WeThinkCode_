@@ -6,14 +6,14 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 07:50:46 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 13:42:15 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 10:38:35 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "upng.h"
 #include "rt.h"
 
-void	do_da_image(upng_t *img, t_obj *obj, t_env *env, int i)
+void	image_setup(upng_t *img, t_obj *obj, t_env *env, int i)
 {
 	if (!obj->tex && i == 0)
 	{
@@ -53,7 +53,7 @@ void	load_png(t_obj *obj, char *fn, t_env *env, int i)
 	{
 		upng_decode(img);
 		if (upng_get_error(img) == UPNG_EOK)
-			do_da_image(img, obj, env, i);
+			image_setup(img, obj, env, i);
 		upng_free(img);
 	}
 	free(fn);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aa.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 16:54:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 14:49:22 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 10:19:48 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ void	aa(t_env *env)
 			c[3] = 255;
 			if (checkpoint(env, point))
 				cast(env, point, c);
-			//post effects go here
-			put_pixel(point[0],  point[1], c, RENDER);
+			put_pixel(point[0], point[1], c, RENDER);
 		}
 	}
 }
