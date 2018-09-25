@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:32:18 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 14:29:13 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 16:59:47 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void			cylinder_surface_col(t_obj *ob, t_ray *c, t_vec point)
 		vec_dup(ob->specular_colour, c->org);
 	ob->tex ? get_p_img_col(o[0], o[1], ob->tex, c->dir) :
 		vec_dup(ob->surface_colour, c->dir);
+	ob->norm ? get_p_img_col(o[0], o[1], ob->norm, c->hold)[0] :
+		FILLVEC(c->hold, 128, 128, 255, 0);
 }
 
 static void		c_bound(t_obj *obj, double t[3], t_ray *tr)
@@ -64,15 +66,24 @@ static void		c_bound(t_obj *obj, double t[3], t_ray *tr)
 		ft_swap(&t[0], &t[1], sizeof(double));
 }
 
-void			cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj)
+void			cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map)
 {
 	t_vec	lpoint;
+	t_vec		tang;
+	t_matrix	m;
 
 	transform(obj->wto, point, lpoint);
 	FILLVEC(norm, lpoint[0], lpoint[1], 0, 0);
-	if (ABS(lpoint[2]) > ((obj->scale[0] / 2.0) * 0.99999))
-		FILLVEC(norm, 0, 0, lpoint[2] < 0 ? -1 : 1, 0);
+	fill_m_rot_z(m, -90 * M_PI / 180);
+	transformvec(m, norm, tang);
 	normalize(norm);
+	(void)map;
+	if (ABS(lpoint[2]) > ((obj->scale[0] / 2.0) * 0.99999))
+	{
+		FILLVEC(norm, 0, 0, lpoint[2] < 0 ? -1 : 1, 0);
+		FILLVEC(tang, lpoint[2] < 0 ? -1 : 1, 0, 0, 0);
+	}
+	vec_dup(tang, norm);
 	transformvec(obj->otw, norm, norm);
 }
 

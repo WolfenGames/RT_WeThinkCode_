@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 13:20:45 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 14:30:24 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 17:16:59 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,18 @@ void	poly_surface_col(t_obj *obj, t_ray* c, t_vec point)
 		vec_dup(obj->specular_colour, c->org);
 	obj->tex ? get_p_img_col(o[0], o[1], obj->tex, c->dir) :
 		vec_dup(obj->surface_colour, c->dir);
+	obj->norm ? get_p_img_col(o[0], o[1], obj->norm, c->hold)[0] :
+		FILLVEC(c->hold, 128, 128, 255, 0);
 }
 
-void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj)
+void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map)
 {
 	int		i;
 	t_vec	len;
 	t_vec	temp;
 
 	(void)point;
+	(void)map;
 	i = norm[3];
 	len[1] = norm[1];
 	len[2] = norm[2];

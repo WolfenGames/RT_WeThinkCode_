@@ -1,10 +1,11 @@
 <scene>
     <raydepth>10</raydepth>
-	<cellshade>0.1</cellshade>
+	<cellshade>0</cellshade>
+	<objfilepath>objects/Perf.obj</objfilepath>
 </scene>
 <camera name='Bill'>
-    <origin>0,0,10</origin>
-    <rotation>0,0,0</rotation>
+    <origin>0,10,10</origin>
+    <rotation>-45,0,0</rotation>
     <fov>30</fov>
     <aperture>1</aperture>
 	<eyewidth>0.5</eyewidth>
@@ -15,15 +16,14 @@
     <colour>255,255,255</colour>
     <type>point</type>
 </light>
-<object name="cylinder">
-    <origin>0,0,0</origin>
-    <rotation>110,0,0</rotation>
-    <radius>1</radius>
-    <scale>2</scale>
-    <diffusecolour>145,244,100,255</diffusecolour>
-    /<specularcolour>255,255,255,255</specularcolour>
-	/<texture>Textures/earth.xpm</texture>
-	/<texturescale>1,1,1</texturescale>
-    <albedo>0.18</albedo>
-    <type>cone</type>
+<object name="Cube">
+	<origin>0, 0, 0</origin>
+	<diffusecolour>255, 55, 255</diffusecolour>
+	<scale>2, 2, 1.5</scale>
+	<radius>2</radius>
+	//<transparency>0.99</transparency>
+	//<refractionindex>1.5</refractionindex>
+	<specularcolour>10, 10, 10</specularcolour>
+	<texture>Textures/table tex.xpm</texture>
+	<texturescale>1, 1</texturescale>
 </object>

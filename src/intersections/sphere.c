@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 14:29:27 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 17:05:40 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,22 @@ void	sphere_surface_col(t_obj *ob, t_ray *c, t_vec point)
 		vec_dup(ob->specular_colour, c->org);
 	ob->tex ? get_p_img_col(o[0], o[1], ob->tex, c->dir) :
 		vec_dup(ob->surface_colour, c->dir);
+	ob->norm ? get_p_img_col(o[0], o[1], ob->norm, c->hold)[0] :
+		FILLVEC(c->hold, 128, 128, 255, 0);
 }
 
-void	sphere_getnorm(t_vec norm, t_vec point, t_obj *obj)
+void	sphere_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map)
 {
+	t_vec		tang;
+	t_matrix	m;
+	(void)map;
+
 	v_sub(point, obj->org, norm);
-	if (length(norm) < obj->radius)
-		v_multi(norm, -1, norm);
 	normalize(norm);
+	FILLVEC(tang, norm[0], 0, norm[2], 0);
+	fill_m_rot_y(m, -90 * M_PI / 180.0);
+	transformvec(m, tang, tang);
+	normalize(tang);
 }
 
 int		sphere_intersect(t_ray *ray, t_obj *obj)

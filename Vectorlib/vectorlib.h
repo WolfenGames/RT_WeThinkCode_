@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vectorlib.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/03 17:34:57 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/18 18:28:12 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/24 16:19:25 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef	struct	s_ray
 {
 	t_vec	dir;
 	t_vec	org;
+	t_vec	hold;
 	double	len;
 	int		tri_index;
 	double	u;

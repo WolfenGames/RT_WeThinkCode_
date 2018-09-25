@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 13:38:32 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/24 16:34:45 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ typedef struct	s_obj
 	t_list		points;
 	t_list		triangles;
 	t_bool_type	bool_type;
-	void		(*get_norm)(t_vec norm, t_vec point, struct s_obj *obj);
+	void		(*get_norm)(t_vec norm, t_vec point, struct s_obj *obj,
+							t_vec map);
 	int			(*get_intersect)(t_ray *ray, struct s_obj *obj);
 	void		(*get_surface_col)(struct s_obj *obj, t_ray *c, t_vec point);
 }				t_obj;

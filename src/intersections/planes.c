@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:50:41 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 14:29:36 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/24 17:06:09 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,18 @@ void	plane_surface_col(t_obj *ob, t_ray *c, t_vec point)
 		vec_dup(ob->specular_colour, c->org);
 	ob->tex ? get_p_img_col(o[0], o[1], ob->tex, c->dir) :
 		vec_dup(ob->surface_colour, c->dir);
+	ob->norm ? get_p_img_col(o[0], o[1], ob->norm, c->hold)[0] :
+		FILLVEC(c->hold, 128, 128, 255, 0);
 }
 
-void	plane_getnorm(t_vec norm, t_vec point, t_obj *obj)
+void	plane_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map)
 {
 	t_vec	lpoint;
+	t_vec	tang;
+	(void)map;
 
 	FILLVEC(norm, 0, 0, 1, 0);
+	FILLVEC(tang, 1, 0, 0, 0);
 	transform(obj->wto, point, lpoint);
 	transformvec(obj->otw, norm, norm);
 }

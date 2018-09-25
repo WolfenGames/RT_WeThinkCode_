@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 15:15:05 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/24 17:17:12 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,29 @@ static double	shade(double dot, double shaded, t_obj *obj)
 	return (dot);
 }
 
-static void		light_thing(t_ray *shadow, t_env *env, t_obj *obj, t_ray *c)
+static void		light_thing(t_ray point[4], t_env *env, t_obj *obj, t_ray *c)
 {
 	t_list	*cur;
 	t_vec	vecs[3];
 	t_col	col;
 
 	cur = env->scene.lig;
-	vecs[2][3] = shadow->tri_index;
-	vecs[2][2] = shadow->v;
-	vecs[2][1] = shadow->u;
-	obj->get_norm(vecs[2], shadow->org, obj);
+	vecs[2][3] = point[0].tri_index;
+	vecs[2][2] = point[0].v;
+	vecs[2][1] = point[0].u;
+	obj->get_norm(vecs[2], point[0].org, obj, point[3].hold);
 	sc_col(c->dir, 0.01, vecs[0]);
 	while (cur)
 	{
-		generate_shadow_ray(shadow, LIG, env, col);
+		generate_shadow_ray(&point[0], LIG, env, col);
 		sc_col(col, (obj->albedo / M_PI) * (LIG->intensity
-			/ (LIG->type == light_point ? shadow->len : 1.0))
-			* shade(ABS(dot(shadow->dir, vecs[2])), env->scene.cellshade, obj),
+			/ (LIG->type == light_point ? point[0].len : 1.0))
+			* shade(ABS(dot(point[0].dir, vecs[2])), env->scene.cellshade, obj),
 			vecs[1]);
 		add_col(vecs[0], vecs[1], vecs[0]);
 		cur = cur->next;
 	}
+	add_col(vecs[0], env->ambience, vecs[0]);
 	c->dir[0] *= vecs[0][0] / 255.0;
 	c->dir[1] *= vecs[0][1] / 255.0;
 	c->dir[2] *= vecs[0][2] / 255.0;
@@ -93,7 +94,7 @@ static void		mid(t_ray *ray, t_ray point[4], t_env *env, t_obj *hit_obj)
 	v_add(v_multi(ray->dir, ray->len * 0.9999999, point[0].org),
 		ray->org, point[0].org);
 	hit_obj->get_surface_col(hit_obj, &point[3], point[0].org);
-	hit_obj->get_norm(point[2].dir, point[0].org, hit_obj);
+	hit_obj->get_norm(point[2].dir, point[0].org, hit_obj, point[3].hold);
 	vec_dup(point[3].dir, point[1].org);
 	if ((REFLECTIVE || REFRACTIVE) && point[2].len < env->scene.raydepth)
 	{
@@ -122,6 +123,7 @@ static void		mid(t_ray *ray, t_ray point[4], t_env *env, t_obj *hit_obj)
 **	point[2].dir = normal
 **	point[3].org = specular col
 **	point[3].dir = surface col
+**	point[3].hold = norm col
 */
 
 void			get_col(t_ray *ray, t_env *env, t_col c, int level)
@@ -144,8 +146,8 @@ void			get_col(t_ray *ray, t_env *env, t_col c, int level)
 	if (hit_obj)
 		mid(ray, point, env, hit_obj);
 	else
-		FILLCOL(point[3].dir, 0 ,0, 0, 255);
+		vec_dup(env->ambience, point[3].dir);
 	vec_dup(point[3].dir, c);
 	c[3] = 255;
-	//glare(ray, env, c);
+	glare(ray, env, c);
 }
