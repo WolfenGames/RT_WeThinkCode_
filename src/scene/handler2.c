@@ -6,12 +6,13 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 07:51:39 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/25 10:34:32 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 18:22:05 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "rt.h"
+#include "parse.h"
 
 /*
 ** Here we have the initial png, xpm loader for our images system
@@ -45,11 +46,24 @@ void	try_load_png(char *small, char *filename, t_env *env, t_obj *o)
 	}
 }
 
+void	assign_tex(t_obj *obj, t_obj *ref)
+{
+	if (ref)
+		obj->tex = ref->tex;
+}
+
 void	set_tex(t_obj *o, char *filename, t_env *env)
 {
 	char	*small;
 
 	small = ft_strmap(filename, char_lower);
+	if (ft_strnequ(filename, "->", 2))
+	{
+		assign_tex(o, the_good_search_name(&env->scene, filename + 2));
+		free(small);
+		free(filename);
+		return ;
+	}
 	try_load_png(small, filename, env, o);
 	try_load_xpm(small, filename, env, o);
 	free(small);

@@ -6,7 +6,7 @@
 </camera>
 <scene>
 	<raydepth>15</raydepth>
-	<eyewidth>0.2</eyewidth>
+	<eyewidth>0.9</eyewidth>
 	<path>Bounce</path>
 	<ambience>0,0,0</ambience>
 </scene>
@@ -55,6 +55,8 @@
 	<scale>20,20</scale>
 	<diffusecolour>0,0,0</diffusecolour>
 	<specularcolour>255,255,255,255</specularcolour>
+	<texture>Textures/tiles.png</texture>
+	<texturescale>1,1</texturescale>
 	<type>plane</type>
 </object>
 <object name="Front">
