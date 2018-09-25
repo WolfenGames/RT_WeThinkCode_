@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 08:06:31 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/25 10:40:19 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 18:06:49 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void		set_obj_params(t_obj *o)
 		o->albedo = 0.18;
 	if (o->r_index == 0)
 		o->r_index = 1;
+	if (!VEC3_IS(o->tex_scale))
+		FILLVEC(o->tex_scale, 1, 1, 1, 1);
 	if (!VEC3_IS(o->scale))
 		FILLVEC(o->scale, 1, 1, 1, 1);
 	if (o->type == obj_cone)
