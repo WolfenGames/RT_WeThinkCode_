@@ -6,11 +6,15 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:59:14 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/18 07:58:07 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 10:35:09 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
+
+/*
+** Bunch of extra functions needed to handle certain cases
+*/
 
 char	char_lower(char c)
 {

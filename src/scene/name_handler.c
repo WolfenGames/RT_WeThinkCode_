@@ -6,11 +6,16 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 14:58:08 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/25 10:21:35 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 10:36:17 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
+
+/*
+** similar to get_prop_name, this makes sure the initial part of the line
+** matches.
+*/
 
 int		is_line_prop(const char *line)
 {
@@ -37,6 +42,10 @@ int		is_line_prop(const char *line)
 		ft_strnequ(line, "<normalmap>", 11) ||
 		ft_strnequ(line, "<specularmap>", 13));
 }
+
+/*
+** This gets the name of our HEAD object
+*/
 
 char	*get_name(char *s)
 {

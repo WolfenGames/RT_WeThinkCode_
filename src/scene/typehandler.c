@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   typehandler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 08:06:31 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 11:19:16 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 10:40:19 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
 #include "../../inc/rt.h"
 
-t_l_type	set_l_type(char *s)
+t_l_type	set_light_type(char *s)
 {
 	t_l_type	ret;
 
@@ -68,7 +68,7 @@ void		set_obj_params(t_obj *o)
 	set_obj_params_two(o);
 }
 
-void		set_o_type(char *s, t_obj *o)
+void		set_object_type(char *s, t_obj *o)
 {
 	if (ft_strequ(s, "sphere"))
 		o->type = obj_sphere;
