@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 10:07:15 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/25 11:22:16 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 15:37:04 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		cone_surface_col(t_obj *ob, t_ray *c, t_vec point)
 		FILLVEC(c->hold, 128, 128, 255, 0);
 }
 
-void		cone_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map)
+void		cone_getnorm(t_vec norm, t_vec point, t_obj *obj, t_ray *c)
 {
 	t_vec		lpoint;
 	t_vec		tang;
@@ -50,7 +50,7 @@ void		cone_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map)
 
 	transform(obj->wto, point, lpoint);
 	FILLVEC(norm, lpoint[0], lpoint[1], 0, 0);
-	(void)map;
+	(void)c;
 	fill_m_rot_z(m, -90 * M_PI / 180);
 	normalize(norm);
 	transformvec(m, norm, tang);
@@ -61,7 +61,7 @@ void		cone_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map)
 		FILLVEC(tang, lpoint[2] < 0 ? -1 : 1, 0, 0, 0);
 	}
 	normalize(norm);
-	//offset_norm(map, norm, tang);
+	norm_offset(norm, tang, c->hold);
 	transformvec(obj->otw, norm, norm);
 }
 

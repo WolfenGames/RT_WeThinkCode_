@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:13 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 16:24:09 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 15:38:14 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,28 @@ void	generate_shadow_ray(t_ray *point, t_lig *lig, t_env *env, t_col col);
 
 void	sphere_surface_col(t_obj *obj, t_ray *c, t_vec point);
 int		sphere_intersect(t_ray *ray, t_obj *obj);
-void	sphere_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map);
+void	sphere_getnorm(t_vec norm, t_vec point, t_obj *obj, t_ray *c);
 
 void	cone_surface_col(t_obj *ob, t_ray *c, t_vec point);
 int		cone_intersect(t_ray *ray, t_obj *obj);
-void	cone_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map);
+void	cone_getnorm(t_vec norm, t_vec point, t_obj *obj, t_ray *c);
 
 void	plane_surface_col(t_obj *ob, t_ray *c, t_vec point);
 int		plane_intersect(t_ray *ray, t_obj *obj);
-void	plane_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map);
+void	plane_getnorm(t_vec norm, t_vec point, t_obj *obj, t_ray *c);
 
 void	cylinder_surface_col(t_obj *ob, t_ray *c, t_vec point);
 int		cylinder_intersect(t_ray *ray, t_obj *obj);
-void	cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map);
+void	cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj, t_ray *c);
 
 void	poly_surface_col(t_obj *ob, t_ray *c, t_vec point);
 int		poly_intersect(t_ray *ray, t_obj *obj);
-void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map);
+void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj, t_ray *c);
 
 void	cap_col(double o[2], t_vec lpoint, t_obj *obj);
 void	surface_scale(t_vec o, t_obj *obj);
 
 t_obj	*trace(t_ray *ray, t_list *cur);
+void	norm_offset(t_vec norm, t_vec tang, t_vec map);
 
 #endif

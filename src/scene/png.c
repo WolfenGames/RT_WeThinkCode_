@@ -3,40 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   png.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 07:50:46 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/25 10:38:35 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 16:58:38 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "upng.h"
 #include "rt.h"
 
+t_img	*make_png_img(upng_t *img, t_env *env)
+{
+	t_img				*ret;
+	t_xy				cur;
+	const unsigned char	*dat;
+	t_col				c;
+
+	ret = add_img(&env->ren, upng_get_width(img),
+					upng_get_height(img));
+	dat = upng_get_buffer(img);
+	cur[0] = -1;
+	while (++cur[0] < ret->w)
+	{
+		cur[1] = -1;
+		while (++cur[1] < ret->h)
+		{
+			FILLCOL(c, dat[(cur[0] + (cur[1]) * ret->w) * upng_get_bpp(img) / 8],
+				dat[(cur[0] + (cur[1]) * ret->w) * upng_get_bpp(img) / 8 + 1],
+				dat[(cur[0] + (cur[1]) * ret->w) * upng_get_bpp(img) / 8 + 2],
+				upng_get_format(img) == (UPNG_RGB16 | UPNG_RGB8) ? 255 : dat[(cur[0] + (cur[1]) * ret->w) * upng_get_bpp(img) / 8 + 3]);
+			put_pixel(cur[0], cur[1], c, ret);
+		}
+	}
+	return (ret);
+}
+
 void	image_setup(upng_t *img, t_obj *obj, t_env *env, int i)
 {
 	if (!obj->tex && i == 0)
-	{
-		obj->tex = add_img(&env->ren, upng_get_width(img),
-									upng_get_height(img));
-		ft_memscpy(obj->tex->dat, (unsigned char *)upng_get_buffer(img),
-					obj->tex->w * obj->tex->h * upng_get_bpp(img) / 8);
-	}
+		obj->tex = make_png_img(img, env);
 	if (!obj->norm && i == 1)
-	{
-		obj->norm = add_img(&env->ren, upng_get_width(img),
-									upng_get_height(img));
-		ft_memscpy(obj->norm->dat, (unsigned char *)upng_get_buffer(img),
-					obj->norm->w * obj->norm->h * upng_get_bpp(img) / 8);
-	}
+		obj->norm = make_png_img(img, env);
 	if (!obj->spec_map && i == 2)
-	{
-		obj->spec_map = add_img(&env->ren, upng_get_width(img),
-									upng_get_height(img));
-		ft_memscpy(obj->spec_map->dat, (unsigned char *)upng_get_buffer(img),
-					obj->spec_map->w * obj->spec_map->h *
-					upng_get_bpp(img) / 8);
-	}
+		obj->spec_map = make_png_img(img, env);
 }
 
 void	load_png(t_obj *obj, char *fn, t_env *env, int i)

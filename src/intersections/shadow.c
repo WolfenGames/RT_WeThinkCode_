@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shadow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 11:47:01 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/25 11:10:14 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 15:56:17 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,19 @@ void		surface_scale(t_vec o, t_obj *obj)
 {
 	o[0] = ABS(o[0] * obj->tex_scale[0]) - (int)(ABS(o[0] * obj->tex_scale[0]));
 	o[1] = ABS(o[1] * obj->tex_scale[1]) - (int)(ABS(o[1] * obj->tex_scale[1]));
+}
+
+void		norm_offset(t_vec norm, t_vec tang, t_vec map)
+{
+	t_vec	up;
+
+	v_cross(norm, tang, up);
+	normalize(tang);
+	normalize(up);
+	normalize(norm);
+	v_multi(norm, (map[2] - 128) / 128.0, norm);
+	v_multi(up, (map[1] - 128) / 128.0, up);
+	v_multi(tang, (map[0] - 128) / 128.0, tang);
+	v_add(norm, up, norm);
+	v_add(norm, tang, norm);
 }

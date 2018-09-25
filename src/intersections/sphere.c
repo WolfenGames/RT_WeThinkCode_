@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/25 11:22:38 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 15:37:29 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	sphere_surface_col(t_obj *ob, t_ray *c, t_vec point)
 		FILLVEC(c->hold, 128, 128, 255, 0);
 }
 
-void	sphere_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map)
+void	sphere_getnorm(t_vec norm, t_vec point, t_obj *obj, t_ray *c)
 {
 	t_vec		tang;
 	t_matrix	m;
-	(void)map;
+	(void)c;
 
 	v_sub(point, obj->org, norm);
 	normalize(norm);
@@ -55,6 +55,7 @@ void	sphere_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map)
 	fill_m_rot_y(m, -90 * M_PI / 180.0);
 	transformvec(m, tang, tang);
 	normalize(tang);
+	norm_offset(norm, tang, c->hold);
 }
 
 int		sphere_intersect(t_ray *ray, t_obj *obj)

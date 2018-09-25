@@ -36,7 +36,7 @@
 	<diffusecolour>155, 155, 155</diffusecolour>
 	<scale>1, 1, 1</scale>
 	<radius>2</radius>
-	<transparency>0.95</transparency>
+	<transparency>0.99</transparency>
 	<refractionindex>1.5</refractionindex>
 	<specularcolour>100, 100, 100</specularcolour>
 </object>
@@ -64,9 +64,10 @@
 	<origin>0,-2.0001,0</origin>
 	<rotation>90, 0, 0</rotation>
 	<scale>40, 40</scale>
-	<diffusecolour>255, 255, 255</diffusecolour>
-	<texture>Textures/Light wood.xpm</texture>
-	<specularmap>Textures/Light wood spec.png</specularmap>
+	<diffusecolour>55, 55, 55</diffusecolour>
+	<normalmap>textures/couch.png</normalmap>
+	<texture>Textures/shirt.xpm</texture>
+	<specularmap>Textures/shirt.png</specularmap>
 	<specularcolour>30, 30, 30</specularcolour>
 	<texturescale>1, 1</texturescale>
 	<albedo>0.18<albedo>

@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:32:18 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/25 11:22:18 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 15:36:18 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void		c_bound(t_obj *obj, double t[3], t_ray *tr)
 		ft_swap(&t[0], &t[1], sizeof(double));
 }
 
-void			cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map)
+void			cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj, t_ray *c)
 {
 	t_vec	lpoint;
 	t_vec		tang;
@@ -82,13 +82,13 @@ void			cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map)
 	fill_m_rot_z(m, -90 * M_PI / 180);
 	transformvec(m, norm, tang);
 	normalize(norm);
-	(void)map;
+	(void)c;
 	if (ABS(lpoint[2]) > ((obj->scale[0] / 2.0) * 0.99999))
 	{
 		FILLVEC(norm, 0, 0, lpoint[2] < 0 ? -1 : 1, 0);
 		FILLVEC(tang, lpoint[2] < 0 ? -1 : 1, 0, 0, 0);
 	}
-	vec_dup(tang, norm);
+	norm_offset(norm, tang, c->hold);
 	transformvec(obj->otw, norm, norm);
 }
 

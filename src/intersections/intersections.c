@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/25 11:22:23 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 15:53:34 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,13 @@ static void		light_thing(t_ray point[4], t_env *env, t_obj *obj, t_ray *c)
 	vecs[2][3] = point[0].tri_index;
 	vecs[2][2] = point[0].v;
 	vecs[2][1] = point[0].u;
-	obj->get_norm(vecs[2], point[0].org, obj, point[3].hold);
 	sc_col(c->dir, 0.01, vecs[0]);
 	while (cur)
 	{
 		generate_shadow_ray(&point[0], LIG, env, col);
 		sc_col(col, (obj->albedo / M_PI) * (LIG->intensity
 			/ (LIG->type == light_point ? point[0].len : 1.0))
-			* shade(ABS(dot(point[0].dir, vecs[2])), env->scene.cellshade, obj),
+			* shade(ABS(dot(point[0].dir, point[2].dir)), env->scene.cellshade, obj),
 			vecs[1]);
 		add_col(vecs[0], vecs[1], vecs[0]);
 		cur = cur->next;
@@ -94,7 +93,7 @@ static void		mid(t_ray *ray, t_ray point[4], t_env *env, t_obj *hit_obj)
 	v_add(v_multi(ray->dir, ray->len * 0.9999999, point[0].org),
 		ray->org, point[0].org);
 	hit_obj->get_surface_col(hit_obj, &point[3], point[0].org);
-	hit_obj->get_norm(point[2].dir, point[0].org, hit_obj, point[3].hold);
+	hit_obj->get_norm(point[2].dir, point[0].org, hit_obj, &point[3]);
 	vec_dup(point[3].dir, point[1].org);
 	if ((REFLECTIVE || REFRACTIVE) && point[2].len < env->scene.raydepth)
 	{
@@ -112,7 +111,10 @@ static void		mid(t_ray *ray, t_ray point[4], t_env *env, t_obj *hit_obj)
 		reflect_crap(&point[3], point, hit_obj,
 			fresnel(ray->dir, point[2].dir, hit_obj->r_index));
 	}
-	light_thing(&point[0], env, hit_obj, &point[3]);
+	light_thing(point, env, hit_obj, &point[3]);
+	//FILLCOL(point[3].dir, (point[2].dir[0] + 1) * 127, (point[2].dir[1] + 1) * 127, (point[2].dir[2] + 1) * 127, 0);
+	//vec_dup(point[3].hold, point[3].dir);
+	//FILLCOL(point[3].dir, point[3].tri_index == 0 ? (point[3].u / (2 * M_PI)) * 255 : 0, point[3].tri_index == 1 ? (point[3].u / (2 * M_PI)) * 255 : 0, point[3].tri_index == 2 ? (point[3].u / (2 * M_PI)) * 255 : 0, 0);
 }
 
 /*

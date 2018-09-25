@@ -2,28 +2,30 @@
     <raydepth>10</raydepth>
 	<cellshade>0</cellshade>
 	<objfilepath>objects/Perf.obj</objfilepath>
+	<ambience>55, 55, 55</ambience>
 </scene>
 <camera name='Bill'>
-    <origin>0,10,10</origin>
-    <rotation>-45,0,0</rotation>
+    <origin>0,0,10</origin>
+    <rotation>0,0,0</rotation>
     <fov>30</fov>
     <aperture>1</aperture>
 	<eyewidth>0.5</eyewidth>
 </camera>
 <light  name="light">
-    <origin>0,0,10.01</origin>
-    <intensity>70</intensity>
+    <origin>0,10,10.01</origin>
+    <intensity>700</intensity>
     <colour>255,255,255</colour>
     <type>point</type>
 </light>
 <object name="Cube">
 	<origin>0, 0, 0</origin>
+	<rotation>0, 0, 0</rotation>
 	<diffusecolour>255, 55, 255</diffusecolour>
-	<scale>2, 2, 1.5</scale>
+	<normalmap>textures/couch.png</normalmap>
+	//<specularcolour>255, 255, 255</specularcolour>
+	<scale>10, 10, 1.5</scale>
 	<radius>2</radius>
-	//<transparency>0.99</transparency>
-	//<refractionindex>1.5</refractionindex>
-	<specularcolour>10, 10, 10</specularcolour>
-	<texture>Textures/table tex.xpm</texture>
+	<texture>Textures/couch.png</texture>
 	<texturescale>1, 1</texturescale>
+	<type>plane</type>
 </object>

@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 13:20:45 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/25 11:22:32 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 15:59:04 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,27 @@ void	poly_surface_col(t_obj *obj, t_ray* c, t_vec point)
 	len[1] = c->dir[1];
 	len[2] = c->dir[2];
 	len[0] = 1 - c->dir[1] - c->dir[2];
-	if (!C1 && !C2 && !C3)
-	{
-		o[0] = VT(2)[0] * len[0];
-		o[1] = 1 - VT(2)[1] * len[0];
-		o[0] += VT(0)[0] * len[1];
-		o[1] -= VT(0)[1] * len[1];
-		o[0] += VT(1)[0] * len[2];
-		o[1] -= VT(1)[1] * len[2];
-		surface_scale(o, obj);
-	}
+	vec_dup(obj->specular_colour, c->org);
+	vec_dup(obj->surface_colour, c->dir);
+	FILLVEC(c->hold, 128, 128, 255, 0);
+	if (C1 || C2 || C3)
+		return ;
+	o[0] = VT(2)[0] * len[0];
+	o[1] = VT(2)[1] * len[0];
+	o[0] += VT(0)[0] * len[1];
+	o[1] += VT(0)[1] * len[1];
+	o[0] += VT(1)[0] * len[2];
+	o[1] += VT(1)[1] * len[2];
+	if (VT(0)[0] > VT(1)[0])
+		c->tri_index = VT(0)[0] > VT(2)[0] ? 0 : 2;
+	else
+		c->tri_index = VT(1)[0] > VT(2)[0] ? 1 : 2;
+	t_vec	temp[2];
+	FILLVEC(temp[0], 1, 0, 0, 0);
+	FILLVEC(temp[1], VT(c->tri_index)[0] - o[0], VT(c->tri_index)[1] - o[1], 0, 0);
+	c->u = o[1] < VT(c->tri_index)[1] ? find_angle(temp[0], temp[1]) : (2 * M_PI - find_angle(temp[0], temp[1]));
+	o[1] = 1 - o[1];
+	surface_scale(o, obj);
 	if (obj->spec_map)
 	{
 		get_p_img_col(o[0], o[1], obj->spec_map, c->org);
@@ -50,22 +61,19 @@ void	poly_surface_col(t_obj *obj, t_ray* c, t_vec point)
 		(c->org[1] / 255.0) * obj->specular_colour[1],
 		(c->org[2] / 255.0) * obj->specular_colour[2], 0);
 	}
-	else 
-		vec_dup(obj->specular_colour, c->org);
-	obj->tex ? get_p_img_col(o[0], o[1], obj->tex, c->dir) :
-		vec_dup(obj->surface_colour, c->dir);
-	obj->norm ? get_p_img_col(o[0], o[1], obj->norm, c->hold)[0] :
-		FILLVEC(c->hold, 128, 128, 255, 0);
+	if (obj->tex)
+		get_p_img_col(o[0], o[1], obj->tex, c->dir);
+	if (obj->norm)
+		get_p_img_col(o[0], o[1], obj->norm, c->hold);
 }
 
-void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map)
+void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj, t_ray *c)
 {
-	int		i;
-	t_vec	len;
-	t_vec	temp;
+	int			i;
+	t_vec		len;
+	t_vec		temp;
+	t_matrix	m;
 
-	(void)point;
-	(void)map;
 	i = norm[3];
 	len[1] = norm[1];
 	len[2] = norm[2];
@@ -77,6 +85,15 @@ void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj, t_col map)
 	v_add(v_multi(VN(2), len[0], temp), v_multi(VN(0), len[1], norm), norm);
 	v_add(norm, v_multi(VN(1), len[2], temp), norm);
 	normalize(norm);
+	if (obj->norm && (obj->faces[i][c->tri_index][0] < obj->n_v_point || obj->faces[i][c->tri_index][0] >= 0))
+	{
+		fill_m_rot_v(-c->u, norm, m);
+		transform(obj->wto, point, temp);
+		v_sub(VP(c->tri_index), temp, temp);
+		transformvec(m, temp, temp);
+		normalize(temp);
+		norm_offset(norm, temp, c->hold);
+	}
 	transformvec(obj->otw, norm, norm);
 }
 

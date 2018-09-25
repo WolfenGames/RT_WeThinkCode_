@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/25 11:22:48 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 12:45:16 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ typedef struct	s_obj
 	t_list		triangles;
 	t_bool_type	bool_type;
 	void		(*get_norm)(t_vec norm, t_vec point, struct s_obj *obj,
-							t_vec map);
+							t_ray *c);
 	int			(*get_intersect)(t_ray *ray, struct s_obj *obj);
 	void		(*get_surface_col)(struct s_obj *obj, t_ray *c, t_vec point);
 }				t_obj;
