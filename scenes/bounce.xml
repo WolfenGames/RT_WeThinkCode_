@@ -2,7 +2,7 @@
 	<origin>0,0,9</origin>
 	<rotation>0,0,0</rotation>
 	<aperture>1</aperture>
-	<fov>40</fov>
+	<fov>100</fov>
 </camera>
 <scene>
 	<raydepth>20</raydepth>

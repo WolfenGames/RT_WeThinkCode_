@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 15:15:05 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 10:11:57 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,15 @@ void			reflect_crap(t_ray *c, t_ray point[3], t_obj *obj, double k)
 	refract[2] = (point[3].dir[2] / 255.0) * point[1].org[2];
 	k *= 1 - obj->trans;
 	k += 1 - obj->trans;
-	c->dir[0] = ft_clamp(255, 0, specular_rat[0] * point[1].dir[0] * k + (c->dir[0])
-		* (1 - obj->trans) + point[1].org[0] * (obj->trans) * (1 - k));
-	c->dir[1] = ft_clamp(255, 0, specular_rat[1] * point[1].dir[1] * k + (c->dir[1])
-		* (1 - obj->trans) + point[1].org[1] * (obj->trans) * (1 - k));
-	c->dir[2] = ft_clamp(255, 0, specular_rat[2] * point[1].dir[2] * k + (c->dir[2])
-		* (1 - obj->trans) + point[1].org[2] * (obj->trans) * (1 - k));
+	c->dir[0] = ft_clamp(255, 0, specular_rat[0] * point[1].dir[0] * k +
+		(c->dir[0]) * (1 - obj->trans) + point[1].org[0] * (obj->trans) *
+		(1 - k));
+	c->dir[1] = ft_clamp(255, 0, specular_rat[1] * point[1].dir[1] * k +
+		(c->dir[1]) * (1 - obj->trans) + point[1].org[1] * (obj->trans) *
+		(1 - k));
+	c->dir[2] = ft_clamp(255, 0, specular_rat[2] * point[1].dir[2] * k +
+		(c->dir[2]) * (1 - obj->trans) + point[1].org[2] * (obj->trans) *
+		(1 - k));
 }
 
 static void		mid(t_ray *ray, t_ray point[4], t_env *env, t_obj *hit_obj)
@@ -144,8 +147,8 @@ void			get_col(t_ray *ray, t_env *env, t_col c, int level)
 	if (hit_obj)
 		mid(ray, point, env, hit_obj);
 	else
-		FILLCOL(point[3].dir, 0 ,0, 0, 255);
+		FILLCOL(point[3].dir, 0, 0, 0, 255);
 	vec_dup(point[3].dir, c);
 	c[3] = 255;
-	//glare(ray, env, c);
+	glare(ray, env, c);
 }

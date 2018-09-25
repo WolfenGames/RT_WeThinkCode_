@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   polygon.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 13:20:45 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 14:30:24 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 10:18:04 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #define C2 (obj->faces[i][1][1] >= obj->n_v_t_coord || obj->faces[i][1][1] < 0)
 #define C3 (obj->faces[i][2][1] >= obj->n_v_t_coord || obj->faces[i][2][1] < 0)
 
-void	poly_surface_col(t_obj *obj, t_ray* c, t_vec point)
+void	poly_surface_col(t_obj *obj, t_ray *c, t_vec point)
 {
 	int		i;
 	t_vec	len;
@@ -41,10 +41,15 @@ void	poly_surface_col(t_obj *obj, t_ray* c, t_vec point)
 	o[0] += VT(1)[0] * len[2];
 	o[1] -= VT(1)[1] * len[2];
 	surface_scale(o, obj);
-	obj->spec_map ? (get_p_img_col(o[0], o[1], obj->spec_map, c->org), FILLVEC(c->org,
+	if (obj->spec_map)
+	{
+		get_p_img_col(o[0], o[1], obj->spec_map, c->org);
+		FILLVEC(c->org,
 		(c->org[0] / 255.0) * obj->specular_colour[0],
 		(c->org[1] / 255.0) * obj->specular_colour[1],
-		(c->org[2] / 255.0) * obj->specular_colour[2], 0)) : 
+		(c->org[2] / 255.0) * obj->specular_colour[2], 0);
+	}
+	else
 		vec_dup(obj->specular_colour, c->org);
 	obj->tex ? get_p_img_col(o[0], o[1], obj->tex, c->dir) :
 		vec_dup(obj->surface_colour, c->dir);

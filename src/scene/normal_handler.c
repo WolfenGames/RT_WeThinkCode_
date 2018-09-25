@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 13:30:23 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 13:51:39 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 10:22:31 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	try_load_n_png(char *small, char *filename, t_env *env, t_obj *o)
 	}
 }
 
-void	set_n_tex(t_obj *o, char *filename, t_env *env)
+void		set_n_tex(t_obj *o, char *filename, t_env *env)
 {
 	char	*small;
 

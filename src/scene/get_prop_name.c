@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 00:26:59 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 13:54:47 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 10:21:02 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*get_prop_name_two(char *s)
 		return ("cellshade");
 	if (ft_strnequ((s + 1), "eyewidth", 8))
 		return ("eyewidth");
-	return(get_prop_name_three(s));
+	return (get_prop_name_three(s));
 }
 
 char	*get_prop_name(char *s)

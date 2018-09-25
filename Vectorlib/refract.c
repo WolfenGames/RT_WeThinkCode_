@@ -3,37 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   refract.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 12:24:29 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/19 11:11:08 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 10:25:42 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vectorlib.h"
 
-double	fresnel(t_vec inc, t_vec norm, double index)
+double		fresnel(t_vec inc, t_vec norm, double index)
 {
 	double	var[5];
 
 	var[1] = ft_clamp(1, -1, dot(inc, norm));
-    var[2] = 1;
+	var[2] = 1;
 	var[3] = index;
-    if (var[1] >= 0)
+	if (var[1] >= 0)
 		ft_swap(&var[2], &var[3], sizeof(double));
-    var[4] = var[2] / var[3] * sqrt(ft_max(0.0, 1 - var[1] * var[1]));
-    if (var[4] > 1)
-        var[0] = 1;
-    else
-	{ 
-        var[4] = sqrt(ft_max(0.0, 1 - var[4] * var[4]));
-        var[1] = ABS(var[1]);
-        var[0] = ((var[3] * var[1]) - (var[2] * var[4]))
+	var[4] = var[2] / var[3] * sqrt(ft_max(0.0, 1 - var[1] * var[1]));
+	if (var[4] > 1)
+		var[0] = 1;
+	else
+	{
+		var[4] = sqrt(ft_max(0.0, 1 - var[4] * var[4]));
+		var[1] = ABS(var[1]);
+		var[0] = ((var[3] * var[1]) - (var[2] * var[4]))
 			/ ((var[3] * var[1]) + (var[2] * var[4]));
-        var[1] = ((var[2] * var[1]) - (var[3] * var[4]))
+		var[1] = ((var[2] * var[1]) - (var[3] * var[4]))
 			/ ((var[2] * var[1]) + (var[3] * var[4]));
-        var[0] = (var[0] * var[0] + var[1] * var[1]) / 2.0;
-    }
+		var[0] = (var[0] * var[0] + var[1] * var[1]) / 2.0;
+	}
 	return (var[0]);
 }
 
