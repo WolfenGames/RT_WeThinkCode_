@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   planes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:50:41 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/24 14:29:36 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 10:06:06 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,15 @@ void	plane_surface_col(t_obj *ob, t_ray *c, t_vec point)
 	o[0] = tempvec[2][0] / ob->scale[0];
 	o[1] = 1 - tempvec[2][1] / ob->scale[1];
 	surface_scale(o, ob);
-	ob->spec_map ? (get_p_img_col(o[0], o[1], ob->spec_map, c->org), FILLVEC(c->org,
+	if (ob->spec_map)
+	{
+		get_p_img_col(o[0], o[1], ob->spec_map, c->org);
+		FILLVEC(c->org,
 		(c->org[0] / 255.0) * ob->specular_colour[0],
 		(c->org[1] / 255.0) * ob->specular_colour[1],
-		(c->org[2] / 255.0) * ob->specular_colour[2], 0)) : 
+		(c->org[2] / 255.0) * ob->specular_colour[2], 0);
+	}
+	else
 		vec_dup(ob->specular_colour, c->org);
 	ob->tex ? get_p_img_col(o[0], o[1], ob->tex, c->dir) :
 		vec_dup(ob->surface_colour, c->dir);
