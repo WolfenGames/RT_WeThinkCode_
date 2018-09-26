@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_obj_two.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 11:40:13 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/20 14:13:14 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/26 15:04:45 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	parse_info(t_list *lst, t_obj *obj, char *name)
 		(ft_strstr(lst->content, "triangles") ||
 		ft_strstr(lst->content, "polygons")))))
 	{
+		printf("P====>%s\n", lst->content);
 		if (ft_strstr(lst->content, "v "))
 			vec_from_str(obj->vertex_point[count[0]++], lst->content + 2);
 		if (ft_strstr(lst->content, "vn "))
@@ -88,5 +89,8 @@ void	parse_info(t_list *lst, t_obj *obj, char *name)
 		if (ft_strstr(lst->content, "f "))
 			to_face(lst->content, obj, &count[3]);
 		lst = lst->next;
+		if (!lst || ft_strstr((lst)->content, "o ") ||
+			ft_strstr((lst)->content, "# object"))
+			return ;
 	}
 }

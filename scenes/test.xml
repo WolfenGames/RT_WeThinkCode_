@@ -18,15 +18,17 @@
     <colour>255,255,255</colour>
     <type>directional</type>
 </light>
-<object name="sphere">
+<object name="cub1">
 	<origin>0, 0, 0</origin>
 	<rotation>0, 0, 0</rotation>
 	<diffusecolour>255, 255, 255, 255</diffusecolour>
 	<scale>1, 1, 1</scale>
 </object>
-<object name="cube">
-	<origin>0, 0, 0</origin>
+<object name="cub2">
+	<origin>0, -1, 0</origin>
 	<rotation>0, 0, 0</rotation>
-	<diffusecolour>255, 255, 255, 255</diffusecolour>
+	<diffusecolour>155, 155, 155, 255</diffusecolour>
 	<scale>1, 1, 1</scale>
+/	<radius>1</radius>
+/	<type>sphere</type>
 </object>
