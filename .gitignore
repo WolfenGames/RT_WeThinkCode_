@@ -54,8 +54,8 @@ Mkfile.old
 dkms.conf
 
 # Texture Files
-.*
 Textures/
+*.bmp
 
 # Executable
 ./RT
