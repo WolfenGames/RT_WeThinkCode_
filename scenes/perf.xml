@@ -7,8 +7,8 @@
 <scene>
 	<raydepth>8</raydepth>
 	<eyewidth>1</eyewidth>
-//	<objfilepath>objects/Glass.obj</objfilepath>
-//	<objfilepath>objects/Perf.obj</objfilepath>
+	<objfilepath>objects/Glass.obj</objfilepath>
+	<objfilepath>objects/Perf.obj</objfilepath>
 </scene>
 <light name="light">
 	<origin>-10,14,0</origin>

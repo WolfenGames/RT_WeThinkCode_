@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 14:46:45 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/21 12:52:16 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/26 14:46:34 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	loading(t_env *env)
 	end[0] = LOAD->w;
 	end[1] = LOAD->h;
 	draw_box(start, end, col, LOAD);
-	env->progress = ft_clamp(1.0, 0.0, env->progress);
-	end[0] *= env->progress;
+	env->progress = ft_clamp(2.0, 0.0, env->progress);
+	end[0] *= env->progress - (int)env->progress;
 	while (++start[0] < end[0])
 	{
 		start[1] = -1;
 		while (++start[1] < end[1])
 		{
-			FILLCOL(col, 200, 50, 50, 255);
+			FILLCOL(col, PROG < 1 ? 200 : 50, PROG >= 1 ? 200 : 50, 50, 255);
 			sc_col(col, ((end[1] + 8) - start[1]) / (float)(end[1] + 8), col);
 			put_pixel(start[0], start[1], col, LOAD);
 		}
