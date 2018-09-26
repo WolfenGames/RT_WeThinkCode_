@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 13:20:45 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/25 15:59:04 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 17:12:22 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,15 @@
 ** Each case looks to see if the information is valid, or invalid;
 */
 
-#define C1 (obj->faces[i][0][1] >= obj->n_v_t_coord || obj->faces[i][0][1] < 0)
-#define C2 (obj->faces[i][1][1] >= obj->n_v_t_coord || obj->faces[i][1][1] < 0)
-#define C3 (obj->faces[i][2][1] >= obj->n_v_t_coord || obj->faces[i][2][1] < 0)
+#define T1 (obj->faces[i][0][1] >= obj->n_v_t_coord || obj->faces[i][0][1] < 0)
+#define T2 (obj->faces[i][1][1] >= obj->n_v_t_coord || obj->faces[i][1][1] < 0)
+#define T3 (obj->faces[i][2][1] >= obj->n_v_t_coord || obj->faces[i][2][1] < 0)
+#define P1 (obj->faces[i][0][0] >= obj->n_v_point || obj->faces[i][0][0] < 0)
+#define P2 (obj->faces[i][1][0] >= obj->n_v_point || obj->faces[i][1][0] < 0)
+#define P3 (obj->faces[i][2][0] >= obj->n_v_point || obj->faces[i][2][0] < 0)
+#define N1 (obj->faces[i][0][2] >= obj->n_v_normal || obj->faces[i][0][2] < 0)
+#define N2 (obj->faces[i][1][2] >= obj->n_v_normal || obj->faces[i][1][2] < 0)
+#define N3 (obj->faces[i][2][2] >= obj->n_v_normal || obj->faces[i][2][2] < 0)
 
 void	poly_surface_col(t_obj *obj, t_ray* c, t_vec point)
 {
@@ -35,7 +41,7 @@ void	poly_surface_col(t_obj *obj, t_ray* c, t_vec point)
 	vec_dup(obj->specular_colour, c->org);
 	vec_dup(obj->surface_colour, c->dir);
 	FILLVEC(c->hold, 128, 128, 255, 0);
-	if (C1 || C2 || C3)
+	if (T1 || T2 || T3)
 		return ;
 	o[0] = VT(2)[0] * len[0];
 	o[1] = VT(2)[1] * len[0];
@@ -78,14 +84,13 @@ void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj, t_ray *c)
 	len[1] = norm[1];
 	len[2] = norm[2];
 	len[0] = 1 - norm[1] - norm[2];
-	if ((obj->faces[i][0][2] >= obj->n_v_normal || obj->faces[i][0][2] < 0) ||
-		(obj->faces[i][1][2] >= obj->n_v_normal || obj->faces[i][1][2] < 0) ||
-		(obj->faces[i][2][2] >= obj->n_v_normal || obj->faces[i][2][2] < 0))
+	if (N1 || N2 || N3)
 		return ;
 	v_add(v_multi(VN(2), len[0], temp), v_multi(VN(0), len[1], norm), norm);
 	v_add(norm, v_multi(VN(1), len[2], temp), norm);
 	normalize(norm);
-	if (obj->norm && (obj->faces[i][c->tri_index][0] < obj->n_v_point || obj->faces[i][c->tri_index][0] >= 0))
+	if (obj->norm && (obj->faces[i][c->tri_index][0] < obj->n_v_point
+		&& obj->faces[i][c->tri_index][0] >= 0))
 	{
 		fill_m_rot_v(-c->u, norm, m);
 		transform(obj->wto, point, temp);

@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/25 15:53:34 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/25 18:19:04 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static void		mid(t_ray *ray, t_ray point[4], t_env *env, t_obj *hit_obj)
 	{
 		refract(ray->dir, point[2].dir, hit_obj->r_index, point[0].dir);
 		v_add(point[0].org,
-			v_multi(point[2].dir, 0.00000003 *
+			v_multi(point[2].dir, 0.00000009 *
 				(dot(point[2].dir, point[0].dir) < 0 ? -1 : 1),
 				point[2].org), point[0].org);
 		if (hit_obj->trans)
@@ -112,9 +112,6 @@ static void		mid(t_ray *ray, t_ray point[4], t_env *env, t_obj *hit_obj)
 			fresnel(ray->dir, point[2].dir, hit_obj->r_index));
 	}
 	light_thing(point, env, hit_obj, &point[3]);
-	//FILLCOL(point[3].dir, (point[2].dir[0] + 1) * 127, (point[2].dir[1] + 1) * 127, (point[2].dir[2] + 1) * 127, 0);
-	//vec_dup(point[3].hold, point[3].dir);
-	//FILLCOL(point[3].dir, point[3].tri_index == 0 ? (point[3].u / (2 * M_PI)) * 255 : 0, point[3].tri_index == 1 ? (point[3].u / (2 * M_PI)) * 255 : 0, point[3].tri_index == 2 ? (point[3].u / (2 * M_PI)) * 255 : 0, 0);
 }
 
 /*

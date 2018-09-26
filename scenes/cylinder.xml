@@ -2,30 +2,44 @@
     <raydepth>10</raydepth>
 	<cellshade>0</cellshade>
 	<objfilepath>objects/Perf.obj</objfilepath>
-	<ambience>55, 55, 55</ambience>
+	<ambience>50, 50, 60</ambience>
 </scene>
 <camera name='Bill'>
-    <origin>0,0,10</origin>
+    <origin>0,0,30</origin>
     <rotation>0,0,0</rotation>
     <fov>30</fov>
     <aperture>1</aperture>
 	<eyewidth>0.5</eyewidth>
 </camera>
 <light  name="light">
-    <origin>0,10,10.01</origin>
-    <intensity>700</intensity>
+    <origin>0,10,10</origin>
+    <intensity>900</intensity>
     <colour>255,255,255</colour>
     <type>point</type>
 </light>
 <object name="Cube">
-	<origin>0, 0, 0</origin>
+	<origin>0, 0, -20</origin>
 	<rotation>0, 0, 0</rotation>
-	<diffusecolour>255, 55, 255</diffusecolour>
-	<normalmap>textures/couch.png</normalmap>
-	//<specularcolour>255, 255, 255</specularcolour>
-	<scale>10, 10, 1.5</scale>
+	<diffusecolour>255, 255, 255</diffusecolour>
+	<normalmap>textures/rust_ball_norm.png</normalmap>
+	<specularmap>textures/rust_ball_spec.png</specularmap>
+	<specularcolour>255, 255, 255</specularcolour>
+	<scale>5, 5, 5</scale>
+	<radius>6</radius>
+	<texture>Textures/rust_ball.png</texture>
+	<texturescale>4, 4</texturescale>
+	<type>sphere</type>
+</object>
+<object name="back">
+	<origin>0, 0, 31</origin>
+	<rotation>0, 180, 0</rotation>
+	<diffusecolour>55, 55, 55</diffusecolour>
+	/<normalmap>textures/wall_norm.png</normalmap>
+	/<specularmap>textures/wall_spec.png</specularmap>
+	<specularcolour>255, 255, 255</specularcolour>
+	<scale>20, 20, 20</scale>
 	<radius>2</radius>
-	<texture>Textures/couch.png</texture>
-	<texturescale>1, 1</texturescale>
+	/<texture>Textures/wall.png</texture>
+	<texturescale>2, 2</texturescale>
 	<type>plane</type>
 </object>
