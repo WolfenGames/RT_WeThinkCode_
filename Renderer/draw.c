@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 14:17:23 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/03 12:17:22 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/26 13:50:38 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void		put_pixel(int x, int y, t_col c, t_img *img)
 	int				i;
 	const double	perc = c[3] / 255.0;
 
-	if (x < 0 || y < 0 || x > img->w || y > img->h)
+	if (x < 0 || y < 0 || x >= img->w || y >= img->h)
 		return ;
 	i = x * img->bpp + y * img->ll;
 	img->dat[i] *= 1 - perc;

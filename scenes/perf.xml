@@ -24,13 +24,6 @@
 	<type>point</type>
 	<intensity>100</intensity>
 </light>
-<light name="Sun">
-	<origin>-100,20,0</origin>
-	<direction>1,-0.1,0</direction>
-	<colour>255,240,235</colour>
-	<type>directional</type>
-	<intensity>80</intensity>
-</light>
 <object name="Glass">
 	<origin>-2, -1, 0</origin>
 	<diffusecolour>155, 155, 155</diffusecolour>
@@ -38,24 +31,30 @@
 	<radius>2</radius>
 	<transparency>0.99</transparency>
 	<refractionindex>1.5</refractionindex>
-	<specularcolour>100, 100, 100</specularcolour>
+	<texturescale>1, 1</texturescale>
+	<specularcolour>255, 255, 255</specularcolour>
 </object>
 <object name="Cube">
 	<origin>-4, 0, -4</origin>
-	<diffusecolour>255, 55, 255</diffusecolour>
+	<diffusecolour>200, 200, 200</diffusecolour>
 	<scale>2, 2, 1.5</scale>
 	<radius>2</radius>
 	//<transparency>0.99</transparency>
 	//<refractionindex>1.5</refractionindex>
+	<normalmap>textures/Cube_norm.png</normalmap>
+	<texture>Textures/Cube.png</texture>
 	<specularcolour>10, 10, 10</specularcolour>
-	<texture>Textures/table tex.xpm</texture>
 	<texturescale>1, 1</texturescale>
 </object>
 <object name="sphere">
-	<origin>2, -1, 0</origin>
+	<origin>6, 0, 8</origin>
 	<diffusecolour>5, 5, 155</diffusecolour>
+	<texture>Textures/Rust_ball.png</texture>
+	<specularmap>Textures/Rust_ball_spec.png</specularmap>
+	<normalmap>textures/Rust_ball_norm.png</normalmap>
+	<texturescale>1, 1</texturescale>
 	<scale>2, 2, 2</scale>
-	<radius>1</radius>
+	<radius>2</radius>
 	<transparency>0</transparency>
 	<refractionindex>1.5</refractionindex>
 	<specularcolour>155, 155, 155</specularcolour>
@@ -65,10 +64,24 @@
 	<rotation>90, 0, 0</rotation>
 	<scale>40, 40</scale>
 	<diffusecolour>55, 55, 55</diffusecolour>
-	<normalmap>textures/couch.png</normalmap>
-	<texture>Textures/shirt.xpm</texture>
-	<specularmap>Textures/shirt.png</specularmap>
+	<specularmap>Textures/Table_spec.png</specularmap>
+	<normalmap>textures/Table_norm.png</normalmap>
+	<texture>Textures/Table.png</texture>
+	<specularcolour>80, 80, 80</specularcolour>
+	<texturescale>1, 1</texturescale>
+	<albedo>0.18<albedo>
+	<type>plane</type>
+</object>
+<object name="wall">
+	<origin>-20,0,-20</origin>
+	<rotation>0, 0, 0</rotation>
+	<scale>80, 50</scale>
+	<diffusecolour>200, 200, 255</diffusecolour>
+	<normalmap>textures/Wall_norm.png</normalmap>
+	<specularmap>Textures/Wall_spec.png</specularmap>
+	<texture>Textures/Wall.png</texture>
 	<specularcolour>30, 30, 30</specularcolour>
+	<texturescale>1, 1</texturescale>
 	<texturescale>1, 1</texturescale>
 	<albedo>0.18<albedo>
 	<type>plane</type>
@@ -88,7 +101,6 @@
 	<rotation>0, 90, 0</rotation>
 	<scale>80, 60</scale>
 	<diffusecolour>200, 200, 255</diffusecolour>
-	<texture>Textures/wall.xpm</texture>
 	<texturescale>1, 1</texturescale>
 	<albedo>0.18<albedo>
 	<type>plane</type>
@@ -98,7 +110,6 @@
 	<rotation>0, 0, 0</rotation>
 	<scale>80, 60</scale>
 	<diffusecolour>200, 200, 255</diffusecolour>
-	<texture>Textures/wall.xpm</texture>
 	<texturescale>1, 1</texturescale>
 	<albedo>0.18<albedo>
 	<type>plane</type>
@@ -108,7 +119,6 @@
 	<rotation>0, 0, 0</rotation>
 	<scale>80, 60</scale>
 	<diffusecolour>200, 200, 255</diffusecolour>
-	<texture>Textures/wall.xpm</texture>
 	<texturescale>1, 1</texturescale>
 	<albedo>0.18<albedo>
 	<type>plane</type>
