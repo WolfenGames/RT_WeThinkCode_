@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 15:51:18 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/25 10:30:08 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/26 13:23:34 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ static void	del_obj(t_list **objs, t_env *env)
 		obj = (t_obj*)(*objs)->content;
 		if (obj->tex)
 			del_img(&env->ren, obj->tex->id);
+		if (obj->norm)
+			del_img(&env->ren, obj->norm->id);
+		if (obj->spec_map)
+			del_img(&env->ren, obj->spec_map->id);
 		if (obj->vertex_normal)
 			free(obj->vertex_normal);
 		if (obj->vertex_texture_coord)
