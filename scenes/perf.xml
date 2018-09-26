@@ -7,8 +7,8 @@
 <scene>
 	<raydepth>8</raydepth>
 	<eyewidth>1</eyewidth>
-	<objfilepath>objects/Glass.obj</objfilepath>
-	<objfilepath>objects/Perf.obj</objfilepath>
+//	<objfilepath>objects/Glass.obj</objfilepath>
+//	<objfilepath>objects/Perf.obj</objfilepath>
 </scene>
 <light name="light">
 	<origin>-10,14,0</origin>
@@ -91,7 +91,7 @@
 	<rotation>90, 0, 0</rotation>
 	<scale>400, 400</scale>
 	<diffusecolour>0, 200, 255</diffusecolour>
-	<texture>Textures/wall.xpm</texture>
+	<texture>Textures/tiles.png</texture>
 	<texturescale>5, 5</texturescale>
 	<albedo>0.18<albedo>
 	<type>plane</type>
@@ -119,6 +119,16 @@
 	<rotation>0, 0, 0</rotation>
 	<scale>80, 60</scale>
 	<diffusecolour>200, 200, 255</diffusecolour>
+	<texturescale>1, 1</texturescale>
+	<albedo>0.18<albedo>
+	<type>plane</type>
+</object>
+<object name="wall">
+	<origin>-20,0,-20</origin>
+	<rotation>0, 0, 0</rotation>
+	<scale>80, 50</scale>
+	<diffusecolour>200, 200, 255</diffusecolour>
+	<texture>->roof</texture>
 	<texturescale>1, 1</texturescale>
 	<albedo>0.18<albedo>
 	<type>plane</type>
