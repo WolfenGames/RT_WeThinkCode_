@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   specular_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 13:30:29 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/26 14:17:57 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/26 14:30:30 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ static void	try_load_s_png(char *small, char *filename, t_env *env, t_obj *o)
 void	assign_spec(t_obj *obj, t_obj *ref)
 {
 	if (ref)
+	{
 		obj->spec_map = ref->spec_map;
+		ref->referenced_spec = 1;
+	}
 }
 
 void		set_s_tex(t_obj *o, char *filename, t_env *env)
