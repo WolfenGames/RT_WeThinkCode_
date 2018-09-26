@@ -5,28 +5,28 @@
 	<ambience>50, 50, 60</ambience>
 </scene>
 <camera name='Bill'>
-    <origin>0,0,30</origin>
-    <rotation>0,0,0</rotation>
+    <origin>30,2,0</origin>
+    <rotation>0,-90,0</rotation>
     <fov>30</fov>
     <aperture>1</aperture>
 	<eyewidth>0.5</eyewidth>
 </camera>
 <light  name="light">
-    <origin>0,10,10</origin>
+    <origin>0,1,0</origin>
     <direction>0,1,-2</direction>
-	<intensity>10</intensity>
+	<intensity>200</intensity>
     <colour>255,255,255</colour>
-    <type>directional</type>
+    <type>point</type>
 </light>
 <object name="cub1">
-	<origin>0, 0, 0</origin>
+	<origin>0, 5, 0</origin>
 	<rotation>0, 0, 0</rotation>
 	<diffusecolour>255, 255, 255, 255</diffusecolour>
 	<scale>1, 1, 1</scale>
 </object>
 <object name="cub2">
 	<origin>0, -1, 0</origin>
-	<rotation>0, 0, 0</rotation>
+	<rotation>45, 45, 45</rotation>
 	<diffusecolour>155, 155, 155, 255</diffusecolour>
 	<scale>1, 1, 1</scale>
 /	<radius>1</radius>
