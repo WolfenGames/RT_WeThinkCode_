@@ -1,0 +1,32 @@
+<scene>
+    <raydepth>10</raydepth>
+	<cellshade>0</cellshade>
+	<objfilepath>objects/test.obj</objfilepath>
+	<ambience>50, 50, 60</ambience>
+</scene>
+<camera name='Bill'>
+    <origin>0,0,30</origin>
+    <rotation>0,0,0</rotation>
+    <fov>30</fov>
+    <aperture>1</aperture>
+	<eyewidth>0.5</eyewidth>
+</camera>
+<light  name="light">
+    <origin>0,10,10</origin>
+    <direction>0,1,-2</direction>
+	<intensity>10</intensity>
+    <colour>255,255,255</colour>
+    <type>directional</type>
+</light>
+<object name="sphere">
+	<origin>0, 0, 0</origin>
+	<rotation>0, 0, 0</rotation>
+	<diffusecolour>255, 255, 255, 255</diffusecolour>
+	<scale>1, 1, 1</scale>
+</object>
+<object name="cube">
+	<origin>0, 0, 0</origin>
+	<rotation>0, 0, 0</rotation>
+	<diffusecolour>255, 255, 255, 255</diffusecolour>
+	<scale>1, 1, 1</scale>
+</object>
