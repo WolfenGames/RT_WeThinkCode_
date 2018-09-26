@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 07:51:39 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/25 18:22:05 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/26 13:24:01 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,12 @@ void	set_tex(t_obj *o, char *filename, t_env *env)
 
 	small = ft_strmap(filename, char_lower);
 	if (ft_strnequ(filename, "->", 2))
-	{
 		assign_tex(o, the_good_search_name(&env->scene, filename + 2));
-		free(small);
-		free(filename);
-		return ;
+	else
+	{
+		try_load_png(small, filename, env, o);
+		try_load_xpm(small, filename, env, o);
 	}
-	try_load_png(small, filename, env, o);
-	try_load_xpm(small, filename, env, o);
 	free(small);
 	free(filename);
 }

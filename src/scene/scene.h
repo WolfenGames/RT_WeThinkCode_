@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/25 12:45:16 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/26 13:23:56 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ typedef struct	s_obj
 							t_ray *c);
 	int			(*get_intersect)(t_ray *ray, struct s_obj *obj);
 	void		(*get_surface_col)(struct s_obj *obj, t_ray *c, t_vec point);
+	int			referenced_norm;
+	int			referenced_spec;
 }				t_obj;
 
 typedef struct	s_lig

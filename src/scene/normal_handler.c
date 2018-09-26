@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/24 13:30:23 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/25 18:22:15 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/25 18:35:22 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ static void	try_load_n_png(char *small, char *filename, t_env *env, t_obj *o)
 void	assign_norm(t_obj *obj, t_obj *ref)
 {
 	if (ref)
+	{
 		obj->norm = ref->norm;
+		ref->referenced_norm = 1;
+	}
 }
 
 void		set_n_tex(t_obj *o, char *filename, t_env *env)
