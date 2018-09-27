@@ -6,11 +6,13 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 15:00:06 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/03 16:59:27 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/27 12:49:00 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
+#include "renderer.h"
+#include "rt.h"
 
 t_cam	*search_cam_list(t_scene *scene, char *name)
 {
@@ -31,6 +33,22 @@ t_cam	*search_cam_list(t_scene *scene, char *name)
 		list = list->next;
 	}
 	free(c_name);
+	return (NULL);
+}
+
+t_img	*search_img_list(t_env *env, char *name)
+{
+	t_list		*img;
+	t_img_lst	*l;
+
+	img = env->scene.img_list;
+	while (img)
+	{
+		l = (t_img_lst *)img->content;
+		if (ft_strequ(l->name, name))
+			return (find_img(REN, l->id));
+		img = img->next;
+	}
 	return (NULL);
 }
 

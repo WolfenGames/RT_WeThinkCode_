@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 07:20:51 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/25 10:40:07 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/27 12:29:27 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	set_object_properties_two(char *line, t_obj *new, t_env *env)
 		new->trans = ft_clamp(1, 0, ft_atod(line + 14));
 	if (match_brackets("refractionindex", line))
 		new->r_index = ft_max(0, ft_atod(line + 17));
-	if (match_brackets("normalmap", line))
-		set_n_tex(new, ft_strsub(line, 11, ft_strlen(line) - 23), env);
-	if (match_brackets("specularmap", line))
-		set_s_tex(new, ft_strsub(line, 13, ft_strlen(line) - 27), env);
+	if (!new->norm && match_brackets("normalmap", line))
+		set_tex(&new->norm, ft_strsub(line, 11, ft_strlen(line) - 23), env);
+	if (!new->spec_map && match_brackets("specularmap", line))
+		set_tex(&new->spec_map, ft_strsub(line, 13, ft_strlen(line) - 27), env);
 }
 
 void	set_object_properties_one(char *name, char *line, t_obj *new, t_env *env)
@@ -45,8 +45,8 @@ void	set_object_properties_one(char *name, char *line, t_obj *new, t_env *env)
 		set_object_type(ft_strsub(line, 6, ft_strlen(line) - 13), new);
 	if (match_brackets("scale", line))
 		set_vec(new->scale, ft_strsub(line, 7, ft_strlen(line) - 15));
-	if (match_brackets("texture", line))
-		set_tex(new, ft_strsub(line, 9, ft_strlen(line) - 19), env);
+	if (!new->tex && match_brackets("texture", line))
+		set_tex(&new->tex, ft_strsub(line, 9, ft_strlen(line) - 19), env);
 	if (match_brackets("texturescale", line))
 		set_vec(new->tex_scale, ft_strsub(line, 14, ft_strlen(line) - 29));
 	set_object_properties_two(line, new, env);

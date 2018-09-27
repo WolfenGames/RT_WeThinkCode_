@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 08:47:53 by jdorner           #+#    #+#             */
-/*   Updated: 2018/09/26 14:59:58 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/26 15:46:34 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int				malloc_obj_info(t_list **lst, t_obj *new)
 {
 	while (*lst)
 	{
-		printf("M====>%s\n", (*lst)->content);
 		if (ft_strstr((*lst)->content, "v "))
 			new->n_v_point++;
 		if (ft_strstr((*lst)->content, "vn "))

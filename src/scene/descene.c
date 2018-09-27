@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 15:51:18 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/26 14:26:40 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/27 12:06:58 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,28 @@
 ** Here we handle deleting of elements of are no longer required,
 */
 
+void	del_img_elem(void *lst, size_t i)
+{
+	(void)i;
+	free(((t_img_lst *)lst)->name);
+	free(lst);
+}
+
+static void	del_img_lst(t_list *lst, t_env *env)
+{
+	t_img_lst	*img;
+	t_list		*l;
+
+	l = lst;
+	while (l)
+	{
+		img = (t_img_lst *)l->content;
+		del_img(REN, img->id);
+		l = l->next;
+	}
+	ft_lstdel(&env->scene.img_list, del_img_elem);
+}
+
 static void	del_obj(t_list **objs, t_env *env)
 {
 	t_obj	*obj;
@@ -24,12 +46,6 @@ static void	del_obj(t_list **objs, t_env *env)
 	{
 		del_obj(&(*objs)->next, env);
 		obj = (t_obj*)(*objs)->content;
-		if (obj->tex)
-			del_img(&env->ren, obj->tex->id);
-		if (obj->norm)
-			del_img(&env->ren, obj->norm->id);
-		if (obj->spec_map)
-			del_img(&env->ren, obj->spec_map->id);
 		if (obj->vertex_normal)
 			free(obj->vertex_normal);
 		if (obj->vertex_texture_coord)
@@ -83,5 +99,6 @@ void		del_scene(t_env *env)
 	del_lig(&env->scene.lig);
 	del_obj(&env->scene.obj, env);
 	del_scene_stuff(&env->scene);
+	del_img_lst(env->scene.img_list, env);
 	ft_bzero(&env->scene, sizeof(t_scene));
 }

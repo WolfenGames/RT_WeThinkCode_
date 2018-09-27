@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 07:51:39 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/26 13:24:01 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/27 12:44:54 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** Here we have the initial png, xpm loader for our images system
 */
 
-void	try_load_xpm(char *small, char *filename, t_env *env, t_obj *o)
+void	try_load_xpm(char *small, char *filename, t_env *env, t_img **o)
 {
 	int		fd;
 
@@ -28,11 +28,11 @@ void	try_load_xpm(char *small, char *filename, t_env *env, t_obj *o)
 		if ((fd = open(filename, O_RDONLY)) < 0)
 			return ;
 		close(fd);
-		o->tex = add_img_xpm(REN, filename, 0, 0);
+		*o = add_img_xpm(REN, filename, 0, 0);
 	}
 }
 
-void	try_load_png(char *small, char *filename, t_env *env, t_obj *o)
+void	try_load_png(char *small, char *filename, t_env *env, t_img **o)
 {
 	int		fd;
 
@@ -42,27 +42,30 @@ void	try_load_png(char *small, char *filename, t_env *env, t_obj *o)
 		if ((fd = open(filename, O_RDONLY)) < 0)
 			return ;
 		close(fd);
-		load_png(o, ft_strdup(filename), env, 0);
+		load_png(o, ft_strdup(filename), env);
 	}
 }
 
-void	assign_tex(t_obj *obj, t_obj *ref)
+void	assign_tex(t_img *img, char *filename, t_env *env)
 {
-	if (ref)
-		obj->tex = ref->tex;
+	t_img_lst	temp;
+
+	temp.id = img->id;
+	temp.name = ft_strdup(filename);
+	ft_lstadd(&env->scene.img_list, ft_lstnew(&temp, sizeof(t_img_lst)));
 }
 
-void	set_tex(t_obj *o, char *filename, t_env *env)
+void	set_tex(t_img **i, char *filename, t_env *env)
 {
 	char	*small;
 
 	small = ft_strmap(filename, char_lower);
-	if (ft_strnequ(filename, "->", 2))
-		assign_tex(o, the_good_search_name(&env->scene, filename + 2));
-	else
+	if (!(*i = search_img_list(env, small)))
 	{
-		try_load_png(small, filename, env, o);
-		try_load_xpm(small, filename, env, o);
+		try_load_png(small, filename, env, i);
+		try_load_xpm(small, filename, env, i);
+		if (*i)
+			assign_tex(*i, small, env);
 	}
 	free(small);
 	free(filename);
