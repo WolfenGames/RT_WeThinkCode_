@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/25 18:19:04 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/26 17:32:42 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ static void		mid(t_ray *ray, t_ray point[4], t_env *env, t_obj *hit_obj)
 			fresnel(ray->dir, point[2].dir, hit_obj->r_index));
 	}
 	light_thing(point, env, hit_obj, &point[3]);
+	//(if debug)
+	//FILLVEC(point[3].dir, (point[2].dir[0] + 1) * 127,(point[2].dir[1] + 1) * 127,(point[2].dir[2] + 1) * 127,255);
 }
 
 /*

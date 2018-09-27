@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:57:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/26 13:36:40 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/27 09:30:09 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,7 @@ void	do_read(int fd, t_scene *scene, t_env *env)
 				r->close_tag = get_close_tag(r->line);
 			}
 			else
-			{
 				handle_contents(r->line, r->line2, scene, env);
-			}
 		}
 		r->flag = end_line_read(r->flag, r->line, r->close_tag, r->line2);
 		ft_memdel((void **)&r->tmp);

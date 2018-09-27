@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   png.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 07:50:46 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/26 14:08:32 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/27 12:23:43 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_img	*make_png_img(upng_t *img, t_env *env)
 					upng_get_height(img));
 	dat = upng_get_buffer(img);
 	cur[0] = -1;
-	printf("==>UPNG_FORMAT_ID %i\n", upng_get_format(img));
 	while (++cur[0] < ret->w)
 	{
 		cur[1] = -1;
@@ -44,22 +43,15 @@ t_img	*make_png_img(upng_t *img, t_env *env)
 	return (ret);
 }
 
-void	image_setup(upng_t *img, t_obj *obj, t_env *env, int i)
-{
-	if (!obj->tex && i == 0)
-		obj->tex = make_png_img(img, env);
-	if (!obj->norm && i == 1)
-		obj->norm = make_png_img(img, env);
-	if (!obj->spec_map && i == 2)
-		obj->spec_map = make_png_img(img, env);
-}
-
-void	load_png(t_obj *obj, char *fn, t_env *env, int i)
+void	load_png(t_img **obj, char *fn, t_env *env)
 {
 	upng_t	*img;
+	char	*thing;
 
-	printf("Loading==>%s\n", fn);
+	thing = ft_strjoin("Loading==> ", fn);
 	fn = ft_strjoin_n_free(ft_strdup("./"), fn);
+	ft_putendl(thing);
+	free(thing);
 	if (!(img = upng_new_from_file(fn)))
 	{
 		free(fn);
@@ -69,8 +61,11 @@ void	load_png(t_obj *obj, char *fn, t_env *env, int i)
 	{
 		upng_decode(img);
 		if (upng_get_error(img) == UPNG_EOK)
-			image_setup(img, obj, env, i);
+			*obj = make_png_img(img, env);
 		upng_free(img);
 	}
+	thing = ft_strjoin("Finished loading==> ", fn + 2);
+	ft_putendl(thing);
+	free(thing);
 	free(fn);
 }

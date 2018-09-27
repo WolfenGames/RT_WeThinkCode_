@@ -6,12 +6,13 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 08:06:31 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/25 18:06:49 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/27 11:53:16 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
-#include "../../inc/rt.h"
+#include "rt.h"
+#include "parse.h"
 
 t_l_type	set_light_type(char *s)
 {
