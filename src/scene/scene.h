@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/26 13:23:56 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/27 09:31:51 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct	s_obj
 	void		(*get_surface_col)(struct s_obj *obj, t_ray *c, t_vec point);
 	int			referenced_norm;
 	int			referenced_spec;
+	int			ref;
 }				t_obj;
 
 typedef struct	s_lig

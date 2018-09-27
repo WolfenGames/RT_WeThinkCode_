@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   png.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 07:50:46 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/26 14:08:32 by ibotha           ###   ########.fr       */
+/*   Updated: 2018/09/27 09:29:33 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_img	*make_png_img(upng_t *img, t_env *env)
 					upng_get_height(img));
 	dat = upng_get_buffer(img);
 	cur[0] = -1;
-	printf("==>UPNG_FORMAT_ID %i\n", upng_get_format(img));
 	while (++cur[0] < ret->w)
 	{
 		cur[1] = -1;
@@ -57,9 +56,12 @@ void	image_setup(upng_t *img, t_obj *obj, t_env *env, int i)
 void	load_png(t_obj *obj, char *fn, t_env *env, int i)
 {
 	upng_t	*img;
+	char	*thing;
 
-	printf("Loading==>%s\n", fn);
 	fn = ft_strjoin_n_free(ft_strdup("./"), fn);
+	thing = ft_strjoin("Loading==> ", fn);
+	ft_putendl(thing);
+	free(thing);
 	if (!(img = upng_new_from_file(fn)))
 	{
 		free(fn);
@@ -72,5 +74,8 @@ void	load_png(t_obj *obj, char *fn, t_env *env, int i)
 			image_setup(img, obj, env, i);
 		upng_free(img);
 	}
+	thing = ft_strjoin("Finished loading==> ", fn);
+	ft_putendl(thing);
+	free(thing);
 	free(fn);
 }

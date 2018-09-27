@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 11:49:34 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/26 15:12:05 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/26 15:46:22 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void			parse_list(t_list *lst, t_env *env)
 	{
 		if ((name = object_name_zone(lst)) != NULL)
 		{
-			printf("%s\n", name);
 			if (!(bob = the_good_search_name(&env->scene, name)))
 			{
 				lst = lst->next;

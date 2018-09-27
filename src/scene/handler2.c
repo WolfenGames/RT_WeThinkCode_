@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 07:51:39 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/26 13:24:01 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/27 09:32:52 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ void	assign_tex(t_obj *obj, t_obj *ref)
 {
 	if (ref)
 		obj->tex = ref->tex;
+	if (obj->tex)
+	{
+		ref->ref = 1;
+		obj->ref = 2;
+	}
 }
 
 void	set_tex(t_obj *o, char *filename, t_env *env)

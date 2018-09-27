@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 11:40:13 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/26 15:14:07 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/26 15:46:17 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	parse_info(t_list *lst, t_obj *obj, char *name, int off[3])
 		(ft_strstr(lst->content, "triangles") ||
 		ft_strstr(lst->content, "polygons")))))
 	{
-		printf("P====>%s\n", lst->content);
 		if (ft_strstr(lst->content, "v "))
 			vec_from_str(obj->vertex_point[count[0]++], lst->content + 2);
 		if (ft_strstr(lst->content, "vn "))
