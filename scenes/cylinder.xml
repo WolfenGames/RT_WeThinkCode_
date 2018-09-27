@@ -17,8 +17,8 @@
     <colour>255,255,255</colour>
     <type>point</type>
 </light>
-<object name="Bob">
-	<origin>0, 0, 0</origin>
+<object name="twat">
+	<origin>-2, 0, 0</origin>
 	<rotation>0, 0, 0</rotation>
 	<diffusecolour>255, 255, 255</diffusecolour>
 	<normalmap>textures/Stone_norm.png</normalmap>
@@ -29,15 +29,15 @@
 	<texture>textures/Stone_tex.png</texture>
 	<texturescale>1, 1</texturescale>
 </object>
-<object name="twat">
-	<origin>-2, 0, 0</origin>
+<object name="Bob">
+	<origin>0, 0, 0</origin>
 	<rotation>0, 0, 0</rotation>
 	<diffusecolour>255, 255, 255</diffusecolour>
-	<normalmap>->Bob</normalmap>
-	<specularmap>->Bob</specularmap>
+	<normalmap>textures/Stone_norm.png</normalmap>
+	<specularmap>textures/Stone_spec.png</specularmap>
 	<specularcolour>255, 255, 255</specularcolour>
 	/<scale>5, 5, 5</scale>
 	<radius>2</radius>
-	<texture>->Bob</texture>
+	<texture>textures/Stone_tex.png</texture>
 	<texturescale>1, 1</texturescale>
 </object>

@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/27 09:31:51 by jwolf            ###   ########.fr       */
+/*   Updated: 2018/09/27 12:27:08 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,6 @@ typedef struct	s_obj
 							t_ray *c);
 	int			(*get_intersect)(t_ray *ray, struct s_obj *obj);
 	void		(*get_surface_col)(struct s_obj *obj, t_ray *c, t_vec point);
-	int			referenced_norm;
-	int			referenced_spec;
-	int			ref;
 }				t_obj;
 
 typedef struct	s_lig
@@ -116,6 +113,12 @@ typedef struct	s_cam
 	double		aperture;
 }				t_cam;
 
+typedef	struct	s_img_lst
+{
+	char		*name;
+	int			id;
+}				t_img_lst;
+
 typedef struct	s_scene
 {
 	t_style		style;
@@ -127,6 +130,7 @@ typedef struct	s_scene
 	t_list		*obj;
 	t_list		*lig;
 	t_list		*cam;
+	t_list		*img_list;
 	t_cam		*c_cam;
 	double		cellshade;
 }				t_scene;
@@ -155,7 +159,7 @@ void			polygon_scale(t_env *env);
 void			set_vec(t_vec vec, char *linesub);
 void			set_obj_params(t_obj *o);
 void			set_object_type(char *s, t_obj *o);
-void			set_tex(t_obj *o, char *filename, t_env *env);
+void			set_tex(t_img **i, char *filename, t_env *env);
 void			set_n_tex(t_obj *o, char *filename, t_env *env);
 void			set_s_tex(t_obj *o, char *filename, t_env *env);
 void			save_image(t_env *env);
@@ -163,7 +167,7 @@ void			save_image(t_env *env);
 int				read_obj_files(char *paths, t_env *env);
 void			parse_list(t_list *lst, t_env *env);
 
-void			load_png(t_obj *obj, char *fn, t_env *env, int i);
+void			load_png(t_img **obj, char *fn, t_env *env);
 
 int				is_line_prop(const char *line);
 int				match_brackets(char *str, char *line);
@@ -177,6 +181,7 @@ char			*make_end(char *str);
 t_cam			*search_cam_list(t_scene *scene, char *name);
 t_obj			*search_obj_list(t_scene *scene, char *name);
 t_lig			*search_light_list(t_scene *scene, char *name);
+t_img			*search_img_list(t_env *env, char *name);
 
 t_l_type		set_light_type(char *s);
 
