@@ -89,6 +89,7 @@ void	create_scene(int ac, char **names, t_scene *scene, t_env *env)
 {
 	int		fd;
 
+	(void)ac;
 	del_scene(env);
 	fd = open(names[1], O_RDONLY);
 	if (fd < 0)

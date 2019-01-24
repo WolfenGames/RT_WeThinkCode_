@@ -5,7 +5,7 @@
 	<fov>100</fov>
 </camera>
 <scene>
-	<raydepth>15</raydepth>
+	<raydepth>20</raydepth>
 	<eyewidth>0.9</eyewidth>
 	<path>Bounce</path>
 	<ambience>0,0,0</ambience>
@@ -21,7 +21,7 @@
 	<origin>4,-6,-8</origin>
 	<radius>4</radius>
 	<diffusecolour>55,10,10,255</diffusecolour>
-	<specularcolour>255,0,0,255</specularcolour>
+	<specularcolour>200,110,0,255</specularcolour>
 	<type>sphere</type>
 	<albedo>0.18</albedo>
 </object>
