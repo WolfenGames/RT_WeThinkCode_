@@ -5,7 +5,7 @@
 	<fov>100</fov>
 </camera>
 <scene>
-	<raydepth>20</raydepth>
+	<raydepth>5</raydepth>
 	<eyewidth>0.9</eyewidth>
 	<path>Bounce</path>
 	<ambience>0,0,0</ambience>
