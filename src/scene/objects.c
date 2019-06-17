@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 07:20:51 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/27 12:29:27 by jwolf            ###   ########.fr       */
+/*   Updated: 2019/06/17 13:14:42 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ void	set_object_properties_two(char *line, t_obj *new, t_env *env)
 	if (!new->norm && match_brackets("normalmap", line))
 		set_tex(&new->norm, ft_strsub(line, 11, ft_strlen(line) - 23), env);
 	if (!new->spec_map && match_brackets("specularmap", line))
-		set_tex(&new->spec_map, ft_strsub(line, 13, ft_strlen(line) - 27), env);
+		set_tex(&new->spec_map, ft_strsub(line, 13, ft_strlen(line) - 27),
+			env);
 }
 
-void	set_object_properties_one(char *name, char *line, t_obj *new, t_env *env)
+void	set_object_properties_one(char *name, char *line,
+										t_obj *new, t_env *env)
 {
 	new->name = (new->name != NULL) ? new->name : get_name(name);
 	if (match_brackets("origin", line))
@@ -33,7 +35,8 @@ void	set_object_properties_one(char *name, char *line, t_obj *new, t_env *env)
 	if (match_brackets("rotation", line))
 		set_vec(new->rot, ft_strsub(line, 10, ft_strlen(line) - 21));
 	if (match_brackets("diffusecolour", line))
-		set_vec(new->surface_colour, ft_strsub(line, 15, ft_strlen(line) - 31));
+		set_vec(new->surface_colour, ft_strsub(line, 15,
+			ft_strlen(line) - 31));
 	if (match_brackets("specularcolour", line))
 		set_vec(new->specular_colour, ft_strsub(line, 16,
 			ft_strlen(line) - 33));
@@ -64,7 +67,8 @@ void	set_object_param(t_env *env)
 	}
 }
 
-void	set_object_properties(char *name, char *line, t_scene *scene, t_env *env)
+void	set_object_properties(char *name, char *line,
+								t_scene *scene, t_env *env)
 {
 	t_obj	*new;
 	t_obj	template;

@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   calc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 11:15:02 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/25 10:29:42 by jwolf            ###   ########.fr       */
+/*   Updated: 2019/06/17 13:09:34 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-/*
-** In this file we handle calcualtions of each object to prepare them for the
-** scene
-*/
 
 static void	calc_obj(t_obj *obj)
 {

@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 14:50:41 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/25 15:37:12 by ibotha           ###   ########.fr       */
+/*   Updated: 2019/06/17 11:39:53 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	plane_getnorm(t_vec norm, t_vec point, t_obj *obj, t_ray *c)
 {
 	t_vec	lpoint;
 	t_vec	tang;
-	(void)c;
 
+	(void)c;
 	FILLVEC(norm, 0, 0, 1, 0);
 	FILLVEC(tang, 1, 0, 0, 0);
 	transform(obj->wto, point, lpoint);

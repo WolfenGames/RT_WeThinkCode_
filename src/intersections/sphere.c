@@ -6,40 +6,43 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:48 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/25 15:37:29 by ibotha           ###   ########.fr       */
+/*   Updated: 2019/06/17 12:48:24 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
+/*
+** norm = da 0
+** o = da 1
+*/
+
 void	sphere_surface_col(t_obj *ob, t_ray *c, t_vec point)
 {
-	t_vec		norm;
+	t_vec		da[2];
 	t_vec		tempvec[3];
-	t_vec		o;
 
-	transform(ob->wto, point, norm);
-	normalize(norm);
+	transform(ob->wto, point, da[0]);
+	normalize(da[0]);
 	FILLVEC(tempvec[0], 0, 1, 0, 0);
-	o[1] = (find_angle(norm, tempvec[0]) / M_PI);
-	FILLVEC(tempvec[1], norm[0], 0, norm[2], 0);
+	da[1][1] = (find_angle(da[0], tempvec[0]) / M_PI);
+	FILLVEC(tempvec[1], da[0][0], 0, da[0][2], 0);
 	FILLVEC(tempvec[0], 0, 0, 1, 0);
-	o[0] = 1 - ((norm[0] < 0 ? 0 : 2 * M_PI) + (norm[0] < 0 ? 1 : -1)
+	da[1][0] = 1 - ((da[0][0] < 0 ? 0 : 2 * M_PI) + (da[0][0] < 0 ? 1 : -1)
 		* find_angle(tempvec[0], tempvec[1])) / (2.f * M_PI);
-	surface_scale(o, ob);
+	surface_scale(da[1], ob);
 	if (ob->spec_map)
 	{
-		get_p_img_col(o[0], o[1], ob->spec_map, c->org);
-		FILLVEC(c->org,
-		(c->org[0] / 255.0) * ob->specular_colour[0],
+		get_p_img_col(da[1][0], da[1][1], ob->spec_map, c->org);
+		FILLVEC(c->org, (c->org[0] / 255.0) * ob->specular_colour[0],
 		(c->org[1] / 255.0) * ob->specular_colour[1],
 		(c->org[2] / 255.0) * ob->specular_colour[2], 0);
 	}
 	else
 		vec_dup(ob->specular_colour, c->org);
-	ob->tex ? get_p_img_col(o[0], o[1], ob->tex, c->dir) :
+	ob->tex ? get_p_img_col(da[1][0], da[1][1], ob->tex, c->dir) :
 		vec_dup(ob->surface_colour, c->dir);
-	ob->norm ? get_p_img_col(o[0], o[1], ob->norm, c->hold)[0] :
+	ob->norm ? get_p_img_col(da[1][0], da[1][1], ob->norm, c->hold)[0] :
 		FILLVEC(c->hold, 128, 128, 255, 0);
 }
 
@@ -47,8 +50,8 @@ void	sphere_getnorm(t_vec norm, t_vec point, t_obj *obj, t_ray *c)
 {
 	t_vec		tang;
 	t_matrix	m;
-	(void)c;
 
+	(void)c;
 	v_sub(point, obj->org, norm);
 	normalize(norm);
 	FILLVEC(tang, norm[0], 0, norm[2], 0);

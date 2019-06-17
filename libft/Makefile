@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+         #
+#    By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/15 17:06:15 by ibotha            #+#    #+#              #
-#    Updated: 2018/09/21 10:57:29 by jwolf            ###   ########.fr        #
+#    Updated: 2019/06/17 12:30:09 by ibotha           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 HED = libft.h
 TEST = ../test/test.c ../test/testmem.c ../test/teststr1.c ../test/itertest.c ../test/testitoa.c ../test/testlist.c
-OBJ = ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o \
+OBJ = 	ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_iswhitespace.o \
 		ft_isascii.o ft_isdigit.o ft_isprint.o ft_memalloc.o \
 		ft_memccpy.o ft_memcpy.o ft_memdel.o ft_memset.o ft_putchar.o \
 		ft_putchar_fd.o ft_putendl.o ft_putendl_fd.o ft_putnbr.o \

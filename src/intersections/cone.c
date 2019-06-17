@@ -6,39 +6,44 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 10:07:15 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/25 15:37:04 by ibotha           ###   ########.fr       */
+/*   Updated: 2019/06/17 12:29:34 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
+/*
+** data 0 is lp
+** data 1 is temp
+** data 2 is o coord
+*/
+
 void		cone_surface_col(t_obj *ob, t_ray *c, t_vec point)
 {
-	t_vec		lp;
-	t_vec		temp;
-	t_vec		o;
+	t_vec		data[3];
 
-	transform(ob->wto, point, lp);
-	o[1] = 1 - (lp[2] + ob->scale[0] / 2.0) / ob->scale[0];
-	o[2] = lp[2];
-	lp[2] = 0;
-	FILLVEC(temp, 0, (lp[0] < 0 ? 1 : -1), 0, 0);
-	o[0] = 1 - (((lp[0] < 0 ? 0 : M_PI) + find_angle(temp, lp)) / (2 * M_PI));
-	if (ABS(o[2]) > ((ob->scale[0] / 2.0) * 0.99999))
-		cap_col(o, lp, ob);
-	surface_scale(o, ob);
+	transform(ob->wto, point, data[0]);
+	data[2][1] = 1 - (data[0][2] + ob->scale[0] / 2.0) / ob->scale[0];
+	data[2][2] = data[0][2];
+	data[0][2] = 0;
+	FILLVEC(data[1], 0, (data[0][0] < 0 ? 1 : -1), 0, 0);
+	data[2][0] = 1 - (((data[0][0] < 0 ? 0 : M_PI) +
+		find_angle(data[1], data[0])) / (2 * M_PI));
+	if (ABS(data[2][2]) > ((ob->scale[0] / 2.0) * 0.99999))
+		cap_col(data[2], data[0], ob);
+	surface_scale(data[2], ob);
 	if (ob->spec_map)
 	{
-		get_p_img_col(o[0], o[1], ob->spec_map, c->org);
+		get_p_img_col(data[2][0], data[2][1], ob->spec_map, c->org);
 		FILLVEC(c->org, (c->org[0] / 255.0) * ob->specular_colour[0],
 		(c->org[1] / 255.0) * ob->specular_colour[1],
 		(c->org[2] / 255.0) * ob->specular_colour[2], 0);
 	}
 	else
 		vec_dup(ob->specular_colour, c->org);
-	ob->tex ? get_p_img_col(o[0], o[1], ob->tex, c->dir) :
+	ob->tex ? get_p_img_col(data[2][0], data[2][1], ob->tex, c->dir) :
 		vec_dup(ob->surface_colour, c->dir);
-	ob->norm ? get_p_img_col(o[0], o[1], ob->norm, c->hold)[0] :
+	ob->norm ? get_p_img_col(data[2][0], data[2][1], ob->norm, c->hold)[0] :
 		FILLVEC(c->hold, 128, 128, 255, 0);
 }
 

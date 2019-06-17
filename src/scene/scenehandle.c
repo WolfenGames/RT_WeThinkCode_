@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scenehandle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 09:01:47 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/25 10:39:28 by jwolf            ###   ########.fr       */
+/*   Updated: 2019/06/17 13:13:08 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,4 @@ void	set_scene_properties(char *line, t_env *env)
 		env->eye_w = ft_atod(line + 10);
 	if (match_brackets("ambience", line))
 		set_vec(env->ambience, ft_strsub(line, 10, ft_strlen(line) - 21));
-	if (match_brackets("posteffect", line))
-	{
-		//sepai effect number and stuff;
-	}
 }

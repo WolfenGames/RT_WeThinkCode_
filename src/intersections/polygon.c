@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 13:20:45 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/25 17:12:22 by ibotha           ###   ########.fr       */
+/*   Updated: 2019/06/17 12:59:26 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,51 +26,35 @@
 #define N1 (obj->faces[i][0][2] >= obj->n_v_normal || obj->faces[i][0][2] < 0)
 #define N2 (obj->faces[i][1][2] >= obj->n_v_normal || obj->faces[i][1][2] < 0)
 #define N3 (obj->faces[i][2][2] >= obj->n_v_normal || obj->faces[i][2][2] < 0)
+#define LEN temp[3]
+#define O1 (VT(2)[1] * LEN[0] + VT(0)[1] * LEN[1] + VT(1)[1] * LEN[2])
+#define O0 (VT(2)[0] * LEN[0] + VT(0)[0] * LEN[1] + VT(1)[0] * LEN[2])
 
-void	poly_surface_col(t_obj *obj, t_ray* c, t_vec point)
+void	poly_surface_col(t_obj *obj, t_ray *c, t_vec point)
 {
 	int		i;
-	t_vec	len;
-	t_vec	o;
+	t_vec	temp[4];
 
-	(void)point;
 	i = c->dir[3];
-	len[1] = c->dir[1];
-	len[2] = c->dir[2];
-	len[0] = 1 - c->dir[1] - c->dir[2];
+	temp[3][1] = c->dir[1];
+	temp[3][2] = c->dir[2];
+	temp[3][0] = 1 - c->dir[1] - c->dir[2];
 	vec_dup(obj->specular_colour, c->org);
 	vec_dup(obj->surface_colour, c->dir);
 	FILLVEC(c->hold, 128, 128, 255, 0);
 	if (T1 || T2 || T3)
 		return ;
-	o[0] = VT(2)[0] * len[0];
-	o[1] = VT(2)[1] * len[0];
-	o[0] += VT(0)[0] * len[1];
-	o[1] += VT(0)[1] * len[1];
-	o[0] += VT(1)[0] * len[2];
-	o[1] += VT(1)[1] * len[2];
+	FILLVEC(temp[2], O0, O1, 0, 0);
 	if (VT(0)[0] > VT(1)[0])
 		c->tri_index = VT(0)[0] > VT(2)[0] ? 0 : 2;
 	else
 		c->tri_index = VT(1)[0] > VT(2)[0] ? 1 : 2;
-	t_vec	temp[2];
+	poly_surface_col_cont(temp, obj, c, point);
 	FILLVEC(temp[0], 1, 0, 0, 0);
-	FILLVEC(temp[1], VT(c->tri_index)[0] - o[0], VT(c->tri_index)[1] - o[1], 0, 0);
-	c->u = o[1] < VT(c->tri_index)[1] ? find_angle(temp[0], temp[1]) : (2 * M_PI - find_angle(temp[0], temp[1]));
-	o[1] = 1 - o[1];
-	surface_scale(o, obj);
-	if (obj->spec_map)
-	{
-		get_p_img_col(o[0], o[1], obj->spec_map, c->org);
-		FILLVEC(c->org,
-		(c->org[0] / 255.0) * obj->specular_colour[0],
-		(c->org[1] / 255.0) * obj->specular_colour[1],
-		(c->org[2] / 255.0) * obj->specular_colour[2], 0);
-	}
-	if (obj->tex)
-		get_p_img_col(o[0], o[1], obj->tex, c->dir);
-	if (obj->norm)
-		get_p_img_col(o[0], o[1], obj->norm, c->hold);
+	FILLVEC(temp[1], VT(c->tri_index)[0] - temp[2][0],
+		VT(c->tri_index)[1] - temp[2][1], 0, 0);
+	c->u = temp[2][1] < VT(c->tri_index)[1] ? find_angle(temp[0], temp[1]) :
+		(2 * M_PI - find_angle(temp[0], temp[1]));
 }
 
 void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj, t_ray *c)

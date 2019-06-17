@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 11:21:17 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/24 13:27:53 by jwolf            ###   ########.fr       */
+/*   Updated: 2019/06/17 13:08:54 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ void			print_vector(t_env *env, void *win, char *name, t_vec vec);
 void			create_scene(int ac, char **av, t_scene *scene, t_env *env);
 void			create_blocks(t_render_block *blocks);
 void			del_scene(t_env *env);
+void			del_lig(t_list **ligs);
+void			del_cam(t_list **cams);
 void			gen_stereo(t_env *env);
 void			generate_ray(t_ray *ray, double x, double y, t_env *env);
 void			floid_dithering(t_env *env);

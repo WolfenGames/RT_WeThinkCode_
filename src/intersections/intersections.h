@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 17:11:13 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/25 15:38:14 by ibotha           ###   ########.fr       */
+/*   Updated: 2019/06/17 12:58:59 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int		cylinder_intersect(t_ray *ray, t_obj *obj);
 void	cylinder_getnorm(t_vec norm, t_vec point, t_obj *obj, t_ray *c);
 
 void	poly_surface_col(t_obj *ob, t_ray *c, t_vec point);
+void	poly_surface_col_cont(t_vec temp[4], t_obj *obj, t_ray *c, t_vec point);
 int		poly_intersect(t_ray *ray, t_obj *obj);
 void	poly_getnorm(t_vec norm, t_vec point, t_obj *obj, t_ray *c);
 

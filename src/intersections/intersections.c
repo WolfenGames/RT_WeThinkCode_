@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 12:25:58 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/26 17:32:42 by jwolf            ###   ########.fr       */
+/*   Updated: 2019/06/17 12:25:45 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ static void		light_thing(t_ray point[4], t_env *env, t_obj *obj, t_ray *c)
 	{
 		generate_shadow_ray(&point[0], LIG, env, col);
 		sc_col(col, (obj->albedo / M_PI) * (LIG->intensity
-			/ (LIG->type == light_point ? point[0].len : 1.0))
-			* shade(ABS(dot(point[0].dir, point[2].dir)), env->scene.cellshade, obj),
+			/ (LIG->type == light_point ? point[0].len : 1.0)) *
+			shade(ABS(dot(point[0].dir, point[2].dir)),
+			env->scene.cellshade, obj),
 			vecs[1]);
 		add_col(vecs[0], vecs[1], vecs[0]);
 		cur = cur->next;
@@ -79,11 +80,14 @@ void			reflect_crap(t_ray *c, t_ray point[3], t_obj *obj, double k)
 	refract[2] = (point[3].dir[2] / 255.0) * point[1].org[2];
 	k *= 1 - obj->trans;
 	k += 1 - obj->trans;
-	c->dir[0] = ft_clamp(255, 0, specular_rat[0] * point[1].dir[0] * k + (c->dir[0])
+	c->dir[0] = ft_clamp(255, 0, specular_rat[0] * point[1].dir[0]
+		* k + (c->dir[0])
 		* (1 - obj->trans) + point[1].org[0] * (obj->trans) * (1 - k));
-	c->dir[1] = ft_clamp(255, 0, specular_rat[1] * point[1].dir[1] * k + (c->dir[1])
+	c->dir[1] = ft_clamp(255, 0, specular_rat[1] * point[1].dir[1]
+		* k + (c->dir[1])
 		* (1 - obj->trans) + point[1].org[1] * (obj->trans) * (1 - k));
-	c->dir[2] = ft_clamp(255, 0, specular_rat[2] * point[1].dir[2] * k + (c->dir[2])
+	c->dir[2] = ft_clamp(255, 0, specular_rat[2] * point[1].dir[2]
+		* k + (c->dir[2])
 		* (1 - obj->trans) + point[1].org[2] * (obj->trans) * (1 - k));
 }
 
@@ -112,8 +116,6 @@ static void		mid(t_ray *ray, t_ray point[4], t_env *env, t_obj *hit_obj)
 			fresnel(ray->dir, point[2].dir, hit_obj->r_index));
 	}
 	light_thing(point, env, hit_obj, &point[3]);
-	//(if debug)
-	//FILLVEC(point[3].dir, (point[2].dir[0] + 1) * 127,(point[2].dir[1] + 1) * 127,(point[2].dir[2] + 1) * 127,255);
 }
 
 /*

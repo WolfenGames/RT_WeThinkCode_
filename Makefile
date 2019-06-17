@@ -17,11 +17,12 @@ OBJ = src/main.o src/properties.o src/raytracer.o src/loading.o src/blocks.o \
 		src/scene/scene.o src/scene/handler.o src/scene/scenehandle.o \
 		src/intersections/intersections.o src/intersections/sphere.o \
 		src/intersections/light.o src/intersections/cone.o \
-		src/scene/save.o src/intersections/polygon.o \
+		src/scene/save.o src/intersections/polygon.o src/intersections/polygon2.o \
 		src/intersections/planes.o src/intersections/cylinder.o \
 		src/scene/misc.o src/scene/name_handler.o src/scene/search.o \
 		src/scene/calc.o src/scene/typehandler.o src/scene/handler2.o \
-		src/scene/descene.o src/scene/objects.o src/intersections/shadow.o \
+		src/scene/descene.o src/scene/descene2.o src/scene/handler3.o\
+		src/scene/objects.o src/intersections/shadow.o \
 		src/obj_parser/obj_reader.o src/obj_parser/parse_obj.o \
 		src/obj_parser/parse_obj_two.o src/obj_parser/parse_obj_three.o \
 		src/post_proc/stereo.o src/post_proc/aa.o src/post_proc/oldschool.o \

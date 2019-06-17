@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 16:33:30 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/27 12:27:08 by jwolf            ###   ########.fr       */
+/*   Updated: 2019/06/17 13:17:15 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,8 @@ int				read_obj_files(char *paths, t_env *env);
 void			parse_list(t_list *lst, t_env *env);
 
 void			load_png(t_img **obj, char *fn, t_env *env);
+void			try_load_xpm(char *small, char *filename, t_env *env,
+								t_img **o);
 
 int				is_line_prop(const char *line);
 int				match_brackets(char *str, char *line);

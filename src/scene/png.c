@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   png.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/21 07:50:46 by jwolf             #+#    #+#             */
-/*   Updated: 2018/09/27 12:23:43 by jwolf            ###   ########.fr       */
+/*   Updated: 2019/06/17 13:12:38 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ t_img	*make_png_img(upng_t *img, t_env *env)
 			if (ISGREY)
 				FILLCOL(c, dat[P], dat[P], dat[P], 255);
 			else
-				FILLCOL(c, dat[P], dat[P + 1], dat[P + 2], NA ? 255 : dat[P + 3]);
+				FILLCOL(c, dat[P], dat[P + 1], dat[P + 2], NA ?
+					255 : dat[P + 3]);
 			put_pixel(cur[0], cur[1], c, ret);
 		}
 	}

@@ -16,7 +16,7 @@ void	*ft_memscpy(void *str1, const void *str2, size_t n)
 {
 	size_t		i;
 	size_t		j;
-	int		*temp;
+	int			*temp;
 	const int	*temp2;
 
 	n /= 4;

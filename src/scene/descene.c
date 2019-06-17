@@ -3,20 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   descene.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/06 15:51:18 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/27 12:06:58 by jwolf            ###   ########.fr       */
+/*   Updated: 2019/06/17 13:07:07 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-/*
-** Here we handle deleting of elements of are no longer required,
-*/
-
-void	del_img_elem(void *lst, size_t i)
+void		del_img_elem(void *lst, size_t i)
 {
 	(void)i;
 	free(((t_img_lst *)lst)->name);
@@ -57,34 +53,6 @@ static void	del_obj(t_list **objs, t_env *env)
 		free(obj->name);
 		free(obj);
 		free(*objs);
-	}
-}
-
-static void	del_lig(t_list **ligs)
-{
-	t_lig	*lig;
-
-	if (*ligs)
-	{
-		del_lig(&(*ligs)->next);
-		lig = (t_lig*)(*ligs)->content;
-		free(lig->name);
-		free(lig);
-		free(*ligs);
-	}
-}
-
-static void	del_cam(t_list **cams)
-{
-	t_cam	*cam;
-
-	if (*cams)
-	{
-		del_lig(&(*cams)->next);
-		cam = (t_cam*)(*cams)->content;
-		free(cam->name);
-		free(cam);
-		free(*cams);
 	}
 }
 

@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   handler3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 16:53:34 by ibotha            #+#    #+#             */
-/*   Updated: 2019/06/17 11:33:01 by ibotha           ###   ########.fr       */
+/*   Created: 2018/09/05 07:51:39 by jwolf             #+#    #+#             */
+/*   Updated: 2019/06/17 13:11:57 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "scene.h"
+#include "rt.h"
+#include "parse.h"
 
-char	*ft_strtrim(const char *s)
+void	try_load_xpm(char *small, char *filename, t_env *env, t_img **o)
 {
-	int front;
-	int back;
+	int		fd;
 
-	if (!s)
-		return (NULL);
-	front = 0;
-	back = ft_strlen(s) - 1;
-	while (ft_iswhitespace(s[front]))
+	if (ft_strstr(small, ".xpm") &&
+		ft_strnequ(ft_strrchr(small, '.'), ".xpm", 4))
 	{
-		++front;
+		if ((fd = open(filename, O_RDONLY)) < 0)
+			return ;
+		close(fd);
+		*o = add_img_xpm(REN, filename, 0, 0);
 	}
-	if (s[front] == '\0')
-		return (ft_strdup(""));
-	while (ft_iswhitespace(s[front]))
-		--back;
-	return (ft_strsub(s, front, back - front + 1));
 }

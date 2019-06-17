@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   descene2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 16:53:34 by ibotha            #+#    #+#             */
-/*   Updated: 2019/06/17 11:33:01 by ibotha           ###   ########.fr       */
+/*   Created: 2018/09/06 15:51:18 by ibotha            #+#    #+#             */
+/*   Updated: 2019/06/17 13:08:26 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "rt.h"
 
-char	*ft_strtrim(const char *s)
+void		del_lig(t_list **ligs)
 {
-	int front;
-	int back;
+	t_lig	*lig;
 
-	if (!s)
-		return (NULL);
-	front = 0;
-	back = ft_strlen(s) - 1;
-	while (ft_iswhitespace(s[front]))
+	if (*ligs)
 	{
-		++front;
+		del_lig(&(*ligs)->next);
+		lig = (t_lig*)(*ligs)->content;
+		free(lig->name);
+		free(lig);
+		free(*ligs);
 	}
-	if (s[front] == '\0')
-		return (ft_strdup(""));
-	while (ft_iswhitespace(s[front]))
-		--back;
-	return (ft_strsub(s, front, back - front + 1));
+}
+
+void		del_cam(t_list **cams)
+{
+	t_cam	*cam;
+
+	if (*cams)
+	{
+		del_lig(&(*cams)->next);
+		cam = (t_cam*)(*cams)->content;
+		free(cam->name);
+		free(cam);
+		free(*cams);
+	}
 }

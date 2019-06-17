@@ -6,7 +6,7 @@
 /*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 16:54:37 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/26 14:44:38 by ibotha           ###   ########.fr       */
+/*   Updated: 2019/06/17 14:33:24 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	aa(t_env *env)
 		point[1] = -1;
 		while (++point[1] < RENDER->h && env->running)
 		{
-			PROG = (point[0] * RENDER->h + point[1]) / (double)(RENDER->h * RENDER->w) + 1;
+			PROG = (point[0] * RENDER->h + point[1]) /
+				(double)(RENDER->h * RENDER->w) + 1;
 			get_img_col(point[0], point[1], RENDER, c);
 			c[3] = 255;
 			if (checkpoint(env, point))

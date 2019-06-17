@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwolf <jwolf@42.FR>                        +#+  +:+       +#+        */
+/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 17:41:11 by ibotha            #+#    #+#             */
-/*   Updated: 2018/09/21 10:57:19 by jwolf            ###   ########.fr       */
+/*   Updated: 2019/06/17 11:32:33 by ibotha           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int				ft_isdigit(int c);
 int				ft_isalnum(int c);
 int				ft_isascii(int c);
 int				ft_isprint(int c);
+int				ft_iswhitespace(int c);
 int				ft_atoi_b(const char *str, const char *base);
 int				ft_memcmp(const void *str1, const void *str2, size_t n);
 int				ft_toupper(int c);
