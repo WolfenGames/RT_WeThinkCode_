@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "scene.h": "c",
-        "rt.h": "c",
-        "intersections.h": "c"
-    }
-}
