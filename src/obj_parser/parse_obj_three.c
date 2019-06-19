@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_obj_three.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 11:49:34 by jwolf             #+#    #+#             */
-/*   Updated: 2019/06/17 14:38:22 by ibotha           ###   ########.fr       */
+/*   Updated: 2019/06/19 15:12:49 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void		parse_list_good(t_list *lst, t_env *env, char *name, int ci[3])
 {
 	t_obj			template;
 	t_obj			*bob;
+	t_list			*temp_list;
 
 	ft_bzero(&template, sizeof(t_obj));
 	if (!(bob = the_good_search_name(&env->scene, name)))
@@ -37,7 +38,6 @@ static void		parse_list_good(t_list *lst, t_env *env, char *name, int ci[3])
 
 void			parse_list(t_list *lst, t_env *env)
 {
-	t_list			*temp_list;
 	char			*name;
 	int				ci[3];
 

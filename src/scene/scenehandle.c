@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scenehandle.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibotha <ibotha@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jwolf <jwolf@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 09:01:47 by jwolf             #+#    #+#             */
-/*   Updated: 2019/06/17 13:13:08 by ibotha           ###   ########.fr       */
+/*   Updated: 2019/06/19 15:16:29 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_get_filename(char *str, char delim)
 void	set_scene_properties(char *line, t_env *env)
 {
 	if (match_brackets("raydepth", line))
-		env->scene.raydepth = ft_atod(line + 10);
+		ft_clamp(300, 1, env->scene.raydepth = ft_atod(line + 10));
 	if (match_brackets("path", line))
 		env->scene.fn = ft_get_filename(line + 6, '<');
 	if (match_brackets("objfilepath", line))
