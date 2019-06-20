@@ -6,7 +6,7 @@
 /*   By: jwolf <jwolf@student.wethinkcode.co.za>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/19 11:49:34 by jwolf             #+#    #+#             */
-/*   Updated: 2019/06/19 15:12:49 by jwolf            ###   ########.fr       */
+/*   Updated: 2019/06/20 10:03:44 by jwolf            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ void			parse_list(t_list *lst, t_env *env)
 	while (lst)
 	{
 		if ((name = object_name_zone(lst)) != NULL)
-		{
 			parse_list_good(lst, env, name, ci);
-		}
-		else if (lst)
-			lst = lst->next;
+		lst = lst->next;
 	}
 }

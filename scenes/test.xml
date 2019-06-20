@@ -1,7 +1,6 @@
 <scene>
-    <raydepth>10</raydepth>
-	<cellshade>1</cellshade>
-	<objfilepath>objects/room scene.obj</objfilepath>
+    <raydepth>2</raydepth>
+	<objfilepath>objs/SUZANSMOOTH.obj</objfilepath>
 	<ambience>0, 0, 0</ambience>
 	<eyewidth>0.5</eyewidth>
 </scene>
@@ -12,98 +11,32 @@
     <aperture>1</aperture>
 </camera>
 <light name="Roof_ligt">
-	<origin>0,3,-2</origin>
+	<origin>0,10,0</origin>
+	<rotation>0,0,0</rotation>
 	<colour>255,255,255,255</colour>
-	<intensity>45</intensity>
+	<intensity>500</intensity>
 	<type>point</type>
 </light>
-<object name="Wall_back">
-	<origin>0, 0, 0</origin>
-	<rotation>0, 0, 0</rotation>
-	<diffusecolour>255, 0, 0, 255</diffusecolour>
-	<texture>Textures/Stone_tex.png</texture>
-	<specularmap>Textures/Stone_spec.png</specularmap>
-	<normalmap>Textures/Stone_norm.png</normalmap>
-	<specularcolour>100,100,100,255</specularcolour>
-	<scale>1, 1, 1</scale>
-	<radius>1</radius>
-</object>
-<object name="Wall_front">
-	<origin>0, 0, 0</origin>
-	<rotation>0, 0, 0</rotation>
-	<diffusecolour>255, 0, 0, 255</diffusecolour>
-	<texture>->Wall_back</texture>
-	<specularmap>->Wall_back</specularmap>
-	<normalmap>->Wall_back</normalmap>
-	<specularcolour>100,100,100,255</specularcolour>
-	<scale>1, 1, 1</scale>
-	<radius>1</radius>
-/	<type>sphere</type>
-</object>
-<object name="Wall_left">
-	<origin>0, 0, 0</origin>
-	<rotation>0, 0, 0</rotation>
-	<diffusecolour>0, 255, 0, 255</diffusecolour>
-	<texture>->Wall_back</texture>
-	<specularmap>->Wall_back</specularmap>
-	<normalmap>->Wall_back</normalmap>
-	<specularcolour>100,100,100,255</specularcolour>
-	<scale>1, 1, 1</scale>
-	<radius>1</radius>
-/	<type>sphere</type>
-</object>
-<object name="Wall_right">
-	<origin>0, 0, 0</origin>
-	<rotation>0, 0, 0</rotation>
-	<diffusecolour>0, 255, 0, 255</diffusecolour>
-	<texture>->Wall_back</texture>
-	<normalmap>->Wall_back</normalmap>
-	<specularmap>->Wall_back</specularmap>
-	<texturescale>1,1,1<texturescale>
-	<specularcolour>100,100,100,255</specularcolour>
-	<scale>1, 1, 1</scale>
-	<radius>1</radius>
-/	<type>sphere</type>
-</object>
-<object name="Floor">
+<object name="Suzanne">
 	<origin>0, 0, 0</origin>
 	<rotation>0, 0, 0</rotation>
 	<diffusecolour>0, 0, 255, 255</diffusecolour>
+	/<texture>Textures/rusty.jpg</texture>
+	<transparency>24</transparency>
+	/<specularmap>Textures/Stone_spec.png</specularmap>
+	/<normalmap>Textures/Stone_norm.png</normalmap>
+	/<specularcolour>100,100,100,255</specularcolour>
 	<scale>1, 1, 1</scale>
-	<texture>Textures/wall.png</texture>
+	<albedo>0.18</albedo>
 	<radius>1</radius>
-/	<type>sphere</type>
 </object>
-<object name="Roof">
-	<origin>0, 0, 0</origin>
-	<rotation>0, 0, 0</rotation>
-	<diffusecolour>0, 0, 255, 255</diffusecolour>
-	<scale>1, 1, 1</scale>
-	<texture>Textures/wall.png</texture>
-	<radius>1</radius>
-/	<type>sphere</type>
-</object>
-<object name="Table_top">
-	<origin>0, 0, 0</origin>
-	<rotation>0, 0, 0</rotation>
-	<diffusecolour>100, 0, 255, 255</diffusecolour>
-	<scale>1, 1, 1</scale>
-	<radius>1</radius>
-/	<type>sphere</type>
-</object>
-<object name="Left_leg">
-	<origin>0, 0, 0</origin>
-	<rotation>0, 0, 0</rotation>
-	<diffusecolour>100, 0, 255, 255</diffusecolour>
-	<scale>1, 1, 1</scale>
-	<radius>1</radius>
-/	<type>sphere</type>
-</object>
-<object name="Right_leg">
-	<origin>0, 0, 0</origin>
-	<rotation>0, 0, 0</rotation>
-	<diffusecolour>100, 0, 255, 255</diffusecolour>
-	<scale>1, 1, 1</scale>
-	<radius>1</radius>
-/	<type>sphere</type>
+<object name="Backwall">
+	<origin>0,0,-10</origin>
+	<rotation>180, 0, 0</rotation>
+	<scale>20,20</scale>
+	<diffusecolour>0,0,0</diffusecolour>
+	<specularcolour>0,255,0,255</specularcolour>
+	<texture>Textures/tiles.png</texture>
+	<texturescale>1,1</texturescale>
+	<type>plane</type>
 </object>
