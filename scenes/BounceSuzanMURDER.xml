@@ -22,7 +22,6 @@
 	<rotation>-20, 5, 10</rotation>
 	<diffusecolour>255, 255, 255, 255</diffusecolour>
 	<texture>Textures/RUST/COL.png</texture>
-	/<transparency>24</transparency>
 	<specularmap>Textures/RUST/GLOSS.png</specularmap>
 	<normalmap>Textures/RUST/NORMAL.png</normalmap>
 	<specularcolour>255,255,255,255</specularcolour>
@@ -40,12 +39,13 @@
 	<texture>Textures/MURDER/NORMAL.png</texture>
 	<specularmap>Textures/MURDER/GLOSS.png</specularmap>
 	<normalmap>Textures/MURDER/NORMAL.png</normalmap>
-	<texturescale>1,1</texturescale>
+	<texturescale>5,5</texturescale>
 	<type>plane</type>
 </object>
 <object name="Front">
 	<origin>0,0,-10</origin>
 	<scale>20,20</scale>
+	<texturescale>5,5</texturescale>
 	<diffusecolour>150,150,150</diffusecolour>
 	<specularcolour>255,255,255 </specularcolour>
 	<specularmap>Textures/MURDER/GLOSS.png</specularmap>
@@ -57,12 +57,14 @@
 	<origin>0,-10,0</origin>
 	<rotation>90,0,0</rotation>
 	<scale>20,20</scale>
-	<diffusecolour>150,150,150</diffusecolour>
-	<specularcolour>155,155,155 </specularcolour>
-	<texturescale>1,1,1</texturescale>
-	/<specularmap>Textures/MURDER/GLOSS.png</specularmap>
-	/<normalmap>Textures/MURDER/NORMAL.png</normalmap>
+	<diffusecolour>255,255,255</diffusecolour>
+	<specularcolour>255,255,255</specularcolour>
+	<texturescale>0.2,0.2,0.2</texturescale>
+	<texture>Textures/FLOOR/COL.png</texture>
+	<specularmap>Textures/FLOOR/GLOSS.png</specularmap> 
+	<normalmap>Textures/FLOOR/NORMAL.png</normalmap>
 	<transparency>0.1</transparency>
+	<albedo>0.18</albedo>
 	<type>plane</type>
 </object>
 <object name="Rightwall">
@@ -70,7 +72,7 @@
 	<rotation>0,90,0</rotation>
 	<scale>20,20</scale>
 	<diffusecolour>150,150,150</diffusecolour>
-	<texturescale>1,1,1</texturescale>
+	<texturescale>5,5</texturescale>
 	<specularcolour>255,255,255 </specularcolour>
 	<specularmap>Textures/MURDER/GLOSS.png</specularmap>
 	<normalmap>Textures/MURDER/NORMAL.png</normalmap>
@@ -82,7 +84,7 @@
 	<rotation>0,-90,0</rotation>
 	<scale>20,20</scale>
 	<diffusecolour>150,150,150</diffusecolour>
-	<texturescale>1,1,1</texturescale>
+	<texturescale>5,5</texturescale>
 	<specularcolour>255,255,255</specularcolour>
 	<specularmap>Textures/MURDER/GLOSS.png</specularmap>
 	<normalmap>Textures/MURDER/NORMAL.png</normalmap>
@@ -94,10 +96,11 @@
 	<rotation>-90,0,0</rotation>
 	<scale>20,20</scale>
 	<diffusecolour>150,150,150</diffusecolour>
-	<texturescale>1,1,1</texturescale>
-	<specularcolour>155,155,155 </specularcolour>
-	/<specularmap>Textures/MURDER/GLOSS.png</specularmap>
-	/<normalmap>Textures/MURDER/NORMAL.png</normalmap>
+	<texturescale>5,5</texturescale>
+	<specularcolour>255,255,255</specularcolour>
+	<texture>Textures/ROOFIE/COL.png</texture>
+	<specularmap>Textures/ROOFIE/GLOSS.png</specularmap>
+	<normalmap>Textures/ROOFIE/NORMAL.png</normalmap>
 	<transparency>0.1</transparency>
 	<type>plane</type>
 </object>
