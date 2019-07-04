@@ -1,0 +1,102 @@
+<scene>
+    <raydepth>5</raydepth>
+	<objfilepath>objs/SUZAN.obj</objfilepath>
+	<ambience>0, 0, 0</ambience>
+	<eyewidth>0.5</eyewidth>
+</scene>
+<camera name='Bill'>
+    <origin>0,0,9</origin>
+    <rotation>0,-0,0</rotation>
+    <fov>100</fov>
+    <aperture>1</aperture>
+</camera>
+<light	name='Left light'>
+	<origin>4,4,0</origin>
+	<direction>0,1,-1</direction>
+	<colour>255,200,255,255</colour>
+	<type>point</type>
+	<intensity>500</intensity>
+</light>
+<light	name='Right light'>
+	<origin>-4,4,0</origin>
+	<direction>0,1,-1</direction>
+	<colour>255,200,255,255</colour>
+	<type>point</type>
+	<intensity>500</intensity>
+</light>
+<light	name='-Left light'>
+	<origin>4,-4,0</origin>
+	<direction>0,1,-1</direction>
+	<colour>255,200,255,255</colour>
+	<type>point</type>
+	<intensity>500</intensity>
+</light>
+<light	name='-Right light'>
+	<origin>-4,-4,0</origin>
+	<direction>0,1,-1</direction>
+	<colour>255,200,255,255</colour>
+	<type>point</type>
+	<intensity>500</intensity>
+</light>
+<object name="Suzanne">
+	<origin>0, 0, 0</origin>
+	<rotation>0, 0, 0</rotation>
+	<diffusecolour>255, 0, 0, 255</diffusecolour>
+	/<texture>Textures/rusty.jpg</texture>
+	/<transparency>24</transparency>
+	/<specularmap>Textures/Stone_spec.png</specularmap>
+	/<normalmap>Textures/Stone_norm.png</normalmap>
+	<specularcolour>100,100,100,255</specularcolour>
+	<scale>1, 1, 1</scale>
+	<albedo>0.18</albedo>
+	<radius>1</radius>
+</object>
+<object name="Backwall">
+	<origin>0,0,10</origin>
+	<rotation>180, 0, 0</rotation>
+	<scale>20,20</scale>
+	<diffusecolour>0,0,0</diffusecolour>
+	<specularcolour>255,255,255,255</specularcolour>
+	<texture>Textures/tiles.png</texture>
+	<texturescale>1,1</texturescale>
+	<type>plane</type>
+</object>
+<object name="Front">
+	<origin>0,0,-10</origin>
+	<scale>20,20</scale>
+	<diffusecolour>0,0,0</diffusecolour>
+	<specularcolour>255,255,255,255</specularcolour>
+	<type>plane</type>
+</object>
+<object name="Floor">
+	<origin>0,-10,0</origin>
+	<rotation>90,0,0</rotation>
+	<scale>20,20</scale>
+	<diffusecolour>0,0,0</diffusecolour>
+	<specularcolour>255,255,255,255</specularcolour>
+	<type>plane</type>
+</object>
+<object name="Rightwall">
+	<origin>10,0,0</origin>
+	<rotation>0,90,0</rotation>
+	<scale>20,20</scale>
+	<diffusecolour>0,0,0</diffusecolour>
+	<specularcolour>255,255,255,255</specularcolour>
+	<type>plane</type>
+</object>
+<object name="Leftwall">
+	<origin>-10,0,0</origin>
+	<rotation>0,-90,0</rotation>
+	<scale>20,20</scale>
+	<diffusecolour>0,0,0</diffusecolour>
+	<specularcolour>255,255,255,255</specularcolour>
+	<type>plane</type>
+</object>
+<object name="Roof">
+	<origin>0,10,0</origin>
+	<rotation>-90,0,0</rotation>
+	<scale>20,20</scale>
+	<diffusecolour>0,0,0</diffusecolour>
+	<specularcolour>255,255,255,255</specularcolour>
+	<type>plane</type>
+</object>

@@ -2,7 +2,7 @@
 	<origin>0,0,9</origin>
 	<rotation>0,0,0</rotation>
 	<aperture>1</aperture>
-	<fov>90</fov>
+	<fov>45</fov>
 </camera>
 <scene>
 	<raydepth>25</raydepth>
@@ -39,8 +39,6 @@
 	<diffusecolour>10,55,10,255</diffusecolour>
 	<specularcolour>0,255,0,255</specularcolour>
 	<albedo>0.18</albedo>
- 	<transparency>0.8</transparency>
-	<refractionindex>0.8</refractionindex>
 	<type>sphere</type>
 </object>
 <object name="Special">
@@ -55,7 +53,7 @@
 	<origin>0,0,10</origin>
 	<rotation>180, 0, 0</rotation>
 	<scale>20,20</scale>
-	<diffusecolour>5,5,5</diffusecolour>
+	<diffusecolour>0,0,0</diffusecolour>
 	<specularcolour>255,255,255,255</specularcolour>
 	<texture>Textures/tiles.png</texture>
 	<texturescale>1,1</texturescale>
@@ -64,7 +62,7 @@
 <object name="Front">
 	<origin>0,0,-10</origin>
 	<scale>20,20</scale>
-	<diffusecolour>5,5,5</diffusecolour>
+	<diffusecolour>0,0,0</diffusecolour>
 	<specularcolour>255,255,255,255</specularcolour>
 	<type>plane</type>
 </object>
@@ -72,7 +70,7 @@
 	<origin>0,-10,0</origin>
 	<rotation>90,0,0</rotation>
 	<scale>20,20</scale>
-	<diffusecolour>5,5,5</diffusecolour>
+	<diffusecolour>0,0,0</diffusecolour>
 	<specularcolour>255,255,255,255</specularcolour>
 	<type>plane</type>
 </object>
@@ -80,7 +78,7 @@
 	<origin>10,0,0</origin>
 	<rotation>0,90,0</rotation>
 	<scale>20,20</scale>
-	<diffusecolour>5,5,5</diffusecolour>
+	<diffusecolour>0,0,0</diffusecolour>
 	<specularcolour>255,255,255,255</specularcolour>
 	<type>plane</type>
 </object>
@@ -88,7 +86,7 @@
 	<origin>-10,0,0</origin>
 	<rotation>0,-90,0</rotation>
 	<scale>20,20</scale>
-	<diffusecolour>5,5,5</diffusecolour>
+	<diffusecolour>0,0,0</diffusecolour>
 	<specularcolour>255,255,255,255</specularcolour>
 	<type>plane</type>
 </object>
@@ -96,7 +94,7 @@
 	<origin>0,10,0</origin>
 	<rotation>-90,0,0</rotation>
 	<scale>20,20</scale>
-	<diffusecolour>5,5,5</diffusecolour>
+	<diffusecolour>0,0,0</diffusecolour>
 	<specularcolour>255,255,255,255</specularcolour>
 	<type>plane</type>
 </object>

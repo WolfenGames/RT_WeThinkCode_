@@ -1,0 +1,103 @@
+<scene>
+    <raydepth>5</raydepth>
+	<objfilepath>objs/SUZAN.obj</objfilepath>
+	<ambience>40, 40, 40</ambience>
+	<eyewidth>0.5</eyewidth>
+</scene>
+<camera name='Bill'>
+    <origin>0,0,9</origin>
+    <rotation>0,-0,0</rotation>
+    <fov>100</fov>
+    <aperture>1</aperture>
+</camera>
+<light	name='Left light'>
+	<origin>4,4,0</origin>
+	<direction>0,1,-1</direction>
+	<colour>200,200,200,255</colour>
+	<type>point</type>
+	<intensity>300</intensity>
+</light>
+<object name="Suzanne">
+	<origin>0, -2, 0</origin>
+	<rotation>-20, 5, 10</rotation>
+	<diffusecolour>255, 255, 255, 255</diffusecolour>
+	<texture>Textures/RUST/COL.png</texture>
+	/<transparency>24</transparency>
+	<specularmap>Textures/RUST/GLOSS.png</specularmap>
+	<normalmap>Textures/RUST/NORMAL.png</normalmap>
+	<specularcolour>255,255,255,255</specularcolour>
+	<texturescale>1,1,1</texturescale>
+	<scale>2, 2, 2</scale>
+	<albedo>0.18</albedo>
+	<radius>1</radius>
+</object>
+<object name="Backwall">
+	<origin>0,0,10</origin>
+	<rotation>180, 0, 0</rotation>
+	<scale>20,20</scale>
+	<diffusecolour>10,10,10</diffusecolour>
+	<specularcolour>10,10,10</specularcolour>
+	<texture>Textures/MURDER/NORMAL.png</texture>
+	<specularmap>Textures/MURDER/GLOSS.png</specularmap>
+	<normalmap>Textures/MURDER/NORMAL.png</normalmap>
+	<texturescale>1,1</texturescale>
+	<type>plane</type>
+</object>
+<object name="Front">
+	<origin>0,0,-10</origin>
+	<scale>20,20</scale>
+	<diffusecolour>150,150,150</diffusecolour>
+	<specularcolour>255,255,255 </specularcolour>
+	<specularmap>Textures/MURDER/GLOSS.png</specularmap>
+	<normalmap>Textures/MURDER/NORMAL.png</normalmap>
+	<transparency>0.1</transparency>
+	<type>plane</type>
+</object>
+<object name="Floor">
+	<origin>0,-10,0</origin>
+	<rotation>90,0,0</rotation>
+	<scale>20,20</scale>
+	<diffusecolour>150,150,150</diffusecolour>
+	<specularcolour>155,155,155 </specularcolour>
+	<texturescale>1,1,1</texturescale>
+	/<specularmap>Textures/MURDER/GLOSS.png</specularmap>
+	/<normalmap>Textures/MURDER/NORMAL.png</normalmap>
+	<transparency>0.1</transparency>
+	<type>plane</type>
+</object>
+<object name="Rightwall">
+	<origin>10,0,0</origin>
+	<rotation>0,90,0</rotation>
+	<scale>20,20</scale>
+	<diffusecolour>150,150,150</diffusecolour>
+	<texturescale>1,1,1</texturescale>
+	<specularcolour>255,255,255 </specularcolour>
+	<specularmap>Textures/MURDER/GLOSS.png</specularmap>
+	<normalmap>Textures/MURDER/NORMAL.png</normalmap>
+	<transparency>0.1</transparency>
+	<type>plane</type>
+</object>
+<object name="Leftwall">
+	<origin>-10,0,0</origin>
+	<rotation>0,-90,0</rotation>
+	<scale>20,20</scale>
+	<diffusecolour>150,150,150</diffusecolour>
+	<texturescale>1,1,1</texturescale>
+	<specularcolour>255,255,255</specularcolour>
+	<specularmap>Textures/MURDER/GLOSS.png</specularmap>
+	<normalmap>Textures/MURDER/NORMAL.png</normalmap>
+	<transparency>0.1</transparency>
+	<type>plane</type>
+</object>
+<object name="Roof">
+	<origin>0,10,0</origin>
+	<rotation>-90,0,0</rotation>
+	<scale>20,20</scale>
+	<diffusecolour>150,150,150</diffusecolour>
+	<texturescale>1,1,1</texturescale>
+	<specularcolour>155,155,155 </specularcolour>
+	/<specularmap>Textures/MURDER/GLOSS.png</specularmap>
+	/<normalmap>Textures/MURDER/NORMAL.png</normalmap>
+	<transparency>0.1</transparency>
+	<type>plane</type>
+</object>
