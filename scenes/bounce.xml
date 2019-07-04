@@ -40,7 +40,7 @@
 	<specularcolour>0,255,0,255</specularcolour>
 	<albedo>0.18</albedo>
  	<transparency>0.8</transparency>
-	<refractionindex>0.8</refractionindex>
+	<refractiveindex>0.8</refractiveindex>
 	<type>sphere</type>
 </object>
 <object name="Special">
